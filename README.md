@@ -1,16 +1,17 @@
-# scores_2_go_2
+# Scores2Go
 
-A new Flutter project.
+Medical calculator for clincial scores. For Research and educational purposes only.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Wide-Range of clinically validated scores
+- Cross Platform (web, android, ios)
+- Fully open source
 
-A few resources to get you started if this is your first Flutter project:
+## Tech-Stack
+- Flutter & Dart
+- Supabase Backend
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Live Demo
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+https://lukas-schmdt.github.io/scores2go/
