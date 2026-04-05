@@ -1,6 +1,6 @@
 {
-    "name": "scores_2_go_2",
-    "short_name": "scores_2_go_2",
+    "name": "Scores2Go",
+    "short_name": "Scores2Go",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
