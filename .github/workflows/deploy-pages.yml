@@ -27,20 +27,11 @@ jobs:
         with:
           channel: stable
 
-      - name: Debug - check file content
-        run: |
-          echo "=== recently_used_screen.dart imports ==="
-          head -10 lib/recently_used/screen/recently_used_screen.dart
-          echo "=== score_entry dir listing ==="
-          ls lib/score_entry/
-          echo "=== pubspec name ==="
-          head -2 pubspec.yaml
-
       - name: Install dependencies
         run: flutter pub get
 
       - name: Build web
-        run: flutter build web --release --base-href /scores2go/
+        run: flutter build web --release --base-href /scores2go/ --pwa-strategy offline-first
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
