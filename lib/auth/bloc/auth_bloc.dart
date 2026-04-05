@@ -16,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RegisterEvent>(_onRegister);
     on<ForgotPasswordEvent>(_onForgotPassword);
     on<ResetPasswordEvent>(_onResetPassword);
+    on<ChangePasswordEvent>(_onChangePassword);
     on<LogoutEvent>(_onLogout);
     on<EmailChangedEvent>(_onEmailChanged);
     on<PasswordChangedEvent>(_onPasswordChanged);
@@ -201,6 +202,28 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           clearError: true,
         ),
       );
+    }
+  }
+
+  Future<void> _onChangePassword(
+    ChangePasswordEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(state.copyWith(status: AuthStatus.loading, clearError: true));
+
+    try {
+      await Supabase.instance.client.auth.signInWithPassword(
+        email: state.username,
+        password: event.currentPassword,
+      );
+      await Supabase.instance.client.auth.updateUser(
+        UserAttributes(password: event.newPassword),
+      );
+      emit(state.copyWith(status: AuthStatus.changePasswordSuccess, clearError: true));
+    } on AuthException catch (e) {
+      emit(state.copyWith(status: AuthStatus.changePasswordFailed, errorMessage: e.message));
+    } catch (_) {
+      emit(state.copyWith(status: AuthStatus.changePasswordFailed, clearError: true));
     }
   }
 

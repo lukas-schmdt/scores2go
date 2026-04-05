@@ -12,6 +12,8 @@ enum AuthStatus {
   passwordRecovery,
   resetPasswordFailed,
   resetPasswordSuccess,
+  changePasswordSuccess,
+  changePasswordFailed,
 }
 
 class AuthState extends Equatable {
