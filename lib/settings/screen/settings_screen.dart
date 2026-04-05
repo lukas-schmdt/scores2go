@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/auth/bloc/auth_bloc.dart';
-import 'package:scores_2_go_2/settings/bloc/settings_bloc.dart';
+import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});

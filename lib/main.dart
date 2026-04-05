@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/auth/bloc/auth_bloc.dart';
-import 'package:scores_2_go_2/auth/screen/auth_screen.dart';
-import 'package:scores_2_go_2/auth/screen/reset_password_screen.dart';
-import 'package:scores_2_go_2/home/bloc/home_bloc.dart';
-import 'package:scores_2_go_2/home/screen/home_screen.dart';
-import 'package:scores_2_go_2/recently_used/bloc/recently_used_bloc.dart';
-import 'package:scores_2_go_2/data_provider/scores_data_provider.dart';
-import 'package:scores_2_go_2/repo/scores_repository.dart';
-import 'package:scores_2_go_2/settings/bloc/settings_bloc.dart';
-import 'package:scores_2_go_2/user_favorites/bloc/user_favorites_bloc.dart';
+import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/auth/screen/auth_screen.dart';
+import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
+import 'package:scores_2_go/home/bloc/home_bloc.dart';
+import 'package:scores_2_go/home/screen/home_screen.dart';
+import 'package:scores_2_go/recently_used/bloc/recently_used_bloc.dart';
+import 'package:scores_2_go/data_provider/scores_data_provider.dart';
+import 'package:scores_2_go/repo/scores_repository.dart';
+import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
+import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
 void main() async {

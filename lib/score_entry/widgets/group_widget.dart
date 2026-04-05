@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:scores_2_go_2/model/score_group.dart';
-import 'package:scores_2_go_2/model/score_visibility.dart';
-import 'package:scores_2_go_2/model/variable_bool.dart';
-import 'package:scores_2_go_2/model/variable_number.dart';
-import 'package:scores_2_go_2/model/variable_selection.dart';
-import 'package:scores_2_go_2/score_entry/widgets/bool_widget.dart';
-import 'package:scores_2_go_2/score_entry/widgets/number_widget.dart';
-import 'package:scores_2_go_2/score_entry/widgets/selection_widget.dart';
+import 'package:scores_2_go/model/score_group.dart';
+import 'package:scores_2_go/model/score_visibility.dart';
+import 'package:scores_2_go/model/variable_bool.dart';
+import 'package:scores_2_go/model/variable_number.dart';
+import 'package:scores_2_go/model/variable_selection.dart';
+import 'package:scores_2_go/score_entry/widgets/bool_widget.dart';
+import 'package:scores_2_go/score_entry/widgets/number_widget.dart';
+import 'package:scores_2_go/score_entry/widgets/selection_widget.dart';
 
 class GroupWidget extends StatelessWidget {
   const GroupWidget({

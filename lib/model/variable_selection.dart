@@ -1,5 +1,5 @@
-import 'package:scores_2_go_2/model/unit_definition.dart';
-import 'package:scores_2_go_2/model/variable.dart';
+import 'package:scores_2_go/model/unit_definition.dart';
+import 'package:scores_2_go/model/variable.dart';
 
 class VariableSelection extends Variable {
   final List<VariableOption> options;

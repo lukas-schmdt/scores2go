@@ -1,10 +1,10 @@
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/model/score_group.dart';
-import 'package:scores_2_go_2/model/variable.dart';
-import 'package:scores_2_go_2/model/variable_bool.dart';
-import 'package:scores_2_go_2/model/variable_number.dart';
-import 'package:scores_2_go_2/model/variable_selection.dart';
-import 'package:scores_2_go_2/function/value_unit_converter.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/model/score_group.dart';
+import 'package:scores_2_go/model/variable.dart';
+import 'package:scores_2_go/model/variable_bool.dart';
+import 'package:scores_2_go/model/variable_number.dart';
+import 'package:scores_2_go/model/variable_selection.dart';
+import 'package:scores_2_go/function/value_unit_converter.dart';
 
 var scoresDb = [
   Score(

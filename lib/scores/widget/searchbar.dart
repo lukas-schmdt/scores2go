@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/scores/bloc/scores_bloc.dart';
+import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
 
 class ScoreSearchBar extends StatelessWidget {
   const ScoreSearchBar({super.key, required this.showSearch});

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/common/widget/empty_state.dart';
-import 'package:scores_2_go_2/home/bloc/home_bloc.dart';
-import 'package:scores_2_go_2/recently_used/screen/recently_used_screen.dart';
-import 'package:scores_2_go_2/scores/bloc/scores_bloc.dart';
-import 'package:scores_2_go_2/repo/scores_repository.dart';
-import 'package:scores_2_go_2/scores/screen/scores_screen.dart';
-import 'package:scores_2_go_2/settings/screen/settings_screen.dart';
-import 'package:scores_2_go_2/user_favorites/screen/user_favorites_screen.dart';
+import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/home/bloc/home_bloc.dart';
+import 'package:scores_2_go/recently_used/screen/recently_used_screen.dart';
+import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
+import 'package:scores_2_go/repo/scores_repository.dart';
+import 'package:scores_2_go/scores/screen/scores_screen.dart';
+import 'package:scores_2_go/settings/screen/settings_screen.dart';
+import 'package:scores_2_go/user_favorites/screen/user_favorites_screen.dart';
 
 enum Feature {
   allScores(0),

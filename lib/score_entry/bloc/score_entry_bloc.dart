@@ -1,14 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
-import 'package:scores_2_go_2/data/scores.dart';
-import 'package:scores_2_go_2/function/score_function_mapper.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/model/score_result.dart';
-import 'package:scores_2_go_2/model/variable.dart';
-import 'package:scores_2_go_2/model/variable_bool.dart';
-import 'package:scores_2_go_2/model/variable_number.dart';
-import 'package:scores_2_go_2/model/variable_selection.dart';
+import 'package:scores_2_go/data/scores.dart';
+import 'package:scores_2_go/function/score_function_mapper.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/model/score_result.dart';
+import 'package:scores_2_go/model/variable.dart';
+import 'package:scores_2_go/model/variable_bool.dart';
+import 'package:scores_2_go/model/variable_number.dart';
+import 'package:scores_2_go/model/variable_selection.dart';
 
 part 'score_entry_event.dart';
 part 'score_entry_state.dart';

@@ -1,4 +1,4 @@
-import 'package:scores_2_go_2/model/variable.dart' show Variable;
+import 'package:scores_2_go/model/variable.dart' show Variable;
 
 class Group {
   final int id;

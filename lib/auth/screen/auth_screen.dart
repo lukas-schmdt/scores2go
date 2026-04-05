@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/auth/bloc/auth_bloc.dart';
-import 'package:scores_2_go_2/auth/screen/forgot_password_screen.dart';
-import 'package:scores_2_go_2/auth/screen/register_screen.dart';
+import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/auth/screen/forgot_password_screen.dart';
+import 'package:scores_2_go/auth/screen/register_screen.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

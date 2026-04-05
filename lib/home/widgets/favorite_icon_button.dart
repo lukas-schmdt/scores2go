@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/user_favorites/bloc/user_favorites_bloc.dart';
+import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
 class FavoriteIconButton extends StatelessWidget {
   const FavoriteIconButton({

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/repo/scores_repository.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/repo/scores_repository.dart';
 
 part 'recently_used_event.dart';
 part 'recently_used_state.dart';

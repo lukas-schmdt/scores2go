@@ -1,6 +1,6 @@
-import 'package:scores_2_go_2/function/score_items_to_map.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/model/score_result.dart';
+import 'package:scores_2_go/function/score_items_to_map.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/model/score_result.dart';
 
 // ─── Demo Score ───────────────────────────────────────────────────────────────
 ScoreResult demoMain(Score score) {

@@ -1,4 +1,4 @@
-import 'package:scores_2_go_2/model/score_group.dart';
+import 'package:scores_2_go/model/score_group.dart';
 
 class Score {
   final int id;

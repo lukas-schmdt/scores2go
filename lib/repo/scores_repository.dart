@@ -1,6 +1,6 @@
-import 'package:scores_2_go_2/data/recently_used.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/data_provider/scores_data_provider.dart';
+import 'package:scores_2_go/data/recently_used.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/data_provider/scores_data_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ScoresRepository {

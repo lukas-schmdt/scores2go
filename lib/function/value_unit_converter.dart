@@ -1,4 +1,4 @@
-import 'package:scores_2_go_2/model/unit_definition.dart';
+import 'package:scores_2_go/model/unit_definition.dart';
 
 /// Predefined unit sets for use in [VariableNumber.units].
 ///

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scores_2_go_2/home/widgets/favorite_icon_button.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/score_entry/screen/open_score_entry.dart';
+import 'package:scores_2_go/home/widgets/favorite_icon_button.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/score_entry/screen/open_score_entry.dart';
 
 class ScoreListItem extends StatelessWidget {
   const ScoreListItem({

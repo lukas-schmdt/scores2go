@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/model/score_visibility.dart';
-import 'package:scores_2_go_2/model/variable.dart';
-import 'package:scores_2_go_2/model/variable_bool.dart';
-import 'package:scores_2_go_2/model/variable_number.dart';
-import 'package:scores_2_go_2/model/variable_selection.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/model/score_visibility.dart';
+import 'package:scores_2_go/model/variable.dart';
+import 'package:scores_2_go/model/variable_bool.dart';
+import 'package:scores_2_go/model/variable_number.dart';
+import 'package:scores_2_go/model/variable_selection.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({

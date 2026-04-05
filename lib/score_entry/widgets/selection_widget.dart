@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/model/variable.dart';
-import 'package:scores_2_go_2/model/variable_selection.dart';
-import 'package:scores_2_go_2/score_entry/bloc/score_entry_bloc.dart';
+import 'package:scores_2_go/model/variable.dart';
+import 'package:scores_2_go/model/variable_selection.dart';
+import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
 class SelectionVariable extends StatelessWidget {
   const SelectionVariable({

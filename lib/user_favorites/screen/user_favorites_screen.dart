@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/common/widget/empty_state.dart';
-import 'package:scores_2_go_2/score_entry/screen/open_score_entry.dart';
-import 'package:scores_2_go_2/user_favorites/bloc/user_favorites_bloc.dart';
+import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/score_entry/screen/open_score_entry.dart';
+import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
 class UserFavoritesScreen extends StatelessWidget {
   const UserFavoritesScreen({super.key});

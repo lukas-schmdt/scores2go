@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/function/score_visibility_mapper.dart';
-import 'package:scores_2_go_2/model/score.dart';
-import 'package:scores_2_go_2/model/score_visibility.dart';
-import 'package:scores_2_go_2/score_entry/bloc/score_entry_bloc.dart';
-import 'package:scores_2_go_2/score_entry/widgets/group_widget.dart';
-import 'package:scores_2_go_2/score_entry/widgets/progress_bar.dart';
-import 'package:scores_2_go_2/score_entry/widgets/score_result_widget.dart';
+import 'package:scores_2_go/function/score_visibility_mapper.dart';
+import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/model/score_visibility.dart';
+import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
+import 'package:scores_2_go/score_entry/widgets/group_widget.dart';
+import 'package:scores_2_go/score_entry/widgets/progress_bar.dart';
+import 'package:scores_2_go/score_entry/widgets/score_result_widget.dart';
 
 class ScoreEntryScreen extends StatefulWidget {
   const ScoreEntryScreen({required this.score, super.key});

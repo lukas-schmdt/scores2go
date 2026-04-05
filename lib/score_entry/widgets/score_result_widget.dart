@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scores_2_go_2/model/score_result.dart';
+import 'package:scores_2_go/model/score_result.dart';
 
 class ScoreResultWidget extends StatelessWidget {
   const ScoreResultWidget({

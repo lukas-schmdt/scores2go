@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go_2/common/widget/empty_state.dart';
-import 'package:scores_2_go_2/scores/bloc/scores_bloc.dart';
-import 'package:scores_2_go_2/scores/widget/score_list_view.dart';
-import 'package:scores_2_go_2/scores/widget/searchbar.dart';
+import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
+import 'package:scores_2_go/scores/widget/score_list_view.dart';
+import 'package:scores_2_go/scores/widget/searchbar.dart';
 
 class ScoresScreen extends StatelessWidget {
   const ScoresScreen({super.key});
