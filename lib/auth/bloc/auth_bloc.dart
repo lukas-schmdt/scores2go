@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -109,7 +110,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await Supabase.instance.client.auth.signUp(
         email: event.email,
         password: event.password,
-        emailRedirectTo: 'io.supabase.scores2go://login-callback',
+        emailRedirectTo: kIsWeb
+            ? 'https://lukas-schmdt.github.io/scores2go/'
+            : 'io.supabase.scores2go://login-callback',
       );
       emit(
         state.copyWith(
@@ -140,7 +143,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       await Supabase.instance.client.auth.resetPasswordForEmail(
         event.email,
-        redirectTo: 'io.supabase.scores2go://login-callback',
+        redirectTo: kIsWeb
+            ? 'https://lukas-schmdt.github.io/scores2go/'
+            : 'io.supabase.scores2go://login-callback',
       );
       emit(
         state.copyWith(status: AuthStatus.forgotPasswordSent, clearError: true),

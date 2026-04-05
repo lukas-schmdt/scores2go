@@ -9,6 +9,7 @@ Medical calculator for clincial scores. For Research and educational purposes on
 - Fully open source
 
 ## Tech-Stack
+
 - Flutter & Dart
 - Supabase Backend
 
