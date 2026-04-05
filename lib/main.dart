@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/auth/screen/auth_screen.dart';
 import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
@@ -53,6 +55,16 @@ class Scores2GoApp extends StatelessWidget {
       builder: (settingsContext, settingsState) => MaterialApp(
         title: 'Scores2Go',
         debugShowCheckedModeBanner: false,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('de'),
+          Locale('en'),
+        ],
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: Colors.blue,
@@ -67,6 +79,7 @@ class Scores2GoApp extends StatelessWidget {
           ),
           useMaterial3: true,
         ),
+        locale: settingsState.locale,
         themeMode: settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (authContext, authState) {

@@ -1,12 +1,16 @@
 {
+    "id": "./",
     "name": "Scores2Go",
     "short_name": "Scores2Go",
-    "start_url": ".",
+    "description": "Clinical scoring tools for healthcare professionals",
+    "start_url": "./",
+    "scope": "./",
     "display": "standalone",
+    "display_override": ["window-controls-overlay", "standalone"],
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
+    "lang": "de",
     "prefer_related_applications": false,
     "icons": [
         {

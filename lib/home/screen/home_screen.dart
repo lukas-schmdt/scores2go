@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/recently_used/screen/recently_used_screen.dart';
 import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
@@ -24,6 +25,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return BlocConsumer<HomeBloc, HomeState>(
       builder: (context, state) {
         return Scaffold(
@@ -37,20 +39,20 @@ class HomeScreen extends StatelessWidget {
             },
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.grid_view),
-                label: 'Browse',
+                icon: const Icon(Icons.grid_view),
+                label: l.navBrowse,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.star),
-                label: 'Favorites',
+                icon: const Icon(Icons.star),
+                label: l.navFavorites,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.history),
-                label: 'Recently used',
+                icon: const Icon(Icons.history),
+                label: l.navRecentlyUsed,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
+                icon: const Icon(Icons.person),
+                label: l.navProfile,
               ),
             ],
           ),
@@ -70,9 +72,7 @@ class HomeScreen extends StatelessWidget {
               : EmptyState.error(),
         );
       },
-      listener: (context, state) {
-        //TODO: Integrate Navigation to ScoreEntryScreen
-      },
+      listener: (context, state) {},
     );
   }
 }

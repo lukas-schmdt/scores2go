@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -26,16 +27,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   void _submit(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final email = _emailCtrl.text.trim();
     final password = _passwordCtrl.text;
     final confirm = _confirmCtrl.text;
 
     if (email.isEmpty || password.isEmpty || confirm.isEmpty) {
-      setState(() => _localError = 'Bitte alle Felder ausfüllen.');
+      setState(() => _localError = l.fillAllFields);
       return;
     }
     if (password != confirm) {
-      setState(() => _localError = 'Passwörter stimmen nicht überein.');
+      setState(() => _localError = l.passwordsDoNotMatch);
       return;
     }
     setState(() => _localError = null);
@@ -45,6 +47,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {},
@@ -53,7 +56,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Konto erstellen'),
+            title: Text(l.createAccount),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
@@ -81,8 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           loading: loading,
                           localError: _localError,
                           blocError: state.status == AuthStatus.registerFailed
-                              ? (state.errorMessage ??
-                                  'Registrierung fehlgeschlagen. Bitte erneut versuchen.')
+                              ? (state.errorMessage ?? l.registrationFailed)
                               : null,
                           onTogglePassword: () => setState(
                               () => _obscurePassword = !_obscurePassword),
@@ -134,6 +136,7 @@ class _RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final errorText = localError ?? blocError;
 
     return Column(
@@ -155,10 +158,10 @@ class _RegisterForm extends StatelessWidget {
                   keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
                   autofillHints: const [AutofillHints.email],
-                  decoration: const InputDecoration(
-                    labelText: 'E-Mail-Adresse',
-                    prefixIcon: Icon(Icons.email_outlined),
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    labelText: l.emailLabel,
+                    prefixIcon: const Icon(Icons.email_outlined),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                   ),
@@ -171,7 +174,7 @@ class _RegisterForm extends StatelessWidget {
                   textInputAction: TextInputAction.next,
                   autofillHints: const [AutofillHints.newPassword],
                   decoration: InputDecoration(
-                    labelText: 'Passwort',
+                    labelText: l.passwordLabel,
                     prefixIcon: const Icon(Icons.lock_outline),
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -193,7 +196,7 @@ class _RegisterForm extends StatelessWidget {
                   autofillHints: const [AutofillHints.newPassword],
                   onFieldSubmitted: (_) => onSubmit(),
                   decoration: InputDecoration(
-                    labelText: 'Passwort bestätigen',
+                    labelText: l.confirmPassword,
                     prefixIcon: const Icon(Icons.lock_outline),
                     border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -231,9 +234,9 @@ class _RegisterForm extends StatelessWidget {
                             color: cs.onPrimary,
                           ),
                         )
-                      : const Text(
-                          'Registrieren',
-                          style: TextStyle(
+                      : Text(
+                          l.register,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                           ),
@@ -246,7 +249,7 @@ class _RegisterForm extends StatelessWidget {
         const SizedBox(height: 20),
         TextButton(
           onPressed: onBackToLogin,
-          child: const Text('Bereits ein Konto? Anmelden'),
+          child: Text(l.alreadyAccountLogin),
         ),
       ],
     );
@@ -261,6 +264,7 @@ class _SuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -276,7 +280,7 @@ class _SuccessView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          'E-Mail prüfen',
+          l.emailCheckTitle,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: cs.onSurface,
@@ -285,7 +289,7 @@ class _SuccessView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Wir haben einen Bestätigungslink an deine E-Mail gesendet. Klicke darauf, um dein Konto zu aktivieren.',
+          l.emailCheckSubtitle,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: cs.onSurfaceVariant,
               ),
@@ -299,9 +303,9 @@ class _SuccessView extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12)),
           ),
-          child: const Text(
-            'Zurück zur Anmeldung',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+          child: Text(
+            l.backToLogin,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
           ),
         ),
       ],

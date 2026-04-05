@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -27,6 +28,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -34,7 +36,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Passwort vergessen?'),
+            title: Text(l.forgotPassword),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
@@ -57,8 +59,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           emailCtrl: _emailCtrl,
                           loading: loading,
                           error: state.status == AuthStatus.forgotPasswordFailed
-                              ? (state.errorMessage ??
-                                  'Reset-E-Mail konnte nicht gesendet werden. Bitte erneut versuchen.')
+                              ? (state.errorMessage ?? l.resetEmailFailed)
                               : null,
                           onSubmit: () => _submit(context),
                           onBackToLogin: () => Navigator.of(context).pop(),
@@ -92,6 +93,7 @@ class _ForgotForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -106,7 +108,7 @@ class _ForgotForm extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          'Passwort vergessen?',
+          l.forgotPassword,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: cs.onSurface,
@@ -114,7 +116,7 @@ class _ForgotForm extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         Text(
-          'Prüfe deinen Posteingang für den Passwort-Reset-Link.',
+          l.checkInboxForResetLink,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: cs.onSurfaceVariant,
               ),
@@ -138,10 +140,10 @@ class _ForgotForm extends StatelessWidget {
                   textInputAction: TextInputAction.done,
                   autofillHints: const [AutofillHints.email],
                   onFieldSubmitted: (_) => onSubmit(),
-                  decoration: const InputDecoration(
-                    labelText: 'E-Mail-Adresse',
-                    prefixIcon: Icon(Icons.email_outlined),
-                    border: OutlineInputBorder(
+                  decoration: InputDecoration(
+                    labelText: l.emailLabel,
+                    prefixIcon: const Icon(Icons.email_outlined),
+                    border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
                   ),
@@ -168,9 +170,9 @@ class _ForgotForm extends StatelessWidget {
                             color: cs.onPrimary,
                           ),
                         )
-                      : const Text(
-                          'Reset-E-Mail senden',
-                          style: TextStyle(
+                      : Text(
+                          l.sendResetEmail,
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 15,
                           ),
@@ -183,7 +185,7 @@ class _ForgotForm extends StatelessWidget {
         const SizedBox(height: 20),
         TextButton(
           onPressed: onBackToLogin,
-          child: const Text('Zurück zur Anmeldung'),
+          child: Text(l.backToLogin),
         ),
       ],
     );
@@ -198,6 +200,7 @@ class _SuccessView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -213,7 +216,7 @@ class _SuccessView extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          'E-Mail gesendet',
+          l.emailSent,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: cs.onSurface,
@@ -222,7 +225,7 @@ class _SuccessView extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          'Prüfe deinen Posteingang für den Passwort-Reset-Link.',
+          l.checkInboxForResetLink,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: cs.onSurfaceVariant,
               ),
@@ -233,12 +236,12 @@ class _SuccessView extends StatelessWidget {
           onPressed: onBackToLogin,
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(48),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          child: const Text(
-            'Zurück zur Anmeldung',
-            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+          child: Text(
+            l.backToLogin,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
           ),
         ),
       ],

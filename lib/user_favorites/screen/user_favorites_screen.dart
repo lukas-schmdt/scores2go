@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/score_entry/screen/open_score_entry.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
@@ -9,6 +10,7 @@ class UserFavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return BlocConsumer<UserFavoritesBloc, UserFavoritesState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -17,7 +19,7 @@ class UserFavoritesScreen extends StatelessWidget {
         }
 
         if (state.status == UserFavoritesStatus.error) {
-          return const Center(child: Text('Fehler beim Laden der Favoriten'));
+          return Center(child: Text(l.errorLoadingFavorites));
         }
 
         if (state.favorites.isEmpty) {
@@ -27,7 +29,7 @@ class UserFavoritesScreen extends StatelessWidget {
         final scores = state.scores;
 
         return Scaffold(
-          appBar: AppBar(title: const Text('Favoriten')),
+          appBar: AppBar(title: Text(l.favoritesTitle)),
           body: ReorderableListView.builder(
             buildDefaultDragHandles: false,
             shrinkWrap: true,
@@ -56,12 +58,13 @@ class UserFavoritesScreen extends StatelessWidget {
                     color: Colors.red,
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.only(right: 16),
-                    child: const Row(
+                    child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.delete, color: Colors.white),
-                        SizedBox(width: 8),
-                        Text('Löschen', style: TextStyle(color: Colors.white)),
+                        const Icon(Icons.delete, color: Colors.white),
+                        const SizedBox(width: 8),
+                        Text(l.delete,
+                            style: const TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),

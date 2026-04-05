@@ -1,0 +1,87 @@
+{
+  "@@locale": "en",
+
+  "appTitle": "Scores2Go",
+  "appSubtitle": "Clinical Assessment Tools",
+
+  "navBrowse": "Browse",
+  "navFavorites": "Favorites",
+  "navRecentlyUsed": "Recently used",
+  "navProfile": "Profile",
+
+  "emailLabel": "Email address",
+  "passwordLabel": "Password",
+  "login": "Sign in",
+  "loginFailed": "Sign in failed. Please try again.",
+  "forgotPassword": "Forgot password?",
+  "noAccountRegister": "No account yet? Register",
+
+  "createAccount": "Create account",
+  "confirmPassword": "Confirm password",
+  "register": "Register",
+  "registrationFailed": "Registration failed. Please try again.",
+  "alreadyAccountLogin": "Already have an account? Sign in",
+  "backToLogin": "Back to sign in",
+  "emailCheckTitle": "Check your email",
+  "emailCheckSubtitle": "We sent a confirmation link to your email. Click it to activate your account.",
+
+  "checkInboxForResetLink": "Check your inbox for the password reset link.",
+  "resetEmailFailed": "Could not send reset email. Please try again.",
+  "sendResetEmail": "Send reset email",
+  "emailSent": "Email sent",
+
+  "newPassword": "New password",
+  "confirmNewPassword": "Confirm new password",
+  "passwordResetFailed": "Password could not be reset. Please try again.",
+  "savePassword": "Save password",
+  "passwordResetSuccess": "Password reset. Please sign in.",
+
+  "fillAllFields": "Please fill in all fields.",
+  "passwordsDoNotMatch": "Passwords do not match.",
+  "cancel": "Cancel",
+  "save": "Save",
+  "delete": "Delete",
+
+  "settings": "Settings",
+  "account": "Account",
+  "email": "Email",
+  "noEmailAddress": "No email address",
+  "password": "Password",
+  "changePassword": "Change password",
+  "logout": "Sign out",
+  "appSection": "App",
+  "darkMode": "Dark mode",
+  "appNameLabel": "App name",
+  "packageNameLabel": "Package name",
+  "versionLabel": "Version",
+  "buildNumberLabel": "Build number",
+
+  "changePasswordTitle": "Change password",
+  "changePasswordError": "Error changing password.",
+  "minSixCharsRequired": "At least 6 characters required.",
+  "currentPassword": "Current password",
+  "passwordChangedSuccess": "Password changed successfully.",
+
+  "scores": "Scores",
+  "noResultsFound": "No results found",
+  "tryDifferentSearch": "Try a different search term.",
+  "noScoresAvailable": "No scores available",
+  "addScoresOrCheckConnection": "Add scores or check your connection.",
+
+  "recentlyUsedTitle": "Recently used",
+  "errorLoadingRecentScores": "Error loading recent scores",
+
+  "favoritesTitle": "Favorites",
+  "errorLoadingFavorites": "Error loading favorites",
+
+  "noItemsFound": "No items found",
+  "pleaseSelectItem": "Please select an item.",
+
+  "drawerHome": "Home",
+  "drawerAbout": "About",
+
+  "languageLabel": "Language",
+  "languageSystem": "System language",
+  "languageDe": "Deutsch",
+  "languageEn": "English"
+}

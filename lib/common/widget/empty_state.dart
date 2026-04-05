@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 
 class EmptyState extends StatelessWidget {
   final IconData iconData;
@@ -28,6 +29,7 @@ class EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -35,11 +37,11 @@ class EmptyState extends StatelessWidget {
           Icon(iconData, size: 48),
           const SizedBox(height: 8),
           Text(
-            title ?? 'Keine Elemente gefunden',
+            title ?? l.noItemsFound,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           Text(
-            subtitle ?? 'Bitte ein Element auswählen.',
+            subtitle ?? l.pleaseSelectItem,
             style: const TextStyle(fontWeight: FontWeight.normal),
           ),
         ],

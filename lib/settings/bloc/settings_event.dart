@@ -11,4 +11,12 @@ class ToggleDarkModeEvent extends SettingsEvent {
   const ToggleDarkModeEvent();
 }
 
+class SetLocaleEvent extends SettingsEvent {
+  const SetLocaleEvent(this.locale);
+  final Locale? locale; // null = use device locale
+
+  @override
+  List<Object> get props => [if (locale != null) locale!];
+}
+
 class getAppVersion extends SettingsEvent {}

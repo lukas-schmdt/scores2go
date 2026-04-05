@@ -7,6 +7,7 @@ final class SettingsState extends Equatable {
     this.appName = '',
     this.packageName = '',
     this.buildNumber = '',
+    this.locale, // null = use device locale
   });
 
   final bool isDarkMode;
@@ -14,6 +15,7 @@ final class SettingsState extends Equatable {
   final String appName;
   final String packageName;
   final String buildNumber;
+  final Locale? locale;
 
   SettingsState copyWith({
     bool? isDarkMode,
@@ -21,6 +23,8 @@ final class SettingsState extends Equatable {
     String? appName,
     String? packageName,
     String? buildNumber,
+    Locale? locale,
+    bool clearLocale = false,
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
@@ -28,15 +32,17 @@ final class SettingsState extends Equatable {
       appName: appName ?? this.appName,
       packageName: packageName ?? this.packageName,
       buildNumber: buildNumber ?? this.buildNumber,
+      locale: clearLocale ? null : (locale ?? this.locale),
     );
   }
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         isDarkMode,
         appName,
         packageName,
         appVersion,
         buildNumber,
+        locale,
       ];
 }

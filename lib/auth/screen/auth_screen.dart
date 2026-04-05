@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/auth/screen/forgot_password_screen.dart';
 import 'package:scores_2_go/auth/screen/register_screen.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -21,6 +22,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
@@ -43,18 +45,14 @@ class _AuthScreenState extends State<AuthScreen> {
                       const SizedBox(height: 40),
 
                       if (state.status == AuthStatus.registerSuccess) ...[
-                        const _SuccessBanner(
-                          message: 'E-Mail prüfen',
-                          subtitle:
-                              'Wir haben einen Bestätigungslink an deine E-Mail gesendet. Klicke darauf, um dein Konto zu aktivieren.',
+                        _SuccessBanner(
+                          message: l.emailCheckTitle,
+                          subtitle: l.emailCheckSubtitle,
                         ),
                         const SizedBox(height: 16),
                       ],
                       if (state.status == AuthStatus.resetPasswordSuccess) ...[
-                        const _SuccessBanner(
-                          message:
-                              'Passwort wurde zurückgesetzt. Bitte anmelden.',
-                        ),
+                        _SuccessBanner(message: l.passwordResetSuccess),
                         const SizedBox(height: 16),
                       ],
 
@@ -77,10 +75,11 @@ class _AuthScreenState extends State<AuthScreen> {
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 autofillHints: const [AutofillHints.email],
-                                decoration: const InputDecoration(
-                                  labelText: 'E-Mail-Adresse',
-                                  prefixIcon: Icon(Icons.email_outlined),
-                                  border: OutlineInputBorder(
+                                decoration: InputDecoration(
+                                  labelText: l.emailLabel,
+                                  prefixIcon:
+                                      const Icon(Icons.email_outlined),
+                                  border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(12),
                                     ),
@@ -100,7 +99,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 onFieldSubmitted: (_) =>
                                     _submit(context, state),
                                 decoration: InputDecoration(
-                                  labelText: 'Passwort',
+                                  labelText: l.passwordLabel,
                                   prefixIcon:
                                       const Icon(Icons.lock_outline),
                                   border: const OutlineInputBorder(
@@ -125,8 +124,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               if (state.status == AuthStatus.loginFailed) ...[
                                 const SizedBox(height: 16),
                                 _ErrorBanner(
-                                  message: state.errorMessage ??
-                                      'Anmeldung fehlgeschlagen. Bitte erneut versuchen.',
+                                  message: state.errorMessage ?? l.loginFailed,
                                 ),
                               ],
 
@@ -149,7 +147,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     ),
                                   ),
                                   child: Text(
-                                    'Passwort vergessen?',
+                                    l.forgotPassword,
                                     style: TextStyle(
                                       fontSize: 13,
                                       color: cs.primary,
@@ -179,9 +177,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                           color: cs.onPrimary,
                                         ),
                                       )
-                                    : const Text(
-                                        'Anmelden',
-                                        style: TextStyle(
+                                    : Text(
+                                        l.login,
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 15,
                                         ),
@@ -203,7 +201,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             ),
                           ),
                         ),
-                        child: const Text('Noch kein Konto? Registrieren'),
+                        child: Text(l.noAccountRegister),
                       ),
                     ],
                   ),
@@ -223,6 +221,7 @@ class _BrandingHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return Column(
       children: [
         Container(
@@ -236,7 +235,7 @@ class _BrandingHeader extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text(
-          'Scores2Go',
+          l.appTitle,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                 fontWeight: FontWeight.bold,
                 color: cs.onSurface,
@@ -244,7 +243,7 @@ class _BrandingHeader extends StatelessWidget {
         ),
         const SizedBox(height: 6),
         Text(
-          'Klinische Bewertungstools',
+          l.appSubtitle,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: cs.onSurfaceVariant,
               ),

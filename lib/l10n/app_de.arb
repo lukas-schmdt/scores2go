@@ -1,0 +1,87 @@
+{
+  "@@locale": "de",
+
+  "appTitle": "Scores2Go",
+  "appSubtitle": "Klinische Bewertungstools",
+
+  "navBrowse": "Browse",
+  "navFavorites": "Favoriten",
+  "navRecentlyUsed": "Zuletzt verwendet",
+  "navProfile": "Profil",
+
+  "emailLabel": "E-Mail-Adresse",
+  "passwordLabel": "Passwort",
+  "login": "Anmelden",
+  "loginFailed": "Anmeldung fehlgeschlagen. Bitte erneut versuchen.",
+  "forgotPassword": "Passwort vergessen?",
+  "noAccountRegister": "Noch kein Konto? Registrieren",
+
+  "createAccount": "Konto erstellen",
+  "confirmPassword": "Passwort bestätigen",
+  "register": "Registrieren",
+  "registrationFailed": "Registrierung fehlgeschlagen. Bitte erneut versuchen.",
+  "alreadyAccountLogin": "Bereits ein Konto? Anmelden",
+  "backToLogin": "Zurück zur Anmeldung",
+  "emailCheckTitle": "E-Mail prüfen",
+  "emailCheckSubtitle": "Wir haben einen Bestätigungslink an deine E-Mail gesendet. Klicke darauf, um dein Konto zu aktivieren.",
+
+  "checkInboxForResetLink": "Prüfe deinen Posteingang für den Passwort-Reset-Link.",
+  "resetEmailFailed": "Reset-E-Mail konnte nicht gesendet werden. Bitte erneut versuchen.",
+  "sendResetEmail": "Reset-E-Mail senden",
+  "emailSent": "E-Mail gesendet",
+
+  "newPassword": "Neues Passwort",
+  "confirmNewPassword": "Neues Passwort bestätigen",
+  "passwordResetFailed": "Passwort konnte nicht zurückgesetzt werden. Bitte erneut versuchen.",
+  "savePassword": "Passwort speichern",
+  "passwordResetSuccess": "Passwort wurde zurückgesetzt. Bitte anmelden.",
+
+  "fillAllFields": "Bitte alle Felder ausfüllen.",
+  "passwordsDoNotMatch": "Passwörter stimmen nicht überein.",
+  "cancel": "Abbrechen",
+  "save": "Speichern",
+  "delete": "Löschen",
+
+  "settings": "Einstellungen",
+  "account": "Konto",
+  "email": "E-Mail",
+  "noEmailAddress": "Keine E-Mail-Adresse",
+  "password": "Passwort",
+  "changePassword": "Passwort ändern",
+  "logout": "Abmelden",
+  "appSection": "App",
+  "darkMode": "Dunkelmodus",
+  "appNameLabel": "App-Name",
+  "packageNameLabel": "Paketname",
+  "versionLabel": "Version",
+  "buildNumberLabel": "Build-Nummer",
+
+  "changePasswordTitle": "Passwort ändern",
+  "changePasswordError": "Fehler beim Ändern des Passworts.",
+  "minSixCharsRequired": "Mindestens 6 Zeichen erforderlich.",
+  "currentPassword": "Aktuelles Passwort",
+  "passwordChangedSuccess": "Passwort erfolgreich geändert.",
+
+  "scores": "Scores",
+  "noResultsFound": "Keine Ergebnisse gefunden",
+  "tryDifferentSearch": "Anderen Suchbegriff versuchen.",
+  "noScoresAvailable": "Keine Scores vorhanden",
+  "addScoresOrCheckConnection": "Scores hinzufügen oder Verbindung prüfen.",
+
+  "recentlyUsedTitle": "Zuletzt verwendet",
+  "errorLoadingRecentScores": "Fehler beim Laden der letzten Scores",
+
+  "favoritesTitle": "Favoriten",
+  "errorLoadingFavorites": "Fehler beim Laden der Favoriten",
+
+  "noItemsFound": "Keine Elemente gefunden",
+  "pleaseSelectItem": "Bitte ein Element auswählen.",
+
+  "drawerHome": "Start",
+  "drawerAbout": "Über uns",
+
+  "languageLabel": "Sprache",
+  "languageSystem": "Systemsprache",
+  "languageDe": "Deutsch",
+  "languageEn": "English"
+}

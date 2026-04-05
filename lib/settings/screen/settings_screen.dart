@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -20,18 +21,18 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return BlocConsumer<SettingsBloc, SettingsState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(title: const Text('Einstellungen')),
+          appBar: AppBar(title: Text(l.settings)),
           body: Padding(
             padding: const EdgeInsets.all(8),
             child: SingleChildScrollView(
               child: ListView(
                 shrinkWrap: true,
                 children: [
-                  // ── Konto ──────────────────────────────────────────────────
                   Card(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,29 +40,28 @@ class SettingsScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16, top: 8),
                           child: Text(
-                            'Konto',
+                            l.account,
                             style: Theme.of(context).textTheme.bodyLarge!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
                         ListTile(
-                          title: const Text('E-Mail'),
+                          title: Text(l.email),
                           subtitle: Text(
-                            context.read<AuthBloc>().state.username ??
-                                'Keine E-Mail-Adresse',
+                            context.read<AuthBloc>().state.username,
                           ),
                         ),
                         ListTile(
-                          title: const Text('Passwort'),
+                          title: Text(l.password),
                           subtitle: const Text('**********'),
                           trailing: IconButton(
-                            icon: Icon(Icons.edit),
+                            icon: const Icon(Icons.edit),
                             onPressed: () => _showChangePasswordDialog(context),
                           ),
                         ),
                         ListTile(
                           title: Text(
-                            'Abmelden',
+                            l.logout,
                             style: TextStyle(
                               color: Theme.of(context).colorScheme.error,
                             ),
@@ -76,7 +76,6 @@ class SettingsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // ── App ────────────────────────────────────────────────────
                   Card(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -85,13 +84,13 @@ class SettingsScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16, top: 8),
                           child: Text(
-                            'App',
+                            l.appSection,
                             style: Theme.of(context).textTheme.bodyLarge!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
                         ),
                         ListTile(
-                          title: const Text('Dunkelmodus'),
+                          title: Text(l.darkMode),
                           trailing: Switch(
                             value: state.isDarkMode,
                             onChanged: (_) => context.read<SettingsBloc>().add(
@@ -100,19 +99,23 @@ class SettingsScreen extends StatelessWidget {
                           ),
                         ),
                         ListTile(
-                          title: const Text('App-Name'),
+                          title: Text(l.languageLabel),
+                          trailing: _LanguageDropdown(current: state.locale),
+                        ),
+                        ListTile(
+                          title: Text(l.appNameLabel),
                           trailing: Text(state.appName),
                         ),
                         ListTile(
-                          title: const Text('Paketname'),
+                          title: Text(l.packageNameLabel),
                           trailing: Text(state.packageName),
                         ),
                         ListTile(
-                          title: const Text('Version'),
+                          title: Text(l.versionLabel),
                           trailing: Text(state.appVersion),
                         ),
                         ListTile(
-                          title: const Text('Build-Nummer'),
+                          title: Text(l.buildNumberLabel),
                           trailing: Text(state.buildNumber),
                         ),
                       ],
@@ -124,6 +127,31 @@ class SettingsScreen extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _LanguageDropdown extends StatelessWidget {
+  const _LanguageDropdown({required this.current});
+  final Locale? current;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final options = <Locale?, String>{
+      null: l.languageSystem,
+      const Locale('de'): l.languageDe,
+      const Locale('en'): l.languageEn,
+    };
+
+    return DropdownButton<Locale?>(
+      value: current,
+      underline: const SizedBox.shrink(),
+      items: options.entries
+          .map((e) => DropdownMenuItem(value: e.key, child: Text(e.value)))
+          .toList(),
+      onChanged: (locale) =>
+          context.read<SettingsBloc>().add(SetLocaleEvent(locale)),
     );
   }
 }
@@ -154,20 +182,21 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
   }
 
   void _submit() {
+    final l = AppLocalizations.of(context)!;
     final current = _currentPasswordController.text.trim();
     final next = _newPasswordController.text;
     final confirm = _confirmPasswordController.text;
 
     if (current.isEmpty || next.isEmpty || confirm.isEmpty) {
-      setState(() => _validationError = 'Bitte alle Felder ausfüllen.');
+      setState(() => _validationError = l.fillAllFields);
       return;
     }
     if (next != confirm) {
-      setState(() => _validationError = 'Passwörter stimmen nicht überein.');
+      setState(() => _validationError = l.passwordsDoNotMatch);
       return;
     }
     if (next.length < 6) {
-      setState(() => _validationError = 'Mindestens 6 Zeichen erforderlich.');
+      setState(() => _validationError = l.minSixCharsRequired);
       return;
     }
 
@@ -177,12 +206,13 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state.status == AuthStatus.changePasswordSuccess) {
           Navigator.of(context).pop();
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Passwort erfolgreich geändert.')),
+            SnackBar(content: Text(l.passwordChangedSuccess)),
           );
         }
       },
@@ -190,7 +220,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
         final isLoading = state.status == AuthStatus.loading;
 
         return AlertDialog(
-          title: const Text('Passwort ändern'),
+          title: Text(l.changePasswordTitle),
           content: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -199,7 +229,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
-                      state.errorMessage ?? 'Fehler beim Ändern des Passworts.',
+                      state.errorMessage ?? l.changePasswordError,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.error,
                       ),
@@ -219,7 +249,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   controller: _currentPasswordController,
                   obscureText: _obscureCurrent,
                   decoration: InputDecoration(
-                    labelText: 'Aktuelles Passwort',
+                    labelText: l.currentPassword,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureCurrent
@@ -236,7 +266,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   controller: _newPasswordController,
                   obscureText: _obscureNew,
                   decoration: InputDecoration(
-                    labelText: 'Neues Passwort',
+                    labelText: l.newPassword,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureNew ? Icons.visibility : Icons.visibility_off,
@@ -251,7 +281,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   controller: _confirmPasswordController,
                   obscureText: _obscureConfirm,
                   decoration: InputDecoration(
-                    labelText: 'Passwort bestätigen',
+                    labelText: l.confirmPassword,
                     suffixIcon: IconButton(
                       icon: Icon(
                         _obscureConfirm
@@ -269,7 +299,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
           actions: [
             TextButton(
               onPressed: isLoading ? null : () => Navigator.of(context).pop(),
-              child: const Text('Abbrechen'),
+              child: Text(l.cancel),
             ),
             FilledButton(
               onPressed: isLoading ? null : _submit,
@@ -279,7 +309,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                       height: 16,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
-                  : const Text('Speichern'),
+                  : Text(l.save),
             ),
           ],
         );

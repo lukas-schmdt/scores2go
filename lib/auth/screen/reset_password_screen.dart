@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   const ResetPasswordScreen({super.key});
@@ -24,12 +25,13 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   }
 
   void _submit(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     final password = _passwordCtrl.text;
     final confirm = _confirmCtrl.text;
 
     if (password.isEmpty || confirm.isEmpty) return;
     if (password != confirm) {
-      setState(() => _localError = 'Passwörter stimmen nicht überein.');
+      setState(() => _localError = l.passwordsDoNotMatch);
       return;
     }
     setState(() => _localError = null);
@@ -39,14 +41,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) {
         final loading = state.status == AuthStatus.loading;
         final error = _localError ??
             (state.status == AuthStatus.resetPasswordFailed
-                ? (state.errorMessage ??
-                    'Passwort konnte nicht zurückgesetzt werden. Bitte erneut versuchen.')
+                ? (state.errorMessage ?? l.passwordResetFailed)
                 : null);
 
         return Scaffold(
@@ -74,7 +76,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        'Neues Passwort',
+                        l.newPassword,
                         style: Theme.of(context)
                             .textTheme
                             .headlineSmall
@@ -104,7 +106,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                   AutofillHints.newPassword
                                 ],
                                 decoration: InputDecoration(
-                                  labelText: 'Neues Passwort',
+                                  labelText: l.newPassword,
                                   prefixIcon:
                                       const Icon(Icons.lock_outline),
                                   border: const OutlineInputBorder(
@@ -131,7 +133,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                 ],
                                 onFieldSubmitted: (_) => _submit(context),
                                 decoration: InputDecoration(
-                                  labelText: 'Neues Passwort bestätigen',
+                                  labelText: l.confirmNewPassword,
                                   prefixIcon:
                                       const Icon(Icons.lock_outline),
                                   border: const OutlineInputBorder(
@@ -174,9 +176,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                                           color: cs.onPrimary,
                                         ),
                                       )
-                                    : const Text(
-                                        'Passwort speichern',
-                                        style: TextStyle(
+                                    : Text(
+                                        l.savePassword,
+                                        style: const TextStyle(
                                           fontWeight: FontWeight.w600,
                                           fontSize: 15,
                                         ),
