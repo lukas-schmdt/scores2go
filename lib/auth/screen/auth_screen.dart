@@ -1,0 +1,336 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go_2/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go_2/auth/screen/forgot_password_screen.dart';
+import 'package:scores_2_go_2/auth/screen/register_screen.dart';
+
+class AuthScreen extends StatefulWidget {
+  const AuthScreen({super.key});
+
+  @override
+  State<AuthScreen> createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  bool _obscurePassword = true;
+
+  void _submit(BuildContext context, AuthState state) {
+    context.read<AuthBloc>().add(LoginEvent(state.username, state.password));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+
+    return BlocBuilder<AuthBloc, AuthState>(
+      builder: (context, state) {
+        final loading = state.status == AuthStatus.loading;
+
+        return Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 48,
+                ),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      _BrandingHeader(cs: cs),
+                      const SizedBox(height: 40),
+
+                      if (state.status == AuthStatus.registerSuccess) ...[
+                        const _SuccessBanner(
+                          message: 'E-Mail prüfen',
+                          subtitle:
+                              'Wir haben einen Bestätigungslink an deine E-Mail gesendet. Klicke darauf, um dein Konto zu aktivieren.',
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+                      if (state.status == AuthStatus.resetPasswordSuccess) ...[
+                        const _SuccessBanner(
+                          message:
+                              'Passwort wurde zurückgesetzt. Bitte anmelden.',
+                        ),
+                        const SizedBox(height: 16),
+                      ],
+
+                      Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          side: BorderSide(color: cs.outlineVariant),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(24),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              TextFormField(
+                                initialValue: state.username,
+                                onChanged: (v) => context
+                                    .read<AuthBloc>()
+                                    .add(EmailChangedEvent(v)),
+                                keyboardType: TextInputType.emailAddress,
+                                textInputAction: TextInputAction.next,
+                                autofillHints: const [AutofillHints.email],
+                                decoration: const InputDecoration(
+                                  labelText: 'E-Mail-Adresse',
+                                  prefixIcon: Icon(Icons.email_outlined),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(12),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 16),
+
+                              TextFormField(
+                                initialValue: state.password,
+                                onChanged: (v) => context
+                                    .read<AuthBloc>()
+                                    .add(PasswordChangedEvent(v)),
+                                obscureText: _obscurePassword,
+                                textInputAction: TextInputAction.done,
+                                autofillHints: const [AutofillHints.password],
+                                onFieldSubmitted: (_) =>
+                                    _submit(context, state),
+                                decoration: InputDecoration(
+                                  labelText: 'Passwort',
+                                  prefixIcon:
+                                      const Icon(Icons.lock_outline),
+                                  border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(12),
+                                    ),
+                                  ),
+                                  suffixIcon: IconButton(
+                                    icon: Icon(
+                                      _obscurePassword
+                                          ? Icons.visibility_outlined
+                                          : Icons.visibility_off_outlined,
+                                    ),
+                                    onPressed: () => setState(
+                                      () => _obscurePassword =
+                                          !_obscurePassword,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              if (state.status == AuthStatus.loginFailed) ...[
+                                const SizedBox(height: 16),
+                                _ErrorBanner(
+                                  message: state.errorMessage ??
+                                      'Anmeldung fehlgeschlagen. Bitte erneut versuchen.',
+                                ),
+                              ],
+
+                              Align(
+                                alignment: Alignment.centerRight,
+                                child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 4),
+                                    tapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                  onPressed: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => BlocProvider.value(
+                                        value: context.read<AuthBloc>(),
+                                        child: const ForgotPasswordScreen(),
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text(
+                                    'Passwort vergessen?',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: cs.primary,
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              const SizedBox(height: 12),
+
+                              FilledButton(
+                                onPressed: loading
+                                    ? null
+                                    : () => _submit(context, state),
+                                style: FilledButton.styleFrom(
+                                  minimumSize: const Size.fromHeight(48),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                child: loading
+                                    ? SizedBox(
+                                        height: 20,
+                                        width: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                          color: cs.onPrimary,
+                                        ),
+                                      )
+                                    : const Text(
+                                        'Anmelden',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 15,
+                                        ),
+                                      ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 20),
+                      TextButton(
+                        onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => BlocProvider.value(
+                              value: context.read<AuthBloc>(),
+                              child: const RegisterScreen(),
+                            ),
+                          ),
+                        ),
+                        child: const Text('Noch kein Konto? Registrieren'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BrandingHeader extends StatelessWidget {
+  const _BrandingHeader({required this.cs});
+  final ColorScheme cs;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          width: 88,
+          height: 88,
+          decoration: BoxDecoration(
+            color: cs.primaryContainer,
+            borderRadius: BorderRadius.circular(24),
+          ),
+          child: Icon(Icons.monitor_heart_outlined, size: 48, color: cs.primary),
+        ),
+        const SizedBox(height: 20),
+        Text(
+          'Scores2Go',
+          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: cs.onSurface,
+              ),
+        ),
+        const SizedBox(height: 6),
+        Text(
+          'Klinische Bewertungstools',
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                color: cs.onSurfaceVariant,
+              ),
+        ),
+      ],
+    );
+  }
+}
+
+class _SuccessBanner extends StatelessWidget {
+  const _SuccessBanner({required this.message, this.subtitle});
+  final String message;
+  final String? subtitle;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: cs.primaryContainer,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: cs.primary.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(Icons.check_circle_outline, size: 16, color: cs.primary),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  message,
+                  style: TextStyle(
+                    color: cs.onPrimaryContainer,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                if (subtitle != null) ...[
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle!,
+                    style: TextStyle(
+                      color: cs.onPrimaryContainer,
+                      fontSize: 12,
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ErrorBanner extends StatelessWidget {
+  const _ErrorBanner({required this.message});
+  final String message;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: cs.errorContainer,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: cs.error.withValues(alpha: 0.3)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.error_outline, size: 16, color: cs.onErrorContainer),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              message,
+              style: TextStyle(color: cs.onErrorContainer, fontSize: 13),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
