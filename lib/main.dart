@@ -11,6 +11,7 @@ import 'package:scores_2_go/recently_used/bloc/recently_used_bloc.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
+import 'package:scores_2_go/theme/theme_data.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
@@ -61,24 +62,9 @@ class Scores2GoApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: const [
-          Locale('de'),
-          Locale('en'),
-        ],
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
-            brightness: Brightness.light,
-          ),
-          useMaterial3: true,
-        ),
-        darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: Colors.blue,
-            brightness: Brightness.dark,
-          ),
-          useMaterial3: true,
-        ),
+        supportedLocales: const [Locale('de'), Locale('en')],
+        theme: AppTheme.light(),
+        darkTheme: AppTheme.dark(),
         locale: settingsState.locale,
         themeMode: settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         home: BlocBuilder<AuthBloc, AuthState>(
