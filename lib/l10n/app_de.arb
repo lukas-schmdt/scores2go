@@ -50,6 +50,7 @@
   "changePassword": "Passwort ändern",
   "logout": "Abmelden",
   "appSection": "App",
+  "appearance": "Erscheinungsbild",
   "darkMode": "Dunkelmodus",
   "appNameLabel": "App-Name",
   "packageNameLabel": "Paketname",

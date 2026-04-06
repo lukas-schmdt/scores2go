@@ -50,6 +50,7 @@
   "changePassword": "Change password",
   "logout": "Sign out",
   "appSection": "App",
+  "appearance": "Appearance",
   "darkMode": "Dark mode",
   "appNameLabel": "App name",
   "packageNameLabel": "Package name",

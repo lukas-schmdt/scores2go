@@ -350,6 +350,12 @@ abstract class AppLocalizations {
   /// **'App'**
   String get appSection;
 
+  /// No description provided for @appearance.
+  ///
+  /// In de, this message translates to:
+  /// **'Erscheinungsbild'**
+  String get appearance;
+
   /// No description provided for @darkMode.
   ///
   /// In de, this message translates to:

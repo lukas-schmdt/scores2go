@@ -34,7 +34,10 @@ class SettingsScreen extends StatelessWidget {
             child: SizedBox(
               height: 48,
               child: FloatingActionButton(
-                child: SvgPicture.asset('assets/bmc-logo.svg'),
+                child: Padding(
+                  padding: EdgeInsets.all(4),
+                  child: SvgPicture.asset('assets/bmc-logo.svg'),
+                ),
                 onPressed: () => url_launcher.launchUrl(
                   Uri.parse('https://www.buymeacoffee.com/lukas.schmdt'),
                 ),
@@ -98,7 +101,7 @@ class SettingsScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(left: 16, top: 8),
                           child: Text(
-                            l.appSection,
+                            l.appearance,
                             style: Theme.of(context).textTheme.bodyLarge!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
@@ -116,6 +119,22 @@ class SettingsScreen extends StatelessWidget {
                           title: Text(l.languageLabel),
                           trailing: _LanguageDropdown(current: state.locale),
                         ),
+                      ],
+                    ),
+                  ),
+                  Card(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16, top: 8),
+                          child: Text(
+                            l.appSection,
+                            style: Theme.of(context).textTheme.bodyLarge!
+                                .copyWith(fontWeight: FontWeight.bold),
+                          ),
+                        ),
                         ListTile(
                           title: Text(l.appNameLabel),
                           trailing: Text(state.appName),
@@ -132,7 +151,7 @@ class SettingsScreen extends StatelessWidget {
                           title: Text(l.buildNumberLabel),
                           trailing: Text(state.buildNumber),
                         ),
-                        SizedBox(height: 48),
+                        SizedBox(height: 56),
                       ],
                     ),
                   ),

@@ -139,6 +139,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get appSection => 'App';
 
   @override
+  String get appearance => 'Appearance';
+
+  @override
   String get darkMode => 'Dark mode';
 
   @override

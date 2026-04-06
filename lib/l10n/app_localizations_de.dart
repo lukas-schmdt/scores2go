@@ -141,6 +141,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appSection => 'App';
 
   @override
+  String get appearance => 'Erscheinungsbild';
+
+  @override
   String get darkMode => 'Dunkelmodus';
 
   @override
