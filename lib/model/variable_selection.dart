@@ -7,7 +7,6 @@ class VariableSelection extends Variable {
   final int activeUnitIndex;
 
   VariableSelection({
-    required super.id,
     required super.name,
     required super.display,
     super.description,
@@ -26,7 +25,6 @@ class VariableSelection extends Variable {
     int? activeUnitIndex,
   }) {
     return VariableSelection(
-      id: id,
       name: name,
       display: display,
       description: description,
@@ -39,16 +37,13 @@ class VariableSelection extends Variable {
 }
 
 class VariableOption {
-  final int id;
   final String display;
-  final List<String>?
-  displays; // per-unit labels, index-matched to parent units
+  final List<String>? displays; // per-unit labels, index-matched to parent units
   final num value;
   final String? description;
   final bool isSelected;
 
   VariableOption({
-    required this.id,
     required this.display,
     this.displays,
     required this.value,
@@ -57,7 +52,6 @@ class VariableOption {
   });
 
   VariableOption copyWith({
-    int? id,
     String? display,
     List<String>? displays,
     num? value,
@@ -65,7 +59,6 @@ class VariableOption {
     bool? isSelected,
   }) {
     return VariableOption(
-      id: id ?? this.id,
       display: display ?? this.display,
       displays: displays ?? this.displays,
       value: value ?? this.value,

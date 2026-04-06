@@ -4,9 +4,8 @@ import 'package:scores_2_go/model/variable_number.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
 class NumberVariable extends StatefulWidget {
-  const NumberVariable({super.key, required this.groupId, required this.item});
+  const NumberVariable({super.key, required this.item});
 
-  final int groupId;
   final VariableNumber item;
 
   @override
@@ -112,11 +111,7 @@ class _NumberVariableState extends State<NumberVariable> {
                     ? activeUnit.toCanonical(parsed)
                     : parsed;
                 context.read<ScoreEntryBloc>().add(
-                  ScoreEntryUpdateNumberEvent(
-                    widget.groupId,
-                    item.id,
-                    canonical,
-                  ),
+                  ScoreEntryUpdateNumberEvent(item.name, canonical),
                 );
               },
               validator: (value) {
@@ -162,7 +157,7 @@ class _UnitChip extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => context.read<ScoreEntryBloc>().add(
-        ScoreEntryUpdateUnitEvent(item.id, nextIndex),
+        ScoreEntryUpdateUnitEvent(item.name, nextIndex),
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),

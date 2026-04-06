@@ -31,7 +31,6 @@ class Score {
     );
   }
 
-  /// ✅ Create a Score from a JSON map
   factory Score.fromJson(Map<String, dynamic> json) {
     return Score(
       id: json['id'] as int,
@@ -42,7 +41,6 @@ class Score {
     );
   }
 
-  /// ✅ Convert a Score back to JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,

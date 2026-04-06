@@ -6,17 +6,17 @@ import 'package:scores_2_go/model/variable_selection.dart';
 
 class FlatScoreContext {
   final Score score;
-  final Map<int, Variable> variablesById;
+  final Map<String, Variable> variablesByName;
 
   FlatScoreContext({required this.score})
-    : variablesById = {
+    : variablesByName = {
         for (final group in score.groups)
-          for (final variable in group.items) variable.id: variable,
+          for (final variable in group.items) variable.name: variable,
       };
 
   /// Get numeric value (VariableNumber)
-  Map<String, dynamic>? numValue(int id) {
-    final v = variablesById[id];
+  Map<String, dynamic>? numValue(String name) {
+    final v = variablesByName[name];
     if (v is VariableNumber) {
       if (v.value != null) {
         return {'value': v.value};
@@ -26,8 +26,8 @@ class FlatScoreContext {
   }
 
   /// Get boolean value (VariableBool)
-  Map<String, dynamic>? boolValue(int id) {
-    final v = variablesById[id];
+  Map<String, dynamic>? boolValue(String name) {
+    final v = variablesByName[name];
     if (v is VariableBool) {
       if (v.value != null) {
         return {
@@ -39,8 +39,8 @@ class FlatScoreContext {
     return null;
   }
 
-  Map<String, dynamic>? singleSelectValueId(int id) {
-    final v = variablesById[id];
+  Map<String, dynamic>? singleSelect(String name) {
+    final v = variablesByName[name];
     if (v is VariableSelection && v.type == VariableType.select) {
       final selectedOption = v.options
           .where((option) => option.isSelected)
@@ -48,7 +48,6 @@ class FlatScoreContext {
           .firstOrNull;
       if (selectedOption == null) return null;
       return {
-        'id': selectedOption.id,
         'display': selectedOption.display,
         'value': selectedOption.value,
       };
@@ -56,15 +55,14 @@ class FlatScoreContext {
     return null;
   }
 
-  List<Map<String, dynamic>>? multiSelectValueIds(int id) {
-    final v = variablesById[id];
+  List<Map<String, dynamic>>? multiSelect(String name) {
+    final v = variablesByName[name];
     var selectedOptions = <Map<String, dynamic>>[];
 
     if (v is VariableSelection) {
       for (final option in v.options) {
         if (option.isSelected) {
           selectedOptions.add({
-            'id': option.id,
             'display': option.display,
             'value': option.value,
           });

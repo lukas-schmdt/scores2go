@@ -7,15 +7,6 @@ class ScoresDataProvider {
 
   SupabaseClient get _db => Supabase.instance.client;
 
-  // ─── Scores ───────────────────────────────────────────────────────────────
-
-  Future<List<Map<String, dynamic>>> fetchScores() async {
-    dev.log('fetchScores()', name: _tag);
-    final result = await _db.from('scores').select().order('display');
-    dev.log('fetchScores() → ${result.length} rows', name: _tag);
-    return result;
-  }
-
   // ─── User Favorites ───────────────────────────────────────────────────────
 
   Future<List<int>> fetchFavoriteScoreIds(String userId) async {
@@ -61,8 +52,6 @@ class ScoresDataProvider {
     dev.log('deleteFavoriteScoreId() → ok', name: _tag);
   }
 
-  /// Replaces every row's position for the given user with the index of
-  /// [orderedScoreIds]. Uses upsert so a single round-trip updates all rows.
   Future<void> updateFavoritePositions(
     String userId,
     List<int> orderedScoreIds,

@@ -1,8 +1,13 @@
-import 'package:scores_2_go/function/score_function.dart';
+import 'package:scores_2_go/data/scores/definitions/apache-ii/score_function.dart';
+import 'package:scores_2_go/data/scores/definitions/demo-score/score_function.dart';
+import 'package:scores_2_go/data/scores/definitions/saps-ii/score_function.dart';
+import 'package:scores_2_go/data/scores/definitions/sofa/score_function.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-Map<int, ScoreResult Function(Score)> scoreFunctionmapper = {
-  1: demoMain,
-  3: apache2Main,
+final Map<String, ScoreResult Function(Score)> scoreFunctionMapper = {
+  'demo-score': demoScoreFunction,
+  'apache-ii':  apacheIiFunction,
+  'saps-ii':    sapsIiFunction,
+  'sofa':       sofaFunction,
 };

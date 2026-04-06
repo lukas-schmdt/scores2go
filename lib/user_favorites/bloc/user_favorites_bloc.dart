@@ -104,7 +104,6 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     final reorderedScores =
         list.map((id) => state.scores.firstWhere((s) => s.id == id)).toList();
 
-    // Optimistic update — UI reflects the new order immediately.
     emit(state.copyWith(favorites: list, scores: reorderedScores));
 
     try {

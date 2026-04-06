@@ -19,13 +19,13 @@ class ScoreEntryScreen extends StatefulWidget {
 
 class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
   final ScrollController _scrollController = ScrollController();
-  final Map<int, GlobalKey> _itemKeys = {};
+  final Map<String, GlobalKey> _itemKeys = {};
 
-  GlobalKey _keyFor(int variableId) =>
-      _itemKeys.putIfAbsent(variableId, GlobalKey.new);
+  GlobalKey _keyFor(String variableName) =>
+      _itemKeys.putIfAbsent(variableName, GlobalKey.new);
 
-  void _scrollToVariable(int variableId) {
-    final ctx = _itemKeys[variableId]?.currentContext;
+  void _scrollToVariable(String variableName) {
+    final ctx = _itemKeys[variableName]?.currentContext;
     if (ctx == null) return;
     Scrollable.ensureVisible(
       ctx,
@@ -58,7 +58,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
         } else if (state.status == Status.success) {
           final score = state.score;
 
-          final visibilityFn = scoreVisibilityMapper[score.id];
+          final visibilityFn = scoreVisibilityMapper[score.name];
           final visibility = visibilityFn != null
               ? visibilityFn(score)
               : const ScoreVisibility.all();

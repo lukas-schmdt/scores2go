@@ -19,13 +19,13 @@ class GroupWidget extends StatelessWidget {
 
   final Group group;
   final ScoreVisibility visibility;
-  final Map<int, GlobalKey> itemKeys;
-  final GlobalKey Function(int variableId) keyFor;
+  final Map<String, GlobalKey> itemKeys;
+  final GlobalKey Function(String variableName) keyFor;
 
   @override
   Widget build(BuildContext context) {
     final activeItems = group.items
-        .where((item) => visibility.isVariableActive(item.id))
+        .where((item) => visibility.isVariableActive(item.name))
         .toList();
 
     if (activeItems.isEmpty) return const SizedBox.shrink();
@@ -52,23 +52,11 @@ class GroupWidget extends StatelessWidget {
         ),
         ...activeItems.map((item) {
           if (item is VariableBool) {
-            return BooleanVariable(
-              key: keyFor(item.id),
-              groupId: group.id,
-              item: item,
-            );
+            return BooleanVariable(key: keyFor(item.name), item: item);
           } else if (item is VariableNumber) {
-            return NumberVariable(
-              key: keyFor(item.id),
-              groupId: group.id,
-              item: item,
-            );
+            return NumberVariable(key: keyFor(item.name), item: item);
           } else if (item is VariableSelection) {
-            return SelectionVariable(
-              key: keyFor(item.id),
-              groupId: group.id,
-              item: item,
-            );
+            return SelectionVariable(key: keyFor(item.name), item: item);
           } else {
             return const Padding(
               padding: EdgeInsets.all(8),

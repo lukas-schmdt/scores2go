@@ -20,8 +20,8 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
           status: Status.initial,
           score: Score(
             id: -1,
-            groups: [],
             name: '',
+            groups: [],
             description: '',
             display: '',
           ),
@@ -41,13 +41,13 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
   }
 
   ScoreResult? _compute(Score score) =>
-      scoreFunctionmapper[score.id]?.call(score);
+      scoreFunctionMapper[score.name]?.call(score);
 
   Future<void> _onLoad(
     ScoreEntryLoadEvent event,
     Emitter<ScoreEntryState> emit,
   ) async {
-    final score = scoresDb.firstWhere((e) => e.id == event.scoreId);
+    final score = scoresDb.firstWhere((e) => e.name == event.scoreName);
     emit(ScoreEntryState(status: Status.loading, score: score));
     await Future.delayed(const Duration(seconds: 1));
     emit(ScoreEntryState(
@@ -66,7 +66,8 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
       groups: state.score.groups.map((group) {
         return group.copyWith(
           items: group.items.map((variable) {
-            if (variable is VariableBool && variable.id == event.variableId) {
+            if (variable is VariableBool &&
+                variable.name == event.variableName) {
               return variable.copyWith(
                 value: event.value != variable.value ? event.value : null,
               );
@@ -89,7 +90,7 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
         return group.copyWith(
           items: group.items.map((variable) {
             if (variable is VariableSelection &&
-                variable.id == event.variableId) {
+                variable.name == event.variableName) {
               if (variable.type == VariableType.multiselect) {
                 return variable.copyWith(
                   options: variable.options.map((option) {
@@ -133,7 +134,8 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
       groups: state.score.groups.map((group) {
         return group.copyWith(
           items: group.items.map((variable) {
-            if (variable is VariableNumber && variable.id == event.variableId) {
+            if (variable is VariableNumber &&
+                variable.name == event.variableName) {
               return variable.copyWith(value: () => event.newValue);
             }
             return variable;
@@ -153,7 +155,8 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
       groups: state.score.groups.map((group) {
         return group.copyWith(
           items: group.items.map((variable) {
-            if (variable is VariableNumber && variable.id == event.variableId) {
+            if (variable is VariableNumber &&
+                variable.name == event.variableName) {
               return variable.copyWith(activeUnitIndex: event.unitIndex);
             }
             return variable;
@@ -173,7 +176,7 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
         return group.copyWith(
           items: group.items.map((variable) {
             if (variable is VariableSelection &&
-                variable.id == event.variableId) {
+                variable.name == event.variableName) {
               return variable.copyWith(activeUnitIndex: event.unitIndex);
             }
             return variable;

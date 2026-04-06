@@ -5,13 +5,8 @@ import 'package:scores_2_go/model/variable_selection.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
 class SelectionVariable extends StatelessWidget {
-  const SelectionVariable({
-    super.key,
-    required this.groupId,
-    required this.item,
-  });
+  const SelectionVariable({super.key, required this.item});
 
-  final int groupId;
   final VariableSelection item;
 
   @override
@@ -67,7 +62,7 @@ class SelectionVariable extends StatelessWidget {
                 activeUnitIndex: item.activeUnitIndex,
                 isMulti: isMulti,
                 onTap: () => context.read<ScoreEntryBloc>().add(
-                  ScoreEntryUpdateSelectionEvent(groupId, item.id, opt),
+                  ScoreEntryUpdateSelectionEvent(item.name, opt),
                 ),
               ),
             ),
@@ -91,7 +86,7 @@ class _SelectionUnitPicker extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => context.read<ScoreEntryBloc>().add(
-        ScoreEntryUpdateSelectionUnitEvent(item.id, nextIndex),
+        ScoreEntryUpdateSelectionUnitEvent(item.name, nextIndex),
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),

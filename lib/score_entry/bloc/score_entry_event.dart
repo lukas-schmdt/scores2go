@@ -8,58 +8,52 @@ sealed class ScoreEntryEvent extends Equatable {
 }
 
 class ScoreEntryLoadEvent extends ScoreEntryEvent {
-  final int scoreId;
+  final String scoreName;
 
-  const ScoreEntryLoadEvent(this.scoreId);
+  const ScoreEntryLoadEvent(this.scoreName);
 
   @override
-  List<Object> get props => [scoreId];
+  List<Object> get props => [scoreName];
 }
 
 class ScoreEntryUpdateBoolEvent extends ScoreEntryEvent {
-  final int groupId;
-  final int variableId;
+  final String variableName;
   final bool value;
 
-  const ScoreEntryUpdateBoolEvent(this.groupId, this.variableId, this.value);
+  const ScoreEntryUpdateBoolEvent(this.variableName, this.value);
 
   @override
-  List<Object> get props => [groupId, variableId, value];
+  List<Object> get props => [variableName, value];
 }
 
 class ScoreEntryUpdateSelectionEvent extends ScoreEntryEvent {
-  final int groupId;
-  final int variableId;
+  final String variableName;
   final VariableOption selectedOption;
 
-  const ScoreEntryUpdateSelectionEvent(
-    this.groupId,
-    this.variableId,
-    this.selectedOption,
-  );
+  const ScoreEntryUpdateSelectionEvent(this.variableName, this.selectedOption);
 
   @override
-  List<Object> get props => [groupId, variableId, selectedOption];
+  List<Object> get props => [variableName, selectedOption];
 }
 
 class ScoreEntryUpdateUnitEvent extends ScoreEntryEvent {
-  final int variableId;
+  final String variableName;
   final int unitIndex;
 
-  const ScoreEntryUpdateUnitEvent(this.variableId, this.unitIndex);
+  const ScoreEntryUpdateUnitEvent(this.variableName, this.unitIndex);
 
   @override
-  List<Object> get props => [variableId, unitIndex];
+  List<Object> get props => [variableName, unitIndex];
 }
 
 class ScoreEntryUpdateSelectionUnitEvent extends ScoreEntryEvent {
-  final int variableId;
+  final String variableName;
   final int unitIndex;
 
-  const ScoreEntryUpdateSelectionUnitEvent(this.variableId, this.unitIndex);
+  const ScoreEntryUpdateSelectionUnitEvent(this.variableName, this.unitIndex);
 
   @override
-  List<Object> get props => [variableId, unitIndex];
+  List<Object> get props => [variableName, unitIndex];
 }
 
 class ScoreEntryRecalculateEvent extends ScoreEntryEvent {
@@ -67,21 +61,11 @@ class ScoreEntryRecalculateEvent extends ScoreEntryEvent {
 }
 
 class ScoreEntryUpdateNumberEvent extends ScoreEntryEvent {
-  final int groupId;
-  final int variableId;
+  final String variableName;
   final num? newValue;
 
-  const ScoreEntryUpdateNumberEvent(
-    this.groupId,
-    this.variableId,
-    this.newValue,
-  );
+  const ScoreEntryUpdateNumberEvent(this.variableName, this.newValue);
 
   @override
-  List<Object> get props => [
-    groupId,
-    variableId,
-    // Only include newValue in the list if it is not null
-    if (newValue != null) newValue!,
-  ];
+  List<Object> get props => [variableName, ?newValue];
 }

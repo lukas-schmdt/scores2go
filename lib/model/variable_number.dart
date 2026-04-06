@@ -20,7 +20,6 @@ class VariableNumber extends Variable {
   final int activeUnitIndex;
 
   VariableNumber({
-    required super.id,
     required super.name,
     required super.display,
     super.description,
@@ -43,7 +42,6 @@ class VariableNumber extends Variable {
     int? activeUnitIndex,
   }) {
     return VariableNumber(
-      id: id,
       name: name,
       display: display,
       description: description,

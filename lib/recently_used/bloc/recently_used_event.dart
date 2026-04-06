@@ -10,6 +10,6 @@ sealed class RecentlyUsedEvent extends Equatable {
 class LoadRecentlyUsedEvent extends RecentlyUsedEvent {}
 
 class JustUsedEvent extends RecentlyUsedEvent {
-  final int scoreId;
-  const JustUsedEvent(this.scoreId);
+  final String scoreName;
+  const JustUsedEvent(this.scoreName);
 }

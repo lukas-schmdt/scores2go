@@ -4,9 +4,8 @@ import 'package:scores_2_go/model/variable_bool.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
 class BooleanVariable extends StatelessWidget {
-  const BooleanVariable({super.key, required this.groupId, required this.item});
+  const BooleanVariable({super.key, required this.item});
 
-  final int groupId;
   final VariableBool item;
 
   @override
@@ -51,7 +50,7 @@ class BooleanVariable extends StatelessWidget {
                   points: item.trueValue!,
                   selected: item.value == true,
                   onTap: () => context.read<ScoreEntryBloc>().add(
-                    ScoreEntryUpdateBoolEvent(groupId, item.id, true),
+                    ScoreEntryUpdateBoolEvent(item.name, true),
                   ),
                 ),
               ),
@@ -62,7 +61,7 @@ class BooleanVariable extends StatelessWidget {
                   points: item.falseValue!,
                   selected: item.value == false,
                   onTap: () => context.read<ScoreEntryBloc>().add(
-                    ScoreEntryUpdateBoolEvent(groupId, item.id, false),
+                    ScoreEntryUpdateBoolEvent(item.name, false),
                   ),
                 ),
               ),

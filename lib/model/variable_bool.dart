@@ -6,7 +6,6 @@ class VariableBool extends Variable {
   final num? falseValue;
 
   VariableBool({
-    required super.id,
     required super.name,
     required super.display,
     super.description,
@@ -21,7 +20,6 @@ class VariableBool extends Variable {
     num? falseValue,
   }) {
     return VariableBool(
-      id: id,
       name: name,
       display: display,
       description: description,

@@ -1,12 +1,10 @@
-import 'package:scores_2_go/data/recently_used.dart';
+import 'package:scores_2_go/data/scores.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ScoresRepository {
   final ScoresDataProvider dataProvider;
-
-  List<Score> _scoresCache = [];
 
   ScoresRepository(this.dataProvider);
 
@@ -15,16 +13,11 @@ class ScoresRepository {
   // ─── Scores ───────────────────────────────────────────────────────────────
 
   Future<List<Score>> getScores([bool force = false]) async {
-    if (_scoresCache.isEmpty || force) {
-      final result = await dataProvider.fetchScores();
-      _scoresCache = result.map((e) => Score.fromJson(e)).toList();
-    }
-    return _scoresCache;
+    return scoresDb;
   }
 
   Future<List<Score>> getScoresBySearchString(String searchString) async {
-    final allScores = await getScores();
-    return allScores
+    return scoresDb
         .where(
           (score) =>
               score.name.toLowerCase().contains(searchString.toLowerCase()) ||
@@ -58,11 +51,11 @@ class ScoresRepository {
 
   // ─── Recently Used ────────────────────────────────────────────────────────
 
-  Future<List<int>> getRecentlyUsedScoreIds() async {
-    return recentlyUsedScoresDb;
+  Future<List<String>> getRecentlyUsedScoreNames() async {
+    return [];
   }
 
-  Future<void> addRecentlyUsedScoreId(List<int> newList) async {
-    recentlyUsedScoresDb = newList;
+  Future<void> addRecentlyUsedScoreName(List<String> newList) async {
+    return;
   }
 }

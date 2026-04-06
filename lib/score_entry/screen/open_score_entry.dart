@@ -6,13 +6,13 @@ import 'package:scores_2_go/score_entry/screen/score_entry_screen.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
 void openScoreEntry(BuildContext context, Score score) {
-  context.read<RecentlyUsedBloc>().add(JustUsedEvent(score.id));
+  context.read<RecentlyUsedBloc>().add(JustUsedEvent(score.name));
 
   Navigator.push(
     context,
     MaterialPageRoute(
       builder: (context) => BlocProvider(
-        create: (_) => ScoreEntryBloc()..add(ScoreEntryLoadEvent(score.id)),
+        create: (_) => ScoreEntryBloc()..add(ScoreEntryLoadEvent(score.name)),
         child: ScoreEntryScreen(score: score),
       ),
     ),

@@ -16,7 +16,7 @@ class ProgressBar extends StatelessWidget {
 
   final Score score;
   final ScoreVisibility visibility;
-  final void Function(int variableId)? onSegmentTap;
+  final void Function(String variableName)? onSegmentTap;
 
   bool _isAnswered(Variable item) {
     if (item is VariableBool) return item.value != null;
@@ -29,7 +29,7 @@ class ProgressBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final items = score.groups
         .expand((g) => g.items)
-        .where((i) => visibility.isVariableActive(i.id))
+        .where((i) => visibility.isVariableActive(i.name))
         .toList();
 
     if (items.isEmpty) return const SizedBox.shrink();
@@ -45,7 +45,7 @@ class ProgressBar extends StatelessWidget {
         Expanded(
           child: GestureDetector(
             behavior: HitTestBehavior.opaque,
-            onTap: () => onSegmentTap?.call(item.id),
+            onTap: () => onSegmentTap?.call(item.name),
             child: SizedBox(
               height: 28,
               child: Align(

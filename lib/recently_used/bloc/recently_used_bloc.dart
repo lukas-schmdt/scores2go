@@ -17,47 +17,38 @@ class RecentlyUsedBloc extends Bloc<RecentlyUsedEvent, RecentlyUsedState> {
       ) {
     on<RecentlyUsedEvent>((event, emit) async {
       if (event is LoadRecentlyUsedEvent) {
-        var scoreIds = await repo.getRecentlyUsedScoreIds();
-        var scores = (await repo.getScores())
-            .where((score) => scoreIds.contains(score.id))
+        final scoreNames = await repo.getRecentlyUsedScoreNames();
+        final allScores = await repo.getScores();
+        final byName = {for (final s in allScores) s.name: s};
+        final scores = scoreNames
+            .where((name) => byName.containsKey(name))
+            .map((name) => byName[name]!)
             .toList();
-
-        var newScoresList = List<Score>.from(scores);
-
-        print("Recently used scores:");
-        scores.forEach((score) {
-          print(score.id);
-        });
 
         emit(
           state.copyWith(
             status: RecentlyUsedStatus.success,
-            recentlyUsedScores: newScoresList,
+            recentlyUsedScores: scores,
           ),
         );
       }
       if (event is JustUsedEvent) {
         const maxItems = 10;
 
-        // make a copy you can mutate
-        var ids = List<int>.from(await repo.getRecentlyUsedScoreIds());
+        var names = List<String>.from(await repo.getRecentlyUsedScoreNames());
 
-        // move used id to front
-        ids.remove(event.scoreId);
-        ids.insert(0, event.scoreId);
+        names.remove(event.scoreName);
+        names.insert(0, event.scoreName);
 
-        // cap length
-        if (ids.length > maxItems) ids = ids.sublist(0, maxItems);
+        if (names.length > maxItems) names = names.sublist(0, maxItems);
 
-        // (optional) persist ids
-        await repo.addRecentlyUsedScoreId(ids);
+        await repo.addRecentlyUsedScoreName(names);
 
-        // build scores in the same order as ids
-        final all = await repo.getScores();
-        final byId = {for (final s in all) s.id: s};
-        final ordered = <Score>[
-          for (final id in ids)
-            if (byId[id] != null) byId[id]!,
+        final allScores = await repo.getScores();
+        final byName = {for (final s in allScores) s.name: s};
+        final ordered = [
+          for (final name in names)
+            if (byName[name] != null) byName[name]!,
         ];
 
         emit(state.copyWith(recentlyUsedScores: ordered));
