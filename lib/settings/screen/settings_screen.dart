@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -27,6 +29,18 @@ class SettingsScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text(l.settings)),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 4, right: 4),
+            child: SizedBox(
+              height: 48,
+              child: FloatingActionButton(
+                child: SvgPicture.asset('assets/bmc-logo.svg'),
+                onPressed: () => url_launcher.launchUrl(
+                  Uri.parse('https://www.buymeacoffee.com/lukas.schmdt'),
+                ),
+              ),
+            ),
+          ),
           body: Padding(
             padding: const EdgeInsets.all(8),
             child: SingleChildScrollView(
@@ -118,6 +132,7 @@ class SettingsScreen extends StatelessWidget {
                           title: Text(l.buildNumberLabel),
                           trailing: Text(state.buildNumber),
                         ),
+                        SizedBox(height: 48),
                       ],
                     ),
                   ),
@@ -211,9 +226,9 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
       listener: (context, state) {
         if (state.status == AuthStatus.changePasswordSuccess) {
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l.passwordChangedSuccess)),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(l.passwordChangedSuccess)));
         }
       },
       builder: (context, state) {
