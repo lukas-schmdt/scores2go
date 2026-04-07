@@ -199,6 +199,7 @@ class _ResultPanel extends StatelessWidget {
       decoration: BoxDecoration(
         color: color.withValues(alpha: 0.08),
         border: Border(top: BorderSide(color: color, width: 2)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
