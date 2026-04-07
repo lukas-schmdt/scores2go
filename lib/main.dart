@@ -62,7 +62,7 @@ class Scores2GoApp extends StatelessWidget {
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
-        supportedLocales: const [Locale('de'), Locale('en')],
+        supportedLocales: const [Locale('en'), Locale('de')],
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         locale: settingsState.locale,
