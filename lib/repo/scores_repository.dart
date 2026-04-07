@@ -17,7 +17,7 @@ class ScoresRepository {
 
   // ─── Scores ───────────────────────────────────────────────────────────────
 
-  List<Score> get scores => buildScoresDb(_locale);
+  List<Score> get scores => buildScoresList(_locale);
 
   Future<List<Score>> getScores([bool force = false]) async {
     return scores;
