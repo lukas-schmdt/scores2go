@@ -9,7 +9,7 @@ final _i10n = ApacheIiI10n();
 Score buildApacheIiScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
   return Score(
-    id: 3,
+    id: 1,
     name: 'apache-ii',
     scoreFunction: apacheIiFunction,
     visibilityFunction: apacheIiVisibility,
@@ -361,10 +361,7 @@ Score buildApacheIiScore(String lang) {
             description: t('vorerkrankungen.description'),
             type: VariableType.select,
             options: [
-              VariableOption(
-                display: t('vorerkrankungen.opt.none'),
-                value: 0,
-              ),
+              VariableOption(display: t('vorerkrankungen.opt.none'), value: 0),
               VariableOption(
                 display: t('vorerkrankungen.opt.elective'),
                 value: 2,

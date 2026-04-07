@@ -9,7 +9,7 @@ final _i10n = SofaI10n();
 Score buildSofaScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
   return Score(
-    id: 5,
+    id: 3,
     name: 'sofa',
     scoreFunction: sofaFunction,
     visibilityFunction: sofaVisibility,
@@ -38,14 +38,8 @@ Score buildSofaScore(String lang) {
               VariableOption(display: '≥ 400 mmHg', value: 0),
               VariableOption(display: '< 400 mmHg', value: 1),
               VariableOption(display: '< 300 mmHg', value: 2),
-              VariableOption(
-                display: t('pao2_fio2.opt.200_support'),
-                value: 3,
-              ),
-              VariableOption(
-                display: t('pao2_fio2.opt.100_support'),
-                value: 4,
-              ),
+              VariableOption(display: t('pao2_fio2.opt.200_support'), value: 3),
+              VariableOption(display: t('pao2_fio2.opt.100_support'), value: 4),
             ],
           ),
         ],
@@ -102,10 +96,22 @@ Score buildSofaScore(String lang) {
             type: VariableType.select,
             options: [
               VariableOption(display: 'MAP ≥ 70 mmHg', value: 0),
-              VariableOption(display: t('cardiovascular_status.opt.map_low'), value: 1),
-              VariableOption(display: t('cardiovascular_status.opt.dopa_low'), value: 2),
-              VariableOption(display: t('cardiovascular_status.opt.dopa_mid'), value: 3),
-              VariableOption(display: t('cardiovascular_status.opt.dopa_high'), value: 4),
+              VariableOption(
+                display: t('cardiovascular_status.opt.map_low'),
+                value: 1,
+              ),
+              VariableOption(
+                display: t('cardiovascular_status.opt.dopa_low'),
+                value: 2,
+              ),
+              VariableOption(
+                display: t('cardiovascular_status.opt.dopa_mid'),
+                value: 3,
+              ),
+              VariableOption(
+                display: t('cardiovascular_status.opt.dopa_high'),
+                value: 4,
+              ),
             ],
           ),
         ],

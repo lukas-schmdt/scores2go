@@ -9,7 +9,7 @@ final _i10n = SapsIiI10n();
 Score buildSapsIiScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
   return Score(
-    id: 4,
+    id: 2,
     name: 'saps-ii',
     scoreFunction: sapsIiFunction,
     visibilityFunction: sapsIiVisibility,
@@ -43,10 +43,7 @@ Score buildSapsIiScore(String lang) {
             options: [
               VariableOption(display: t('aufnahmeart.opt.elective'), value: 0),
               VariableOption(display: t('aufnahmeart.opt.medical'), value: 6),
-              VariableOption(
-                display: t('aufnahmeart.opt.emergency'),
-                value: 8,
-              ),
+              VariableOption(display: t('aufnahmeart.opt.emergency'), value: 8),
             ],
           ),
           VariableSelection(

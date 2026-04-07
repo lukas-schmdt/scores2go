@@ -9,7 +9,7 @@ final _i10n = DemoScoreI10n();
 Score buildDemoScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
   return Score(
-    id: 1,
+    id: 0,
     name: 'demo-score',
     scoreFunction: demoScoreFunction,
     visibilityFunction: demoScoreVisibility,
