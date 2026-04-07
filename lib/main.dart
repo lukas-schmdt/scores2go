@@ -52,7 +52,11 @@ class Scores2GoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final scoresRepo = context.read<ScoresRepository>();
 
-    return BlocBuilder<SettingsBloc, SettingsState>(
+    return BlocConsumer<SettingsBloc, SettingsState>(
+      listener: (context, settingsState) {
+        final lang = settingsState.locale?.languageCode ?? 'de';
+        context.read<ScoresRepository>().setLocale(lang);
+      },
       builder: (settingsContext, settingsState) => MaterialApp(
         title: 'Scores2Go',
         debugShowCheckedModeBanner: false,

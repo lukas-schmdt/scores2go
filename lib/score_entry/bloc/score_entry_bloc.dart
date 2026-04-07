@@ -1,8 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
-import 'package:scores_2_go/data/scores.dart';
 import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/model/score_result.dart';
 import 'package:scores_2_go/model/variable.dart';
 import 'package:scores_2_go/model/variable_bool.dart';
@@ -13,7 +13,9 @@ part 'score_entry_event.dart';
 part 'score_entry_state.dart';
 
 class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
-  ScoreEntryBloc()
+  final ScoresRepository repo;
+
+  ScoreEntryBloc(this.repo)
     : super(
         ScoreEntryState(
           status: Status.initial,
@@ -45,7 +47,7 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     ScoreEntryLoadEvent event,
     Emitter<ScoreEntryState> emit,
   ) async {
-    final score = scoresDb.firstWhere((e) => e.name == event.scoreName);
+    final score = repo.scores.firstWhere((e) => e.name == event.scoreName);
     emit(ScoreEntryState(status: Status.loading, score: score));
     await Future.delayed(const Duration(seconds: 1));
     emit(ScoreEntryState(

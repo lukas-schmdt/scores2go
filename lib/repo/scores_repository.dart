@@ -5,19 +5,26 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ScoresRepository {
   final ScoresDataProvider dataProvider;
+  String _locale = 'de';
 
   ScoresRepository(this.dataProvider);
 
   String get _userId => Supabase.instance.client.auth.currentUser!.id;
 
+  void setLocale(String locale) {
+    _locale = locale;
+  }
+
   // ─── Scores ───────────────────────────────────────────────────────────────
 
+  List<Score> get scores => buildScoresDb(_locale);
+
   Future<List<Score>> getScores([bool force = false]) async {
-    return scoresDb;
+    return scores;
   }
 
   Future<List<Score>> getScoresBySearchString(String searchString) async {
-    return scoresDb
+    return scores
         .where(
           (score) =>
               score.name.toLowerCase().contains(searchString.toLowerCase()) ||
