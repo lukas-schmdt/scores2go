@@ -1,4 +1,6 @@
 import 'package:scores_2_go/model/score_group.dart';
+import 'package:scores_2_go/model/score_result.dart';
+import 'package:scores_2_go/model/score_visibility.dart';
 
 class Score {
   final int id;
@@ -6,6 +8,8 @@ class Score {
   final String display;
   final String description;
   final List<Group> groups;
+  final ScoreResult Function(Score)? scoreFunction;
+  final ScoreVisibility Function(Score)? visibilityFunction;
 
   Score({
     required this.id,
@@ -13,6 +17,8 @@ class Score {
     required this.display,
     required this.description,
     required this.groups,
+    this.scoreFunction,
+    this.visibilityFunction,
   });
 
   Score copyWith({
@@ -28,6 +34,8 @@ class Score {
       display: display ?? this.display,
       description: description ?? this.description,
       groups: groups ?? this.groups,
+      scoreFunction: scoreFunction,
+      visibilityFunction: visibilityFunction,
     );
   }
 

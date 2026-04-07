@@ -1,9 +1,13 @@
+import 'package:scores_2_go/data/scores/definitions/demo-score/demo_function.dart';
+import 'package:scores_2_go/data/scores/definitions/demo-score/demo_visibility.dart';
 import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
 
 Score buildDemoScore() => Score(
   id: 1,
   name: 'demo-score',
+  scoreFunction: demoScoreFunction,
+  visibilityFunction: demoScoreVisibility,
   display: 'Demo Score',
   description:
       'Demonstration score covering all variable types: boolean, '

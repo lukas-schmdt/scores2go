@@ -1,9 +1,13 @@
+import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_function.dart';
+import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_visibility.dart';
 import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
 
 Score buildApacheIiScore() => Score(
   id: 3,
   name: 'apache-ii',
+  scoreFunction: apacheIiFunction,
+  visibilityFunction: apacheIiVisibility,
   display: 'APACHE II',
   description: 'Acute Physiology And Chronic Health Evaluation (APACHE) II',
   groups: [

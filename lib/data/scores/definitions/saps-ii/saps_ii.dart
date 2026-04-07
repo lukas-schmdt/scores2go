@@ -1,9 +1,13 @@
+import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii_function.dart';
+import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii_visibility.dart';
 import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
 
 Score buildSapsIiScore() => Score(
   id: 4,
   name: 'saps-ii',
+  scoreFunction: sapsIiFunction,
+  visibilityFunction: sapsIiVisibility,
   display: 'SAPS II',
   description: 'Simplified Acute Physiology Score (SAPS) II',
   groups: [

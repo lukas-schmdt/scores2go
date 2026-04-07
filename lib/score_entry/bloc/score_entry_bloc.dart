@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:stream_transform/stream_transform.dart';
 import 'package:scores_2_go/data/scores.dart';
-import 'package:scores_2_go/function/score_function_mapper.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 import 'package:scores_2_go/model/variable.dart';
@@ -40,8 +39,7 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     );
   }
 
-  ScoreResult? _compute(Score score) =>
-      scoreFunctionMapper[score.name]?.call(score);
+  ScoreResult? _compute(Score score) => score.scoreFunction?.call(score);
 
   Future<void> _onLoad(
     ScoreEntryLoadEvent event,

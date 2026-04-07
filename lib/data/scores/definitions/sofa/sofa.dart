@@ -1,9 +1,13 @@
+import 'package:scores_2_go/data/scores/definitions/sofa/sofa_function.dart';
+import 'package:scores_2_go/data/scores/definitions/sofa/sofa_visibility.dart';
 import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
 
 Score buildSofaScore() => Score(
   id: 5,
   name: 'sofa',
+  scoreFunction: sofaFunction,
+  visibilityFunction: sofaVisibility,
   display: 'SOFA',
   description: 'Sequential Organ Failure Assessment (SOFA)',
   groups: [

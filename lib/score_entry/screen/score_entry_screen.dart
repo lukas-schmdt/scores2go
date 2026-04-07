@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go/function/score_visibility_mapper.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
@@ -58,10 +57,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
         } else if (state.status == Status.success) {
           final score = state.score;
 
-          final visibilityFn = scoreVisibilityMapper[score.name];
-          final visibility = visibilityFn != null
-              ? visibilityFn(score)
-              : const ScoreVisibility.all();
+          final visibility = score.visibilityFunction?.call(score) ?? const ScoreVisibility.all();
 
           return Scaffold(
             appBar: AppBar(title: Text(score.display)),
