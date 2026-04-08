@@ -14,16 +14,43 @@ class FavoriteIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      color: isFavorite ? Colors.amber : Colors.grey,
-      onPressed: () {
-        if (!isFavorite) {
-          context.read<UserFavoritesBloc>().add(AddUserFavoriteEvent(scoreId));
-        } else {
-          context.read<UserFavoritesBloc>().add(RemoveUserFavoriteEvent(scoreId));
-        }
+    return BlocBuilder<UserFavoritesBloc, UserFavoritesState>(
+      builder: (context, state) {
+        final isPending = state.pendingId == scoreId;
+        final color = isFavorite ? Colors.amber : Colors.grey;
+
+        return SizedBox(
+          width: 40,
+          height: 40,
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            color: color,
+            onPressed: isPending
+                ? null
+                : () {
+                    if (!isFavorite) {
+                      context
+                          .read<UserFavoritesBloc>()
+                          .add(AddUserFavoriteEvent(scoreId));
+                    } else {
+                      context
+                          .read<UserFavoritesBloc>()
+                          .add(RemoveUserFavoriteEvent(scoreId));
+                    }
+                  },
+            icon: isPending
+                ? SizedBox(
+                    width: 18,
+                    height: 18,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      color: color,
+                    ),
+                  )
+                : const Icon(Icons.star),
+          ),
+        );
       },
-      icon: const Icon(Icons.star),
     );
   }
 }

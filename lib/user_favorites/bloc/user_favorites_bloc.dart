@@ -24,19 +24,24 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     try {
       final favoriteIds = await repo.getFavoriteScoreIds();
       final allScores = await repo.getScores();
-      final favoriteScores =
-          allScores.where((s) => favoriteIds.contains(s.id)).toList();
+      final favoriteScores = allScores
+          .where((s) => favoriteIds.contains(s.id))
+          .toList();
 
-      emit(state.copyWith(
-        status: UserFavoritesStatus.loaded,
-        favorites: favoriteIds,
-        scores: favoriteScores,
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.loaded,
+          favorites: favoriteIds,
+          scores: favoriteScores,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        status: UserFavoritesStatus.error,
-        errorMessage: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.error,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 
@@ -45,24 +50,35 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     Emitter<UserFavoritesState> emit,
   ) async {
     if (state.favorites.contains(event.scoreId)) return;
+    emit(state.copyWith(pendingId: event.scoreId));
     try {
-      await repo.addFavoriteScoreId(event.scoreId, state.favorites.length);
+      await Future.wait([
+        repo.addFavoriteScoreId(event.scoreId, state.favorites.length),
+        Future.delayed(const Duration(milliseconds: 500)),
+      ]);
 
       final allScores = await repo.getScores();
       final updatedIds = [...state.favorites, event.scoreId];
-      final updatedScores =
-          allScores.where((s) => updatedIds.contains(s.id)).toList();
+      final updatedScores = allScores
+          .where((s) => updatedIds.contains(s.id))
+          .toList();
 
-      emit(state.copyWith(
-        status: UserFavoritesStatus.loaded,
-        favorites: updatedIds,
-        scores: updatedScores,
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.loaded,
+          favorites: updatedIds,
+          scores: updatedScores,
+          clearPending: true,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        status: UserFavoritesStatus.error,
-        errorMessage: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.error,
+          errorMessage: e.toString(),
+          clearPending: true,
+        ),
+      );
     }
   }
 
@@ -70,24 +86,36 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     RemoveUserFavoriteEvent event,
     Emitter<UserFavoritesState> emit,
   ) async {
+    emit(state.copyWith(pendingId: event.scoreId));
     try {
-      await repo.removeFavoriteScoreId(event.scoreId);
+      await Future.wait([
+        repo.removeFavoriteScoreId(event.scoreId),
+        Future.delayed(const Duration(milliseconds: 200)),
+      ]);
 
-      final updatedIds =
-          state.favorites.where((id) => id != event.scoreId).toList();
-      final updatedScores =
-          state.scores.where((s) => updatedIds.contains(s.id)).toList();
+      final updatedIds = state.favorites
+          .where((id) => id != event.scoreId)
+          .toList();
+      final updatedScores = state.scores
+          .where((s) => updatedIds.contains(s.id))
+          .toList();
 
-      emit(state.copyWith(
-        status: UserFavoritesStatus.loaded,
-        favorites: updatedIds,
-        scores: updatedScores,
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.loaded,
+          favorites: updatedIds,
+          scores: updatedScores,
+          clearPending: true,
+        ),
+      );
     } catch (e) {
-      emit(state.copyWith(
-        status: UserFavoritesStatus.error,
-        errorMessage: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.error,
+          errorMessage: e.toString(),
+          clearPending: true,
+        ),
+      );
     }
   }
 
@@ -97,22 +125,26 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
   ) async {
     final list = List<int>.from(state.favorites);
     final moved = list.removeAt(event.oldIndex);
-    final insertAt =
-        event.oldIndex < event.newIndex ? event.newIndex - 1 : event.newIndex;
+    final insertAt = event.oldIndex < event.newIndex
+        ? event.newIndex - 1
+        : event.newIndex;
     list.insert(insertAt, moved);
 
-    final reorderedScores =
-        list.map((id) => state.scores.firstWhere((s) => s.id == id)).toList();
+    final reorderedScores = list
+        .map((id) => state.scores.firstWhere((s) => s.id == id))
+        .toList();
 
     emit(state.copyWith(favorites: list, scores: reorderedScores));
 
     try {
       await repo.updateFavoritePositions(list);
     } catch (e) {
-      emit(state.copyWith(
-        status: UserFavoritesStatus.error,
-        errorMessage: e.toString(),
-      ));
+      emit(
+        state.copyWith(
+          status: UserFavoritesStatus.error,
+          errorMessage: e.toString(),
+        ),
+      );
     }
   }
 }
