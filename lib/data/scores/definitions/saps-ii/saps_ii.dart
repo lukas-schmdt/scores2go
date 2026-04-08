@@ -13,6 +13,10 @@ Score buildSapsIiScore(String lang) {
     name: 'saps-ii',
     scoreFunction: sapsIiFunction,
     visibilityFunction: sapsIiVisibility,
+    author: 'Le Gall et al.',
+    year: 1993,
+    popularity: 88,
+    categories: ['ICU', 'Severity'],
     display: 'SAPS II',
     description: t('description'),
     groups: [

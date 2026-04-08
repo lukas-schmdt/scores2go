@@ -15,6 +15,10 @@ Score buildDemoScore(String lang) {
     scoreFunction: demoScoreFunction,
     visibilityFunction: demoScoreVisibility,
     doc: demoDoc,
+    author: 'Demo Author',
+    year: 2024,
+    popularity: 10,
+    categories: ['Demo'],
     display: t('display'),
     description: t('description'),
     groups: [

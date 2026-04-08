@@ -13,6 +13,10 @@ Score buildSofaScore(String lang) {
     name: 'sofa',
     scoreFunction: sofaFunction,
     visibilityFunction: sofaVisibility,
+    author: 'Vincent et al.',
+    year: 1996,
+    popularity: 92,
+    categories: ['Sepsis', 'ICU'],
     display: 'SOFA',
     description: t('description'),
     groups: [

@@ -15,6 +15,10 @@ Score buildApacheIiScore(String lang) {
     scoreFunction: apacheIiFunction,
     visibilityFunction: apacheIiVisibility,
     doc: apacheIiDoc,
+    author: 'Knaus et al.',
+    year: 1985,
+    popularity: 95,
+    categories: ['ICU', 'Severity'],
     display: 'APACHE II',
     description: t('description'),
     groups: [

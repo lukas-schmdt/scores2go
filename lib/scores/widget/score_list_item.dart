@@ -18,8 +18,14 @@ class ScoreListItem extends StatelessWidget {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
 
+    final metaStyle = tt.labelSmall?.copyWith(color: cs.onSurfaceVariant);
+    final hasMetadata = score.author != null ||
+        score.year != null ||
+        score.popularity != null ||
+        score.categories.isNotEmpty;
+
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
       child: InkWell(
         onTap: () => openScoreEntry(context, score),
         borderRadius: BorderRadius.circular(20),
@@ -48,13 +54,56 @@ class ScoreListItem extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ],
+                    if (hasMetadata) ...[
+                      const SizedBox(height: 6),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 4,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: [
+                          if (score.author != null || score.year != null)
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.person_outline,
+                                    size: 12, color: cs.onSurfaceVariant),
+                                const SizedBox(width: 3),
+                                Text(
+                                  [
+                                    if (score.author != null) score.author!,
+                                    if (score.year != null) '${score.year}',
+                                  ].join(', '),
+                                  style: metaStyle,
+                                ),
+                              ],
+                            ),
+                          if (score.popularity != null)
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.trending_up,
+                                    size: 12, color: cs.onSurfaceVariant),
+                                const SizedBox(width: 3),
+                                Text('${score.popularity}', style: metaStyle),
+                              ],
+                            ),
+                          for (final cat in score.categories)
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 1),
+                              decoration: BoxDecoration(
+                                border: Border.all(color: cs.outlineVariant),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(cat, style: metaStyle),
+                            ),
+                        ],
+                      ),
+                    ],
                   ],
                 ),
               ),
-              FavoriteIconButton(
-                isFavorite: isFavorite,
-                scoreId: score.id,
-              ),
+              FavoriteIconButton(isFavorite: isFavorite, scoreId: score.id),
             ],
           ),
         ),

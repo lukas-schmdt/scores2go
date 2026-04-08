@@ -11,6 +11,10 @@ class Score {
   final ScoreResult Function(Score)? scoreFunction;
   final ScoreVisibility Function(Score)? visibilityFunction;
   final String? doc;
+  final String? author;
+  final int? year;
+  final int? popularity;
+  final List<String> categories;
 
   Score({
     required this.id,
@@ -21,6 +25,10 @@ class Score {
     this.scoreFunction,
     this.visibilityFunction,
     this.doc,
+    this.author,
+    this.year,
+    this.popularity,
+    this.categories = const [],
   });
 
   Score copyWith({
@@ -39,6 +47,10 @@ class Score {
       scoreFunction: scoreFunction,
       visibilityFunction: visibilityFunction,
       doc: doc,
+      author: author,
+      year: year,
+      popularity: popularity,
+      categories: categories,
     );
   }
 
