@@ -40,10 +40,13 @@ class ScoreResultWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (isLoading && scoreResult != null)
-          LinearProgressIndicator(
-            minHeight: 2,
-            backgroundColor: cs.surfaceContainerHighest,
-            color: cs.primary,
+          ClipRRect(
+            borderRadius: const BorderRadius.vertical(top: Radius.circular(18)),
+            child: LinearProgressIndicator(
+              minHeight: 2,
+              backgroundColor: cs.surfaceContainerHighest,
+              color: cs.primary,
+            ),
           ),
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 100),
