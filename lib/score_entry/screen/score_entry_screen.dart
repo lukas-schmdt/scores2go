@@ -42,6 +42,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() => setState(() {}));
   }
 
   @override
@@ -66,30 +67,42 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
           return const Center(child: Text('Fehler beim Laden des Scores'));
         } else if (state.status == Status.success) {
           final score = state.score;
-
           final visibility =
               score.visibilityFunction?.call(score) ??
               const ScoreVisibility.all();
 
           return Scaffold(
-            body: Column(
-              children: [
-                SafeArea(
-                  bottom: false,
-                  child: TabBar(
-                    controller: _tabController,
-                    tabs: const [
-                      Tab(text: 'Score'),
-                      Tab(text: 'Docs'),
-                    ],
-                  ),
+            bottomNavigationBar: BottomNavigationBar(
+              currentIndex: _tabController.index,
+              selectedItemColor: Theme.of(context).colorScheme.primary,
+              type: BottomNavigationBarType.fixed,
+              onTap: _tabController.animateTo,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.calculate_outlined),
+                  label: 'Score',
                 ),
-                Expanded(child: TabBarView(
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.article_outlined),
+                  label: 'Docs',
+                ),
+              ],
+            ),
+            body: TabBarView(
               controller: _tabController,
               children: [
+                // ── Score tab ────────────────────────────────────────────
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
+                      child: Text(
+                        score.display,
+                        style: Theme.of(context).textTheme.headlineSmall
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ),
                     ProgressBar(
                       score: score,
                       visibility: visibility,
@@ -107,48 +120,17 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (score.description.isNotEmpty)
-                                Builder(
-                                  builder: (context) {
-                                    final cs = Theme.of(context).colorScheme;
-                                    return Container(
-                                      width: double.infinity,
-                                      margin: const EdgeInsets.only(bottom: 8),
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 12,
-                                        vertical: 8,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: cs.primaryContainer,
-                                        borderRadius: BorderRadius.circular(6),
-                                        border: Border.all(
-                                          color: cs.primary.withValues(
-                                            alpha: 0.3,
-                                          ),
-                                        ),
-                                      ),
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Icon(
-                                            Icons.info_outline,
-                                            size: 16,
-                                            color: cs.primary,
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Expanded(
-                                            child: Text(
-                                              score.description,
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                color: cs.onPrimaryContainer,
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+                                  child: Text(
+                                    score.description,
+                                    style: Theme.of(context).textTheme.bodySmall
+                                        ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onSurfaceVariant,
+                                    ),
+                                  ),
                                 ),
                               ...score.groups.map(
                                 (group) => Card(
@@ -174,6 +156,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                   ],
                 ),
 
+                // ── Docs tab ─────────────────────────────────────────────
                 score.doc != null && score.doc!.isNotEmpty
                     ? SingleChildScrollView(
                         padding: const EdgeInsets.all(16),
@@ -182,9 +165,9 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                           children: parseMarkdown(score.doc!),
                         ),
                       )
-                    : const Center(child: Text('No documentation available.')),
-              ],
-            )),
+                    : const Center(
+                        child: Text('No documentation available.'),
+                      ),
               ],
             ),
           );
