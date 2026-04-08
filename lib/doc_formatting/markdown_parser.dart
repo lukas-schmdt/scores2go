@@ -446,17 +446,26 @@ class _MdParser {
   Widget _parseList({required bool ordered}) {
     final baseIndent = _leadingSpaces(_cur);
     final items = <({String text, List<String> extra})>[];
+    bool seenBlank = false;
 
     while (_i < _lines.length) {
       final line = _cur;
 
       if (line.trim().isEmpty) {
+        seenBlank = true;
         _i++;
         continue;
       }
 
       final indent = _leadingSpaces(line);
       if (indent < baseIndent) break;
+
+      // A blank line followed by a non-list-item at base indent ends the list
+      if (seenBlank && indent == baseIndent &&
+          !(ordered ? _isOlLine(line) : _isUlLine(line))) {
+        break;
+      }
+      seenBlank = false;
 
       // Block-level elements at the base indent terminate the list
       if (indent == baseIndent) {

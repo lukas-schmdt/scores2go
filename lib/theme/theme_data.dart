@@ -33,7 +33,7 @@ class AppTheme {
         color: AppColors.lightSurface,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           side: const BorderSide(color: AppColors.lightOutline),
         ),
       ),
@@ -124,7 +124,7 @@ class AppTheme {
         color: AppColors.darkSurface,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(8),
           side: const BorderSide(color: AppColors.darkOutline),
         ),
       ),
