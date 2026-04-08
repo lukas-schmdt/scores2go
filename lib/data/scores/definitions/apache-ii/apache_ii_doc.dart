@@ -1,5 +1,4 @@
-const String apacheIiDoc = '''
-# APACHE II Score
+const String apacheIiDoc = '''# APACHE II Score
 
 ## Formula
 
@@ -36,6 +35,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 **Immunosuppression**
 
 - The patient has received therapy that suppresses resistance to infection e.g. immuno-suppression, chemotherapy, radiation, or recent high dose steroids, or has a disease that is sufficiently advanced to suppress resistance to infection, e.g. leukemia, lymphoma, AIDS
+
 
 ## Point Values
 

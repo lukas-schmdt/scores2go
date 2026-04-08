@@ -25,8 +25,7 @@ import 'package:flutter/material.dart';
 List<Widget> parseMarkdown(
   String markdown, {
   void Function(String url)? onLinkTap,
-}) =>
-    _MdParser(markdown, onLinkTap: onLinkTap).parse();
+}) => _MdParser(markdown, onLinkTap: onLinkTap).parse();
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Block parser
@@ -109,7 +108,8 @@ class _MdParser {
     if (_isFence(line)) return _parseFenced();
 
     // Indented code block (4 spaces, not a list item)
-    if (line.startsWith('    ') && !_isUlLine(line)) return _parseIndentedCode();
+    if (line.startsWith('    ') && !_isUlLine(line))
+      return _parseIndentedCode();
 
     // Block quote
     if (line.trimLeft().startsWith('>')) return _parseBlockQuote();
@@ -187,9 +187,12 @@ class _MdParser {
   int _leadingSpaces(String line) {
     int n = 0;
     for (final c in line.runes) {
-      if (c == 0x20) n++;
-      else if (c == 0x09) n += 4;
-      else break;
+      if (c == 0x20)
+        n++;
+      else if (c == 0x09)
+        n += 4;
+      else
+        break;
     }
     return n;
   }
@@ -208,16 +211,20 @@ class _MdParser {
   Widget _renderHeading(int level, String text) {
     const sizes = [26.0, 21.0, 17.0, 15.0, 14.0, 13.0];
     const weights = [
-      FontWeight.bold, FontWeight.bold, FontWeight.w600,
-      FontWeight.w600, FontWeight.w500, FontWeight.w500,
+      FontWeight.bold,
+      FontWeight.bold,
+      FontWeight.w600,
+      FontWeight.w600,
+      FontWeight.w500,
+      FontWeight.w500,
     ];
     const pads = [
-      EdgeInsets.only(top: 20, bottom: 10),
-      EdgeInsets.only(top: 16, bottom: 8),
-      EdgeInsets.only(top: 12, bottom: 6),
+      EdgeInsets.only(top: 12, bottom: 4),
       EdgeInsets.only(top: 10, bottom: 4),
-      EdgeInsets.only(top: 8, bottom: 4),
-      EdgeInsets.only(top: 8, bottom: 4),
+      EdgeInsets.only(top: 8, bottom: 2),
+      EdgeInsets.only(top: 6, bottom: 2),
+      EdgeInsets.only(top: 4, bottom: 2),
+      EdgeInsets.only(top: 4, bottom: 2),
     ];
     final i = (level - 1).clamp(0, 5);
     return Padding(
@@ -242,7 +249,10 @@ class _MdParser {
       _i++;
     }
     if (_i < _lines.length) _i++; // closing fence
-    return _codeBlock(buf.toString().trimRight(), lang: lang.isEmpty ? null : lang);
+    return _codeBlock(
+      buf.toString().trimRight(),
+      lang: lang.isEmpty ? null : lang,
+    );
   }
 
   // ── Indented code block ────────────────────────────────────────────────────
@@ -259,39 +269,41 @@ class _MdParser {
   }
 
   Widget _codeBlock(String code, {String? lang}) {
-    return Builder(builder: (ctx) {
-      final cs = Theme.of(ctx).colorScheme;
-      return Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: cs.surfaceContainerHighest,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (lang != null)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Text(
-                  lang,
-                  style: TextStyle(
-                    fontSize: 11,
-                    fontWeight: FontWeight.w600,
-                    color: cs.primary,
+    return Builder(
+      builder: (ctx) {
+        final cs = Theme.of(ctx).colorScheme;
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: cs.surfaceContainerHighest,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (lang != null)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Text(
+                    lang,
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w600,
+                      color: cs.primary,
+                    ),
                   ),
                 ),
+              Text(
+                code,
+                style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
               ),
-            Text(
-              code,
-              style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 
   // ── Block quote ────────────────────────────────────────────────────────────
@@ -311,22 +323,26 @@ class _MdParser {
       }
     }
     final children = parseMarkdown(inner.join('\n'), onLinkTap: onLinkTap);
-    return Builder(builder: (ctx) {
-      final cs = Theme.of(ctx).colorScheme;
-      return Container(
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
-        decoration: BoxDecoration(
-          border: Border(left: BorderSide(color: cs.primary, width: 3)),
-          color: cs.primaryContainer.withValues(alpha: 0.25),
-          borderRadius: const BorderRadius.horizontal(right: Radius.circular(4)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: children,
-        ),
-      );
-    });
+    return Builder(
+      builder: (ctx) {
+        final cs = Theme.of(ctx).colorScheme;
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.fromLTRB(12, 8, 8, 8),
+          decoration: BoxDecoration(
+            border: Border(left: BorderSide(color: cs.primary, width: 3)),
+            color: cs.primaryContainer.withValues(alpha: 0.25),
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(4),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          ),
+        );
+      },
+    );
   }
 
   // ── List (ordered & unordered with nesting) ────────────────────────────────
@@ -346,6 +362,16 @@ class _MdParser {
       final indent = _leadingSpaces(line);
       if (indent < baseIndent) break;
 
+      // Block-level elements at the base indent terminate the list
+      if (indent == baseIndent) {
+        final trimmed = line.trim();
+        if (RegExp(r'^#{1,6}\s').hasMatch(trimmed)) break;
+        if (_isHr(line)) break;
+        if (_isFence(line)) break;
+        if (trimmed.startsWith('>')) break;
+        if (RegExp(r'^\[\^[^\]]+\]:').hasMatch(trimmed)) break;
+      }
+
       final isItemHere =
           indent == baseIndent && (ordered ? _isOlLine(line) : _isUlLine(line));
 
@@ -358,8 +384,9 @@ class _MdParser {
       } else if (items.isNotEmpty) {
         // Continuation or nested content: strip one indent level
         final strip = (baseIndent + 2).clamp(0, indent);
-        final stripped =
-            line.length > strip ? line.substring(strip) : line.trimLeft();
+        final stripped = line.length > strip
+            ? line.substring(strip)
+            : line.trimLeft();
         items.last.extra.add(stripped);
         _i++;
       } else {
@@ -394,10 +421,7 @@ class _MdParser {
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text.rich(_inline(item.text)),
-                      ...sub,
-                    ],
+                    children: [Text.rich(_inline(item.text)), ...sub],
                   ),
                 ),
               ],
@@ -429,17 +453,21 @@ class _MdParser {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: items
-            .expand((item) => [
-                  Text.rich(
-                    _inline(item.term),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+            .expand(
+              (item) => [
+                Text.rich(
+                  _inline(item.term),
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                ...item.defs.map(
+                  (d) => Padding(
+                    padding: const EdgeInsets.only(left: 24, top: 2, bottom: 2),
+                    child: Text.rich(_inline(d)),
                   ),
-                  ...item.defs.map((d) => Padding(
-                        padding: const EdgeInsets.only(left: 24, top: 2, bottom: 2),
-                        child: Text.rich(_inline(d)),
-                      )),
-                  const SizedBox(height: 4),
-                ])
+                ),
+                const SizedBox(height: 4),
+              ],
+            )
             .toList(),
       ),
     );
@@ -472,8 +500,7 @@ class _MdParser {
         .map((c) => c.trim())
         .where((c) => c.isNotEmpty)
         .toList();
-    bool isSep(String l) =>
-        RegExp(r'^\s*\|[\s\-:|]+\|\s*$').hasMatch(l);
+    bool isSep(String l) => RegExp(r'^\s*\|[\s\-:|]+\|\s*$').hasMatch(l);
 
     final rows = <String>[];
     while (_i < _lines.length && _lines[_i].trimLeft().startsWith('|')) {
@@ -494,8 +521,10 @@ class _MdParser {
   // ── Simple space-aligned table ─────────────────────────────────────────────
 
   Widget _parseSimpleTable() {
-    final headerLine = _cur; _i++;
-    final sepLine = _cur; _i++;
+    final headerLine = _cur;
+    _i++;
+    final sepLine = _cur;
+    _i++;
 
     // Find column boundaries from runs of dashes in the separator line
     final ranges = <(int, int)>[];
@@ -515,10 +544,10 @@ class _MdParser {
     }
 
     List<String> splitRow(String line) => ranges.map((r) {
-          if (r.$1 >= line.length) return '';
-          final end = r.$2 < line.length ? r.$2 : line.length;
-          return line.substring(r.$1, end).trim();
-        }).toList();
+      if (r.$1 >= line.length) return '';
+      final end = r.$2 < line.length ? r.$2 : line.length;
+      return line.substring(r.$1, end).trim();
+    }).toList();
 
     final headers = splitRow(headerLine);
     final rows = <List<String>>[];
@@ -546,57 +575,61 @@ class _MdParser {
     List<List<String>> rows,
     String? caption,
   ) {
-    return Builder(builder: (ctx) {
-      final cs = Theme.of(ctx).colorScheme;
-      return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Table(
-              border: TableBorder.all(color: cs.outlineVariant, width: 0.5),
-              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-              children: [
-                TableRow(
-                  decoration:
-                      BoxDecoration(color: cs.surfaceContainerHighest),
-                  children:
-                      headers.map((h) => _tableCell(h, bold: true)).toList(),
-                ),
-                for (final row in rows)
+    return Builder(
+      builder: (ctx) {
+        final cs = Theme.of(ctx).colorScheme;
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Table(
+                border: TableBorder.all(color: cs.outlineVariant, width: 0.5),
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                children: [
                   TableRow(
-                    children: List.generate(
-                      headers.length,
-                      (i) => _tableCell(i < row.length ? row[i] : ''),
+                    decoration: BoxDecoration(
+                      color: cs.surfaceContainerHighest,
+                    ),
+                    children: headers
+                        .map((h) => _tableCell(h, bold: true))
+                        .toList(),
+                  ),
+                  for (final row in rows)
+                    TableRow(
+                      children: List.generate(
+                        headers.length,
+                        (i) => _tableCell(i < row.length ? row[i] : ''),
+                      ),
+                    ),
+                ],
+              ),
+              if (caption != null)
+                Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    caption,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontStyle: FontStyle.italic,
+                      color: cs.onSurfaceVariant,
                     ),
                   ),
-              ],
-            ),
-            if (caption != null)
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  caption,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontStyle: FontStyle.italic,
-                    color: cs.onSurfaceVariant,
-                  ),
                 ),
-              ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 
   Widget _tableCell(String text, {bool bold = false}) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-        child: Text.rich(
-          _inline(text),
-          style: bold ? const TextStyle(fontWeight: FontWeight.bold) : null,
-        ),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+    child: Text.rich(
+      _inline(text),
+      style: bold ? const TextStyle(fontWeight: FontWeight.bold) : null,
+    ),
+  );
 
   // ── Paragraph ──────────────────────────────────────────────────────────────
 
@@ -623,7 +656,7 @@ class _MdParser {
     }
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: Text.rich(_inline(text)),
+      child: Text.rich(_inline(text), textAlign: TextAlign.justify),
     );
   }
 
@@ -635,20 +668,25 @@ class _MdParser {
         .replaceAll('---', '\u2014') // em-dash
         .replaceAll('--', '\u2013') // en-dash
         .replaceAll('...', '\u2026'); // ellipsis
-    return _InlineParser(text, onLinkTap: onLinkTap, footnotes: _footnotes)
-        .parse();
+    return _InlineParser(
+      text,
+      onLinkTap: onLinkTap,
+      footnotes: _footnotes,
+    ).parse();
   }
 
   // ── Footnote section ───────────────────────────────────────────────────────
 
   Widget _footnoteSection() {
-    return Builder(builder: (ctx) {
-      final cs = Theme.of(ctx).colorScheme;
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Divider(height: 24),
-          ..._footnotes.entries.map((e) => Padding(
+    return Builder(
+      builder: (ctx) {
+        final cs = Theme.of(ctx).colorScheme;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Divider(height: 24),
+            ..._footnotes.entries.map(
+              (e) => Padding(
                 padding: const EdgeInsets.only(bottom: 4),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -665,15 +703,19 @@ class _MdParser {
                       child: Text.rich(
                         _inline(e.value),
                         style: TextStyle(
-                            fontSize: 12, color: cs.onSurfaceVariant),
+                          fontSize: 12,
+                          color: cs.onSurfaceVariant,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              )),
-        ],
-      );
-    });
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }
 
@@ -738,29 +780,37 @@ class _InlineParser {
     }
     if (m.group(2) != null) {
       return TextSpan(
-          text: m.group(2),
-          style: const TextStyle(fontWeight: FontWeight.bold));
+        text: m.group(2),
+        style: const TextStyle(fontWeight: FontWeight.bold),
+      );
     }
     if (m.group(3) != null) {
       return TextSpan(
-          text: m.group(3),
-          style: const TextStyle(decoration: TextDecoration.underline));
+        text: m.group(3),
+        style: const TextStyle(decoration: TextDecoration.underline),
+      );
     }
     if (m.group(4) != null) {
       return TextSpan(
-          text: m.group(4),
-          style: const TextStyle(fontStyle: FontStyle.italic));
+        text: m.group(4),
+        style: const TextStyle(fontStyle: FontStyle.italic),
+      );
     }
     if (m.group(5) != null) {
       return TextSpan(
-          text: m.group(5),
-          style: const TextStyle(fontStyle: FontStyle.italic));
+        text: m.group(5),
+        style: const TextStyle(fontStyle: FontStyle.italic),
+      );
     }
     if (m.group(6) != null) {
       return TextSpan(
-          text: m.group(6),
-          style: const TextStyle(
-              fontFamily: 'monospace', fontSize: 13, letterSpacing: 0));
+        text: m.group(6),
+        style: const TextStyle(
+          fontFamily: 'monospace',
+          fontSize: 13,
+          letterSpacing: 0,
+        ),
+      );
     }
     if (m.group(7) != null) {
       return WidgetSpan(
@@ -789,9 +839,12 @@ class _InlineParser {
     final math = m.group(12) ?? m.group(13);
     if (math != null) {
       return TextSpan(
-          text: math,
-          style: const TextStyle(
-              fontFamily: 'monospace', fontStyle: FontStyle.italic));
+        text: math,
+        style: const TextStyle(
+          fontFamily: 'monospace',
+          fontStyle: FontStyle.italic,
+        ),
+      );
     }
     return const TextSpan();
   }
@@ -819,7 +872,9 @@ class _InlineParser {
   InlineSpan _linkSpan(String text, String raw) {
     final url = raw.split('"').first.trim();
     const style = TextStyle(
-        color: Colors.blue, decoration: TextDecoration.underline);
+      color: Colors.blue,
+      decoration: TextDecoration.underline,
+    );
     if (onLinkTap != null) {
       return TextSpan(
         text: text,
