@@ -72,17 +72,19 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
               const ScoreVisibility.all();
 
           return Scaffold(
-            appBar: AppBar(
-              title: Text(score.display),
-              bottom: TabBar(
-                controller: _tabController,
-                tabs: const [
-                  Tab(text: 'Score'),
-                  Tab(text: 'Docs'),
-                ],
-              ),
-            ),
-            body: TabBarView(
+            body: Column(
+              children: [
+                SafeArea(
+                  bottom: false,
+                  child: TabBar(
+                    controller: _tabController,
+                    tabs: const [
+                      Tab(text: 'Score'),
+                      Tab(text: 'Docs'),
+                    ],
+                  ),
+                ),
+                Expanded(child: TabBarView(
               controller: _tabController,
               children: [
                 Column(
@@ -181,6 +183,8 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                         ),
                       )
                     : const Center(child: Text('No documentation available.')),
+              ],
+            )),
               ],
             ),
           );
