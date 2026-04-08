@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/doc_formatting/markdown_parser.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
@@ -16,9 +17,11 @@ class ScoreEntryScreen extends StatefulWidget {
   State<ScoreEntryScreen> createState() => _ScoreEntryScreenState();
 }
 
-class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
+class _ScoreEntryScreenState extends State<ScoreEntryScreen>
+    with SingleTickerProviderStateMixin {
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> _itemKeys = {};
+  late final TabController _tabController;
 
   GlobalKey _keyFor(String variableName) =>
       _itemKeys.putIfAbsent(variableName, GlobalKey.new);
@@ -36,7 +39,14 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
   void dispose() {
+    _tabController.dispose();
     _scrollController.dispose();
     super.dispose();
   }
@@ -57,86 +67,120 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
         } else if (state.status == Status.success) {
           final score = state.score;
 
-          final visibility = score.visibilityFunction?.call(score) ?? const ScoreVisibility.all();
+          final visibility =
+              score.visibilityFunction?.call(score) ??
+              const ScoreVisibility.all();
 
           return Scaffold(
-            appBar: AppBar(title: Text(score.display)),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            appBar: AppBar(
+              title: Text(score.display),
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: const [
+                  Tab(text: 'Score'),
+                  Tab(text: 'Docs'),
+                ],
+              ),
+            ),
+            body: TabBarView(
+              controller: _tabController,
               children: [
-                ProgressBar(
-                  score: score,
-                  visibility: visibility,
-                  onSegmentTap: _scrollToVariable,
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 6,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          if (score.description.isNotEmpty)
-                            Builder(builder: (context) {
-                              final cs = Theme.of(context).colorScheme;
-                              return Container(
-                                width: double.infinity,
-                                margin: const EdgeInsets.only(bottom: 8),
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 12,
-                                  vertical: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: cs.primaryContainer,
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(
-                                    color: cs.primary.withValues(alpha: 0.3),
-                                  ),
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Icon(Icons.info_outline,
-                                        size: 16, color: cs.primary),
-                                    const SizedBox(width: 8),
-                                    Expanded(
-                                      child: Text(
-                                        score.description,
-                                        style: TextStyle(
-                                          fontSize: 13,
-                                          color: cs.onPrimaryContainer,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ProgressBar(
+                      score: score,
+                      visibility: visibility,
+                      onSegmentTap: _scrollToVariable,
+                    ),
+                    Expanded(
+                      child: SingleChildScrollView(
+                        controller: _scrollController,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 6,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (score.description.isNotEmpty)
+                                Builder(
+                                  builder: (context) {
+                                    final cs = Theme.of(context).colorScheme;
+                                    return Container(
+                                      width: double.infinity,
+                                      margin: const EdgeInsets.only(bottom: 8),
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 12,
+                                        vertical: 8,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: cs.primaryContainer,
+                                        borderRadius: BorderRadius.circular(6),
+                                        border: Border.all(
+                                          color: cs.primary.withValues(
+                                            alpha: 0.3,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Icon(
+                                            Icons.info_outline,
+                                            size: 16,
+                                            color: cs.primary,
+                                          ),
+                                          const SizedBox(width: 8),
+                                          Expanded(
+                                            child: Text(
+                                              score.description,
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: cs.onPrimaryContainer,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
                                 ),
-                              );
-                            }),
-                          ...score.groups.map(
-                            (group) => Card(
-                              margin: const EdgeInsets.only(bottom: 8),
-                              clipBehavior: Clip.antiAlias,
-                              child: GroupWidget(
-                                group: group,
-                                visibility: visibility,
-                                itemKeys: _itemKeys,
-                                keyFor: _keyFor,
+                              ...score.groups.map(
+                                (group) => Card(
+                                  margin: const EdgeInsets.only(bottom: 8),
+                                  clipBehavior: Clip.antiAlias,
+                                  child: GroupWidget(
+                                    group: group,
+                                    visibility: visibility,
+                                    itemKeys: _itemKeys,
+                                    keyFor: _keyFor,
+                                  ),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
-                  ),
+                    ScoreResultWidget(
+                      scoreResult: state.scoreResult,
+                      isLoading: state.isCalculating,
+                    ),
+                  ],
                 ),
-                ScoreResultWidget(
-                  scoreResult: state.scoreResult,
-                  isLoading: state.isCalculating,
-                ),
+
+                score.doc != null && score.doc!.isNotEmpty
+                    ? SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: parseMarkdown(score.doc!),
+                        ),
+                      )
+                    : const Center(child: Text('No documentation available.')),
               ],
             ),
           );

@@ -10,6 +10,7 @@ class Score {
   final List<Group> groups;
   final ScoreResult Function(Score)? scoreFunction;
   final ScoreVisibility Function(Score)? visibilityFunction;
+  final String? doc;
 
   Score({
     required this.id,
@@ -19,6 +20,7 @@ class Score {
     required this.groups,
     this.scoreFunction,
     this.visibilityFunction,
+    this.doc,
   });
 
   Score copyWith({
@@ -36,6 +38,7 @@ class Score {
       groups: groups ?? this.groups,
       scoreFunction: scoreFunction,
       visibilityFunction: visibilityFunction,
+      doc: doc,
     );
   }
 
@@ -46,6 +49,7 @@ class Score {
       display: json['display'] as String,
       description: json['description'] as String? ?? '',
       groups: [],
+      doc: json['doc'] as String? ?? '',
     );
   }
 
@@ -56,6 +60,7 @@ class Score {
       'display': display,
       'description': description,
       'groups': [],
+      'doc': doc,
     };
   }
 }
