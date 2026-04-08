@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/doc_formatting/markdown_parser.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
@@ -162,7 +163,15 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                         padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: parseMarkdown(score.doc!),
+                          children: parseMarkdown(
+                            score.doc!,
+                            onLinkTap: (url) async {
+                              final uri = Uri.tryParse(url);
+                              if (uri != null && await canLaunchUrl(uri)) {
+                                await launchUrl(uri, mode: LaunchMode.externalApplication);
+                              }
+                            },
+                          ),
                         ),
                       )
                     : const Center(

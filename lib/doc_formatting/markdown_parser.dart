@@ -104,6 +104,9 @@ class _MdParser {
       );
     }
 
+    // Admonition  :::type [optional title]
+    if (_isAdmonition(line)) return _parseAdmonition();
+
     // Fenced code block  (~~~ or ```)
     if (_isFence(line)) return _parseFenced();
 
@@ -175,6 +178,17 @@ class _MdParser {
   bool get _isPipeTable {
     if (!_cur.trimLeft().startsWith('|')) return false;
     return RegExp(r'^\s*\|[\s\-:|]+\|').hasMatch(_peek(1));
+  }
+
+  static const _admonitionTypes = {
+    'note', 'tip', 'info', 'warning', 'danger',
+  };
+
+  bool _isAdmonition(String line) {
+    final t = line.trim();
+    if (!t.startsWith(':::')) return false;
+    final word = t.substring(3).trim().split(' ').first.toLowerCase();
+    return _admonitionTypes.contains(word);
   }
 
   bool get _isSimpleTableStart {
@@ -344,6 +358,88 @@ class _MdParser {
       },
     );
   }
+
+  // ── Admonition  :::type [title] … ::: ─────────────────────────────────────
+
+  Widget _parseAdmonition() {
+    final opening = _cur.trim(); // e.g. ":::warning My Title"
+    _i++;
+    final parts = opening.substring(3).trim().split(RegExp(r'\s+'));
+    final type = parts.first.toLowerCase();
+    final title = parts.length > 1
+        ? parts.skip(1).join(' ')
+        : _defaultAdmonitionTitle(type);
+
+    final inner = <String>[];
+    while (_i < _lines.length && _lines[_i].trim() != ':::') {
+      inner.add(_lines[_i]);
+      _i++;
+    }
+    if (_i < _lines.length) _i++; // consume closing :::
+
+    final children = parseMarkdown(inner.join('\n'), onLinkTap: onLinkTap);
+
+    return Builder(builder: (ctx) {
+      final cs = Theme.of(ctx).colorScheme;
+      final (color, icon) = _admonitionStyle(type, cs);
+      return Container(
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.08),
+          border: Border(left: BorderSide(color: color, width: 4)),
+          borderRadius: const BorderRadius.horizontal(right: Radius.circular(6)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
+              child: Row(
+                children: [
+                  Icon(icon, size: 16, color: color),
+                  const SizedBox(width: 6),
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                      color: color,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: children,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
+  }
+
+  String _defaultAdmonitionTitle(String type) => switch (type) {
+        'note' => 'Note',
+        'tip' => 'Tip',
+        'info' => 'Info',
+        'warning' => 'Warning',
+        'danger' => 'Danger',
+        _ => type,
+      };
+
+  (Color, IconData) _admonitionStyle(String type, ColorScheme cs) =>
+      switch (type) {
+        'tip' => (Colors.green, Icons.lightbulb_outline),
+        'info' => (cs.primary, Icons.info_outline),
+        'warning' => (Colors.orange, Icons.warning_amber_outlined),
+        'danger' => (Colors.red, Icons.error_outline),
+        _ => (cs.onSurfaceVariant, Icons.sticky_note_2_outlined), // note
+      };
 
   // ── List (ordered & unordered with nesting) ────────────────────────────────
 
