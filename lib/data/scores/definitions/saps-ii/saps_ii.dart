@@ -20,6 +20,7 @@ Score buildSapsIiScore(String lang) {
         name: 'saps-ii-demografie_aufnahme',
         display: t('group.demografie.display'),
         description: t('group.demografie.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'saps-ii-alter',
@@ -76,6 +77,7 @@ Score buildSapsIiScore(String lang) {
         name: 'saps-ii-vitalparameter',
         display: t('group.vitals.display'),
         description: t('group.vitals.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'saps-ii-herzfrequenz',
@@ -170,6 +172,7 @@ Score buildSapsIiScore(String lang) {
         name: 'saps-ii-labor',
         display: t('group.labor.display'),
         description: t('group.labor.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'saps-ii-bun',

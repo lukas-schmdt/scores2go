@@ -37,7 +37,7 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     on<ScoreEntryRecalculateEvent>(
       _onRecalculate,
       transformer: (events, mapper) =>
-          events.debounce(const Duration(seconds: 1)).switchMap(mapper),
+          events.debounce(const Duration(milliseconds: 500)).switchMap(mapper),
     );
   }
 
@@ -50,12 +50,14 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     final score = repo.scores.firstWhere((e) => e.name == event.scoreName);
     emit(ScoreEntryState(status: Status.loading, score: score));
     await Future.delayed(const Duration(seconds: 1));
-    emit(ScoreEntryState(
-      status: Status.success,
-      score: score,
-      scoreResult: _compute(score),
-      isCalculating: false,
-    ));
+    emit(
+      ScoreEntryState(
+        status: Status.success,
+        score: score,
+        scoreResult: _compute(score),
+        isCalculating: false,
+      ),
+    );
   }
 
   void _onUpdateBool(
@@ -191,9 +193,8 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     ScoreEntryRecalculateEvent event,
     Emitter<ScoreEntryState> emit,
   ) async {
-    emit(state.copyWith(
-      scoreResult: _compute(state.score),
-      isCalculating: false,
-    ));
+    emit(
+      state.copyWith(scoreResult: _compute(state.score), isCalculating: false),
+    );
   }
 }

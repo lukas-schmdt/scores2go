@@ -20,6 +20,7 @@ Score buildApacheIiScore(String lang) {
         name: 'apache-ii-aps',
         display: t('group.aps.display'),
         description: t('group.aps.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'apache-ii-temperatur',
@@ -334,6 +335,7 @@ Score buildApacheIiScore(String lang) {
         name: 'apache-ii-alter',
         display: t('group.age.display'),
         description: t('group.age.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'apache-ii-alter',
@@ -354,6 +356,7 @@ Score buildApacheIiScore(String lang) {
         name: 'apache-ii-vorerkrankungen',
         display: t('group.chronic.display'),
         description: t('group.chronic.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'apache-ii-vorerkrankungen',

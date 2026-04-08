@@ -36,20 +36,21 @@ class GroupWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-          decoration: BoxDecoration(
-            border: Border(left: BorderSide(color: primary, width: 3)),
-            color: primary.withValues(alpha: 0.06),
+        if (group.isVisible)
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              border: Border(left: BorderSide(color: primary, width: 3)),
+              color: primary.withValues(alpha: 0.06),
+            ),
+            child: Text(
+              group.display,
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+            ),
           ),
-          child: Text(
-            group.display,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w600,
-                ),
-          ),
-        ),
         ...activeItems.map((item) {
           if (item is VariableBool) {
             return BooleanVariable(key: keyFor(item.name), item: item);

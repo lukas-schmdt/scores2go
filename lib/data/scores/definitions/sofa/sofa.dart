@@ -20,6 +20,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-respiration',
         display: t('group.respiration'),
         description: t('group.respiration.description'),
+        isVisible: true,
         items: [
           VariableBool(
             name: 'sofa-respiratory_support',
@@ -48,6 +49,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-coagulation',
         display: t('group.coagulation'),
         description: t('group.coagulation.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'sofa-platelets',
@@ -68,6 +70,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-liver',
         display: t('group.liver'),
         description: t('group.liver.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'sofa-bilirubin',
@@ -88,6 +91,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-cardiovascular',
         display: t('group.cardiovascular'),
         description: t('group.cardiovascular.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'sofa-cardiovascular_status',
@@ -120,6 +124,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-cns',
         display: t('group.cns'),
         description: t('group.cns.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'sofa-gcs',
@@ -140,6 +145,7 @@ Score buildSofaScore(String lang) {
         name: 'sofa-renal',
         display: t('group.renal'),
         description: t('group.renal.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'sofa-creatinine',

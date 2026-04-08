@@ -20,6 +20,7 @@ Score buildDemoScore(String lang) {
         name: 'demo-score-vitals',
         display: t('group.vitals.display'),
         description: t('group.vitals.description'),
+        isVisible: true,
         items: [
           VariableBool(
             name: 'demo-score-o2_therapy',
@@ -55,6 +56,7 @@ Score buildDemoScore(String lang) {
         name: 'demo-score-respiratory',
         display: t('group.respiratory.display'),
         description: t('group.respiratory.description'),
+        isVisible: true,
         items: [
           VariableBool(
             name: 'demo-score-ventilated',
@@ -82,6 +84,7 @@ Score buildDemoScore(String lang) {
         name: 'demo-score-risk_factors',
         display: t('group.risk_factors.display'),
         description: t('group.risk_factors.description'),
+        isVisible: true,
         items: [
           VariableSelection(
             name: 'demo-score-comorbidities',
