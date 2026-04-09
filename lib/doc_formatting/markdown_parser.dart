@@ -181,9 +181,7 @@ class _MdParser {
     return RegExp(r'^\s*\|[\s\-:|]+\|').hasMatch(_peek(1));
   }
 
-  static const _admonitionTypes = {
-    'note', 'tip', 'info', 'warning', 'danger',
-  };
+  static const _admonitionTypes = {'note', 'tip', 'info', 'warning', 'danger'};
 
   bool _isAdmonition(String line) {
     final t = line.trim();
@@ -310,10 +308,7 @@ class _MdParser {
                     ),
                   ),
                 ),
-              Text(
-                code,
-                style: GoogleFonts.robotoMono(fontSize: 13),
-              ),
+              Text(code, style: GoogleFonts.robotoMono(fontSize: 13)),
             ],
           ),
         );
@@ -380,58 +375,62 @@ class _MdParser {
 
     final children = parseMarkdown(inner.join('\n'), onLinkTap: onLinkTap);
 
-    return Builder(builder: (ctx) {
-      final cs = Theme.of(ctx).colorScheme;
-      final (color, icon) = _admonitionStyle(type, cs);
-      return Container(
-        width: double.infinity,
-        margin: const EdgeInsets.symmetric(vertical: 8),
-        decoration: BoxDecoration(
-          color: color.withValues(alpha: 0.08),
-          border: Border(left: BorderSide(color: color, width: 4)),
-          borderRadius: const BorderRadius.horizontal(right: Radius.circular(6)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
-              child: Row(
-                children: [
-                  Icon(icon, size: 16, color: color),
-                  const SizedBox(width: 6),
-                  Text(
-                    title,
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w700,
-                      color: color,
+    return Builder(
+      builder: (ctx) {
+        final cs = Theme.of(ctx).colorScheme;
+        final (color, icon) = _admonitionStyle(type, cs);
+        return Container(
+          width: double.infinity,
+          margin: const EdgeInsets.symmetric(vertical: 8),
+          decoration: BoxDecoration(
+            color: color.withValues(alpha: 0.08),
+            border: Border(left: BorderSide(color: color, width: 4)),
+            borderRadius: const BorderRadius.horizontal(
+              right: Radius.circular(6),
+            ),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
+                child: Row(
+                  children: [
+                    Icon(icon, size: 16, color: color),
+                    const SizedBox(width: 6),
+                    Text(
+                      title,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: color,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: children,
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: children,
+                ),
               ),
-            ),
-          ],
-        ),
-      );
-    });
+            ],
+          ),
+        );
+      },
+    );
   }
 
   String _defaultAdmonitionTitle(String type) => switch (type) {
-        'note' => 'Note',
-        'tip' => 'Tip',
-        'info' => 'Info',
-        'warning' => 'Warning',
-        'danger' => 'Danger',
-        _ => type,
-      };
+    'note' => 'Note',
+    'tip' => 'Tip',
+    'info' => 'Info',
+    'warning' => 'Warning',
+    'danger' => 'Danger',
+    _ => type,
+  };
 
   (Color, IconData) _admonitionStyle(String type, ColorScheme cs) =>
       switch (type) {
@@ -462,7 +461,8 @@ class _MdParser {
       if (indent < baseIndent) break;
 
       // A blank line followed by a non-list-item at base indent ends the list
-      if (seenBlank && indent == baseIndent &&
+      if (seenBlank &&
+          indent == baseIndent &&
           !(ordered ? _isOlLine(line) : _isUlLine(line))) {
         break;
       }
@@ -609,6 +609,7 @@ class _MdParser {
       if (s.endsWith('|')) s = s.substring(0, s.length - 1);
       return s.split('|').map((c) => c.trim()).toList();
     }
+
     bool isSep(String l) => RegExp(r'^\s*\|[\s\-:|]+\|\s*$').hasMatch(l);
 
     final rows = <String>[];
@@ -801,7 +802,7 @@ class _MdParser {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '[${e.key}]: ',
+                      '[${e.key.replaceFirst('^', '')}]: ',
                       style: TextStyle(
                         fontSize: 12,
                         color: cs.onSurfaceVariant,
@@ -929,13 +930,14 @@ class _InlineParser {
     if (m.group(11) != null) {
       final id = m.group(11)!;
       final def = footnotes[id] ?? '';
+      final label = id.replaceFirst('^', '');
       return WidgetSpan(
         alignment: PlaceholderAlignment.top,
         child: Tooltip(
           message: def,
           child: Text(
-            '\u00B9',
-            style: TextStyle(fontSize: 10, color: Colors.blue.shade700),
+            '[$label]',
+            style: TextStyle(fontSize: 13, color: Colors.blue.shade700),
           ),
         ),
       );
