@@ -600,11 +600,14 @@ class _MdParser {
   // ── Pipe table ─────────────────────────────────────────────────────────────
 
   Widget _parsePipeTable() {
-    List<String> cells(String line) => line
-        .split('|')
-        .map((c) => c.trim())
-        .where((c) => c.isNotEmpty)
-        .toList();
+    List<String> cells(String line) {
+      // Strip a single leading and trailing '|' before splitting so that
+      // internal empty cells (| | or ||) are preserved.
+      var s = line.trim();
+      if (s.startsWith('|')) s = s.substring(1);
+      if (s.endsWith('|')) s = s.substring(0, s.length - 1);
+      return s.split('|').map((c) => c.trim()).toList();
+    }
     bool isSep(String l) => RegExp(r'^\s*\|[\s\-:|]+\|\s*$').hasMatch(l);
 
     final rows = <String>[];
