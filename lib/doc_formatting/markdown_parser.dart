@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Pandoc-flavored Markdown parser returning Flutter widgets.
 ///
@@ -311,7 +312,7 @@ class _MdParser {
                 ),
               Text(
                 code,
-                style: const TextStyle(fontFamily: 'monospace', fontSize: 13),
+                style: GoogleFonts.robotoMono(fontSize: 13),
               ),
             ],
           ),
@@ -913,11 +914,7 @@ class _InlineParser {
     if (m.group(6) != null) {
       return TextSpan(
         text: m.group(6),
-        style: const TextStyle(
-          fontFamily: 'monospace',
-          fontSize: 13,
-          letterSpacing: 0,
-        ),
+        style: GoogleFonts.robotoMono(fontSize: 13, letterSpacing: 0),
       );
     }
     if (m.group(7) != null) {
@@ -948,10 +945,7 @@ class _InlineParser {
     if (math != null) {
       return TextSpan(
         text: math,
-        style: const TextStyle(
-          fontFamily: 'monospace',
-          fontStyle: FontStyle.italic,
-        ),
+        style: GoogleFonts.robotoMono(fontStyle: FontStyle.italic),
       );
     }
     return const TextSpan();
