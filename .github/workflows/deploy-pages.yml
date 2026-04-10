@@ -32,7 +32,7 @@ jobs:
         run: flutter pub get
 
       - name: Build web
-        run: flutter build web --release --base-href /scores2go/app/ --pwa-strategy offline-first
+        run: flutter build web --release --base-href /app/ --pwa-strategy offline-first
 
       - name: Assemble Pages site
         run: |
