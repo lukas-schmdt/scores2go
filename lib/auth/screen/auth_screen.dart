@@ -5,6 +5,7 @@ import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/auth/screen/forgot_password_screen.dart';
 import 'package:scores_2_go/auth/screen/register_screen.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
+import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -25,197 +26,246 @@ class _AuthScreenState extends State<AuthScreen> {
     final cs = Theme.of(context).colorScheme;
     final l = AppLocalizations.of(context)!;
 
-    return BlocBuilder<AuthBloc, AuthState>(
-      builder: (context, state) {
-        final loading = state.status == AuthStatus.loading;
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, settings) {
+        final isDark = settings.isDarkMode;
+        return BlocBuilder<AuthBloc, AuthState>(
+          builder: (context, state) {
+            final loading = state.status == AuthStatus.loading;
 
-        return Scaffold(
-          backgroundColor: Color(0xFF02122B),
-          body: SafeArea(
-            child: Center(
-              child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 48,
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 420),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _BrandingHeader(cs: cs),
-                      const SizedBox(height: 40),
-
-                      if (state.status == AuthStatus.registerSuccess) ...[
-                        _SuccessBanner(
-                          message: l.emailCheckTitle,
-                          subtitle: l.emailCheckSubtitle,
+            return Scaffold(
+              backgroundColor: isDark
+                  ? const Color(0xFF02122B)
+                  : const Color(0xFFF0F6FF),
+              body: SafeArea(
+                child: Stack(
+                  children: [
+                    Center(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 48,
                         ),
-                        const SizedBox(height: 16),
-                      ],
-                      if (state.status == AuthStatus.resetPasswordSuccess) ...[
-                        _SuccessBanner(message: l.passwordResetSuccess),
-                        const SizedBox(height: 16),
-                      ],
-
-                      Card(
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                          side: BorderSide(color: cs.outlineVariant),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(24),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 420),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              TextFormField(
-                                initialValue: state.username,
-                                onChanged: (v) => context.read<AuthBloc>().add(
-                                  EmailChangedEvent(v),
-                                ),
-                                keyboardType: TextInputType.emailAddress,
-                                textInputAction: TextInputAction.next,
-                                autofillHints: const [AutofillHints.email],
-                                decoration: InputDecoration(
-                                  labelText: l.emailLabel,
-                                  prefixIcon: const Icon(Icons.email_outlined),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 16),
+                              _BrandingHeader(cs: cs, isDark: isDark),
+                              const SizedBox(height: 40),
 
-                              TextFormField(
-                                initialValue: state.password,
-                                onChanged: (v) => context.read<AuthBloc>().add(
-                                  PasswordChangedEvent(v),
+                              if (state.status == AuthStatus.registerSuccess) ...[
+                                _SuccessBanner(
+                                  message: l.emailCheckTitle,
+                                  subtitle: l.emailCheckSubtitle,
                                 ),
-                                obscureText: _obscurePassword,
-                                textInputAction: TextInputAction.done,
-                                autofillHints: const [AutofillHints.password],
-                                onFieldSubmitted: (_) =>
-                                    _submit(context, state),
-                                decoration: InputDecoration(
-                                  labelText: l.passwordLabel,
-                                  prefixIcon: const Icon(Icons.lock_outline),
-                                  border: const OutlineInputBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                  suffixIcon: IconButton(
-                                    icon: Icon(
-                                      _obscurePassword
-                                          ? Icons.visibility_outlined
-                                          : Icons.visibility_off_outlined,
-                                    ),
-                                    onPressed: () => setState(
-                                      () =>
-                                          _obscurePassword = !_obscurePassword,
-                                    ),
-                                  ),
-                                ),
-                              ),
-
-                              if (state.status == AuthStatus.loginFailed) ...[
                                 const SizedBox(height: 16),
-                                _ErrorBanner(
-                                  message: state.errorMessage ?? l.loginFailed,
-                                ),
+                              ],
+                              if (state.status == AuthStatus.resetPasswordSuccess) ...[
+                                _SuccessBanner(message: l.passwordResetSuccess),
+                                const SizedBox(height: 16),
                               ],
 
-                              Align(
-                                alignment: Alignment.centerRight,
-                                child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 4,
-                                    ),
-                                    tapTargetSize:
-                                        MaterialTapTargetSize.shrinkWrap,
-                                  ),
-                                  onPressed: () => Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (_) => BlocProvider.value(
-                                        value: context.read<AuthBloc>(),
-                                        child: const ForgotPasswordScreen(),
+                              Card(
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                  side: BorderSide(color: cs.outlineVariant),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(24),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      TextFormField(
+                                        initialValue: state.username,
+                                        onChanged: (v) => context
+                                            .read<AuthBloc>()
+                                            .add(EmailChangedEvent(v)),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        textInputAction: TextInputAction.next,
+                                        autofillHints: const [
+                                          AutofillHints.email,
+                                        ],
+                                        decoration: InputDecoration(
+                                          labelText: l.emailLabel,
+                                          prefixIcon: const Icon(
+                                            Icons.email_outlined,
+                                          ),
+                                          border: const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(12),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    l.forgotPassword,
-                                    style: TextStyle(
-                                      fontSize: 13,
-                                      color: cs.primary,
-                                    ),
+                                      const SizedBox(height: 16),
+
+                                      TextFormField(
+                                        initialValue: state.password,
+                                        onChanged: (v) => context
+                                            .read<AuthBloc>()
+                                            .add(PasswordChangedEvent(v)),
+                                        obscureText: _obscurePassword,
+                                        textInputAction: TextInputAction.done,
+                                        autofillHints: const [
+                                          AutofillHints.password,
+                                        ],
+                                        onFieldSubmitted: (_) =>
+                                            _submit(context, state),
+                                        decoration: InputDecoration(
+                                          labelText: l.passwordLabel,
+                                          prefixIcon: const Icon(
+                                            Icons.lock_outline,
+                                          ),
+                                          border: const OutlineInputBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(12),
+                                            ),
+                                          ),
+                                          suffixIcon: IconButton(
+                                            icon: Icon(
+                                              _obscurePassword
+                                                  ? Icons.visibility_outlined
+                                                  : Icons
+                                                      .visibility_off_outlined,
+                                            ),
+                                            onPressed: () => setState(
+                                              () => _obscurePassword =
+                                                  !_obscurePassword,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      if (state.status ==
+                                          AuthStatus.loginFailed) ...[
+                                        const SizedBox(height: 16),
+                                        _ErrorBanner(
+                                          message: state.errorMessage ??
+                                              l.loginFailed,
+                                        ),
+                                      ],
+
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 4,
+                                            ),
+                                            tapTargetSize: MaterialTapTargetSize
+                                                .shrinkWrap,
+                                          ),
+                                          onPressed: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  BlocProvider.value(
+                                                value: context.read<AuthBloc>(),
+                                                child:
+                                                    const ForgotPasswordScreen(),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Text(
+                                            l.forgotPassword,
+                                            style: TextStyle(
+                                              fontSize: 13,
+                                              color: cs.primary,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      const SizedBox(height: 12),
+
+                                      FilledButton(
+                                        onPressed: loading
+                                            ? null
+                                            : () => _submit(context, state),
+                                        style: FilledButton.styleFrom(
+                                          minimumSize:
+                                              const Size.fromHeight(48),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          backgroundColor:
+                                              _BrandingHeader._gradientStart,
+                                          foregroundColor: Colors.white,
+                                          disabledBackgroundColor:
+                                              _BrandingHeader._gradientStart
+                                                  .withValues(alpha: 0.5),
+                                        ),
+                                        child: loading
+                                            ? SizedBox(
+                                                height: 20,
+                                                width: 20,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  strokeWidth: 2,
+                                                  color: cs.onPrimary,
+                                                ),
+                                              )
+                                            : Text(
+                                                l.login,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
 
-                              const SizedBox(height: 12),
-
-                              FilledButton(
-                                onPressed: loading
-                                    ? null
-                                    : () => _submit(context, state),
-                                style: FilledButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(48),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(12),
+                              const SizedBox(height: 20),
+                              TextButton(
+                                onPressed: () => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => BlocProvider.value(
+                                      value: context.read<AuthBloc>(),
+                                      child: const RegisterScreen(),
+                                    ),
                                   ),
-                                  backgroundColor:
-                                      _BrandingHeader._gradientStart,
-                                  foregroundColor: Colors.white,
-                                  disabledBackgroundColor: _BrandingHeader
-                                      ._gradientStart
-                                      .withValues(alpha: 0.5),
                                 ),
-                                child: loading
-                                    ? SizedBox(
-                                        height: 20,
-                                        width: 20,
-                                        child: CircularProgressIndicator(
-                                          strokeWidth: 2,
-                                          color: cs.onPrimary,
-                                        ),
-                                      )
-                                    : Text(
-                                        l.login,
-                                        style: const TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 15,
-                                        ),
-                                      ),
+                                child: Text(l.noAccountRegister),
                               ),
                             ],
                           ),
                         ),
                       ),
+                    ),
 
-                      const SizedBox(height: 20),
-                      TextButton(
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => BlocProvider.value(
-                              value: context.read<AuthBloc>(),
-                              child: const RegisterScreen(),
-                            ),
-                          ),
+                    // Theme toggle in top-right corner
+                    Positioned(
+                      top: 8,
+                      right: 8,
+                      child: IconButton(
+                        icon: Icon(
+                          isDark
+                              ? Icons.light_mode_outlined
+                              : Icons.dark_mode_outlined,
+                          color: isDark
+                              ? Colors.white54
+                              : const Color(0xFF0176E4),
                         ),
-                        child: Text(l.noAccountRegister),
+                        onPressed: () => context
+                            .read<SettingsBloc>()
+                            .add(const ToggleDarkModeEvent()),
+                        tooltip: isDark ? 'Light mode' : 'Dark mode',
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ),
+            );
+          },
         );
       },
     );
@@ -223,8 +273,9 @@ class _AuthScreenState extends State<AuthScreen> {
 }
 
 class _BrandingHeader extends StatelessWidget {
-  const _BrandingHeader({required this.cs});
+  const _BrandingHeader({required this.cs, required this.isDark});
   final ColorScheme cs;
+  final bool isDark;
 
   static const _gradientStart = Color(0xFF0176E4);
 
@@ -266,21 +317,21 @@ class _BrandingHeader extends StatelessWidget {
                 text: 'Scores',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: isDark ? Colors.white : cs.onSurface,
                 ),
               ),
               TextSpan(
                 text: '2',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF0ED0BD),
+                  color: const Color(0xFF0ED0BD),
                 ),
               ),
               TextSpan(
                 text: 'Go',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF027BE4),
+                  color: isDark ? const Color(0xFF027BE4) : _gradientStart,
                 ),
               ),
             ],
