@@ -37,8 +37,7 @@ jobs:
       - name: Assemble Pages site
         run: |
           mkdir -p site
-          cp landing/index.html site/index.html
-          cp landing/styles.css site/styles.css
+          cp -r landing/. site/
           mkdir -p site/app
           cp -r build/web/* site/app/
 
