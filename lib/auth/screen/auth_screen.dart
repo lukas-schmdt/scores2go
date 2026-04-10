@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/auth/screen/forgot_password_screen.dart';
 import 'package:scores_2_go/auth/screen/register_screen.dart';
@@ -29,6 +30,7 @@ class _AuthScreenState extends State<AuthScreen> {
         final loading = state.status == AuthStatus.loading;
 
         return Scaffold(
+          backgroundColor: Color(0xFF02122B),
           body: SafeArea(
             child: Center(
               child: SingleChildScrollView(
@@ -69,16 +71,15 @@ class _AuthScreenState extends State<AuthScreen> {
                             children: [
                               TextFormField(
                                 initialValue: state.username,
-                                onChanged: (v) => context
-                                    .read<AuthBloc>()
-                                    .add(EmailChangedEvent(v)),
+                                onChanged: (v) => context.read<AuthBloc>().add(
+                                  EmailChangedEvent(v),
+                                ),
                                 keyboardType: TextInputType.emailAddress,
                                 textInputAction: TextInputAction.next,
                                 autofillHints: const [AutofillHints.email],
                                 decoration: InputDecoration(
                                   labelText: l.emailLabel,
-                                  prefixIcon:
-                                      const Icon(Icons.email_outlined),
+                                  prefixIcon: const Icon(Icons.email_outlined),
                                   border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(12),
@@ -90,9 +91,9 @@ class _AuthScreenState extends State<AuthScreen> {
 
                               TextFormField(
                                 initialValue: state.password,
-                                onChanged: (v) => context
-                                    .read<AuthBloc>()
-                                    .add(PasswordChangedEvent(v)),
+                                onChanged: (v) => context.read<AuthBloc>().add(
+                                  PasswordChangedEvent(v),
+                                ),
                                 obscureText: _obscurePassword,
                                 textInputAction: TextInputAction.done,
                                 autofillHints: const [AutofillHints.password],
@@ -100,8 +101,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                     _submit(context, state),
                                 decoration: InputDecoration(
                                   labelText: l.passwordLabel,
-                                  prefixIcon:
-                                      const Icon(Icons.lock_outline),
+                                  prefixIcon: const Icon(Icons.lock_outline),
                                   border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(
                                       Radius.circular(12),
@@ -114,8 +114,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                           : Icons.visibility_off_outlined,
                                     ),
                                     onPressed: () => setState(
-                                      () => _obscurePassword =
-                                          !_obscurePassword,
+                                      () =>
+                                          _obscurePassword = !_obscurePassword,
                                     ),
                                   ),
                                 ),
@@ -133,7 +133,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                 child: TextButton(
                                   style: TextButton.styleFrom(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 4),
+                                      vertical: 4,
+                                    ),
                                     tapTargetSize:
                                         MaterialTapTargetSize.shrinkWrap,
                                   ),
@@ -167,6 +168,12 @@ class _AuthScreenState extends State<AuthScreen> {
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
+                                  backgroundColor:
+                                      _BrandingHeader._gradientStart,
+                                  foregroundColor: Colors.white,
+                                  disabledBackgroundColor: _BrandingHeader
+                                      ._gradientStart
+                                      .withValues(alpha: 0.5),
                                 ),
                                 child: loading
                                     ? SizedBox(
@@ -219,6 +226,9 @@ class _BrandingHeader extends StatelessWidget {
   const _BrandingHeader({required this.cs});
   final ColorScheme cs;
 
+  static const _gradientStart = Color(0xFF0176E4);
+  static const _gradientEnd = Color(0xFF0DBBBA);
+
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
@@ -228,25 +238,61 @@ class _BrandingHeader extends StatelessWidget {
           width: 88,
           height: 88,
           decoration: BoxDecoration(
-            color: cs.primaryContainer,
             borderRadius: BorderRadius.circular(24),
+            boxShadow: [
+              BoxShadow(
+                color: _gradientStart.withValues(alpha: 0.35),
+                blurRadius: 16,
+                offset: const Offset(0, 6),
+              ),
+            ],
           ),
-          child: Icon(Icons.monitor_heart_outlined, size: 48, color: cs.primary),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(24),
+            child: SvgPicture.asset(
+              'assets/app_icon.svg',
+              width: 88,
+              height: 88,
+              fit: BoxFit.cover,
+            ),
+          ),
         ),
         const SizedBox(height: 20),
-        Text(
-          l.appTitle,
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cs.onSurface,
+
+        RichText(
+          text: TextSpan(
+            style: DefaultTextStyle.of(context).style,
+            children: [
+              TextSpan(
+                text: 'Scores',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
+              TextSpan(
+                text: '2',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF0ED0BD),
+                ),
+              ),
+              TextSpan(
+                text: 'Go',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF027BE4),
+                ),
+              ),
+            ],
+          ),
         ),
         const SizedBox(height: 6),
         Text(
           l.appSubtitle,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: cs.onSurfaceVariant,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
         ),
       ],
     );
