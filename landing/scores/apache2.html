@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APACHE II – Scores2Go</title>
+  <meta name="description" content="APACHE II severity scoring system for ICU patients. Calculate predicted mortality based on acute physiology, age, and chronic health." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">ICU · Severity</div>
+    <h1>APACHE II</h1>
+    <p>Acute Physiology and Chronic Health Evaluation II — predicts ICU mortality from 12 physiological variables, age, and chronic health status.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Knaus et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1985
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 95
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>APACHE II uses 17 variables measured within the first 24 hours of ICU admission to estimate in-hospital mortality. Scores range from 0 to 71; higher scores indicate greater severity of illness.</p>
+      <p>The score is the sum of three components: Acute Physiology Score (APS), Age Points, and Chronic Health Points.</p>
+    </div>
+
+    <div class="section">
+      <h2>Score Components</h2>
+      <table>
+        <thead>
+          <tr><th>Component</th><th>Variables</th><th>Max Points</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Acute Physiology Score (APS)</td><td>12 physiological variables</td><td>60</td></tr>
+          <tr><td>Age Points</td><td>Age in years</td><td>6</td></tr>
+          <tr><td>Chronic Health Points</td><td>Severe organ insufficiency / immunocompromise</td><td>5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Physiological Variables (APS)</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Normal Range</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Temperature (rectal, °C)</td><td>36–38.4</td></tr>
+          <tr><td>Mean arterial pressure (mmHg)</td><td>70–109</td></tr>
+          <tr><td>Heart rate (bpm)</td><td>70–109</td></tr>
+          <tr><td>Respiratory rate (/min)</td><td>12–24</td></tr>
+          <tr><td>Oxygenation (AaDO₂ or PaO₂)</td><td>FiO₂ dependent</td></tr>
+          <tr><td>Arterial pH</td><td>7.33–7.49</td></tr>
+          <tr><td>Serum sodium (mmol/L)</td><td>130–149</td></tr>
+          <tr><td>Serum potassium (mmol/L)</td><td>3.5–5.4</td></tr>
+          <tr><td>Serum creatinine (mg/dL)</td><td>0.6–1.4</td></tr>
+          <tr><td>Haematocrit (%)</td><td>30–45.9</td></tr>
+          <tr><td>White blood cells (×10³/µL)</td><td>3–14.9</td></tr>
+          <tr><td>Glasgow Coma Scale</td><td>15 = 0 points</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Mortality Prediction</h2>
+      <table>
+        <thead>
+          <tr><th>APACHE II Score</th><th>Predicted Hospital Mortality</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–4</td><td>~4 %</td></tr>
+          <tr><td>5–9</td><td>~8 %</td></tr>
+          <tr><td>10–14</td><td>~15 %</td></tr>
+          <tr><td>15–19</td><td>~25 %</td></tr>
+          <tr><td>20–24</td><td>~40 %</td></tr>
+          <tr><td>25–29</td><td>~55 %</td></tr>
+          <tr><td>30–34</td><td>~75 %</td></tr>
+          <tr><td>≥ 35</td><td>&gt; 80 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Reference</h2>
+      <p>Knaus WA, Draper EA, Wagner DP, Zimmerman JE. <em>APACHE II: a severity of disease classification system.</em> Crit Care Med. 1985;13(10):818–829.</p>
+    </div>
+
+    <div class="cta">
+      <p>Calculate the APACHE II score interactively in the app.</p>
+      <a class="button" href="../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+
+  </main>
+
+</body>
+</html>

@@ -64,25 +64,25 @@ ScoreResult euroscoreFunction(Score score) {
   }
 
   // Age coefficient: 0.0285181 per year
-  final ageTerm = age!.toDouble() * 0.0285181;
-  final femaleTerm = (female! ? 1.0 : 0.0) * 0.2196434;
-  final creatTerm = (creatHigh! ? 1.0 : 0.0) * 0.6521653;
-  final arterTerm = (arterio! ? 1.0 : 0.0) * 0.5360268;
-  final mobTerm = (poorMob! ? 1.0 : 0.0) * 0.2407651;
-  final prevTerm = (prevSurg! ? 1.0 : 0.0) * 1.118599;
-  final copdTerm = (copd! ? 1.0 : 0.0) * 0.1886564;
-  final endoTerm = (endocard! ? 1.0 : 0.0) * 0.6194522;
-  final critTerm = (critical! ? 1.0 : 0.0) * 1.086517;
-  final diabTerm = (diabInsulin! ? 1.0 : 0.0) * 0.3542749;
-  final nyhaTerm = nyhaPts!.toDouble();
-  final ccsTerm = (ccs4! ? 1.0 : 0.0) * 0.2226147;
-  final lvTerm = lvPts!.toDouble();
-  final miTerm = (recentMi! ? 1.0 : 0.0) * 0.1528943;
-  final pulmTerm = pulmPts!.toDouble();
-  final urgTerm = urgencyPts!.toDouble();
-  final procTerm = procPts!.toDouble();
-  final aortaTerm = (thorAorta! ? 1.0 : 0.0) * 0.6527205;
-  final sepTerm = (sepRupture! ? 1.0 : 0.0) * 1.462009;
+  final ageTerm = age.toDouble() * 0.0285181;
+  final femaleTerm = (female ? 1.0 : 0.0) * 0.2196434;
+  final creatTerm = (creatHigh ? 1.0 : 0.0) * 0.6521653;
+  final arterTerm = (arterio ? 1.0 : 0.0) * 0.5360268;
+  final mobTerm = (poorMob ? 1.0 : 0.0) * 0.2407651;
+  final prevTerm = (prevSurg ? 1.0 : 0.0) * 1.118599;
+  final copdTerm = (copd ? 1.0 : 0.0) * 0.1886564;
+  final endoTerm = (endocard ? 1.0 : 0.0) * 0.6194522;
+  final critTerm = (critical ? 1.0 : 0.0) * 1.086517;
+  final diabTerm = (diabInsulin ? 1.0 : 0.0) * 0.3542749;
+  final nyhaTerm = nyhaPts.toDouble();
+  final ccsTerm = (ccs4 ? 1.0 : 0.0) * 0.2226147;
+  final lvTerm = lvPts.toDouble();
+  final miTerm = (recentMi ? 1.0 : 0.0) * 0.1528943;
+  final pulmTerm = pulmPts.toDouble();
+  final urgTerm = urgencyPts.toDouble();
+  final procTerm = procPts.toDouble();
+  final aortaTerm = (thorAorta ? 1.0 : 0.0) * 0.6527205;
+  final sepTerm = (sepRupture ? 1.0 : 0.0) * 1.462009;
 
   final logit =
       -5.324537 +

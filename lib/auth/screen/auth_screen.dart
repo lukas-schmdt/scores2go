@@ -227,7 +227,6 @@ class _BrandingHeader extends StatelessWidget {
   final ColorScheme cs;
 
   static const _gradientStart = Color(0xFF0176E4);
-  static const _gradientEnd = Color(0xFF0DBBBA);
 
   @override
   Widget build(BuildContext context) {
