@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
@@ -54,14 +55,16 @@ class _AuthScreenState extends State<AuthScreen> {
                               _BrandingHeader(cs: cs, isDark: isDark),
                               const SizedBox(height: 40),
 
-                              if (state.status == AuthStatus.registerSuccess) ...[
+                              if (state.status ==
+                                  AuthStatus.registerSuccess) ...[
                                 _SuccessBanner(
                                   message: l.emailCheckTitle,
                                   subtitle: l.emailCheckSubtitle,
                                 ),
                                 const SizedBox(height: 16),
                               ],
-                              if (state.status == AuthStatus.resetPasswordSuccess) ...[
+                              if (state.status ==
+                                  AuthStatus.resetPasswordSuccess) ...[
                                 _SuccessBanner(message: l.passwordResetSuccess),
                                 const SizedBox(height: 16),
                               ],
@@ -74,155 +77,164 @@ class _AuthScreenState extends State<AuthScreen> {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(24),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      TextFormField(
-                                        initialValue: state.username,
-                                        onChanged: (v) => context
-                                            .read<AuthBloc>()
-                                            .add(EmailChangedEvent(v)),
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        textInputAction: TextInputAction.next,
-                                        autofillHints: const [
-                                          AutofillHints.email,
-                                        ],
-                                        decoration: InputDecoration(
-                                          labelText: l.emailLabel,
-                                          prefixIcon: const Icon(
-                                            Icons.email_outlined,
-                                          ),
-                                          border: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(12),
+                                  child: AutofillGroup(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        TextFormField(
+                                          initialValue: state.username,
+                                          onChanged: (v) => context
+                                              .read<AuthBloc>()
+                                              .add(EmailChangedEvent(v)),
+                                          keyboardType:
+                                              TextInputType.emailAddress,
+                                          textInputAction: TextInputAction.next,
+                                          autofillHints: const [
+                                            AutofillHints.email,
+                                            AutofillHints.username,
+                                          ],
+                                          decoration: InputDecoration(
+                                            labelText: l.emailLabel,
+                                            prefixIcon: const Icon(
+                                              Icons.email_outlined,
+                                            ),
+                                            border: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(12),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      const SizedBox(height: 16),
-
-                                      TextFormField(
-                                        initialValue: state.password,
-                                        onChanged: (v) => context
-                                            .read<AuthBloc>()
-                                            .add(PasswordChangedEvent(v)),
-                                        obscureText: _obscurePassword,
-                                        textInputAction: TextInputAction.done,
-                                        autofillHints: const [
-                                          AutofillHints.password,
-                                        ],
-                                        onFieldSubmitted: (_) =>
-                                            _submit(context, state),
-                                        decoration: InputDecoration(
-                                          labelText: l.passwordLabel,
-                                          prefixIcon: const Icon(
-                                            Icons.lock_outline,
-                                          ),
-                                          border: const OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(12),
-                                            ),
-                                          ),
-                                          suffixIcon: IconButton(
-                                            icon: Icon(
-                                              _obscurePassword
-                                                  ? Icons.visibility_outlined
-                                                  : Icons
-                                                      .visibility_off_outlined,
-                                            ),
-                                            onPressed: () => setState(
-                                              () => _obscurePassword =
-                                                  !_obscurePassword,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-                                      if (state.status ==
-                                          AuthStatus.loginFailed) ...[
                                         const SizedBox(height: 16),
-                                        _ErrorBanner(
-                                          message: state.errorMessage ??
-                                              l.loginFailed,
+
+                                        TextFormField(
+                                          initialValue: state.password,
+                                          onChanged: (v) => context
+                                              .read<AuthBloc>()
+                                              .add(PasswordChangedEvent(v)),
+                                          obscureText: _obscurePassword,
+                                          textInputAction: TextInputAction.done,
+                                          autofillHints: const [
+                                            AutofillHints.password,
+                                          ],
+                                          onFieldSubmitted: (_) =>
+                                              _submit(context, state),
+                                          decoration: InputDecoration(
+                                            labelText: l.passwordLabel,
+                                            prefixIcon: const Icon(
+                                              Icons.lock_outline,
+                                            ),
+                                            border: const OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(
+                                                Radius.circular(12),
+                                              ),
+                                            ),
+                                            suffixIcon: IconButton(
+                                              icon: Icon(
+                                                _obscurePassword
+                                                    ? Icons.visibility_outlined
+                                                    : Icons
+                                                          .visibility_off_outlined,
+                                              ),
+                                              onPressed: () => setState(
+                                                () => _obscurePassword =
+                                                    !_obscurePassword,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                        if (state.status ==
+                                            AuthStatus.loginFailed) ...[
+                                          const SizedBox(height: 16),
+                                          _ErrorBanner(
+                                            message:
+                                                state.errorMessage ??
+                                                l.loginFailed,
+                                          ),
+                                        ],
+
+                                        Align(
+                                          alignment: Alignment.centerRight,
+                                          child: TextButton(
+                                            style: TextButton.styleFrom(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                    vertical: 4,
+                                                  ),
+                                              tapTargetSize:
+                                                  MaterialTapTargetSize
+                                                      .shrinkWrap,
+                                            ),
+                                            onPressed: () => Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (_) => BlocProvider.value(
+                                                  value: context
+                                                      .read<AuthBloc>(),
+                                                  child:
+                                                      const ForgotPasswordScreen(),
+                                                ),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              l.forgotPassword,
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: cs.primary,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+
+                                        const SizedBox(height: 12),
+
+                                        FilledButton(
+                                          onPressed: loading
+                                              ? null
+                                              : () {
+                                                  TextInput.finishAutofillContext();
+                                                  _submit(context, state);
+                                                },
+                                          style: FilledButton.styleFrom(
+                                            minimumSize: const Size.fromHeight(
+                                              48,
+                                            ),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            backgroundColor:
+                                                _BrandingHeader._gradientStart,
+                                            foregroundColor: Colors.white,
+                                            disabledBackgroundColor:
+                                                _BrandingHeader._gradientStart
+                                                    .withValues(alpha: 0.5),
+                                          ),
+                                          child: loading
+                                              ? SizedBox(
+                                                  height: 20,
+                                                  width: 20,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                        strokeWidth: 2,
+                                                        color: cs.onPrimary,
+                                                      ),
+                                                )
+                                              : Text(
+                                                  l.login,
+                                                  style: const TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 15,
+                                                  ),
+                                                ),
                                         ),
                                       ],
-
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: TextButton(
-                                          style: TextButton.styleFrom(
-                                            padding: const EdgeInsets.symmetric(
-                                              vertical: 4,
-                                            ),
-                                            tapTargetSize: MaterialTapTargetSize
-                                                .shrinkWrap,
-                                          ),
-                                          onPressed: () => Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (_) =>
-                                                  BlocProvider.value(
-                                                value: context.read<AuthBloc>(),
-                                                child:
-                                                    const ForgotPasswordScreen(),
-                                              ),
-                                            ),
-                                          ),
-                                          child: Text(
-                                            l.forgotPassword,
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              color: cs.primary,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-                                      const SizedBox(height: 12),
-
-                                      FilledButton(
-                                        onPressed: loading
-                                            ? null
-                                            : () => _submit(context, state),
-                                        style: FilledButton.styleFrom(
-                                          minimumSize:
-                                              const Size.fromHeight(48),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
-                                          backgroundColor:
-                                              _BrandingHeader._gradientStart,
-                                          foregroundColor: Colors.white,
-                                          disabledBackgroundColor:
-                                              _BrandingHeader._gradientStart
-                                                  .withValues(alpha: 0.5),
-                                        ),
-                                        child: loading
-                                            ? SizedBox(
-                                                height: 20,
-                                                width: 20,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  strokeWidth: 2,
-                                                  color: cs.onPrimary,
-                                                ),
-                                              )
-                                            : Text(
-                                                l.login,
-                                                style: const TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 15,
-                                                ),
-                                              ),
-                                      ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
-
                               const SizedBox(height: 20),
                               TextButton(
                                 onPressed: () => Navigator.push(
@@ -255,9 +267,9 @@ class _AuthScreenState extends State<AuthScreen> {
                               ? Colors.white54
                               : const Color(0xFF0176E4),
                         ),
-                        onPressed: () => context
-                            .read<SettingsBloc>()
-                            .add(const ToggleDarkModeEvent()),
+                        onPressed: () => context.read<SettingsBloc>().add(
+                          const ToggleDarkModeEvent(),
+                        ),
                         tooltip: isDark ? 'Light mode' : 'Dark mode',
                       ),
                     ),
