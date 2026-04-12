@@ -74,8 +74,6 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
               score.visibilityFunction?.call(score) ??
               const ScoreVisibility.all();
 
-          final cs = Theme.of(context).colorScheme;
-
           return Scaffold(
             appBar: AppBar(
               title: Text(score.display),
@@ -83,27 +81,11 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 icon: const Icon(Icons.arrow_back),
                 onPressed: widget.onClose ?? () => Navigator.of(context).pop(),
               ),
-            ),
-            bottomNavigationBar: Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  top: BorderSide(color: cs.outline, width: 0.5),
-                ),
-              ),
-              child: BottomNavigationBar(
-                currentIndex: _tabController.index,
-                onTap: _tabController.animateTo,
-                items: const [
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.calculate_outlined),
-                    activeIcon: Icon(Icons.calculate),
-                    label: 'Score',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Icon(Icons.article_outlined),
-                    activeIcon: Icon(Icons.article),
-                    label: 'Docs',
-                  ),
+              bottom: TabBar(
+                controller: _tabController,
+                tabs: const [
+                  Tab(icon: Icon(Icons.calculate_outlined), text: 'Score'),
+                  Tab(icon: Icon(Icons.article_outlined), text: 'Docs'),
                 ],
               ),
             ),
