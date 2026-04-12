@@ -36,8 +36,8 @@ class UserFavoritesScreen extends StatelessWidget {
             itemCount: state.favorites.length,
             onReorder: (oldIndex, newIndex) {
               context.read<UserFavoritesBloc>().add(
-                    ReorderFavoriteEvent(oldIndex, newIndex),
-                  );
+                ReorderFavoriteEvent(oldIndex, newIndex),
+              );
             },
             itemBuilder: (context, index) {
               final favId = state.favorites[index];
@@ -54,8 +54,8 @@ class UserFavoritesScreen extends StatelessWidget {
                   direction: DismissDirection.endToStart,
                   onDismissed: (_) {
                     context.read<UserFavoritesBloc>().add(
-                          RemoveUserFavoriteEvent(favId),
-                        );
+                      RemoveUserFavoriteEvent(favId),
+                    );
                   },
                   background: Container(
                     color: Colors.red,
@@ -66,23 +66,27 @@ class UserFavoritesScreen extends StatelessWidget {
                       children: [
                         const Icon(Icons.delete, color: Colors.white),
                         const SizedBox(width: 8),
-                        Text(l.delete,
-                            style: const TextStyle(color: Colors.white)),
+                        Text(
+                          l.delete,
+                          style: const TextStyle(color: Colors.white),
+                        ),
                       ],
                     ),
                   ),
                   child: Card(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 2),
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
+                    elevation: 2,
                     child: InkWell(
                       onTap: () => openScoreEntry(context, score),
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(12),
                       child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+                        padding: const EdgeInsets.fromLTRB(12, 12, 8, 12),
                         child: Row(
                           children: [
-                            Icon(Icons.drag_handle,
-                                color: cs.onSurfaceVariant),
+                            Icon(Icons.drag_handle, color: cs.onSurfaceVariant),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
@@ -95,7 +99,7 @@ class UserFavoritesScreen extends StatelessWidget {
                                     ),
                                   ),
                                   if (score.description.isNotEmpty) ...[
-                                    const SizedBox(height: 2),
+                                    const SizedBox(height: 4),
                                     Text(
                                       score.description,
                                       style: tt.bodySmall?.copyWith(
@@ -105,11 +109,48 @@ class UserFavoritesScreen extends StatelessWidget {
                                       overflow: TextOverflow.ellipsis,
                                     ),
                                   ],
+                                  if (score.author != null ||
+                                      score.year != null) ...[
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 8,
+                                      ),
+                                      child: Divider(
+                                        height: 1,
+                                        thickness: 1,
+                                        color: cs.outlineVariant,
+                                      ),
+                                    ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Icon(
+                                          Icons.person_outline,
+                                          size: 12,
+                                          color: cs.onSurfaceVariant,
+                                        ),
+                                        const SizedBox(width: 3),
+                                        Text(
+                                          [
+                                            if (score.author != null)
+                                              score.author!,
+                                            if (score.year != null)
+                                              '${score.year}',
+                                          ].join(', '),
+                                          style: tt.labelSmall?.copyWith(
+                                            color: cs.onSurfaceVariant,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ],
                               ),
                             ),
-                            Icon(Icons.swipe_left_outlined,
-                                color: cs.onSurfaceVariant),
+                            Icon(
+                              Icons.swipe_left_outlined,
+                              color: cs.onSurfaceVariant,
+                            ),
                           ],
                         ),
                       ),

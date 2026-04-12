@@ -19,16 +19,19 @@ class ScoreListItem extends StatelessWidget {
     final tt = Theme.of(context).textTheme;
 
     final metaStyle = tt.labelSmall?.copyWith(color: cs.onSurfaceVariant);
-    final hasMetadata = score.author != null ||
+    final hasDescription = score.description.isNotEmpty;
+    final hasMetadata =
+        score.author != null ||
         score.year != null ||
         score.popularity != null ||
         score.categories.isNotEmpty;
 
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      elevation: 2,
       child: InkWell(
         onTap: () => openScoreEntry(context, score),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
           child: Row(
@@ -43,8 +46,8 @@ class ScoreListItem extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    if (score.description.isNotEmpty) ...[
-                      const SizedBox(height: 2),
+                    if (hasDescription) ...[
+                      const SizedBox(height: 4),
                       Text(
                         score.description,
                         style: tt.bodySmall?.copyWith(
@@ -55,7 +58,14 @@ class ScoreListItem extends StatelessWidget {
                       ),
                     ],
                     if (hasMetadata) ...[
-                      const SizedBox(height: 6),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Divider(
+                          height: 1,
+                          thickness: 1,
+                          color: cs.outlineVariant,
+                        ),
+                      ),
                       Wrap(
                         spacing: 8,
                         runSpacing: 4,
@@ -65,8 +75,11 @@ class ScoreListItem extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.person_outline,
-                                    size: 12, color: cs.onSurfaceVariant),
+                                Icon(
+                                  Icons.person_outline,
+                                  size: 12,
+                                  color: cs.onSurfaceVariant,
+                                ),
                                 const SizedBox(width: 3),
                                 Text(
                                   [
@@ -81,8 +94,11 @@ class ScoreListItem extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(Icons.trending_up,
-                                    size: 12, color: cs.onSurfaceVariant),
+                                Icon(
+                                  Icons.trending_up,
+                                  size: 12,
+                                  color: cs.onSurfaceVariant,
+                                ),
                                 const SizedBox(width: 3),
                                 Text('${score.popularity}', style: metaStyle),
                               ],
@@ -90,7 +106,9 @@ class ScoreListItem extends StatelessWidget {
                           for (final cat in score.categories)
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 6, vertical: 1),
+                                horizontal: 6,
+                                vertical: 1,
+                              ),
                               decoration: BoxDecoration(
                                 border: Border.all(color: cs.outlineVariant),
                                 borderRadius: BorderRadius.circular(20),
