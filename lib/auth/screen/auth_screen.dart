@@ -8,6 +8,10 @@ import 'package:scores_2_go/auth/screen/register_screen.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 
+const _navy = Color(0xFF02122B);
+const _blue = Color(0xFF0176E4);
+const _teal = Color(0xFF0DBBBA);
+
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
 
@@ -24,7 +28,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     final l = AppLocalizations.of(context)!;
 
     return BlocBuilder<SettingsBloc, SettingsState>(
@@ -35,12 +38,33 @@ class _AuthScreenState extends State<AuthScreen> {
             final loading = state.status == AuthStatus.loading;
 
             return Scaffold(
-              backgroundColor: isDark
-                  ? const Color(0xFF02122B)
-                  : const Color(0xFFF0F6FF),
+              backgroundColor: isDark ? _navy : const Color(0xFFF0F6FF),
               body: SafeArea(
                 child: Stack(
                   children: [
+                    // Gradient glow behind logo area
+                    if (isDark)
+                      Positioned(
+                        top: -80,
+                        left: 0,
+                        right: 0,
+                        child: Center(
+                          child: Container(
+                            width: 360,
+                            height: 360,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              gradient: RadialGradient(
+                                colors: [
+                                  Color(0x330176E4),
+                                  Color(0x000176E4),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
                     Center(
                       child: SingleChildScrollView(
                         padding: const EdgeInsets.symmetric(
@@ -52,189 +76,217 @@ class _AuthScreenState extends State<AuthScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              _BrandingHeader(cs: cs, isDark: isDark),
+                              _BrandingHeader(isDark: isDark),
                               const SizedBox(height: 40),
 
-                              if (state.status ==
-                                  AuthStatus.registerSuccess) ...[
+                              if (state.status == AuthStatus.registerSuccess) ...[
                                 _SuccessBanner(
                                   message: l.emailCheckTitle,
                                   subtitle: l.emailCheckSubtitle,
                                 ),
                                 const SizedBox(height: 16),
                               ],
-                              if (state.status ==
-                                  AuthStatus.resetPasswordSuccess) ...[
+                              if (state.status == AuthStatus.resetPasswordSuccess) ...[
                                 _SuccessBanner(message: l.passwordResetSuccess),
                                 const SizedBox(height: 16),
                               ],
 
-                              Card(
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16),
-                                  side: BorderSide(color: cs.outlineVariant),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(24),
-                                  child: AutofillGroup(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        TextFormField(
-                                          initialValue: state.username,
-                                          onChanged: (v) => context
-                                              .read<AuthBloc>()
-                                              .add(EmailChangedEvent(v)),
-                                          keyboardType:
-                                              TextInputType.emailAddress,
-                                          textInputAction: TextInputAction.next,
-                                          autofillHints: const [
-                                            AutofillHints.email,
-                                            AutofillHints.username,
-                                          ],
-                                          decoration: InputDecoration(
-                                            labelText: l.emailLabel,
-                                            prefixIcon: const Icon(
-                                              Icons.email_outlined,
-                                            ),
-                                            border: const OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(12),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 16),
-
-                                        TextFormField(
-                                          initialValue: state.password,
-                                          onChanged: (v) => context
-                                              .read<AuthBloc>()
-                                              .add(PasswordChangedEvent(v)),
-                                          obscureText: _obscurePassword,
-                                          textInputAction: TextInputAction.done,
-                                          autofillHints: const [
-                                            AutofillHints.password,
-                                          ],
-                                          onFieldSubmitted: (_) =>
-                                              _submit(context, state),
-                                          decoration: InputDecoration(
-                                            labelText: l.passwordLabel,
-                                            prefixIcon: const Icon(
-                                              Icons.lock_outline,
-                                            ),
-                                            border: const OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(12),
-                                              ),
-                                            ),
-                                            suffixIcon: IconButton(
-                                              icon: Icon(
-                                                _obscurePassword
-                                                    ? Icons.visibility_outlined
-                                                    : Icons
-                                                          .visibility_off_outlined,
-                                              ),
-                                              onPressed: () => setState(
-                                                () => _obscurePassword =
-                                                    !_obscurePassword,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-
-                                        if (state.status ==
-                                            AuthStatus.loginFailed) ...[
-                                          const SizedBox(height: 16),
-                                          _ErrorBanner(
-                                            message:
-                                                state.errorMessage ??
-                                                l.loginFailed,
+                              // Login card
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: isDark
+                                      ? Colors.white.withValues(alpha: 0.05)
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                    color: isDark
+                                        ? Colors.white.withValues(alpha: 0.1)
+                                        : Colors.black.withValues(alpha: 0.07),
+                                  ),
+                                  boxShadow: isDark
+                                      ? null
+                                      : [
+                                          BoxShadow(
+                                            color: _blue.withValues(alpha: 0.08),
+                                            blurRadius: 24,
+                                            offset: const Offset(0, 8),
                                           ),
                                         ],
+                                ),
+                                padding: const EdgeInsets.all(24),
+                                child: AutofillGroup(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.stretch,
+                                    children: [
+                                      TextFormField(
+                                        initialValue: state.username,
+                                        onChanged: (v) => context
+                                            .read<AuthBloc>()
+                                            .add(EmailChangedEvent(v)),
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        textInputAction: TextInputAction.next,
+                                        autofillHints: const [
+                                          AutofillHints.email,
+                                          AutofillHints.username,
+                                        ],
+                                        style: TextStyle(
+                                          color: isDark
+                                              ? Colors.white
+                                              : Colors.black87,
+                                        ),
+                                        decoration: _fieldDecoration(
+                                          label: l.emailLabel,
+                                          icon: Icons.email_outlined,
+                                          isDark: isDark,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 16),
 
-                                        Align(
-                                          alignment: Alignment.centerRight,
-                                          child: TextButton(
-                                            style: TextButton.styleFrom(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                    vertical: 4,
-                                                  ),
-                                              tapTargetSize:
-                                                  MaterialTapTargetSize
-                                                      .shrinkWrap,
+                                      TextFormField(
+                                        initialValue: state.password,
+                                        onChanged: (v) => context
+                                            .read<AuthBloc>()
+                                            .add(PasswordChangedEvent(v)),
+                                        obscureText: _obscurePassword,
+                                        textInputAction: TextInputAction.done,
+                                        autofillHints: const [
+                                          AutofillHints.password,
+                                        ],
+                                        onFieldSubmitted: (_) =>
+                                            _submit(context, state),
+                                        style: TextStyle(
+                                          color: isDark
+                                              ? Colors.white
+                                              : Colors.black87,
+                                        ),
+                                        decoration: _fieldDecoration(
+                                          label: l.passwordLabel,
+                                          icon: Icons.lock_outline,
+                                          isDark: isDark,
+                                          suffix: IconButton(
+                                            icon: Icon(
+                                              _obscurePassword
+                                                  ? Icons.visibility_outlined
+                                                  : Icons
+                                                        .visibility_off_outlined,
+                                              color: isDark
+                                                  ? Colors.white38
+                                                  : Colors.black38,
                                             ),
-                                            onPressed: () => Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                builder: (_) => BlocProvider.value(
-                                                  value: context
-                                                      .read<AuthBloc>(),
-                                                  child:
-                                                      const ForgotPasswordScreen(),
-                                                ),
-                                              ),
-                                            ),
-                                            child: Text(
-                                              l.forgotPassword,
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                color: cs.primary,
-                                              ),
+                                            onPressed: () => setState(
+                                              () => _obscurePassword =
+                                                  !_obscurePassword,
                                             ),
                                           ),
                                         ),
+                                      ),
 
-                                        const SizedBox(height: 12),
+                                      if (state.status ==
+                                          AuthStatus.loginFailed) ...[
+                                        const SizedBox(height: 16),
+                                        _ErrorBanner(
+                                          message: state.errorMessage ??
+                                              l.loginFailed,
+                                        ),
+                                      ],
 
-                                        FilledButton(
-                                          onPressed: loading
-                                              ? null
-                                              : () {
-                                                  TextInput.finishAutofillContext();
-                                                  _submit(context, state);
-                                                },
-                                          style: FilledButton.styleFrom(
-                                            minimumSize: const Size.fromHeight(
-                                              48,
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: TextButton(
+                                          style: TextButton.styleFrom(
+                                            padding:
+                                                const EdgeInsets.symmetric(
+                                                  vertical: 4,
+                                                ),
+                                            tapTargetSize: MaterialTapTargetSize
+                                                .shrinkWrap,
+                                            foregroundColor: _teal,
+                                          ),
+                                          onPressed: () => Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  BlocProvider.value(
+                                                value: context.read<AuthBloc>(),
+                                                child:
+                                                    const ForgotPasswordScreen(),
+                                              ),
                                             ),
-                                            shape: RoundedRectangleBorder(
+                                          ),
+                                          child: Text(
+                                            l.forgotPassword,
+                                            style: const TextStyle(
+                                              fontSize: 13,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      const SizedBox(height: 12),
+
+                                      // Gradient login button
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: 48,
+                                        child: Material(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          color: Colors.transparent,
+                                          child: Ink(
+                                            decoration: BoxDecoration(
+                                              gradient: loading
+                                                  ? null
+                                                  : const LinearGradient(
+                                                      colors: [_blue, _teal],
+                                                    ),
+                                              color: loading
+                                                  ? _blue.withValues(alpha: 0.4)
+                                                  : null,
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                             ),
-                                            backgroundColor:
-                                                _BrandingHeader._gradientStart,
-                                            foregroundColor: Colors.white,
-                                            disabledBackgroundColor:
-                                                _BrandingHeader._gradientStart
-                                                    .withValues(alpha: 0.5),
-                                          ),
-                                          child: loading
-                                              ? SizedBox(
-                                                  height: 20,
-                                                  width: 20,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                        strokeWidth: 2,
-                                                        color: cs.onPrimary,
+                                            child: InkWell(
+                                              onTap: loading
+                                                  ? null
+                                                  : () {
+                                                      TextInput
+                                                          .finishAutofillContext();
+                                                      _submit(context, state);
+                                                    },
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                              child: Center(
+                                                child: loading
+                                                    ? const SizedBox(
+                                                        height: 20,
+                                                        width: 20,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          strokeWidth: 2,
+                                                          color: Colors.white,
+                                                        ),
+                                                      )
+                                                    : Text(
+                                                        l.login,
+                                                        style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          fontSize: 15,
+                                                        ),
                                                       ),
-                                                )
-                                              : Text(
-                                                  l.login,
-                                                  style: const TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 15,
-                                                  ),
-                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
+
                               const SizedBox(height: 20),
                               TextButton(
                                 onPressed: () => Navigator.push(
@@ -246,6 +298,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                     ),
                                   ),
                                 ),
+                                style: TextButton.styleFrom(
+                                  foregroundColor: isDark ? _teal : _blue,
+                                ),
                                 child: Text(l.noAccountRegister),
                               ),
                             ],
@@ -254,7 +309,7 @@ class _AuthScreenState extends State<AuthScreen> {
                       ),
                     ),
 
-                    // Theme toggle in top-right corner
+                    // Theme toggle
                     Positioned(
                       top: 8,
                       right: 8,
@@ -264,12 +319,12 @@ class _AuthScreenState extends State<AuthScreen> {
                               ? Icons.light_mode_outlined
                               : Icons.dark_mode_outlined,
                           color: isDark
-                              ? Colors.white54
-                              : const Color(0xFF0176E4),
+                              ? Colors.white38
+                              : Colors.black38,
                         ),
-                        onPressed: () => context.read<SettingsBloc>().add(
-                          const ToggleDarkModeEvent(),
-                        ),
+                        onPressed: () => context
+                            .read<SettingsBloc>()
+                            .add(const ToggleDarkModeEvent()),
                         tooltip: isDark ? 'Light mode' : 'Dark mode',
                       ),
                     ),
@@ -282,14 +337,45 @@ class _AuthScreenState extends State<AuthScreen> {
       },
     );
   }
+
+  InputDecoration _fieldDecoration({
+    required String label,
+    required IconData icon,
+    required bool isDark,
+    Widget? suffix,
+  }) {
+    final borderColor =
+        isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black12;
+    final focusedColor = isDark ? _teal : _blue;
+    final iconColor = isDark ? Colors.white38 : Colors.black38;
+
+    return InputDecoration(
+      labelText: label,
+      labelStyle: TextStyle(
+        color: isDark ? Colors.white54 : Colors.black45,
+      ),
+      prefixIcon: Icon(icon, color: iconColor),
+      suffixIcon: suffix,
+      enabledBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: borderColor),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        borderSide: BorderSide(color: focusedColor, width: 1.5),
+      ),
+      border: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+      ),
+      filled: isDark,
+      fillColor: isDark ? Colors.white.withValues(alpha: 0.04) : null,
+    );
+  }
 }
 
 class _BrandingHeader extends StatelessWidget {
-  const _BrandingHeader({required this.cs, required this.isDark});
-  final ColorScheme cs;
+  const _BrandingHeader({required this.isDark});
   final bool isDark;
-
-  static const _gradientStart = Color(0xFF0176E4);
 
   @override
   Widget build(BuildContext context) {
@@ -303,9 +389,9 @@ class _BrandingHeader extends StatelessWidget {
             borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                color: _gradientStart.withValues(alpha: 0.35),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
+                color: _blue.withValues(alpha: 0.45),
+                blurRadius: 24,
+                offset: const Offset(0, 8),
               ),
             ],
           ),
@@ -329,21 +415,21 @@ class _BrandingHeader extends StatelessWidget {
                 text: 'Scores',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white : cs.onSurface,
+                  color: isDark ? Colors.white : Colors.black87,
                 ),
               ),
               TextSpan(
                 text: '2',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF0ED0BD),
+                  color: _teal,
                 ),
               ),
               TextSpan(
                 text: 'Go',
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark ? const Color(0xFF027BE4) : _gradientStart,
+                  color: _blue,
                 ),
               ),
             ],
@@ -352,9 +438,12 @@ class _BrandingHeader extends StatelessWidget {
         const SizedBox(height: 6),
         Text(
           l.appSubtitle,
-          style: Theme.of(
-            context,
-          ).textTheme.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
+          style: TextStyle(
+            fontSize: 13,
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.45)
+                : Colors.black45,
+          ),
         ),
       ],
     );
@@ -368,18 +457,17 @@ class _SuccessBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       decoration: BoxDecoration(
-        color: cs.primaryContainer,
+        color: _teal.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(color: cs.primary.withValues(alpha: 0.3)),
+        border: Border.all(color: _teal.withValues(alpha: 0.3)),
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check_circle_outline, size: 16, color: cs.primary),
+          const Icon(Icons.check_circle_outline, size: 16, color: _teal),
           const SizedBox(width: 8),
           Expanded(
             child: Column(
@@ -387,8 +475,8 @@ class _SuccessBanner extends StatelessWidget {
               children: [
                 Text(
                   message,
-                  style: TextStyle(
-                    color: cs.onPrimaryContainer,
+                  style: const TextStyle(
+                    color: _teal,
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
                   ),
@@ -398,7 +486,7 @@ class _SuccessBanner extends StatelessWidget {
                   Text(
                     subtitle!,
                     style: TextStyle(
-                      color: cs.onPrimaryContainer,
+                      color: _teal.withValues(alpha: 0.8),
                       fontSize: 12,
                     ),
                   ),
