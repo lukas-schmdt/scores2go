@@ -1,4 +1,3 @@
-const String demoDoc = '''
 # Demo Score
 
 ## Overview
@@ -157,4 +156,3 @@ Temperature correction for unit conversion follows standard formulae.[^2]
 
 [^1]: Knaus WA et al. APACHE II. Crit Care Med. 1985.
 [^2]: °F = °C × 9/5 + 32
-''';

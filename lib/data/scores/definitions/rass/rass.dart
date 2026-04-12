@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/rass/rass_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass_function.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass_visibility.dart';
@@ -11,7 +10,7 @@ Score buildRassScore(String lang) {
   return Score(
     id: 7,
     name: 'rass',
-    doc: rassDoc,
+    doc: 'lib/data/scores/definitions/rass/rass_doc.md',
     scoreFunction: rassFunction,
     visibilityFunction: rassVisibility,
     author: 'Sessler et al.',

@@ -1,4 +1,4 @@
-const String apacheIiDoc = '''# APACHE II Score
+# APACHE II Score
 
 ## Formula
 
@@ -231,4 +231,3 @@ Headley J, Theriault R, Smith TL. *Independent validation of APACHE II severity 
 ### Other References
 
 Capuzzo M, Valpondi V, Sgarbi A, et al. *Validation of severity scoring systems SAPS II and APACHE II in a single-center population.* Intensive Care Med. 2000 Dec;26(12):1779--85.
-''';

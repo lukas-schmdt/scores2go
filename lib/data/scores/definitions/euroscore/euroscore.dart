@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore_function.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore_visibility.dart';
@@ -11,7 +10,7 @@ Score buildEuroscoreScore(String lang) {
   return Score(
     id: 9,
     name: 'euroscore',
-    doc: euroscoreDoc,
+    doc: 'lib/data/scores/definitions/euroscore/euroscore_doc.md',
     scoreFunction: euroscoreFunction,
     visibilityFunction: euroscoreVisibility,
     author: 'Nashef et al.',

@@ -1,4 +1,3 @@
-const String rassDoc = '''
 # Richmond Agitation-Sedation Scale (RASS)
 
 The RASS is the most widely used tool for assessing sedation depth and agitation in mechanically ventilated ICU patients. It provides a standardized 10-point scale from +4 (combative) to −5 (unarousable).
@@ -58,4 +57,3 @@ An **analgesia-first** approach is recommended. Untreated pain is a common drive
 
 - Sessler CN, et al. *The Richmond Agitation–Sedation Scale: Validity and Reliability in Adult Intensive Care Unit Patients.* Am J Respir Crit Care Med. 2002;166(10):1338–1344.
 - Devlin JW, et al. *Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.* Crit Care Med. 2018;46(9):e825–e873.
-''';

@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3_function.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3_visibility.dart';
@@ -11,7 +10,7 @@ Score buildSaps3Score(String lang) {
   return Score(
     id: 10,
     name: 'saps3',
-    doc: saps3Doc,
+    doc: 'lib/data/scores/definitions/saps-3/saps_3_doc.md',
     scoreFunction: saps3Function,
     visibilityFunction: saps3Visibility,
     author: 'Moreno et al.',

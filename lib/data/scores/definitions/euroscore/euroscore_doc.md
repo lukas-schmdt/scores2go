@@ -1,4 +1,3 @@
-const String euroscoreDoc = '''
 # EuroSCORE II
 
 EuroSCORE II (European System for Cardiac Operative Risk Evaluation II) is the current standard for preoperative risk stratification in adult cardiac surgery. It estimates 30-day operative mortality using logistic regression on 18 clinical variables.
@@ -103,4 +102,3 @@ EuroSCORE II **overestimates mortality in high-risk patients** when applied to c
 
 - Nashef SA, et al. *EuroSCORE II.* Eur J Cardiothorac Surg. 2012;41(4):734–745.
 - Kirmani BH, et al. *Logistic or additive EuroSCORE for high-risk cardiac surgical patients?* Interact Cardiovasc Thorac Surg. 2013;16(3):281–287.
-''';

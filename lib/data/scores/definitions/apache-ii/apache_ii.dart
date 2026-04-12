@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_function.dart';
 import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_visibility.dart';
@@ -14,7 +13,7 @@ Score buildApacheIiScore(String lang) {
     name: 'apache-ii',
     scoreFunction: apacheIiFunction,
     visibilityFunction: apacheIiVisibility,
-    doc: apacheIiDoc,
+    doc: 'lib/data/scores/definitions/apache-ii/apache_ii_doc.md',
     author: 'Knaus et al.',
     year: 1985,
     popularity: 95,

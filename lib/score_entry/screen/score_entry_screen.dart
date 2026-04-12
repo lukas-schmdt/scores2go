@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/doc_formatting/markdown_parser.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -167,20 +168,31 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
 
                 // ── Docs tab ─────────────────────────────────────────────
                 score.doc != null && score.doc!.isNotEmpty
-                    ? SingleChildScrollView(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: parseMarkdown(
-                            score.doc!,
-                            onLinkTap: (url) async {
-                              final uri = Uri.tryParse(url);
-                              if (uri != null && await canLaunchUrl(uri)) {
-                                await launchUrl(uri, mode: LaunchMode.externalApplication);
-                              }
-                            },
-                          ),
-                        ),
+                    ? FutureBuilder<String>(
+                        future: rootBundle.loadString(score.doc!),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          }
+                          if (snapshot.hasError || !snapshot.hasData) {
+                            return const Center(child: Text('Failed to load documentation.'));
+                          }
+                          return SingleChildScrollView(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: parseMarkdown(
+                                snapshot.data!,
+                                onLinkTap: (url) async {
+                                  final uri = Uri.tryParse(url);
+                                  if (uri != null && await canLaunchUrl(uri)) {
+                                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                  }
+                                },
+                              ),
+                            ),
+                          );
+                        },
                       )
                     : const Center(
                         child: Text('No documentation available.'),

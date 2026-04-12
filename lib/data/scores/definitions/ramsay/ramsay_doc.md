@@ -1,4 +1,3 @@
-const String ramsayDoc = '''
 # Ramsay Sedation Scale
 
 The Ramsay Scale was one of the first sedation scoring systems and remains widely used in clinical practice. It describes six levels of sedation/arousal, ranging from anxious and agitated (Level 1) to deeply sedated with no response to stimulation (Level 6).
@@ -40,4 +39,3 @@ The Ramsay Scale does not assess agitation in detail and has limited reliability
 
 - Ramsay MA, et al. *Controlled sedation with alphaxalone-alphadolone.* Br Med J. 1974;2(5920):656–659.
 - De Jonghe B, et al. *Sedation algorithm in critically ill patients without acute brain injury.* Crit Care Med. 2005;33(1):120–127.
-''';

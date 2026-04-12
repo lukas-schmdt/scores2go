@@ -1,4 +1,3 @@
-const String saps3Doc = '''
 # SAPS 3 — Simplified Acute Physiology Score 3
 
 SAPS 3 predicts in-hospital mortality using 20 variables collected at ICU admission. It was developed to supersede SAPS II with better calibration across different case-mix populations and geographic regions.
@@ -131,4 +130,3 @@ Regional customisation equations exist for Central/Western Europe, Eastern Europ
 
 - Moreno RP, et al. *SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit.* Intensive Care Med. 2005;31(10):1336–1344.
 - Metnitz PG, et al. *SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit.* Intensive Care Med. 2005;31(10):1345–1355.
-''';

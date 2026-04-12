@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay_function.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay_visibility.dart';
@@ -11,7 +10,7 @@ Score buildRamsayScore(String lang) {
   return Score(
     id: 8,
     name: 'ramsay',
-    doc: ramsayDoc,
+    doc: 'lib/data/scores/definitions/ramsay/ramsay_doc.md',
     scoreFunction: ramsayFunction,
     visibilityFunction: ramsayVisibility,
     author: 'Ramsay et al.',

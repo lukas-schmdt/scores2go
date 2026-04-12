@@ -36,3 +36,11 @@ flutter:
     - assets/bmc-button.svg
     - assets/bmc-logo.svg
     - assets/app_icon.svg
+    - lib/data/scores/definitions/demo-score/
+    - lib/data/scores/definitions/apache-ii/
+    - lib/data/scores/definitions/saps-ii/
+    - lib/data/scores/definitions/sofa/
+    - lib/data/scores/definitions/rass/
+    - lib/data/scores/definitions/ramsay/
+    - lib/data/scores/definitions/saps-3/
+    - lib/data/scores/definitions/euroscore/

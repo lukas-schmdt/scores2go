@@ -1,4 +1,3 @@
-import 'package:scores_2_go/data/scores/definitions/demo-score/demo_doc.dart';
 import 'package:scores_2_go/data/scores/definitions/demo-score/demo_function.dart';
 import 'package:scores_2_go/data/scores/definitions/demo-score/demo_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/demo-score/demo_visibility.dart';
@@ -14,7 +13,7 @@ Score buildDemoScore(String lang) {
     name: 'demo-score',
     scoreFunction: demoScoreFunction,
     visibilityFunction: demoScoreVisibility,
-    doc: demoDoc,
+    doc: 'lib/data/scores/definitions/demo-score/demo_doc.md',
     author: 'Demo Author',
     year: 2024,
     popularity: 10,
