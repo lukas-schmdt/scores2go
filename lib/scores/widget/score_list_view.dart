@@ -9,30 +9,29 @@ class ScoreListView extends StatelessWidget {
   const ScoreListView({super.key, required this.scoresToDisplay});
 
   final List<Score> scoresToDisplay;
+
   @override
   Widget build(BuildContext context) {
+    final sortedScores = [...scoresToDisplay]
+      ..sort((a, b) => a.display.compareTo(b.display));
+
+    final favorites = context.watch<UserFavoritesBloc>().state.favorites;
+
     return RefreshIndicator(
       onRefresh: () async =>
           context.read<ScoresBloc>().add(LoadScoresEvent(force: true)),
       child: ListView.builder(
         physics: const AlwaysScrollableScrollPhysics(),
-        itemCount: scoresToDisplay.length + 1,
+        itemCount: sortedScores.length + 1,
         itemBuilder: (context, index) {
-          final sortedScores = [...scoresToDisplay]
-            ..sort((a, b) => a.display.compareTo(b.display));
-
-          if (index == scoresToDisplay.length) {
-            return const SizedBox(height: 48);
+          if (index == sortedScores.length) {
+            return const SizedBox(height: 64);
           }
-
           final score = sortedScores[index];
-          final isFavorite = context
-              .watch<UserFavoritesBloc>()
-              .state
-              .favorites
-              .contains(score.id);
-
-          return ScoreListItem(score: score, isFavorite: isFavorite);
+          return ScoreListItem(
+            score: score,
+            isFavorite: favorites.contains(score.id),
+          );
         },
       ),
     );

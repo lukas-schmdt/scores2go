@@ -18,6 +18,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+
   const supabaseUrl = 'https://uvyubzssdgahfhnpmrmv.supabase.co';
   const supabaseAnonKey = 'sb_publishable_cn_ImkBZFYSlFPltyHCUPQ_AgX3CJm8';
 

@@ -11,9 +11,10 @@ import 'package:scores_2_go/score_entry/widgets/progress_bar.dart';
 import 'package:scores_2_go/score_entry/widgets/score_result_widget.dart';
 
 class ScoreEntryScreen extends StatefulWidget {
-  const ScoreEntryScreen({required this.score, super.key});
+  const ScoreEntryScreen({required this.score, this.onClose, super.key});
 
   final Score score;
+  final VoidCallback? onClose;
 
   @override
   State<ScoreEntryScreen> createState() => _ScoreEntryScreenState();
@@ -80,7 +81,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
               title: Text(score.display),
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),
-                onPressed: () => Navigator.of(context).pop(),
+                onPressed: widget.onClose ?? () => Navigator.of(context).pop(),
               ),
             ),
             bottomNavigationBar: Container(
