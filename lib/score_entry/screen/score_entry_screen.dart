@@ -72,22 +72,38 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
               score.visibilityFunction?.call(score) ??
               const ScoreVisibility.all();
 
+          final cs = Theme.of(context).colorScheme;
+
           return Scaffold(
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: _tabController.index,
-              selectedItemColor: Theme.of(context).colorScheme.primary,
-              type: BottomNavigationBarType.fixed,
-              onTap: _tabController.animateTo,
-              items: const [
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.calculate_outlined),
-                  label: 'Score',
+            appBar: AppBar(
+              title: Text(score.display),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+            ),
+            bottomNavigationBar: Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  top: BorderSide(color: cs.outline, width: 0.5),
                 ),
-                BottomNavigationBarItem(
-                  icon: Icon(Icons.article_outlined),
-                  label: 'Docs',
-                ),
-              ],
+              ),
+              child: BottomNavigationBar(
+                currentIndex: _tabController.index,
+                onTap: _tabController.animateTo,
+                items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.calculate_outlined),
+                    activeIcon: Icon(Icons.calculate),
+                    label: 'Score',
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Icon(Icons.article_outlined),
+                    activeIcon: Icon(Icons.article),
+                    label: 'Docs',
+                  ),
+                ],
+              ),
             ),
             body: TabBarView(
               controller: _tabController,
@@ -96,14 +112,6 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 4),
-                      child: Text(
-                        score.display,
-                        style: Theme.of(context).textTheme.headlineSmall
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ),
                     ProgressBar(
                       score: score,
                       visibility: visibility,

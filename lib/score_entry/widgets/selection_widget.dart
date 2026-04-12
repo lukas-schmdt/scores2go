@@ -35,22 +35,23 @@ class SelectionVariable extends StatelessWidget {
                 child: Text(
                   item.display,
                   style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
+                      fontWeight: FontWeight.w600, fontSize: 14),
                 ),
               ),
-              const SizedBox(width: 8),
-              if (hasMultipleUnits) _SelectionUnitPicker(item: item),
+              if (hasMultipleUnits) ...[
+                const SizedBox(width: 8),
+                _SelectionUnitPicker(item: item),
+              ],
             ],
           ),
           if (item.description != null && item.description!.isNotEmpty) ...[
             const SizedBox(height: 3),
             Text(
               item.description!,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: cs.onSurfaceVariant),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: cs.onSurfaceVariant),
             ),
           ],
           const SizedBox(height: 10),
@@ -61,9 +62,9 @@ class SelectionVariable extends StatelessWidget {
                 option: opt,
                 activeUnitIndex: item.activeUnitIndex,
                 isMulti: isMulti,
-                onTap: () => context.read<ScoreEntryBloc>().add(
-                  ScoreEntryUpdateSelectionEvent(item.name, opt),
-                ),
+                onTap: () => context
+                    .read<ScoreEntryBloc>()
+                    .add(ScoreEntryUpdateSelectionEvent(item.name, opt)),
               ),
             ),
           ),
@@ -85,27 +86,27 @@ class _SelectionUnitPicker extends StatelessWidget {
     final nextIndex = (item.activeUnitIndex + 1) % units.length;
 
     return GestureDetector(
-      onTap: () => context.read<ScoreEntryBloc>().add(
-        ScoreEntryUpdateSelectionUnitEvent(item.name, nextIndex),
-      ),
+      onTap: () => context
+          .read<ScoreEntryBloc>()
+          .add(ScoreEntryUpdateSelectionUnitEvent(item.name, nextIndex)),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: cs.primaryContainer,
+          color: cs.secondaryContainer,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: cs.primary.withValues(alpha: 0.4)),
+          border: Border.all(color: cs.secondary.withValues(alpha: 0.4)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.swap_horiz, size: 16, color: cs.onPrimaryContainer),
+            Icon(Icons.swap_horiz, size: 15, color: cs.onSecondaryContainer),
             const SizedBox(width: 3),
             Text(
               item.activeUnit?.label ?? '',
               style: TextStyle(
                 fontSize: 12,
-                color: cs.onPrimaryContainer,
-                fontWeight: FontWeight.w500,
+                color: cs.onSecondaryContainer,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],
@@ -136,7 +137,7 @@ class _OptionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final primary = cs.primary;
+    final accent = cs.secondary; // teal
     final selected = option.isSelected;
 
     return AnimatedContainer(
@@ -144,10 +145,10 @@ class _OptionCard extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: selected ? primary : cs.outlineVariant,
-          width: selected ? 2 : 1,
+          color: selected ? accent : cs.outline,
+          width: selected ? 1.5 : 1,
         ),
-        color: selected ? primary.withValues(alpha: 0.07) : cs.surface,
+        color: selected ? accent.withValues(alpha: 0.1) : cs.surface,
       ),
       child: Material(
         color: Colors.transparent,
@@ -156,24 +157,25 @@ class _OptionCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           onTap: onTap,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Row(
               children: [
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
-                  width: 20,
-                  height: 20,
+                  width: 18,
+                  height: 18,
                   decoration: BoxDecoration(
                     shape: isMulti ? BoxShape.rectangle : BoxShape.circle,
                     borderRadius: isMulti ? BorderRadius.circular(4) : null,
-                    color: selected ? primary : Colors.transparent,
+                    color: selected ? accent : Colors.transparent,
                     border: Border.all(
-                      color: selected ? primary : cs.outline,
-                      width: 2,
+                      color: selected ? accent : cs.outline,
+                      width: 1.5,
                     ),
                   ),
                   child: selected
-                      ? const Icon(Icons.check, size: 13, color: Colors.white)
+                      ? const Icon(Icons.check, size: 12, color: Colors.white)
                       : null,
                 ),
                 const SizedBox(width: 10),
@@ -191,14 +193,16 @@ class _OptionCard extends StatelessWidget {
                           fontWeight: selected
                               ? FontWeight.w600
                               : FontWeight.normal,
-                          color: selected ? primary : cs.onSurface,
+                          color: selected ? accent : cs.onSurface,
                         ),
                       ),
                       if (option.description != null) ...[
                         const SizedBox(height: 2),
                         Text(
                           option.description!,
-                          style: Theme.of(context).textTheme.bodySmall
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
                               ?.copyWith(color: cs.onSurfaceVariant),
                         ),
                       ],
@@ -209,14 +213,14 @@ class _OptionCard extends StatelessWidget {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 7,
-                    vertical: 3,
-                  ),
+                      horizontal: 7, vertical: 3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    color: selected ? primary : cs.surfaceContainerHighest,
+                    color: selected
+                        ? accent.withValues(alpha: 0.15)
+                        : cs.surfaceContainerHighest,
                     border: Border.all(
-                      color: selected ? primary : cs.outlineVariant,
+                      color: selected ? accent : cs.outline,
                     ),
                   ),
                   child: Text(
@@ -224,7 +228,7 @@ class _OptionCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
-                      color: selected ? Colors.white : cs.onSurface,
+                      color: selected ? accent : cs.onSurfaceVariant,
                     ),
                   ),
                 ),

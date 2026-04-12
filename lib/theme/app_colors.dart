@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Accent
-  static const accentBlue = Color(0xFF5C7CF0);
-  static const accentGold = Color(0xFFC2A56A);
+  // Brand
+  static const blue = Color(0xFF0176E4);
+  static const teal = Color(0xFF0DBBBA);
 
-  // Dark theme neutrals
-  static const darkBg = Color(0xFF101010);
-  static const darkSurface = Color(0xFF171717);
-  static const darkSurfaceElevated = Color(0xFF1F1F1F);
-  static const darkOutline = Color(0xFF2E2E2E);
-  static const darkTextPrimary = Color(0xFFF3F3F1);
-  static const darkTextSecondary = Color(0xFFB6B6B2);
-  static const darkTextMuted = Color(0xFF7D7D78);
+  // Keep alias for any code still referencing accentBlue
+  static const accentBlue = blue;
 
-  // Light theme neutrals
-  static const lightBg = Color(0xFFF6F5F2);
+  // Dark theme — navy
+  static const darkBg = Color(0xFF02122B);
+  static const darkSurface = Color(0xFF071E3D);
+  static const darkSurfaceElevated = Color(0xFF0D2444);
+  static const darkOutline = Color(0x1AFFFFFF); // white 10%
+  static const darkTextPrimary = Color(0xFFFFFFFF);
+  static const darkTextSecondary = Color(0x99FFFFFF); // white 60%
+  static const darkTextMuted = Color(0x61FFFFFF);     // white 38%
+
+  // Light theme — cool white
+  static const lightBg = Color(0xFFF0F6FF);
   static const lightSurface = Color(0xFFFFFFFF);
-  static const lightSurfaceElevated = Color(0xFFF0EFEB);
-  static const lightOutline = Color(0xFFD8D5CE);
-  static const lightTextPrimary = Color(0xFF181818);
-  static const lightTextSecondary = Color(0xFF5F5F59);
-  static const lightTextMuted = Color(0xFF8A8A84);
+  static const lightSurfaceElevated = Color(0xFFE8F0FB);
+  static const lightOutline = Color(0x12000000); // black 7%
+  static const lightTextPrimary = Color(0xFF0D1B2A);
+  static const lightTextSecondary = Color(0xFF4A5568);
+  static const lightTextMuted = Color(0xFF8A9BB0);
 }

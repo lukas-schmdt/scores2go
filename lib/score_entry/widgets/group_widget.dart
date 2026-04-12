@@ -31,7 +31,8 @@ class GroupWidget extends StatelessWidget {
     if (activeItems.isEmpty) return const SizedBox.shrink();
 
     final cs = Theme.of(context).colorScheme;
-    final primary = cs.primary;
+    // Use teal (secondary) for the group accent — contrasts on both navy and light
+    final accent = cs.secondary;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,14 +42,14 @@ class GroupWidget extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              border: Border(left: BorderSide(color: primary, width: 3)),
-              color: primary.withValues(alpha: 0.06),
+              border: Border(left: BorderSide(color: accent, width: 3)),
+              color: accent.withValues(alpha: 0.07),
             ),
             child: Text(
               group.display,
-              style: Theme.of(
-                context,
-              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
             ),
           ),
         ...activeItems.map((item) {

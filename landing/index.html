@@ -34,14 +34,25 @@
       <p class="eyebrow">Open Source Clinical Scoring App</p>
       <p class="lead">Fast access to clinical scores and calculators.<br/>For research and educational purposes only.</p>
 
-      <!-- Featured scores -->
+      <!-- Score search -->
       <div class="scores">
-        <p class="scores-label">Featured Scores</p>
-        <a class="score-card" href="./scores/apache2.html">
-          <span class="score-name">APACHE II</span>
-          <span class="score-desc">ICU severity &amp; mortality prediction</span>
-          <span class="score-arrow">→</span>
-        </a>
+        <p class="scores-label">Find a Score</p>
+
+        <div class="score-search" style="position:relative;max-width:560px;margin:0 auto;">
+          <input
+            id="scoreSearch"
+            type="text"
+            placeholder="Search scores..."
+            autocomplete="off"
+            aria-label="Search scores"
+            style="width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,0.16);background:rgba(255,255,255,0.08);color:#fff;font-size:1rem;outline:none;box-sizing:border-box;"
+          />
+
+          <div
+            id="scoreSuggestions"
+            style="display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;background:#101828;border:1px solid rgba(255,255,255,0.10);border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.28);z-index:20;"
+          ></div>
+        </div>
       </div>
 
       <!-- Actions -->
@@ -63,5 +74,94 @@
       <p class="disclaimer">For research and educational purposes only. Not for clinical decision-making.</p>
     </div>
   </main>
+
+  <script>
+    const scores = [
+      {
+        name: "APACHE II",
+        description: "ICU severity & mortality prediction",
+        href: "./scores/apache2.html"
+      },
+      {
+        name: "SOFA",
+        description: "Sequential Organ Failure Assessment",
+        href: "./scores/sofa.html"
+      },
+      {
+        name: "SAPS II",
+        description: "Simplified Acute Physiology Score II",
+        href: "./scores/saps2.html"
+      },
+      {
+        name: "NEWS2",
+        description: "National Early Warning Score 2",
+        href: "./scores/news2.html"
+      },
+      {
+        name: "qSOFA",
+        description: "Quick sepsis risk assessment",
+        href: "./scores/qsofa.html"
+      }
+    ];
+
+    const searchInput = document.getElementById("scoreSearch");
+    const suggestions = document.getElementById("scoreSuggestions");
+
+    function renderSuggestions(items) {
+      if (!items.length) {
+        suggestions.innerHTML = `
+          <div style="padding:14px 16px;color:rgba(255,255,255,0.75);font-size:0.95rem;">
+            No scores found
+          </div>
+        `;
+        suggestions.style.display = "block";
+        return;
+      }
+
+      suggestions.innerHTML = items.map(score => `
+        <a
+          href="${score.href}"
+          style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;text-decoration:none;color:#fff;border-bottom:1px solid rgba(255,255,255,0.08);"
+          onmouseover="this.style.background='rgba(255,255,255,0.06)'"
+          onmouseout="this.style.background='transparent'"
+        >
+          <span>
+            <span style="display:block;font-weight:600;">${score.name}</span>
+            <span style="display:block;font-size:0.92rem;color:rgba(255,255,255,0.72);margin-top:2px;">${score.description}</span>
+          </span>
+          <span style="font-size:1.1rem;color:rgba(255,255,255,0.7);">→</span>
+        </a>
+      `).join("");
+
+      suggestions.style.display = "block";
+    }
+
+    function filterScores(query) {
+      const normalized = query.trim().toLowerCase();
+
+      if (!normalized) {
+        return scores;
+      }
+
+      return scores.filter(score =>
+        score.name.toLowerCase().includes(normalized) ||
+        score.description.toLowerCase().includes(normalized)
+      );
+    }
+
+    searchInput.addEventListener("focus", () => {
+      renderSuggestions(filterScores(searchInput.value));
+    });
+
+    searchInput.addEventListener("input", (e) => {
+      renderSuggestions(filterScores(e.target.value));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!searchInput.closest(".score-search").contains(e.target)) {
+        suggestions.style.display = "none";
+      }
+    });
+  </script>
 </body>
 </html>

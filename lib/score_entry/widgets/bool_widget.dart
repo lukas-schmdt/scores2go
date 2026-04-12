@@ -17,28 +17,18 @@ class BooleanVariable extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Text(
-                  item.display,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-            ],
+          Text(
+            item.display,
+            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
           ),
           if (item.description!.isNotEmpty) ...[
             const SizedBox(height: 3),
             Text(
               item.description!,
-              style: Theme.of(
-                context,
-              ).textTheme.bodySmall?.copyWith(color: cs.onSurfaceVariant),
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall
+                  ?.copyWith(color: cs.onSurfaceVariant),
             ),
           ],
           const SizedBox(height: 10),
@@ -49,9 +39,9 @@ class BooleanVariable extends StatelessWidget {
                   label: 'Ja',
                   points: item.trueValue!,
                   selected: item.value == true,
-                  onTap: () => context.read<ScoreEntryBloc>().add(
-                    ScoreEntryUpdateBoolEvent(item.name, true),
-                  ),
+                  onTap: () => context
+                      .read<ScoreEntryBloc>()
+                      .add(ScoreEntryUpdateBoolEvent(item.name, true)),
                 ),
               ),
               const SizedBox(width: 8),
@@ -60,9 +50,9 @@ class BooleanVariable extends StatelessWidget {
                   label: 'Nein',
                   points: item.falseValue!,
                   selected: item.value == false,
-                  onTap: () => context.read<ScoreEntryBloc>().add(
-                    ScoreEntryUpdateBoolEvent(item.name, false),
-                  ),
+                  onTap: () => context
+                      .read<ScoreEntryBloc>()
+                      .add(ScoreEntryUpdateBoolEvent(item.name, false)),
                 ),
               ),
             ],
@@ -92,17 +82,18 @@ class _BoolCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final primary = cs.primary;
+    // Teal for selected state — distinct from the navy/blue background
+    final accent = cs.secondary;
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 150),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(
-          color: selected ? primary : cs.outlineVariant,
-          width: selected ? 2 : 1,
+          color: selected ? accent : cs.outline,
+          width: selected ? 1.5 : 1,
         ),
-        color: selected ? primary.withValues(alpha: 0.07) : cs.surface,
+        color: selected ? accent.withValues(alpha: 0.1) : cs.surface,
       ),
       child: Material(
         color: Colors.transparent,
@@ -116,18 +107,18 @@ class _BoolCard extends StatelessWidget {
               children: [
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
-                  width: 20,
-                  height: 20,
+                  width: 18,
+                  height: 18,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: selected ? primary : Colors.transparent,
+                    color: selected ? accent : Colors.transparent,
                     border: Border.all(
-                      color: selected ? primary : cs.outline,
-                      width: 2,
+                      color: selected ? accent : cs.outline,
+                      width: 1.5,
                     ),
                   ),
                   child: selected
-                      ? const Icon(Icons.check, size: 13, color: Colors.white)
+                      ? const Icon(Icons.check, size: 12, color: Colors.white)
                       : null,
                 ),
                 const SizedBox(width: 8),
@@ -136,10 +127,9 @@ class _BoolCard extends StatelessWidget {
                     label,
                     style: TextStyle(
                       fontSize: 13,
-                      fontWeight: selected
-                          ? FontWeight.w600
-                          : FontWeight.normal,
-                      color: selected ? primary : cs.onSurface,
+                      fontWeight:
+                          selected ? FontWeight.w600 : FontWeight.normal,
+                      color: selected ? accent : cs.onSurface,
                     ),
                   ),
                 ),
@@ -147,14 +137,14 @@ class _BoolCard extends StatelessWidget {
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 7,
-                    vertical: 3,
-                  ),
+                      horizontal: 7, vertical: 3),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    color: selected ? primary : cs.surfaceContainerHighest,
+                    color: selected
+                        ? accent.withValues(alpha: 0.15)
+                        : cs.surfaceContainerHighest,
                     border: Border.all(
-                      color: selected ? primary : cs.outlineVariant,
+                      color: selected ? accent : cs.outline,
                     ),
                   ),
                   child: Text(
@@ -162,7 +152,7 @@ class _BoolCard extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 11,
                       fontWeight: FontWeight.bold,
-                      color: selected ? Colors.white : cs.onSurface,
+                      color: selected ? accent : cs.onSurfaceVariant,
                     ),
                   ),
                 ),

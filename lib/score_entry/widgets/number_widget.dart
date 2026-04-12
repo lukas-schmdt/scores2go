@@ -160,23 +160,23 @@ class _UnitChip extends StatelessWidget {
         ScoreEntryUpdateUnitEvent(item.name, nextIndex),
       ),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
         decoration: BoxDecoration(
-          color: cs.primaryContainer,
+          color: cs.secondaryContainer,
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: cs.primary.withValues(alpha: 0.4)),
+          border: Border.all(color: cs.secondary.withValues(alpha: 0.4)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.swap_horiz, size: 16, color: cs.onPrimaryContainer),
+            Icon(Icons.swap_horiz, size: 15, color: cs.onSecondaryContainer),
             const SizedBox(width: 3),
             Text(
               item.activeUnit?.label ?? '',
               style: TextStyle(
                 fontSize: 12,
-                color: cs.onPrimaryContainer,
-                fontWeight: FontWeight.w500,
+                color: cs.onSecondaryContainer,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ],

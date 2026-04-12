@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
+import 'package:scores_2_go/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 class SettingsScreen extends StatelessWidget {
@@ -12,151 +13,163 @@ class SettingsScreen extends StatelessWidget {
   void _showChangePasswordDialog(BuildContext context) {
     showDialog<void>(
       context: context,
-      builder: (dialogContext) {
-        return BlocProvider.value(
-          value: context.read<AuthBloc>(),
-          child: const _ChangePasswordDialog(),
-        );
-      },
+      builder: (dialogContext) => BlocProvider.value(
+        value: context.read<AuthBloc>(),
+        child: const _ChangePasswordDialog(),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
+    final cs = Theme.of(context).colorScheme;
+
     return BlocConsumer<SettingsBloc, SettingsState>(
       listener: (context, state) {},
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(title: Text(l.settings)),
-          floatingActionButton: Padding(
-            padding: const EdgeInsets.only(bottom: 4, right: 4),
-            child: SizedBox(
-              height: 48,
-              child: FloatingActionButton(
-                child: Padding(
-                  padding: EdgeInsets.all(4),
-                  child: SvgPicture.asset('assets/bmc-logo.svg'),
+          body: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Account section
+                _SectionHeader(l.account),
+                _SettingsCard(
+                  children: [
+                    _InfoTile(
+                      icon: Icons.email_outlined,
+                      label: l.email,
+                      value: context.read<AuthBloc>().state.username,
+                    ),
+                    _Divider(),
+                    _ActionTile(
+                      icon: Icons.lock_outline,
+                      label: l.password,
+                      value: '••••••••',
+                      onTap: () => _showChangePasswordDialog(context),
+                    ),
+                    _Divider(),
+                    _ActionTile(
+                      icon: Icons.logout,
+                      label: l.logout,
+                      iconColor: cs.error,
+                      labelColor: cs.error,
+                      onTap: () =>
+                          context.read<AuthBloc>().add(const LogoutEvent()),
+                    ),
+                  ],
                 ),
-                onPressed: () => url_launcher.launchUrl(
-                  Uri.parse('https://www.buymeacoffee.com/lukas.schmdt'),
-                ),
-              ),
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.all(8),
-            child: SingleChildScrollView(
-              child: ListView(
-                shrinkWrap: true,
-                children: [
-                  Card(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, top: 8),
-                          child: Text(
-                            l.account,
-                            style: Theme.of(context).textTheme.bodyLarge!
-                                .copyWith(fontWeight: FontWeight.bold),
+
+                const SizedBox(height: 24),
+
+                // Appearance section
+                _SectionHeader(l.appearance),
+                _SettingsCard(
+                  children: [
+                    _SwitchTile(
+                      icon: state.isDarkMode
+                          ? Icons.dark_mode_outlined
+                          : Icons.light_mode_outlined,
+                      label: l.darkMode,
+                      value: state.isDarkMode,
+                      onChanged: (_) => context.read<SettingsBloc>().add(
+                            const ToggleDarkModeEvent(),
                           ),
-                        ),
-                        ListTile(
-                          title: Text(l.email),
-                          subtitle: Text(
-                            context.read<AuthBloc>().state.username,
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(l.password),
-                          subtitle: const Text('**********'),
-                          trailing: IconButton(
-                            icon: const Icon(Icons.edit),
-                            onPressed: () => _showChangePasswordDialog(context),
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(
-                            l.logout,
-                            style: TextStyle(
-                              color: Theme.of(context).colorScheme.error,
+                    ),
+                    _Divider(),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 14),
+                      child: Row(
+                        children: [
+                          Icon(Icons.language_outlined,
+                              size: 20, color: cs.onSurfaceVariant),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              l.languageLabel,
+                              style: Theme.of(context).textTheme.bodyLarge,
                             ),
                           ),
-                          leading: Icon(
-                            Icons.logout,
-                            color: Theme.of(context).colorScheme.error,
-                          ),
-                          onTap: () =>
-                              context.read<AuthBloc>().add(const LogoutEvent()),
-                        ),
-                      ],
+                          _LanguageDropdown(current: state.locale),
+                        ],
+                      ),
                     ),
-                  ),
-                  Card(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, top: 8),
-                          child: Text(
-                            l.appearance,
-                            style: Theme.of(context).textTheme.bodyLarge!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
+                  ],
+                ),
+
+                const SizedBox(height: 24),
+
+                // About section
+                _SectionHeader(l.appSection),
+                _SettingsCard(
+                  children: [
+                    _InfoTile(
+                        icon: Icons.apps,
+                        label: l.appNameLabel,
+                        value: state.appName),
+                    _Divider(),
+                    _InfoTile(
+                        icon: Icons.tag,
+                        label: l.versionLabel,
+                        value: state.appVersion),
+                    _Divider(),
+                    _InfoTile(
+                        icon: Icons.build_outlined,
+                        label: l.buildNumberLabel,
+                        value: state.buildNumber),
+                  ],
+                ),
+
+                const SizedBox(height: 32),
+
+                // Buy me a coffee
+                SizedBox(
+                  width: double.infinity,
+                  height: 48,
+                  child: Material(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.transparent,
+                    child: Ink(
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [AppColors.blue, AppColors.teal],
                         ),
-                        ListTile(
-                          title: Text(l.darkMode),
-                          trailing: Switch(
-                            value: state.isDarkMode,
-                            onChanged: (_) => context.read<SettingsBloc>().add(
-                              const ToggleDarkModeEvent(),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () => url_launcher.launchUrl(
+                          Uri.parse(
+                              'https://www.buymeacoffee.com/lukas.schmdt'),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: SvgPicture.asset('assets/bmc-logo.svg'),
                             ),
-                          ),
+                            const SizedBox(width: 10),
+                            const Text(
+                              'Buy me a coffee',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 15,
+                              ),
+                            ),
+                          ],
                         ),
-                        ListTile(
-                          title: Text(l.languageLabel),
-                          trailing: _LanguageDropdown(current: state.locale),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
-                  Card(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16, top: 8),
-                          child: Text(
-                            l.appSection,
-                            style: Theme.of(context).textTheme.bodyLarge!
-                                .copyWith(fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        ListTile(
-                          title: Text(l.appNameLabel),
-                          trailing: Text(state.appName),
-                        ),
-                        ListTile(
-                          title: Text(l.packageNameLabel),
-                          trailing: Text(state.packageName),
-                        ),
-                        ListTile(
-                          title: Text(l.versionLabel),
-                          trailing: Text(state.appVersion),
-                        ),
-                        ListTile(
-                          title: Text(l.buildNumberLabel),
-                          trailing: Text(state.buildNumber),
-                        ),
-                        SizedBox(height: 56),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );
@@ -164,6 +177,160 @@ class SettingsScreen extends StatelessWidget {
     );
   }
 }
+
+// ── Shared helpers ─────────────────────────────────────────────────────────────
+
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 4, bottom: 8),
+      child: Text(
+        text.toUpperCase(),
+        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.8,
+            ),
+      ),
+    );
+  }
+}
+
+class _SettingsCard extends StatelessWidget {
+  const _SettingsCard({required this.children});
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: children,
+      ),
+    );
+  }
+}
+
+class _Divider extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Divider(
+      height: 1,
+      indent: 48,
+      color: Theme.of(context).colorScheme.outline,
+    );
+  }
+}
+
+class _InfoTile extends StatelessWidget {
+  const _InfoTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+  });
+  final IconData icon;
+  final String label;
+  final String value;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: cs.onSurfaceVariant),
+          const SizedBox(width: 12),
+          Expanded(child: Text(label, style: tt.bodyLarge)),
+          Text(value, style: tt.bodyMedium),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActionTile extends StatelessWidget {
+  const _ActionTile({
+    required this.icon,
+    required this.label,
+    this.value,
+    this.iconColor,
+    this.labelColor,
+    required this.onTap,
+  });
+  final IconData icon;
+  final String label;
+  final String? value;
+  final Color? iconColor;
+  final Color? labelColor;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        child: Row(
+          children: [
+            Icon(icon, size: 20, color: iconColor ?? cs.onSurfaceVariant),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text(
+                label,
+                style: tt.bodyLarge?.copyWith(color: labelColor),
+              ),
+            ),
+            if (value != null)
+              Text(value!, style: tt.bodyMedium),
+            if (value != null) const SizedBox(width: 4),
+            Icon(Icons.chevron_right,
+                size: 18, color: iconColor ?? cs.onSurfaceVariant),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _SwitchTile extends StatelessWidget {
+  const _SwitchTile({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.onChanged,
+  });
+  final IconData icon;
+  final String label;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final tt = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: Row(
+        children: [
+          Icon(icon, size: 20, color: cs.onSurfaceVariant),
+          const SizedBox(width: 12),
+          Expanded(child: Text(label, style: tt.bodyLarge)),
+          Switch(value: value, onChanged: onChanged),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Language dropdown ──────────────────────────────────────────────────────────
 
 class _LanguageDropdown extends StatelessWidget {
   const _LanguageDropdown({required this.current});
@@ -189,6 +356,8 @@ class _LanguageDropdown extends StatelessWidget {
     );
   }
 }
+
+// ── Change password dialog ─────────────────────────────────────────────────────
 
 class _ChangePasswordDialog extends StatefulWidget {
   const _ChangePasswordDialog();
@@ -233,7 +402,6 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
       setState(() => _validationError = l.minSixCharsRequired);
       return;
     }
-
     setState(() => _validationError = null);
     context.read<AuthBloc>().add(ChangePasswordEvent(current, next));
   }
@@ -245,13 +413,14 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
       listener: (context, state) {
         if (state.status == AuthStatus.changePasswordSuccess) {
           Navigator.of(context).pop();
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(l.passwordChangedSuccess)));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l.passwordChangedSuccess)),
+          );
         }
       },
       builder: (context, state) {
         final isLoading = state.status == AuthStatus.loading;
+        final cs = Theme.of(context).colorScheme;
 
         return AlertDialog(
           title: Text(l.changePasswordTitle),
@@ -264,9 +433,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       state.errorMessage ?? l.changePasswordError,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
+                      style: TextStyle(color: cs.error),
                     ),
                   ),
                 if (_validationError != null)
@@ -274,9 +441,7 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text(
                       _validationError!,
-                      style: TextStyle(
-                        color: Theme.of(context).colorScheme.error,
-                      ),
+                      style: TextStyle(color: cs.error),
                     ),
                   ),
                 TextField(
@@ -285,11 +450,9 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   decoration: InputDecoration(
                     labelText: l.currentPassword,
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureCurrent
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
+                      icon: Icon(_obscureCurrent
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () =>
                           setState(() => _obscureCurrent = !_obscureCurrent),
                     ),
@@ -302,9 +465,9 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   decoration: InputDecoration(
                     labelText: l.newPassword,
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureNew ? Icons.visibility : Icons.visibility_off,
-                      ),
+                      icon: Icon(_obscureNew
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () =>
                           setState(() => _obscureNew = !_obscureNew),
                     ),
@@ -317,11 +480,9 @@ class _ChangePasswordDialogState extends State<_ChangePasswordDialog> {
                   decoration: InputDecoration(
                     labelText: l.confirmPassword,
                     suffixIcon: IconButton(
-                      icon: Icon(
-                        _obscureConfirm
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                      ),
+                      icon: Icon(_obscureConfirm
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () =>
                           setState(() => _obscureConfirm = !_obscureConfirm),
                     ),
