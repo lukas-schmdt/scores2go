@@ -84,8 +84,8 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
               bottom: TabBar(
                 controller: _tabController,
                 tabs: const [
-                  Tab(text: 'Score'),
-                  Tab(text: 'Docs'),
+                  Tab(text: 'Score', height: 36),
+                  Tab(text: 'Docs', height: 36),
                 ],
               ),
             ),
