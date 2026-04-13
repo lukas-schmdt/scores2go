@@ -1,3 +1,5 @@
+# APACHE II - Acute Physiology and Chronic Health Points
+
 ## Formula
 
 Addition of the selected points; points assigned below.
@@ -10,37 +12,36 @@ The APACHE-II Score provides an estimate of ICU mortality based on a number of l
 
 The following defines "chronic organ insufficiency" and immunocompromise:
 
-**Liver insufficiency**
+### Liver insufficiency
 
 - Biopsy proven cirrhosis
 - Documented portal hypertension
 - Episodes of past upper GI bleeding attributed to portal hypertension
 - Prior episodes of hepatic failure
 
-**Cardiovascular**
+### Cardiovascular
 
 - New York Heart Association Class IV Heart Failure
 
-**Respiratory**
+### Respiratory
 
 - Chronic restrictive, or vascular disease resulting in severe exercise restriction, i.e. unable to climb stairs or perform household duties
 - Documented chronic hypoxia, hypercapnia, secondary severe pulmonary hypertension (>40 mmHg), or respirator dependency
 
-**Renal**
+### Renal
 
 - Receiving chronic dialysis
 
-**Immunosuppression**
+### Immunosuppression**
 
 - The patient has received therapy that suppresses resistance to infection e.g. immuno-suppression, chemotherapy, radiation, or recent high dose steroids, or has a disease that is sufficiently advanced to suppress resistance to infection, e.g. leukemia, lymphoma, AIDS
-
 
 ## Point Values
 
 ### Age, years
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≤44 | 0 |
 | 45--54 | +2 |
 | 55--64 | +3 |
@@ -50,7 +51,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 ### History of severe organ insufficiency or immunocompromised
 
 | Criteria | Points |
-|----------|--------|
+| ---------- | -------- |
 | Yes, and nonoperative or emergency postoperative patient | +5 |
 | Yes, and elective postoperative patient | +2 |
 | No | 0 |
@@ -58,7 +59,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 ### Rectal temperature, °C
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥41 | +4 |
 | 39 to <41 | +3 |
 | 38.5 to <39 | +1 |
@@ -71,7 +72,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 ### Mean arterial pressure, mmHg
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | >159 | +4 |
 | >129--159 | +3 |
 | >109--129 | +2 |
@@ -82,7 +83,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 ### Heart rate, beats per minute
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥180 | +4 |
 | 140 to <180 | +3 |
 | 110 to <140 | +2 |
@@ -94,7 +95,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 ### Respiratory rate, breaths per minute
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥50 | +4 |
 | 35 to <50 | +3 |
 | 25 to <35 | +1 |
@@ -108,7 +109,7 @@ The following defines "chronic organ insufficiency" and immunocompromise:
 Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 
 | Criteria | Points |
-|----------|--------|
+| ---------- | -------- |
 | A-a gradient >499 | +4 |
 | A-a gradient 350--499 | +3 |
 | A-a gradient 200--349 | +2 |
@@ -120,7 +121,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### Arterial pH
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥7.70 | +4 |
 | 7.60 to <7.70 | +3 |
 | 7.50 to <7.60 | +1 |
@@ -132,7 +133,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### Serum sodium, mmol/L
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥180 | +4 |
 | 160 to <180 | +3 |
 | 155 to <160 | +2 |
@@ -145,7 +146,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### Serum potassium, mmol/L
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥7.0 | +4 |
 | 6.0 to <7.0 | +3 |
 | 5.5 to <6.0 | +1 |
@@ -157,7 +158,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### Serum creatinine, mg/100 mL
 
 | Criteria | Points |
-|----------|--------|
+| ---------- | -------- |
 | ≥3.5 and ACUTE renal failure* | +8 |
 | 2.0 to <3.5 and ACUTE renal failure | +6 |
 | ≥3.5 and CHRONIC renal failure | +4 |
@@ -172,7 +173,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### Hematocrit, %
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥60 | +4 |
 | 50 to <60 | +2 |
 | 46 to <50 | +1 |
@@ -183,7 +184,7 @@ Use PaO₂ if FiO₂ <50%, otherwise use A-a gradient.
 ### White blood count, total/cubic mm (×1000)
 
 | Range | Points |
-|-------|--------|
+| ------- | -------- |
 | ≥40 | +4 |
 | 20 to <40 | +2 |
 | 15 to <20 | +1 |
@@ -198,7 +199,7 @@ Points = 15 − [GCS Score]
 ## Approximated In-Hospital Mortality Rates
 
 | APACHE II Score | Nonoperative | Postoperative |
-|-----------------|-------------|---------------|
+| ----------------- | ------------- | --------------- |
 | 0--4 | 4% | 1% |
 | 5--9 | 8% | 3% |
 | 10--14 | 15% | 7% |
