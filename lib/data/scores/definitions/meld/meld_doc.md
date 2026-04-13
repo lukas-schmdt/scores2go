@@ -4,7 +4,9 @@ The MELD score is an objective, laboratory-based tool for assessing short-term p
 
 ## Formula
 
-$$\text{MELD} = 3.78 \cdot \ln(\text{Bilirubin}) + 11.2 \cdot \ln(\text{INR}) + 9.57 \cdot \ln(\text{Creatinine}) + 6.43$$
+```text
+MELD = 3.78 × ln(Bilirubin) + 11.2 × ln(INR) + 9.57 × ln(Creatinine) + 6.43
+```
 
 All values are in **mg/dL**. The result is rounded to the nearest integer and clamped to the range **6–40**.
 
