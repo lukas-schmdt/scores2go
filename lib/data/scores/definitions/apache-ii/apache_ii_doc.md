@@ -1,5 +1,3 @@
-# APACHE II Score
-
 ## Formula
 
 Addition of the selected points; points assigned below.

@@ -39,21 +39,29 @@ class ProgressBar extends StatelessWidget {
     final total = items.length;
     final cs = Theme.of(context).colorScheme;
 
-    const gradientColors = [AppColors.teal, AppColors.blue];
-
-    Color gradientColorAt(int idx, int total) {
-      final t = total <= 1 ? 0.0 : idx / (total - 1);
-      final a = gradientColors[0];
-      final b = gradientColors[1];
-      return Color.lerp(a, b, t)!;
-    }
+    // Each segment covers its proportional slice [startT, endT] of the
+    // teal→blue gradient. With 1 item: 0.0→1.0 (full gradient).
+    // With N items: segment i spans [i/N, (i+1)/N].
+    Color lerpGradient(double t) =>
+        Color.lerp(AppColors.teal, AppColors.blue, t)!;
 
     final List<Widget> segments = [];
     for (int idx = 0; idx < items.length; idx++) {
       final item = items[idx];
-      final segmentColor = _isAnswered(item)
-          ? gradientColorAt(idx, items.length)
-          : cs.outlineVariant;
+      final startT = idx / items.length;
+      final endT = (idx + 1) / items.length;
+
+      final decoration = _isAnswered(item)
+          ? BoxDecoration(
+              borderRadius: BorderRadius.circular(3),
+              gradient: LinearGradient(
+                colors: [lerpGradient(startT), lerpGradient(endT)],
+              ),
+            )
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(3),
+              color: cs.outlineVariant,
+            );
 
       segments.add(
         Expanded(
@@ -67,10 +75,7 @@ class ProgressBar extends StatelessWidget {
                 child: Container(
                   height: 12,
                   margin: const EdgeInsets.symmetric(horizontal: 1),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: segmentColor,
-                  ),
+                  decoration: decoration,
                 ),
               ),
             ),
