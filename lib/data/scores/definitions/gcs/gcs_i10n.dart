@@ -19,6 +19,7 @@ class GcsI10n extends ScoreI10n {
       'eyes.3': 'E3 · To speech',
       'eyes.2': 'E2 · To pain',
       'eyes.1': 'E1 · None',
+      'eyes.nt': 'ENT · Not testable',
 
       // Verbal group
       'verbal.group.display': 'Verbal Response (V)',
@@ -30,6 +31,7 @@ class GcsI10n extends ScoreI10n {
       'verbal.3': 'V3 · Inappropriate words',
       'verbal.2': 'V2 · Incomprehensible sounds',
       'verbal.1': 'V1 · None',
+      'verbal.nt': 'VNT · Not testable',
 
       // Motor group
       'motor.group.display': 'Motor Response (M)',
@@ -42,6 +44,7 @@ class GcsI10n extends ScoreI10n {
       'motor.3': 'M3 · Abnormal flexion (Decorticate)',
       'motor.2': 'M2 · Extension (Decerebrate)',
       'motor.1': 'M1 · None',
+      'motor.nt': 'MNT · Not testable',
     },
     'de': {
       'display': 'GCS',
@@ -57,6 +60,7 @@ class GcsI10n extends ScoreI10n {
       'eyes.3': 'E3 · Auf Ansprache',
       'eyes.2': 'E2 · Auf Schmerzreiz',
       'eyes.1': 'E1 · Keine',
+      'eyes.nt': 'ENT · Nicht beurteilbar',
 
       // Verbal group
       'verbal.group.display': 'Verbale Reaktion (V)',
@@ -68,6 +72,7 @@ class GcsI10n extends ScoreI10n {
       'verbal.3': 'V3 · Inadäquate Worte',
       'verbal.2': 'V2 · Unverständliche Laute',
       'verbal.1': 'V1 · Keine',
+      'verbal.nt': 'VNT · Nicht beurteilbar',
 
       // Motor group
       'motor.group.display': 'Motorische Reaktion (M)',
@@ -80,6 +85,7 @@ class GcsI10n extends ScoreI10n {
       'motor.3': 'M3 · Beugesynergien (Dekortikation)',
       'motor.2': 'M2 · Strecksynergien (Dezerebration)',
       'motor.1': 'M1 · Keine',
+      'motor.nt': 'MNT · Nicht beurteilbar',
     },
   };
 }

@@ -2,31 +2,47 @@ import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
+// Sentinel value stored in VariableOption.value for "not testable".
+const _kNt = -1;
+
 ScoreResult gcsFunction(Score score) {
   final ctx = FlatScoreContext(score: score);
 
-  final e = ctx.singleSelect('gcs-eyes')?['value'] as num?;
-  final v = ctx.singleSelect('gcs-verbal')?['value'] as num?;
-  final m = ctx.singleSelect('gcs-motor')?['value'] as num?;
+  final eRaw = ctx.singleSelect('gcs-eyes')?['value'] as num?;
+  final vRaw = ctx.singleSelect('gcs-verbal')?['value'] as num?;
+  final mRaw = ctx.singleSelect('gcs-motor')?['value'] as num?;
 
-  if (e == null && v == null && m == null) {
+  if (eRaw == null && vRaw == null && mRaw == null) {
     return ScoreResult.incomplete(
       label: 'GCS',
       interpretation: 'Select a response in each subscale.',
     );
   }
 
-  // Partial: show running total as soon as any subscale is answered
-  final eVal = e?.toInt() ?? 0;
-  final vVal = v?.toInt() ?? 0;
-  final mVal = m?.toInt() ?? 0;
+  // Treat NT as answered but contributing 0 to the sum.
+  final eNt = eRaw == _kNt;
+  final vNt = vRaw == _kNt;
+  final mNt = mRaw == _kNt;
+
+  final eVal = (eNt || eRaw == null) ? 0 : eRaw.toInt();
+  final vVal = (vNt || vRaw == null) ? 0 : vRaw.toInt();
+  final mVal = (mNt || mRaw == null) ? 0 : mRaw.toInt();
   final total = eVal + vVal + mVal;
 
-  if (e == null || v == null || m == null) {
+  // EVM notation: NT subscales shown as ENT / VNT / MNT.
+  String eLabel() => eRaw == null ? '' : (eNt ? 'ENT' : 'E$eVal');
+  String vLabel() => vRaw == null ? '' : (vNt ? 'VNT' : 'V$vVal');
+  String mLabel() => mRaw == null ? '' : (mNt ? 'MNT' : 'M$mVal');
+
+  final allAnswered = eRaw != null && vRaw != null && mRaw != null;
+  final anyNt = eNt || vNt || mNt;
+
+  if (!allAnswered) {
+    // Still waiting for at least one subscale.
     final evm = [
-      if (e != null) 'E$eVal',
-      if (v != null) 'V$vVal',
-      if (m != null) 'M$mVal',
+      if (eRaw != null) eLabel(),
+      if (vRaw != null) vLabel(),
+      if (mRaw != null) mLabel(),
     ].join(' ');
     return ScoreResult(
       state: ScoreState.incomplete,
@@ -38,13 +54,21 @@ ScoreResult gcsFunction(Score score) {
     );
   }
 
-  final evm = 'E$eVal V$vVal M$mVal';
+  final evm = '${eLabel()} ${vLabel()} ${mLabel()}';
+
+  // Max possible total depends on which subscales are NT.
+  final maxE = eNt ? 0 : 4;
+  final maxV = vNt ? 0 : 5;
+  final maxM = mNt ? 0 : 6;
+  final maxTotal = maxE + maxV + maxM;
 
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'GCS',
-    primaryResult: '$total / 15',
-    primaryInterpretation: _interpret(total),
+    primaryResult: anyNt ? '$total / $maxTotal' : '$total / 15',
+    primaryInterpretation: anyNt
+        ? '${_interpret(total)} (NT subscale excluded)'
+        : _interpret(total),
     secondaryLabel: 'EVM',
     secondaryResult: evm,
   );
