@@ -8,7 +8,9 @@ import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
 import 'package:scores_2_go/home/screen/home_screen.dart';
 import 'package:scores_2_go/recently_used/bloc/recently_used_bloc.dart';
+import 'package:scores_2_go/data_provider/feedback_data_provider.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
+import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 import 'package:scores_2_go/theme/theme_data.dart';
@@ -25,12 +27,16 @@ void main() async {
   await Supabase.initialize(url: supabaseUrl, anonKey: supabaseAnonKey);
 
   final scoresDataProvider = ScoresDataProvider();
+  final feedbackDataProvider = FeedbackDataProvider();
 
   runApp(
     MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
           create: (context) => ScoresRepository(scoresDataProvider),
+        ),
+        RepositoryProvider(
+          create: (context) => FeedbackRepository(feedbackDataProvider),
         ),
       ],
       child: MultiBlocProvider(
