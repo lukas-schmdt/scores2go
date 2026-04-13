@@ -5,6 +5,7 @@ import 'package:scores_2_go/model/variable.dart';
 import 'package:scores_2_go/model/variable_bool.dart';
 import 'package:scores_2_go/model/variable_number.dart';
 import 'package:scores_2_go/model/variable_selection.dart';
+import 'package:scores_2_go/theme/app_colors.dart';
 
 class ProgressBar extends StatelessWidget {
   const ProgressBar({
@@ -38,9 +39,22 @@ class ProgressBar extends StatelessWidget {
     final total = items.length;
     final cs = Theme.of(context).colorScheme;
 
+    const gradientColors = [AppColors.teal, AppColors.blue];
+
+    Color gradientColorAt(int idx, int total) {
+      final t = total <= 1 ? 0.0 : idx / (total - 1);
+      final a = gradientColors[0];
+      final b = gradientColors[1];
+      return Color.lerp(a, b, t)!;
+    }
+
     final List<Widget> segments = [];
     for (int idx = 0; idx < items.length; idx++) {
       final item = items[idx];
+      final segmentColor = _isAnswered(item)
+          ? gradientColorAt(idx, items.length)
+          : cs.outlineVariant;
+
       segments.add(
         Expanded(
           child: GestureDetector(
@@ -55,9 +69,7 @@ class ProgressBar extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 1),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
-                    color: _isAnswered(item)
-                        ? cs.primary
-                        : cs.outlineVariant,
+                    color: segmentColor,
                   ),
                 ),
               ),
@@ -79,10 +91,9 @@ class ProgressBar extends StatelessWidget {
           const SizedBox(width: 8),
           Text(
             '$answered / $total',
-            style: Theme.of(context)
-                .textTheme
-                .labelSmall
-                ?.copyWith(color: cs.onSurfaceVariant),
+            style: Theme.of(
+              context,
+            ).textTheme.labelSmall?.copyWith(color: cs.onSurfaceVariant),
           ),
         ],
       ),
