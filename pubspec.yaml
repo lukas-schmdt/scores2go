@@ -45,3 +45,4 @@ flutter:
     - lib/data/scores/definitions/saps-3/
     - lib/data/scores/definitions/euroscore/
     - lib/data/scores/definitions/gcs/
+    - lib/data/scores/definitions/meld/
