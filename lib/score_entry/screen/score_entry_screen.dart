@@ -226,7 +226,7 @@ class _TabButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
-    final color = isActive ? cs.secondary : cs.onSurfaceVariant;
+    final color = isActive ? cs.primary : cs.onSurfaceVariant;
 
     return InkWell(
       onTap: onTap,
