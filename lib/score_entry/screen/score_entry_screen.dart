@@ -81,13 +81,23 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 icon: const Icon(Icons.arrow_back),
                 onPressed: widget.onClose ?? () => Navigator.of(context).pop(),
               ),
-              bottom: TabBar(
-                controller: _tabController,
-                tabs: const [
-                  Tab(text: 'Score', height: 36),
-                  Tab(text: 'Docs', height: 36),
-                ],
-              ),
+              actions: [
+                _TabButton(
+                  icon: Icons.calculate_outlined,
+                  activeIcon: Icons.calculate,
+                  label: 'Score',
+                  isActive: _tabController.index == 0,
+                  onTap: () => _tabController.animateTo(0),
+                ),
+                _TabButton(
+                  icon: Icons.article_outlined,
+                  activeIcon: Icons.article,
+                  label: 'Docs',
+                  isActive: _tabController.index == 1,
+                  onTap: () => _tabController.animateTo(1),
+                ),
+                const SizedBox(width: 4),
+              ],
             ),
             body: TabBarView(
               controller: _tabController,
@@ -187,6 +197,51 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
           return const Center(child: Text('Unbekannter Zustand'));
         }
       },
+    );
+  }
+}
+
+class _TabButton extends StatelessWidget {
+  const _TabButton({
+    required this.icon,
+    required this.activeIcon,
+    required this.label,
+    required this.isActive,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final IconData activeIcon;
+  final String label;
+  final bool isActive;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final cs = Theme.of(context).colorScheme;
+    final color = isActive ? cs.primary : cs.onSurfaceVariant;
+
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(isActive ? activeIcon : icon, size: 20, color: color),
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: color,
+                    fontWeight:
+                        isActive ? FontWeight.w600 : FontWeight.normal,
+                  ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
