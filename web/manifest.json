@@ -9,7 +9,7 @@
     "display_override": ["window-controls-overlay", "standalone"],
     "background_color": "#02122B",
     "theme_color": "#02122B",
-    "orientation": "portrait-primary",
+    "orientation": "any",
     "lang": "de",
     "categories": ["medical", "health", "utilities"],
     "prefer_related_applications": false,
