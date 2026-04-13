@@ -2,6 +2,7 @@ import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii.dart';
 import 'package:scores_2_go/data/scores/definitions/demo-score/demo.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore.dart';
 import 'package:scores_2_go/data/scores/definitions/gcs/gcs.dart';
+import 'package:scores_2_go/data/scores/definitions/meld/meld.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3.dart';
@@ -16,6 +17,7 @@ List<Score> buildScoresList(String lang) {
     buildSapsIiScore(lang),
     buildSofaScore(lang),
     buildGcsScore(lang),
+    buildMeldScore(lang),
     buildRassScore(lang),
     buildRamsayScore(lang),
     buildSaps3Score(lang),
