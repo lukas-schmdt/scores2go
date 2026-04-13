@@ -85,14 +85,12 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 _TabButton(
                   icon: Icons.calculate_outlined,
                   activeIcon: Icons.calculate,
-                  label: 'Score',
                   isActive: _tabController.index == 0,
                   onTap: () => _tabController.animateTo(0),
                 ),
                 _TabButton(
                   icon: Icons.article_outlined,
                   activeIcon: Icons.article,
-                  label: 'Docs',
                   isActive: _tabController.index == 1,
                   onTap: () => _tabController.animateTo(1),
                 ),
@@ -124,15 +122,20 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                             children: [
                               if (score.description.isNotEmpty)
                                 Padding(
-                                  padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+                                  padding: const EdgeInsets.fromLTRB(
+                                    4,
+                                    0,
+                                    4,
+                                    8,
+                                  ),
                                   child: Text(
                                     score.description,
                                     style: Theme.of(context).textTheme.bodySmall
                                         ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .onSurfaceVariant,
-                                    ),
+                                          color: Theme.of(
+                                            context,
+                                          ).colorScheme.onSurfaceVariant,
+                                        ),
                                   ),
                                 ),
                               ...score.groups.map(
@@ -164,11 +167,16 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                     ? FutureBuilder<String>(
                         future: rootBundle.loadString(score.doc!),
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
-                            return const Center(child: CircularProgressIndicator());
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
                           }
                           if (snapshot.hasError || !snapshot.hasData) {
-                            return const Center(child: Text('Failed to load documentation.'));
+                            return const Center(
+                              child: Text('Failed to load documentation.'),
+                            );
                           }
                           return SingleChildScrollView(
                             padding: const EdgeInsets.all(16),
@@ -179,7 +187,10 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                                 onLinkTap: (url) async {
                                   final uri = Uri.tryParse(url);
                                   if (uri != null && await canLaunchUrl(uri)) {
-                                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                                    await launchUrl(
+                                      uri,
+                                      mode: LaunchMode.externalApplication,
+                                    );
                                   }
                                 },
                               ),
@@ -187,9 +198,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                           );
                         },
                       )
-                    : const Center(
-                        child: Text('No documentation available.'),
-                      ),
+                    : const Center(child: Text('No documentation available.')),
               ],
             ),
           );
@@ -205,14 +214,12 @@ class _TabButton extends StatelessWidget {
   const _TabButton({
     required this.icon,
     required this.activeIcon,
-    required this.label,
     required this.isActive,
     required this.onTap,
   });
 
   final IconData icon;
   final IconData activeIcon;
-  final String label;
   final bool isActive;
   final VoidCallback onTap;
 
@@ -228,18 +235,7 @@ class _TabButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(isActive ? activeIcon : icon, size: 20, color: color),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: color,
-                    fontWeight:
-                        isActive ? FontWeight.w600 : FontWeight.normal,
-                  ),
-            ),
-          ],
+          children: [Icon(isActive ? activeIcon : icon, color: color)],
         ),
       ),
     );
