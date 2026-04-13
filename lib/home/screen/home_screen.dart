@@ -20,11 +20,11 @@ class HomeScreen extends StatelessWidget {
   Widget _buildContent(BuildContext context, int screenId) {
     return switch (screenId) {
       0 => BlocProvider(
-          create: (context) =>
-              ScoresBloc(context.read<ScoresRepository>())
-                ..add(LoadScoresEvent()),
-          child: const ScoresScreen(),
-        ),
+        create: (context) =>
+            ScoresBloc(context.read<ScoresRepository>())
+              ..add(LoadScoresEvent()),
+        child: const ScoresScreen(),
+      ),
       1 => const UserFavoritesScreen(),
       2 => const RecentlyUsedScreen(),
       3 => const SettingsScreen(),
@@ -40,8 +40,7 @@ class HomeScreen extends StatelessWidget {
     final repo = context.read<ScoresRepository>();
     return BlocProvider(
       key: ValueKey(score.name),
-      create: (_) =>
-          ScoreEntryBloc(repo)..add(ScoreEntryLoadEvent(score.name)),
+      create: (_) => ScoreEntryBloc(repo)..add(ScoreEntryLoadEvent(score.name)),
       child: ScoreEntryScreen(score: score, onClose: onClose),
     );
   }
@@ -153,10 +152,7 @@ class HomeScreen extends StatelessWidget {
                   divider,
                   // Left panel — list / screen content
                   if (hasDetail)
-                    SizedBox(
-                      width: 380,
-                      child: content,
-                    )
+                    SizedBox(width: 380, child: content)
                   else
                     Expanded(
                       child: Align(
