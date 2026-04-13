@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
+import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
 
 class ScoreSearchBar extends StatelessWidget {
   const ScoreSearchBar({super.key, required this.showSearch});
@@ -29,25 +29,26 @@ class ScoreSearchBar extends StatelessWidget {
                           icon: const Icon(Icons.close),
                           onPressed: () {
                             context.read<ScoresBloc>().add(
-                                  ToggleShowSearchEvent(),
-                                );
+                              ToggleShowSearchEvent(),
+                            );
                             context.read<ScoresBloc>().add(
-                                  SearchScoresEvent(searchString: ''),
-                                );
+                              SearchScoresEvent(searchString: ''),
+                            );
                           },
                         ),
                         filled: true,
-                        fillColor: Theme.of(context)
-                            .colorScheme
-                            .surfaceContainerHighest,
+                        fillColor: Theme.of(
+                          context,
+                        ).colorScheme.surfaceContainerHighest,
                         border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(25),
                         ),
                       ),
                       onChanged: (value) {
-                        BlocProvider.of<ScoresBloc>(context)
-                            .add(SearchScoresEvent(searchString: value));
+                        BlocProvider.of<ScoresBloc>(
+                          context,
+                        ).add(SearchScoresEvent(searchString: value));
                       },
                     ),
                   ),

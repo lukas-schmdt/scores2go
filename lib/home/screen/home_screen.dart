@@ -9,8 +9,8 @@ import 'package:scores_2_go/recently_used/screen/recently_used_screen.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 import 'package:scores_2_go/score_entry/screen/score_entry_screen.dart';
-import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
-import 'package:scores_2_go/scores/screen/scores_screen.dart';
+import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
+import 'package:scores_2_go/score_list/screen/score_list_screen.dart';
 import 'package:scores_2_go/settings/screen/settings_screen.dart';
 import 'package:scores_2_go/user_favorites/screen/user_favorites_screen.dart';
 
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         create: (context) =>
             ScoresBloc(context.read<ScoresRepository>())
               ..add(LoadScoresEvent()),
-        child: const ScoresScreen(),
+        child: const ScoreListScreen(),
       ),
       1 => const UserFavoritesScreen(),
       2 => const RecentlyUsedScreen(),

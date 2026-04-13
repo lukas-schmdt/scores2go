@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
-import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
-import 'package:scores_2_go/scores/widget/score_list_view.dart';
-import 'package:scores_2_go/scores/widget/searchbar.dart';
+import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
+import 'package:scores_2_go/score_list/widget/score_list_view.dart';
+import 'package:scores_2_go/score_list/widget/searchbar.dart';
 
-class ScoresScreen extends StatelessWidget {
-  const ScoresScreen({super.key});
+class ScoreListScreen extends StatelessWidget {
+  const ScoreListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -105,9 +105,9 @@ class _WideSearchBarState extends State<_WideSearchBar> {
                   icon: const Icon(Icons.close),
                   onPressed: () {
                     _controller.clear();
-                    context
-                        .read<ScoresBloc>()
-                        .add(SearchScoresEvent(searchString: ''));
+                    context.read<ScoresBloc>().add(
+                      SearchScoresEvent(searchString: ''),
+                    );
                   },
                 )
               : null,
@@ -120,9 +120,9 @@ class _WideSearchBarState extends State<_WideSearchBar> {
         ),
         onChanged: (value) {
           setState(() {});
-          context
-              .read<ScoresBloc>()
-              .add(SearchScoresEvent(searchString: value));
+          context.read<ScoresBloc>().add(
+            SearchScoresEvent(searchString: value),
+          );
         },
       ),
     );

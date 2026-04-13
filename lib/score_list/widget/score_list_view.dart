@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/model/score.dart';
-import 'package:scores_2_go/scores/bloc/scores_bloc.dart';
-import 'package:scores_2_go/scores/widget/score_list_item.dart';
+import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
+import 'package:scores_2_go/score_list/widget/score_list_item.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
 class ScoreListView extends StatelessWidget {
