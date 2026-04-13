@@ -135,6 +135,7 @@ class _NumberVariableState extends State<NumberVariable> {
                 ),
                 border: const OutlineInputBorder(),
                 hintText: _hintText(item),
+                hintStyle: TextStyle(color: cs.onSurfaceVariant.withValues(alpha: 0.45)),
               ),
             ),
           ),

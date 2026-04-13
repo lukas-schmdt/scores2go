@@ -3,6 +3,7 @@ import 'package:scores_2_go/data/scores/definitions/demo-score/demo.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore.dart';
 import 'package:scores_2_go/data/scores/definitions/finnegan/finnegan.dart';
 import 'package:scores_2_go/data/scores/definitions/gcs/gcs.dart';
+import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz.dart';
 import 'package:scores_2_go/data/scores/definitions/meld/meld.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay.dart';
@@ -22,6 +23,7 @@ List<Score> buildScoresList(String lang) {
     buildMeldScore(lang),
     buildFinneganScore(lang),
     buildModsScore(lang),
+    buildHorovitzScore(lang),
     buildRassScore(lang),
     buildRamsayScore(lang),
     buildSaps3Score(lang),

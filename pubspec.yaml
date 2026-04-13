@@ -48,3 +48,4 @@ flutter:
     - lib/data/scores/definitions/meld/
     - lib/data/scores/definitions/finnegan/
     - lib/data/scores/definitions/mods/
+    - lib/data/scores/definitions/horovitz/
