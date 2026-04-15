@@ -48,3 +48,5 @@ flutter:
     - lib/data/scores/definitions/finnegan/
     - lib/data/scores/definitions/mods/
     - lib/data/scores/definitions/horovitz/
+    - lib/data/scores/definitions/nudesc/
+    - lib/data/scores/definitions/cam-icu/
