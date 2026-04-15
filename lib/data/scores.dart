@@ -1,5 +1,4 @@
 import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii.dart';
-import 'package:scores_2_go/data/scores/definitions/demo-score/demo.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore.dart';
 import 'package:scores_2_go/data/scores/definitions/finnegan/finnegan.dart';
 import 'package:scores_2_go/data/scores/definitions/gcs/gcs.dart';
@@ -15,7 +14,6 @@ import 'package:scores_2_go/model/score.dart';
 
 List<Score> buildScoresList(String lang) {
   final db = [
-    buildDemoScore(lang),
     buildApacheIiScore(lang),
     buildSapsIiScore(lang),
     buildSofaScore(lang),
