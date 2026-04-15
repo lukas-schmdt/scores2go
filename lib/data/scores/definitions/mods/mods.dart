@@ -16,7 +16,7 @@ Score buildModsScore(String lang) {
     year: 1995,
     popularity: 75,
     categories: ['ICU', 'Severity', 'Critical Care'],
-    doc: 'lib/data/scores/definitions/mods/mods_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/mods/mods_doc.md',
     scoreFunction: modsFunction,
     visibilityFunction: modsVisibility,
     groups: [

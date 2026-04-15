@@ -10,7 +10,7 @@ Score buildRamsayScore(String lang) {
   return Score(
     id: 8,
     name: 'ramsay',
-    doc: 'lib/data/scores/definitions/ramsay/ramsay_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/ramsay/ramsay_doc.md',
     scoreFunction: ramsayFunction,
     visibilityFunction: ramsayVisibility,
     author: 'Ramsay et al.',

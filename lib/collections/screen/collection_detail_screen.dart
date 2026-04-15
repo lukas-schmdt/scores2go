@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
+import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_collection.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
@@ -49,11 +50,10 @@ class CollectionDetailScreen extends StatelessWidget {
             ],
           ),
           body: scores.isEmpty
-              ? const Center(
-                  child: Text(
-                    'No scores in this collection yet.\nAdd scores from the Browse tab.',
-                    textAlign: TextAlign.center,
-                  ),
+              ? const EmptyState(
+                  iconData: Icons.folder_open_outlined,
+                  title: 'No scores yet',
+                  subtitle: 'Add scores from the Browse tab.',
                 )
               : ListView.builder(
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
@@ -225,6 +225,9 @@ class CollectionDetailScreen extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
+            style: TextButton.styleFrom(
+              foregroundColor: Theme.of(ctx).colorScheme.error,
+            ),
             child: const Text('Delete'),
           ),
         ],

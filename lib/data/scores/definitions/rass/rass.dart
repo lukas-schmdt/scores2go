@@ -10,7 +10,7 @@ Score buildRassScore(String lang) {
   return Score(
     id: 7,
     name: 'rass',
-    doc: 'lib/data/scores/definitions/rass/rass_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/rass/rass_doc.md',
     scoreFunction: rassFunction,
     visibilityFunction: rassVisibility,
     author: 'Sessler et al.',

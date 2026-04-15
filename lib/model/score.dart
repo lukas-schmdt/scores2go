@@ -10,7 +10,9 @@ class Score {
   final List<Group> groups;
   final ScoreResult Function(Score)? scoreFunction;
   final ScoreVisibility Function(Score)? visibilityFunction;
-  final String? doc;
+  /// Returns the asset path for the documentation in the given locale.
+  /// Fall back to a default by returning a path regardless of locale.
+  final String? Function(String locale)? doc;
   final String? author;
   final int? year;
   final int? popularity;
@@ -61,7 +63,7 @@ class Score {
       display: json['display'] as String,
       description: json['description'] as String? ?? '',
       groups: [],
-      doc: json['doc'] as String? ?? '',
+      doc: json['doc'] != null ? (_) => json['doc'] as String : null,
     );
   }
 

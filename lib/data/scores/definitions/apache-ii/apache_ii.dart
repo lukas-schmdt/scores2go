@@ -13,7 +13,7 @@ Score buildApacheIiScore(String lang) {
     name: 'apache-ii',
     scoreFunction: apacheIiFunction,
     visibilityFunction: apacheIiVisibility,
-    doc: 'lib/data/scores/definitions/apache-ii/apache_ii_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/apache-ii/apache_ii_doc.md',
     author: 'Knaus et al.',
     year: 1985,
     popularity: 95,

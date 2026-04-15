@@ -10,7 +10,7 @@ Score buildEuroscoreScore(String lang) {
   return Score(
     id: 9,
     name: 'euroscore',
-    doc: 'lib/data/scores/definitions/euroscore/euroscore_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/euroscore/euroscore_doc.md',
     scoreFunction: euroscoreFunction,
     visibilityFunction: euroscoreVisibility,
     author: 'Nashef et al.',

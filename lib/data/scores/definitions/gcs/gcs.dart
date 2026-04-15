@@ -16,7 +16,7 @@ Score buildGcsScore(String lang) {
     year: 1974,
     popularity: 98,
     categories: ['Neurology', 'ICU', 'Emergency'],
-    doc: 'lib/data/scores/definitions/gcs/gcs_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/gcs/gcs_doc.md',
     scoreFunction: gcsFunction,
     visibilityFunction: gcsVisibility,
     groups: [

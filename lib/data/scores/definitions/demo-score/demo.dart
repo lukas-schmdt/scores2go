@@ -13,7 +13,7 @@ Score buildDemoScore(String lang) {
     name: 'demo-score',
     scoreFunction: demoScoreFunction,
     visibilityFunction: demoScoreVisibility,
-    doc: 'lib/data/scores/definitions/demo-score/demo_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/demo-score/demo_doc.md',
     author: 'Demo Author',
     year: 2024,
     popularity: 10,

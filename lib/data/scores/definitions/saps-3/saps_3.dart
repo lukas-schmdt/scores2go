@@ -10,7 +10,7 @@ Score buildSaps3Score(String lang) {
   return Score(
     id: 10,
     name: 'saps3',
-    doc: 'lib/data/scores/definitions/saps-3/saps_3_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/saps-3/saps_3_doc.md',
     scoreFunction: saps3Function,
     visibilityFunction: saps3Visibility,
     author: 'Moreno et al.',

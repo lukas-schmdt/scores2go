@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/doc_formatting/markdown_parser.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 import 'package:scores_2_go/score_entry/widgets/group_widget.dart';
@@ -163,42 +163,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 ),
 
                 // ── Docs tab ─────────────────────────────────────────────
-                score.doc != null && score.doc!.isNotEmpty
-                    ? FutureBuilder<String>(
-                        future: rootBundle.loadString(score.doc!),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          }
-                          if (snapshot.hasError || !snapshot.hasData) {
-                            return const Center(
-                              child: Text('Failed to load documentation.'),
-                            );
-                          }
-                          return SingleChildScrollView(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: parseMarkdown(
-                                snapshot.data!,
-                                onLinkTap: (url) async {
-                                  final uri = Uri.tryParse(url);
-                                  if (uri != null && await canLaunchUrl(uri)) {
-                                    await launchUrl(
-                                      uri,
-                                      mode: LaunchMode.externalApplication,
-                                    );
-                                  }
-                                },
-                              ),
-                            ),
-                          );
-                        },
-                      )
-                    : const Center(child: Text('No documentation available.')),
+                _DocsTab(score: score),
               ],
             ),
           );
@@ -238,6 +203,64 @@ class _TabButton extends StatelessWidget {
           children: [Icon(isActive ? activeIcon : icon, color: color)],
         ),
       ),
+    );
+  }
+}
+
+class _DocsTab extends StatelessWidget {
+  const _DocsTab({required this.score});
+
+  final Score score;
+
+  Future<String> _loadDoc(String locale) async {
+    final path = score.doc?.call(locale);
+    if (path == null || path.isEmpty) return '';
+
+    // Try locale-specific file first, fall back to the returned path directly.
+    final localePath = path.replaceAll(
+      RegExp(r'\.md$'),
+      '_$locale.md',
+    );
+    try {
+      return await rootBundle.loadString(localePath);
+    } catch (_) {
+      return rootBundle.loadString(path);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (score.doc == null) {
+      return const Center(child: Text('No documentation available.'));
+    }
+
+    final locale = Localizations.localeOf(context).languageCode;
+
+    return FutureBuilder<String>(
+      future: _loadDoc(locale),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No documentation available.'));
+        }
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: parseMarkdown(
+              snapshot.data!,
+              onLinkTap: (url) async {
+                final uri = Uri.tryParse(url);
+                if (uri != null && await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                }
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }

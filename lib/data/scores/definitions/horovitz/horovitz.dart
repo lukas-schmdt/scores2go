@@ -23,7 +23,7 @@ Score buildHorovitzScore(String lang) {
     year: 1974,
     popularity: 85,
     categories: ['Pulmonology', 'ICU', 'ARDS'],
-    doc: 'lib/data/scores/definitions/horovitz/horovitz_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/horovitz/horovitz_doc.md',
     scoreFunction: horovitzFunction,
     visibilityFunction: horovitzVisibility,
     groups: [

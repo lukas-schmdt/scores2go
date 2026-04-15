@@ -17,7 +17,7 @@ Score buildMeldScore(String lang) {
     year: 2001,
     popularity: 88,
     categories: ['Hepatology', 'Transplant', 'Severity'],
-    doc: 'lib/data/scores/definitions/meld/meld_doc.md',
+    doc: (_) => 'lib/data/scores/definitions/meld/meld_doc.md',
     scoreFunction: meldFunction,
     visibilityFunction: meldVisibility,
     groups: [
