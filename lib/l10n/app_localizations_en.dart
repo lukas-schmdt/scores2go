@@ -181,6 +181,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tryDifferentSearch => 'Try a different search term.';
 
   @override
+  String get reportMissingScore => 'Report missing score';
+
+  @override
+  String get reportMissingScoreSubtitle =>
+      'Can\'t find what you\'re looking for? Let us know!';
+
+  @override
   String get noScoresAvailable => 'No scores available';
 
   @override

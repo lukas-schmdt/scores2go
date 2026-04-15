@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
+import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
+import 'package:scores_2_go/score_list/widget/feedback_dialog.dart';
 import 'package:scores_2_go/score_list/widget/score_list_view.dart';
 import 'package:scores_2_go/score_list/widget/searchbar.dart';
 
@@ -25,11 +27,8 @@ class ScoreListScreen extends StatelessWidget {
               listBody = const Center(child: CircularProgressIndicator());
             } else if (state.status == ScoresStatus.failure) {
               listBody = const EmptyState.error();
-            } else if (state.scores.isEmpty && state.showSearch) {
-              listBody = EmptyState(
-                title: l.noResultsFound,
-                subtitle: l.tryDifferentSearch,
-              );
+            } else if (state.scores.isEmpty && state.searchString.isNotEmpty) {
+              listBody = _SearchEmptyState(searchQuery: state.searchString);
             } else if (state.scores.isEmpty) {
               listBody = EmptyState(
                 title: l.noScoresAvailable,
@@ -124,6 +123,96 @@ class _WideSearchBarState extends State<_WideSearchBar> {
             SearchScoresEvent(searchString: value),
           );
         },
+      ),
+    );
+  }
+}
+
+class _SearchEmptyState extends StatelessWidget {
+  const _SearchEmptyState({required this.searchQuery});
+
+  final String searchQuery;
+
+  @override
+  Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+    final cs = Theme.of(context).colorScheme;
+
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.search_off, size: 48),
+            const SizedBox(height: 8),
+            Text(
+              l.noResultsFound,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            ),
+            Text(l.tryDifferentSearch),
+            const SizedBox(height: 24),
+            InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () => showDialog<void>(
+                context: context,
+                builder: (_) => FeedbackDialog(
+                  repository: context.read<FeedbackRepository>(),
+                  initialText: searchQuery.isNotEmpty
+                      ? 'Missing score: $searchQuery'
+                      : null,
+                ),
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 14,
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(color: cs.outlineVariant),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.add_circle_outline,
+                      size: 20,
+                      color: cs.onSurfaceVariant,
+                    ),
+                    const SizedBox(width: 12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l.reportMissingScore,
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: cs.onSurfaceVariant,
+                          ),
+                        ),
+                        Text(
+                          l.reportMissingScoreSubtitle,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: cs.onSurfaceVariant.withValues(alpha: 0.7),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 12),
+                    Icon(
+                      Icons.open_in_new,
+                      size: 16,
+                      color: cs.onSurfaceVariant.withValues(alpha: 0.5),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -434,6 +434,18 @@ abstract class AppLocalizations {
   /// **'Anderen Suchbegriff versuchen.'**
   String get tryDifferentSearch;
 
+  /// No description provided for @reportMissingScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlenden Score melden'**
+  String get reportMissingScore;
+
+  /// No description provided for @reportMissingScoreSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht gefunden was du suchst? Lass es uns wissen!'**
+  String get reportMissingScoreSubtitle;
+
   /// No description provided for @noScoresAvailable.
   ///
   /// In de, this message translates to:

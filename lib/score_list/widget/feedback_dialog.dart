@@ -3,9 +3,10 @@ import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/theme/app_colors.dart';
 
 class FeedbackDialog extends StatefulWidget {
-  const FeedbackDialog({super.key, required this.repository});
+  const FeedbackDialog({super.key, required this.repository, this.initialText});
 
   final FeedbackRepository repository;
+  final String? initialText;
 
   @override
   State<FeedbackDialog> createState() => _FeedbackDialogState();
@@ -13,7 +14,7 @@ class FeedbackDialog extends StatefulWidget {
 
 class _FeedbackDialogState extends State<FeedbackDialog> {
   int _stars = 0;
-  final _controller = TextEditingController();
+  late final _controller = TextEditingController(text: widget.initialText);
   bool _submitting = false;
   bool _submitted = false;
 

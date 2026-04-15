@@ -183,6 +183,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tryDifferentSearch => 'Anderen Suchbegriff versuchen.';
 
   @override
+  String get reportMissingScore => 'Fehlenden Score melden';
+
+  @override
+  String get reportMissingScoreSubtitle =>
+      'Nicht gefunden was du suchst? Lass es uns wissen!';
+
+  @override
   String get noScoresAvailable => 'Keine Scores vorhanden';
 
   @override

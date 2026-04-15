@@ -66,6 +66,8 @@
   "scores": "Scores",
   "noResultsFound": "Keine Ergebnisse gefunden",
   "tryDifferentSearch": "Anderen Suchbegriff versuchen.",
+  "reportMissingScore": "Fehlenden Score melden",
+  "reportMissingScoreSubtitle": "Nicht gefunden was du suchst? Lass es uns wissen!",
   "noScoresAvailable": "Keine Scores vorhanden",
   "addScoresOrCheckConnection": "Scores hinzufügen oder Verbindung prüfen.",
 
