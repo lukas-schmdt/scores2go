@@ -20,7 +20,10 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         ));
       }
       if (event is ToggleDarkModeEvent) {
-        emit(state.copyWith(isDarkMode: !state.isDarkMode));
+        emit(state.copyWith(
+          useSystemTheme: false,
+          isDarkMode: !event.currentIsDark,
+        ));
       }
       if (event is SetLocaleEvent) {
         if (event.locale == null) {

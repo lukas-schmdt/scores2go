@@ -28,6 +28,7 @@ class SettingsScreen extends StatelessWidget {
     return BlocConsumer<SettingsBloc, SettingsState>(
       listener: (context, state) {},
       builder: (context, state) {
+        final effectiveDark = Theme.of(context).brightness == Brightness.dark;
         return Scaffold(
           appBar: AppBar(title: Text(l.settings)),
           body: SingleChildScrollView(
@@ -70,13 +71,13 @@ class SettingsScreen extends StatelessWidget {
                 _SettingsCard(
                   children: [
                     _SwitchTile(
-                      icon: state.isDarkMode
+                      icon: effectiveDark
                           ? Icons.dark_mode_outlined
                           : Icons.light_mode_outlined,
                       label: l.darkMode,
-                      value: state.isDarkMode,
+                      value: effectiveDark,
                       onChanged: (_) => context.read<SettingsBloc>().add(
-                            const ToggleDarkModeEvent(),
+                            ToggleDarkModeEvent(currentIsDark: effectiveDark),
                           ),
                     ),
                     _Divider(),

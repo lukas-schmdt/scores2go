@@ -3,6 +3,7 @@ part of 'settings_bloc.dart';
 final class SettingsState extends Equatable {
   const SettingsState({
     this.isDarkMode = false,
+    this.useSystemTheme = true,
     this.appVersion = '',
     this.appName = '',
     this.packageName = '',
@@ -11,6 +12,8 @@ final class SettingsState extends Equatable {
   });
 
   final bool isDarkMode;
+  // When true the app follows the OS theme and isDarkMode is ignored.
+  final bool useSystemTheme;
   final String appVersion;
   final String appName;
   final String packageName;
@@ -19,6 +22,7 @@ final class SettingsState extends Equatable {
 
   SettingsState copyWith({
     bool? isDarkMode,
+    bool? useSystemTheme,
     String? appVersion,
     String? appName,
     String? packageName,
@@ -28,6 +32,7 @@ final class SettingsState extends Equatable {
   }) {
     return SettingsState(
       isDarkMode: isDarkMode ?? this.isDarkMode,
+      useSystemTheme: useSystemTheme ?? this.useSystemTheme,
       appVersion: appVersion ?? this.appVersion,
       appName: appName ?? this.appName,
       packageName: packageName ?? this.packageName,
@@ -39,6 +44,7 @@ final class SettingsState extends Equatable {
   @override
   List<Object?> get props => [
         isDarkMode,
+        useSystemTheme,
         appName,
         packageName,
         appVersion,

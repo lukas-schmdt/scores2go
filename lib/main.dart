@@ -85,7 +85,9 @@ class Scores2GoApp extends StatelessWidget {
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         locale: settingsState.locale,
-        themeMode: settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        themeMode: settingsState.useSystemTheme
+            ? ThemeMode.system
+            : (settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light),
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (authContext, authState) {
             if (authState.status == AuthStatus.authenticated) {

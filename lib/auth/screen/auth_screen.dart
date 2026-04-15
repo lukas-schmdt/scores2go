@@ -55,10 +55,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               gradient: RadialGradient(
-                                colors: [
-                                  Color(0x330176E4),
-                                  Color(0x000176E4),
-                                ],
+                                colors: [Color(0x330176E4), Color(0x000176E4)],
                               ),
                             ),
                           ),
@@ -79,14 +76,16 @@ class _AuthScreenState extends State<AuthScreen> {
                               _BrandingHeader(isDark: isDark),
                               const SizedBox(height: 40),
 
-                              if (state.status == AuthStatus.registerSuccess) ...[
+                              if (state.status ==
+                                  AuthStatus.registerSuccess) ...[
                                 _SuccessBanner(
                                   message: l.emailCheckTitle,
                                   subtitle: l.emailCheckSubtitle,
                                 ),
                                 const SizedBox(height: 16),
                               ],
-                              if (state.status == AuthStatus.resetPasswordSuccess) ...[
+                              if (state.status ==
+                                  AuthStatus.resetPasswordSuccess) ...[
                                 _SuccessBanner(message: l.passwordResetSuccess),
                                 const SizedBox(height: 16),
                               ],
@@ -107,7 +106,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                       ? null
                                       : [
                                           BoxShadow(
-                                            color: _blue.withValues(alpha: 0.08),
+                                            color: _blue.withValues(
+                                              alpha: 0.08,
+                                            ),
                                             blurRadius: 24,
                                             offset: const Offset(0, 8),
                                           ),
@@ -187,7 +188,8 @@ class _AuthScreenState extends State<AuthScreen> {
                                           AuthStatus.loginFailed) ...[
                                         const SizedBox(height: 16),
                                         _ErrorBanner(
-                                          message: state.errorMessage ??
+                                          message:
+                                              state.errorMessage ??
                                               l.loginFailed,
                                         ),
                                       ],
@@ -196,10 +198,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                         alignment: Alignment.centerRight,
                                         child: TextButton(
                                           style: TextButton.styleFrom(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                  vertical: 4,
-                                                ),
+                                            padding: const EdgeInsets.symmetric(
+                                              vertical: 4,
+                                            ),
                                             tapTargetSize: MaterialTapTargetSize
                                                 .shrinkWrap,
                                             foregroundColor: _teal,
@@ -207,8 +208,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                           onPressed: () => Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                              builder: (_) =>
-                                                  BlocProvider.value(
+                                              builder: (_) => BlocProvider.value(
                                                 value: context.read<AuthBloc>(),
                                                 child:
                                                     const ForgotPasswordScreen(),
@@ -231,8 +231,9 @@ class _AuthScreenState extends State<AuthScreen> {
                                         width: double.infinity,
                                         height: 48,
                                         child: Material(
-                                          borderRadius:
-                                              BorderRadius.circular(12),
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
                                           color: Colors.transparent,
                                           child: Ink(
                                             decoration: BoxDecoration(
@@ -251,8 +252,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                               onTap: loading
                                                   ? null
                                                   : () {
-                                                      TextInput
-                                                          .finishAutofillContext();
+                                                      TextInput.finishAutofillContext();
                                                       _submit(context, state);
                                                     },
                                               borderRadius:
@@ -264,9 +264,10 @@ class _AuthScreenState extends State<AuthScreen> {
                                                         width: 20,
                                                         child:
                                                             CircularProgressIndicator(
-                                                          strokeWidth: 2,
-                                                          color: Colors.white,
-                                                        ),
+                                                              strokeWidth: 2,
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
                                                       )
                                                     : Text(
                                                         l.login,
@@ -308,26 +309,6 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                       ),
                     ),
-
-                    // Theme toggle
-                    Positioned(
-                      top: 8,
-                      right: 8,
-                      child: IconButton(
-                        icon: Icon(
-                          isDark
-                              ? Icons.light_mode_outlined
-                              : Icons.dark_mode_outlined,
-                          color: isDark
-                              ? Colors.white38
-                              : Colors.black38,
-                        ),
-                        onPressed: () => context
-                            .read<SettingsBloc>()
-                            .add(const ToggleDarkModeEvent()),
-                        tooltip: isDark ? 'Light mode' : 'Dark mode',
-                      ),
-                    ),
                   ],
                 ),
               ),
@@ -344,16 +325,15 @@ class _AuthScreenState extends State<AuthScreen> {
     required bool isDark,
     Widget? suffix,
   }) {
-    final borderColor =
-        isDark ? Colors.white.withValues(alpha: 0.15) : Colors.black12;
+    final borderColor = isDark
+        ? Colors.white.withValues(alpha: 0.15)
+        : Colors.black12;
     final focusedColor = isDark ? _teal : _blue;
     final iconColor = isDark ? Colors.white38 : Colors.black38;
 
     return InputDecoration(
       labelText: label,
-      labelStyle: TextStyle(
-        color: isDark ? Colors.white54 : Colors.black45,
-      ),
+      labelStyle: TextStyle(color: isDark ? Colors.white54 : Colors.black45),
       prefixIcon: Icon(icon, color: iconColor),
       suffixIcon: suffix,
       enabledBorder: OutlineInputBorder(

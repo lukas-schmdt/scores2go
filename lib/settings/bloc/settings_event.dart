@@ -8,7 +8,11 @@ sealed class SettingsEvent extends Equatable {
 }
 
 class ToggleDarkModeEvent extends SettingsEvent {
-  const ToggleDarkModeEvent();
+  const ToggleDarkModeEvent({required this.currentIsDark});
+  final bool currentIsDark;
+
+  @override
+  List<Object> get props => [currentIsDark];
 }
 
 class SetLocaleEvent extends SettingsEvent {
