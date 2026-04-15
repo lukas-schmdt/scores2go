@@ -32,7 +32,7 @@ class _AuthScreenState extends State<AuthScreen> {
 
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, settings) {
-        final isDark = settings.isDarkMode;
+        final isDark = Theme.of(context).brightness == Brightness.dark;
         return BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             final loading = state.status == AuthStatus.loading;
