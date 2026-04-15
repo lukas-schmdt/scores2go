@@ -86,36 +86,26 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     RemoveUserFavoriteEvent event,
     Emitter<UserFavoritesState> emit,
   ) async {
-    emit(state.copyWith(pendingId: event.scoreId));
+    final updatedIds = state.favorites
+        .where((id) => id != event.scoreId)
+        .toList();
+    final updatedScores = state.scores
+        .where((s) => updatedIds.contains(s.id))
+        .toList();
+
+    emit(state.copyWith(
+      status: UserFavoritesStatus.loaded,
+      favorites: updatedIds,
+      scores: updatedScores,
+    ));
+
     try {
-      await Future.wait([
-        repo.removeFavoriteScoreId(event.scoreId),
-        Future.delayed(const Duration(milliseconds: 200)),
-      ]);
-
-      final updatedIds = state.favorites
-          .where((id) => id != event.scoreId)
-          .toList();
-      final updatedScores = state.scores
-          .where((s) => updatedIds.contains(s.id))
-          .toList();
-
-      emit(
-        state.copyWith(
-          status: UserFavoritesStatus.loaded,
-          favorites: updatedIds,
-          scores: updatedScores,
-          clearPending: true,
-        ),
-      );
+      await repo.removeFavoriteScoreId(event.scoreId);
     } catch (e) {
-      emit(
-        state.copyWith(
-          status: UserFavoritesStatus.error,
-          errorMessage: e.toString(),
-          clearPending: true,
-        ),
-      );
+      emit(state.copyWith(
+        status: UserFavoritesStatus.error,
+        errorMessage: e.toString(),
+      ));
     }
   }
 

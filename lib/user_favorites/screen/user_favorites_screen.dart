@@ -15,15 +15,24 @@ class UserFavoritesScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state.status == UserFavoritesStatus.loading) {
-          return const Center(child: CircularProgressIndicator());
+          return Scaffold(
+            appBar: AppBar(title: Text(l.favoritesTitle)),
+            body: const Center(child: CircularProgressIndicator()),
+          );
         }
 
         if (state.status == UserFavoritesStatus.error) {
-          return Center(child: Text(l.errorLoadingFavorites));
+          return Scaffold(
+            appBar: AppBar(title: Text(l.favoritesTitle)),
+            body: Center(child: Text(l.errorLoadingFavorites)),
+          );
         }
 
         if (state.favorites.isEmpty) {
-          return const Scaffold(body: EmptyState.empty());
+          return Scaffold(
+            appBar: AppBar(title: Text(l.favoritesTitle)),
+            body: const EmptyState.empty(),
+          );
         }
 
         final scores = state.scores;
