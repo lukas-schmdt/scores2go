@@ -41,7 +41,6 @@ class UserFavoritesScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final favId = state.favorites[index];
               final score = scores.firstWhere((s) => s.id == favId);
-
               final cs = Theme.of(context).colorScheme;
               final tt = Theme.of(context).textTheme;
 
@@ -49,9 +48,9 @@ class UserFavoritesScreen extends StatelessWidget {
                 key: Key('fav_$favId'),
                 direction: DismissDirection.endToStart,
                 onDismissed: (_) {
-                  context.read<UserFavoritesBloc>().add(
-                    RemoveUserFavoriteEvent(favId),
-                  );
+                  context
+                      .read<UserFavoritesBloc>()
+                      .add(RemoveUserFavoriteEvent(favId));
                 },
                 background: Container(
                   color: Colors.red,

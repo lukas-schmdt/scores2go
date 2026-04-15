@@ -8,8 +8,11 @@ import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
 import 'package:scores_2_go/home/screen/home_screen.dart';
 import 'package:scores_2_go/recently_used/bloc/recently_used_bloc.dart';
+import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
+import 'package:scores_2_go/data_provider/collections_data_provider.dart';
 import 'package:scores_2_go/data_provider/feedback_data_provider.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
+import 'package:scores_2_go/repo/collections_repository.dart';
 import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
@@ -28,6 +31,7 @@ void main() async {
 
   final scoresDataProvider = ScoresDataProvider();
   final feedbackDataProvider = FeedbackDataProvider();
+  final collectionsDataProvider = CollectionsDataProvider();
 
   runApp(
     MultiRepositoryProvider(
@@ -37,6 +41,10 @@ void main() async {
         ),
         RepositoryProvider(
           create: (context) => FeedbackRepository(feedbackDataProvider),
+        ),
+        RepositoryProvider(
+          create: (context) =>
+              CollectionsRepository(collectionsDataProvider),
         ),
       ],
       child: MultiBlocProvider(
@@ -93,6 +101,11 @@ class Scores2GoApp extends StatelessWidget {
                     create: (context) =>
                         RecentlyUsedBloc(scoresRepo)
                           ..add(LoadRecentlyUsedEvent()),
+                  ),
+                  BlocProvider<CollectionsBloc>(
+                    create: (context) =>
+                        CollectionsBloc(context.read<CollectionsRepository>())
+                          ..add(const LoadCollectionsEvent()),
                   ),
                 ],
                 child: HomeScreen(),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/collections/screen/collections_screen.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
-import 'package:scores_2_go/recently_used/screen/recently_used_screen.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 import 'package:scores_2_go/score_entry/screen/score_entry_screen.dart';
@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
         child: const ScoreListScreen(),
       ),
       1 => const UserFavoritesScreen(),
-      2 => const RecentlyUsedScreen(),
+      2 => const CollectionsScreen(),
       3 => const SettingsScreen(),
       _ => Scaffold(body: EmptyState.error()),
     };
@@ -71,9 +71,9 @@ class HomeScreen extends StatelessWidget {
             label: l.navFavorites,
           ),
           (
-            icon: Icons.history,
-            activeIcon: Icons.history,
-            label: l.navRecentlyUsed,
+            icon: Icons.folder_outlined,
+            activeIcon: Icons.folder,
+            label: 'Collections',
           ),
           (
             icon: Icons.person_outline,
