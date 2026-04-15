@@ -110,16 +110,16 @@ class _ForgotForm extends StatelessWidget {
         Text(
           l.forgotPassword,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cs.onSurface,
-              ),
+            fontWeight: FontWeight.bold,
+            color: cs.onSurface,
+          ),
         ),
         const SizedBox(height: 8),
         Text(
           l.checkInboxForResetLink,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: cs.onSurfaceVariant,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
@@ -183,10 +183,7 @@ class _ForgotForm extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-        TextButton(
-          onPressed: onBackToLogin,
-          child: Text(l.backToLogin),
-        ),
+        TextButton(onPressed: onBackToLogin, child: Text(l.backToLogin)),
       ],
     );
   }
@@ -211,24 +208,27 @@ class _SuccessView extends StatelessWidget {
             color: cs.primaryContainer,
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.mark_email_read_outlined,
-              size: 36, color: cs.primary),
+          child: Icon(
+            Icons.mark_email_read_outlined,
+            size: 36,
+            color: cs.primary,
+          ),
         ),
         const SizedBox(height: 24),
         Text(
           l.emailSent,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: cs.onSurface,
-              ),
+            fontWeight: FontWeight.bold,
+            color: cs.onSurface,
+          ),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 12),
         Text(
           l.checkInboxForResetLink,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: cs.onSurfaceVariant,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 32),
@@ -236,8 +236,9 @@ class _SuccessView extends StatelessWidget {
           onPressed: onBackToLogin,
           style: FilledButton.styleFrom(
             minimumSize: const Size.fromHeight(48),
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
           ),
           child: Text(
             l.backToLogin,
