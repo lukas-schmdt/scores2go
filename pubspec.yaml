@@ -50,3 +50,4 @@ flutter:
     - lib/data/scores/definitions/horovitz/
     - lib/data/scores/definitions/nudesc/
     - lib/data/scores/definitions/cam-icu/
+    - lib/data/scores/definitions/dose-calc/
