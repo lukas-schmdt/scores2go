@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAM-ICU – Scores2Go</title>
+  <meta name="description" content="CAM-ICU — am besten validiertes Delirerfassungsinstrument für Intensivpatienten. Zwei-Minuten-Algorithmus basierend auf vier Merkmalen. Delir positiv bei M1+M2+(M3 oder M4)." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    .algorithm-block {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 20px 24px;
+      font-size: 14px;
+      line-height: 2;
+      color: #1f2937;
+      margin-bottom: 12px;
+    }
+
+    .algorithm-block .arrow {
+      color: #6b7280;
+      font-size: 18px;
+      display: block;
+      text-align: center;
+    }
+
+    .algorithm-block .step {
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin: 4px 0;
+      font-weight: 600;
+    }
+
+    .algorithm-block .result-pos {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 6px;
+      padding: 8px 14px;
+      margin: 4px 0;
+      font-weight: 700;
+      color: #dc2626;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Delir · ICU</div>
+    <h1>CAM-ICU</h1>
+    <p>Die Confusion Assessment Method for the ICU ist das am besten validierte Instrument zur Delirerfassung bei beatmeten und nicht-verbalen Intensivpatienten. Sie adaptiert den ursprünglichen CAM in einen Zwei-Schritte-Algorithmus, der in unter 2 Minuten durchgeführt werden kann.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Ely et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2001
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 85
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>Delir ist positiv, wenn <strong>Merkmal 1 + Merkmal 2 + (Merkmal 3 oder Merkmal 4)</strong> alle vorhanden sind. Falls RASS −4 oder −5, ist der Patient zu tief sediert — CAM-ICU sollte nicht durchgeführt werden und das Ergebnis wird als „nicht beurteilbar" dokumentiert.</p>
+    </div>
+
+    <div class="section">
+      <h2>Algorithmus</h2>
+      <div class="algorithm-block">
+        <div class="step">Schritt 1: Sedierungsniveau beurteilen (RASS)</div>
+        <div class="arrow">↓ Falls RASS −4 oder −5: Nicht beurteilbar</div>
+        <div class="step">M1: Akute Veränderung oder Fluktuation des Bewusstseinszustands?</div>
+        <div class="arrow">↓ Falls NEIN → CAM-ICU Negativ</div>
+        <div class="step">M2: Aufmerksamkeitsstörung? (SAVE-Test Score &lt; 8 / 10)</div>
+        <div class="arrow">↓ Falls NEIN → CAM-ICU Negativ</div>
+        <div class="step">M3: Veränderte Bewusstseinslage? (RASS ≠ 0)</div>
+        <div class="arrow">ODER</div>
+        <div class="step">M4: Desorganisiertes Denken? (&lt; 4/5 Fragen + Befehl korrekt)</div>
+        <div class="arrow">↓ Falls M3 ODER M4 positiv:</div>
+        <div class="result-pos">CAM-ICU POSITIV — Delir vorhanden</div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Merkmalsdetails</h2>
+
+      <p><strong>Merkmal 1 — Akute Veränderung oder Fluktuation:</strong> Gibt es Hinweise auf eine akute Veränderung des Bewusstseinszustands gegenüber dem Ausgangszustand des Patienten, ODER fluktuierte der Bewusstseinszustand in den letzten 24 Stunden (RASS oder GCS schwankend)? Falls JA, fortfahren.</p>
+
+      <p><strong>Merkmal 2 — Aufmerksamkeitsstörung (SAVE-Test):</strong> Der Untersucher liest die Buchstabenfolge „S-A-V-E-A-H-A-A-R-T" vor und bittet den Patienten, bei dem Buchstaben „A" die Hand zu drücken. Der Patient erhält für jede korrekte Reaktion (Drücken bei A, kein Drücken bei anderen Buchstaben) 1 Punkt. Score = Anzahl der Fehler von 10 abgezogen. Ein Score &lt; 8 (d. h. ≥ 3 Fehler) ist positiv für Aufmerksamkeitsstörung.</p>
+      <table>
+        <thead>
+          <tr><th>SAVE-Sequenz</th><th>Erwartete Reaktion</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>S</td><td>Kein Drücken</td></tr>
+          <tr><td>A</td><td>Drücken ✓</td></tr>
+          <tr><td>V</td><td>Kein Drücken</td></tr>
+          <tr><td>E</td><td>Kein Drücken</td></tr>
+          <tr><td>A</td><td>Drücken ✓</td></tr>
+          <tr><td>H</td><td>Kein Drücken</td></tr>
+          <tr><td>A</td><td>Drücken ✓</td></tr>
+          <tr><td>A</td><td>Drücken ✓</td></tr>
+          <tr><td>R</td><td>Kein Drücken</td></tr>
+          <tr><td>T</td><td>Kein Drücken</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:12px"><strong>Merkmal 3 — Veränderte Bewusstseinslage:</strong> RASS-Wert ungleich null (sediert oder agitiert). Falls RASS ≠ 0, ist Merkmal 3 positiv.</p>
+
+      <p><strong>Merkmal 4 — Desorganisiertes Denken:</strong> Vier Ja/Nein-Fragen stellen (z. B. „Schwimmt ein Stein auf dem Wasser?"; „Gibt es Fische im Meer?"; „Wiegt 1 Pfund mehr als 2 Pfund?"; „Kann man mit einem Hammer einen Nagel einschlagen?"). Dann den Patienten bitten, zwei Finger hochzuhalten und anschließend mit der anderen Hand dasselbe zu tun (oder einen Finger hinzuzufügen). Ein Gesamtwert &lt; 4 von 5 ist positiv.</p>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <table>
+        <thead>
+          <tr><th>Ergebnis</th><th>Bedeutung</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>CAM-ICU Positiv</td><td>Delir vorhanden — Ursache abklären, nicht-pharmakologisches Bundle einleiten, Arzt informieren</td></tr>
+          <tr><td>CAM-ICU Negativ</td><td>Kein Delir bei dieser Beurteilung — jede Schicht erneut beurteilen</td></tr>
+          <tr><td>Nicht beurteilbar</td><td>Patient zu tief sediert (RASS −4/−5) — nach spontanem Aufwachversuch erneut beurteilen</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Psychometrische Eigenschaften</h2>
+      <ul>
+        <li>Sensitivität: 93–100 %</li>
+        <li>Spezifität: 98–100 %</li>
+        <li>Interrater-Reliabilität: κ = 0,96</li>
+        <li>Validiert bei beatmeten und nicht-intubierten nicht-verbalen Patienten</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Ely EW, Inouye SK, Bernard GR, et al. <em>Delirium in mechanically ventilated patients: validity and reliability of the confusion assessment method for the intensive care unit (CAM-ICU).</em> JAMA. 2001;286(21):2703–2710.</p>
+      <p>Devlin JW, Skrobik Y, Gélinas C, et al. <em>Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.</em> Crit Care Med. 2018;46(9):e825–e873.</p>
+    </div>
+
+    <div class="cta">
+      <p>Delirbeurteilung mit CAM-ICU interaktiv in der App.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>

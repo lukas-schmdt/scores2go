@@ -18,6 +18,9 @@ Score buildMeldScore(String lang) {
     popularity: 88,
     categories: ['Hepatology', 'Transplant', 'Severity'],
     doc: (_) => 'lib/data/scores/definitions/meld/meld_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/meld'
+        : 'https://scores2go.com/scores/meld',
     scoreFunction: meldFunction,
     visibilityFunction: meldVisibility,
     groups: [

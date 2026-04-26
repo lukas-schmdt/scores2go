@@ -17,6 +17,9 @@ Score buildNudescScore(String lang) {
     popularity: 70,
     categories: ['Delirium', 'ICU', 'Nursing'],
     doc: (_) => 'lib/data/scores/definitions/nudesc/nudesc_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/nudesc'
+        : 'https://scores2go.com/scores/nudesc',
     scoreFunction: nudescFunction,
     visibilityFunction: nudescVisibility,
     groups: [

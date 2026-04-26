@@ -11,6 +11,9 @@ Score buildRassScore(String lang) {
     id: 7,
     name: 'rass',
     doc: (_) => 'lib/data/scores/definitions/rass/rass_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/rass'
+        : 'https://scores2go.com/scores/rass',
     scoreFunction: rassFunction,
     visibilityFunction: rassVisibility,
     author: 'Sessler et al.',

@@ -24,6 +24,9 @@ Score buildHorovitzScore(String lang) {
     popularity: 85,
     categories: ['Pulmonology', 'ICU', 'ARDS'],
     doc: (_) => 'lib/data/scores/definitions/horovitz/horovitz_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/horovitz'
+        : 'https://scores2go.com/scores/horovitz',
     scoreFunction: horovitzFunction,
     visibilityFunction: horovitzVisibility,
     groups: [

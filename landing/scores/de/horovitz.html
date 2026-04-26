@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Horovitz-Quotient (P/F-Verhältnis) – Scores2Go</title>
+  <meta name="description" content="Horovitz-Quotient (PaO₂/FiO₂-Verhältnis) — Standardmaß für die Oxygenierungseffizienz und Grundlage der Berlin-Definition des ARDS." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Pneumologie · ICU · ARDS</div>
+    <h1>Horovitz-Quotient (P/F-Verhältnis)</h1>
+    <p>Der Horovitz-Quotient ist das Verhältnis des arteriellen Sauerstoffpartialdrucks (PaO₂) zur inspiratorischen Sauerstofffraktion (FiO₂). Er ist das Standardmaß für die Oxygenierungseffizienz und bildet die Grundlage der Berlin-Definition des ARDS.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Horovitz et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1974
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 85
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Formel</h2>
+      <pre>P/F-Verhältnis = PaO₂ (mmHg) / FiO₂ (Fraktion, 0,21–1,0)
+
+Beispiel: PaO₂ = 80 mmHg, FiO₂ = 0,4 (40 %)
+P/F-Verhältnis = 80 / 0,4 = 200 mmHg  →  Moderates ARDS</pre>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <table>
+        <thead>
+          <tr><th>P/F-Verhältnis (mmHg)</th><th>Klassifikation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>≥ 400</td><td>Normale Oxygenierung</td></tr>
+          <tr><td>300–399</td><td>Leichte Einschränkung</td></tr>
+          <tr><td>200–299</td><td>Leichtes ARDS (Berlin 2012)</td></tr>
+          <tr><td>100–199</td><td>Moderates ARDS (Berlin 2012)</td></tr>
+          <tr><td>&lt; 100</td><td>Schweres ARDS (Berlin 2012)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>ARDS Berlin-Definition (2012)</h2>
+      <p>Für die ARDS-Diagnose müssen alle vier Kriterien erfüllt sein:</p>
+      <ul>
+        <li><strong>Zeitlicher Verlauf:</strong> Akuter Beginn innerhalb von 1 Woche nach einem bekannten klinischen Ereignis oder neuen bzw. zunehmenden respiratorischen Symptomen.</li>
+        <li><strong>Bildgebung:</strong> Bilaterale Verschattungen, nicht vollständig durch Ergüsse, Lappen-/Lungenkollaps oder Rundherde erklärbar (Röntgen-Thorax oder CT).</li>
+        <li><strong>Ödemursache:</strong> Respiratorische Insuffizienz nicht vollständig durch Herzinsuffizienz oder Flüssigkeitsüberlastung erklärbar (objektive Beurteilung erforderlich, z. B. Echokardiographie, wenn kein Risikofaktor vorliegt).</li>
+        <li><strong>Oxygenierungsstörung:</strong> P/F-Verhältnis &lt; 300 mmHg bei PEEP oder CPAP ≥ 5 cmH₂O.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Klinische Hinweise</h2>
+      <ul>
+        <li>PaO₂ muss aus einer arteriellen Blutgasanalyse stammen — venöse oder kapilläre Werte sind nicht gültig.</li>
+        <li>Tatsächlich applizierten FiO₂ prüfen: Hochflusssysteme können vom eingestellten FiO₂ abweichen; Raumluft = 0,21.</li>
+        <li>Serielle P/F-Messungen in den ersten 24 Stunden nach PEEP-Optimierung spiegeln den tatsächlichen ARDS-Schweregrad besser wider als ein einzelner früher Wert.</li>
+        <li>Das SpO₂/FiO₂ (SF)-Verhältnis ist ein nicht-invasives Surrogat, wenn keine BGA verfügbar ist; SF ≈ 235 entspricht PF ≈ 200 mmHg.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Horovitz JH, Carrico CJ, Shires GT. <em>Pulmonary response to major injury.</em> Arch Surg. 1974;108(3):349–355.</p>
+      <p>ARDS Definition Task Force; Ranieri VM, Rubenfeld GD, Thompson BT, et al. <em>Acute respiratory distress syndrome: the Berlin Definition.</em> JAMA. 2012;307(23):2526–2533.</p>
+    </div>
+
+    <div class="cta">
+      <p>Horovitz-Quotienten interaktiv in der App berechnen.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>

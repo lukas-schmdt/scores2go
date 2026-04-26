@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EuroSCORE II – Scores2Go</title>
+  <meta name="description" content="EuroSCORE II — standard preoperative mortality risk model for adult cardiac surgery, derived from 22,381 patients across 43 countries." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Cardiac Surgery · Mortality</div>
+    <h1>EuroSCORE II</h1>
+    <p>European System for Cardiac Operative Risk Evaluation II estimates 30-day operative mortality via logistic regression on 18 clinical variables. Derived from a 2010–2011 prospective European dataset.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Nashef et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2012
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 85
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>EuroSCORE II replaced the original additive and logistic EuroSCORE (1999) as the recommended preoperative risk model for adult cardiac surgery in Europe. It uses a fully logistic regression model, yielding a predicted 30-day in-hospital mortality as a probability rather than a risk category. The model was derived from 22,381 consecutive patients undergoing cardiac surgery in 43 countries between May 2010 and July 2011.</p>
+    </div>
+
+    <div class="section">
+      <h2>Formula</h2>
+      <pre>logit = −5.324537 + Σ (variable coefficients)
+
+Predicted mortality = e^logit / (1 + e^logit)</pre>
+    </div>
+
+    <div class="section">
+      <h2>Patient Factors</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Coefficient (β)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Age (per year above 60)</td><td>0.0285181</td></tr>
+          <tr><td>Female sex</td><td>0.2196434</td></tr>
+          <tr><td>Serum creatinine &gt; 200 µmol/L or dialysis</td><td>0.6521653</td></tr>
+          <tr><td>Extracardiac arteriopathy</td><td>0.5360268</td></tr>
+          <tr><td>Poor mobility</td><td>0.2407949</td></tr>
+          <tr><td>Previous cardiac surgery</td><td>1.118837</td></tr>
+          <tr><td>COPD (long-term bronchodilator/steroid use)</td><td>0.1886564</td></tr>
+          <tr><td>Active endocarditis</td><td>0.6194522</td></tr>
+          <tr><td>Critical preoperative state</td><td>1.086517</td></tr>
+          <tr><td>Insulin-dependent diabetes mellitus</td><td>0.3542749</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Cardiac &amp; Operation Factors</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Category</th><th>Coefficient (β)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>NYHA class</td><td>II</td><td>0.1082900</td></tr>
+          <tr><td></td><td>III</td><td>0.2962689</td></tr>
+          <tr><td></td><td>IV</td><td>0.5462446</td></tr>
+          <tr><td>CCS angina class 4</td><td>Yes</td><td>0.2226147</td></tr>
+          <tr><td>LV function (EF)</td><td>Moderate 31–50 %</td><td>0.3150652</td></tr>
+          <tr><td></td><td>Poor 21–30 %</td><td>0.8084096</td></tr>
+          <tr><td></td><td>Very poor ≤ 20 %</td><td>0.9346919</td></tr>
+          <tr><td>Recent MI (≤ 90 days)</td><td>Yes</td><td>0.1528943</td></tr>
+          <tr><td>Pulmonary hypertension</td><td>Moderate 31–55 mmHg</td><td>0.1788899</td></tr>
+          <tr><td></td><td>Severe &gt; 55 mmHg</td><td>0.3491475</td></tr>
+          <tr><td>Urgency</td><td>Urgent</td><td>0.3174673</td></tr>
+          <tr><td></td><td>Emergency</td><td>0.7039121</td></tr>
+          <tr><td></td><td>Salvage</td><td>1.3337492</td></tr>
+          <tr><td>Weight of procedure</td><td>Two procedures</td><td>0.5521478</td></tr>
+          <tr><td></td><td>Three or more</td><td>0.9724533</td></tr>
+          <tr><td>Surgery on thoracic aorta</td><td>Yes</td><td>0.6527205</td></tr>
+          <tr><td>Post-infarct septal rupture</td><td>Yes</td><td>1.462009</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Risk Classification</h2>
+      <table>
+        <thead>
+          <tr><th>Predicted Mortality</th><th>Risk Class</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt; 2 %</td><td>Low</td></tr>
+          <tr><td>2–5 %</td><td>Moderate</td></tr>
+          <tr><td>5–10 %</td><td>High</td></tr>
+          <tr><td>&gt; 10 %</td><td>Very high</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation Note</h2>
+      <p>Contemporary single-centre and registry studies have demonstrated that EuroSCORE II may overestimate mortality in high-risk cohorts as outcomes have improved since 2010–2011 derivation. The score should be used as one component of a comprehensive preoperative assessment and discussed in a multidisciplinary Heart Team context.</p>
+    </div>
+
+    <div class="section">
+      <h2>Literature</h2>
+      <p>Nashef SA, Roques F, Sharples LD, et al. <em>EuroSCORE II.</em> Eur J Cardiothorac Surg. 2012;41(4):734–745.</p>
+      <p>Kirmani BH, Mazhar K, Fabri BM, Pullan DM. <em>Comparison of the EuroSCORE II and Society of Thoracic Surgeons 2008 risk tools.</em> Eur J Cardiothorac Surg. 2013;44(6):999–1005.</p>
+    </div>
+
+    <div class="cta">
+      <p>Calculate EuroSCORE II interactively in the app.</p>
+      <a class="button" href="../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glasgow Coma Scale (GCS) – Scores2Go</title>
+  <meta name="description" content="Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response. Score ranges from 3 (deep coma) to 15 (normal)." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Neurology · ICU · Emergency</div>
+    <h1>Glasgow Coma Scale (GCS)</h1>
+    <p>The GCS is the most widely used tool for assessing consciousness in patients with acute brain injury. It evaluates eye opening (E), verbal response (V), and motor response (M) independently, summed to a total of 3–15.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Teasdale &amp; Jennett
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1974
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 98
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Subscales</h2>
+
+      <table>
+        <thead>
+          <tr><th>E — Eye Opening</th><th>Score</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Spontaneous</td><td>4</td></tr>
+          <tr><td>To voice / verbal command</td><td>3</td></tr>
+          <tr><td>To pain / pressure</td><td>2</td></tr>
+          <tr><td>None</td><td>1</td></tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr><th>V — Verbal Response</th><th>Score</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Orientated</td><td>5</td></tr>
+          <tr><td>Confused / disoriented</td><td>4</td></tr>
+          <tr><td>Inappropriate words</td><td>3</td></tr>
+          <tr><td>Incomprehensible sounds</td><td>2</td></tr>
+          <tr><td>None</td><td>1</td></tr>
+        </tbody>
+      </table>
+
+      <table>
+        <thead>
+          <tr><th>M — Motor Response</th><th>Score</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Obeys commands</td><td>6</td></tr>
+          <tr><td>Localises pain</td><td>5</td></tr>
+          <tr><td>Normal flexion (withdrawal)</td><td>4</td></tr>
+          <tr><td>Abnormal flexion (decorticate)</td><td>3</td></tr>
+          <tr><td>Extension (decerebrate)</td><td>2</td></tr>
+          <tr><td>None</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Total Score Interpretation</h2>
+      <table>
+        <thead>
+          <tr><th>GCS Total</th><th>Severity</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>13–15</td><td>Mild</td></tr>
+          <tr><td>9–12</td><td>Moderate</td></tr>
+          <tr><td>3–8</td><td>Severe (GCS ≤ 8 = indication for intubation)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>EVM Notation</h2>
+      <p>Results should always be reported in EVM format (e.g. E3V4M5 = GCS 12) to allow clinicians to identify which component is impaired. Reporting only the total sum obscures important clinical information — a patient with E1V1M6 and one with E3V3M2 both score 8 but have very different presentations.</p>
+    </div>
+
+    <div class="section">
+      <h2>Assessment Notes</h2>
+      <ul>
+        <li>Record the <strong>best response</strong> from each component — do not average or take worst.</li>
+        <li>For intubated patients, verbal response is scored as <strong>VT</strong> (intubated) or <strong>VA</strong> (tracheostomy, aphasic), and should not be imputed as 1.</li>
+        <li>Motor response is the most prognostically powerful component; it should never be omitted.</li>
+        <li>Serial GCS measurements over time are more informative than any single value — a falling GCS indicates clinical deterioration requiring immediate re-assessment.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Literature</h2>
+      <p>Teasdale G, Jennett B. <em>Assessment of coma and impaired consciousness. A practical scale.</em> Lancet. 1974;2(7872):81–84.</p>
+    </div>
+
+    <div class="cta">
+      <p>Calculate GCS interactively in the app.</p>
+      <a class="button" href="../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+
+  </main>
+
+</body>
+</html>

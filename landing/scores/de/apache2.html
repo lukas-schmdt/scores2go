@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>APACHE II – Scores2Go</title>
+  <meta name="description" content="APACHE II Schweregradskala für Intensivpatienten. Berechnung der vorhergesagten Krankenhausmortalität anhand von 12 physiologischen Variablen, Alter und chronischen Vorerkrankungen." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">ICU · Schweregrad</div>
+    <h1>APACHE II</h1>
+    <p>Acute Physiology and Chronic Health Evaluation II — schätzt die ICU-Sterblichkeit anhand von 12 physiologischen Variablen, Alter und chronischen Vorerkrankungen.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Knaus et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1985
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 95
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>APACHE II verwendet 17 Variablen, die innerhalb der ersten 24 Stunden nach Aufnahme auf der Intensivstation erhoben werden, um die Krankenhaussterblichkeit abzuschätzen. Die Punktzahl reicht von 0 bis 71; höhere Werte weisen auf einen schwereren Krankheitsverlauf hin.</p>
+      <p>Der Gesamtscore setzt sich aus drei Komponenten zusammen: Akuter Physiologie-Score (APS), Alterspunkte und Punkte für chronische Vorerkrankungen.</p>
+    </div>
+
+    <div class="section">
+      <h2>Score-Komponenten</h2>
+      <table>
+        <thead>
+          <tr><th>Komponente</th><th>Variablen</th><th>Max. Punkte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Akuter Physiologie-Score (APS)</td><td>12 physiologische Variablen</td><td>60</td></tr>
+          <tr><td>Alterspunkte</td><td>Alter in Jahren</td><td>6</td></tr>
+          <tr><td>Punkte für chronische Vorerkrankungen</td><td>Schwere Organinsuffizienz / Immunsuppression</td><td>5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Physiologische Variablen (APS)</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Normbereich</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Körpertemperatur (rektal, °C)</td><td>36–38,4</td></tr>
+          <tr><td>Mittlerer arterieller Druck (mmHg)</td><td>70–109</td></tr>
+          <tr><td>Herzfrequenz (/min)</td><td>70–109</td></tr>
+          <tr><td>Atemfrequenz (/min)</td><td>12–24</td></tr>
+          <tr><td>Oxygenierung (AaDO₂ oder PaO₂)</td><td>FiO₂-abhängig</td></tr>
+          <tr><td>Arterieller pH</td><td>7,33–7,49</td></tr>
+          <tr><td>Serum-Natrium (mmol/L)</td><td>130–149</td></tr>
+          <tr><td>Serum-Kalium (mmol/L)</td><td>3,5–5,4</td></tr>
+          <tr><td>Serum-Kreatinin (mg/dL)</td><td>0,6–1,4</td></tr>
+          <tr><td>Hämatokrit (%)</td><td>30–45,9</td></tr>
+          <tr><td>Leukozyten (×10³/µL)</td><td>3–14,9</td></tr>
+          <tr><td>Glasgow-Koma-Skala</td><td>15 = 0 Punkte</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Mortalitätsprognose</h2>
+      <table>
+        <thead>
+          <tr><th>APACHE-II-Score</th><th>Vorhergesagte Krankenhaussterblichkeit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0–4</td><td>~4 %</td></tr>
+          <tr><td>5–9</td><td>~8 %</td></tr>
+          <tr><td>10–14</td><td>~15 %</td></tr>
+          <tr><td>15–19</td><td>~25 %</td></tr>
+          <tr><td>20–24</td><td>~40 %</td></tr>
+          <tr><td>25–29</td><td>~55 %</td></tr>
+          <tr><td>30–34</td><td>~75 %</td></tr>
+          <tr><td>≥ 35</td><td>&gt; 80 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Knaus WA, Draper EA, Wagner DP, Zimmerman JE. <em>APACHE II: a severity of disease classification system.</em> Crit Care Med. 1985;13(10):818–829.</p>
+    </div>
+
+    <div class="cta">
+      <p>Berechne den APACHE-II-Score interaktiv in der App.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>

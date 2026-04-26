@@ -11,6 +11,9 @@ Score buildEuroscoreScore(String lang) {
     id: 9,
     name: 'euroscore',
     doc: (_) => 'lib/data/scores/definitions/euroscore/euroscore_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/euroscore2'
+        : 'https://scores2go.com/scores/euroscore2',
     scoreFunction: euroscoreFunction,
     visibilityFunction: euroscoreVisibility,
     author: 'Nashef et al.',

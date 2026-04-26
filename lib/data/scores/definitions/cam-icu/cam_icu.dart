@@ -17,6 +17,9 @@ Score buildCamIcuScore(String lang) {
     popularity: 85,
     categories: ['Delirium', 'ICU'],
     doc: (_) => 'lib/data/scores/definitions/cam-icu/cam_icu_doc.md',
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/cam-icu'
+        : 'https://scores2go.com/scores/cam-icu',
     scoreFunction: camIcuFunction,
     visibilityFunction: camIcuVisibility,
     groups: [

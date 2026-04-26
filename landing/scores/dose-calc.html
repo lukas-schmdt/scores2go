@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dose Calculator – Scores2Go</title>
+  <meta name="description" content="Bidirectional infusion calculator for weight-adjusted drug dosing in the ICU — converts between pump rate (ml/h) and dose per kg, supporting µg, mg, and IU units." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    .example-block {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+
+    .example-block h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+    }
+
+    .example-block p {
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Calculator · ICU · Pharmacology</div>
+    <h1>Dose Calculator</h1>
+    <p>A bidirectional infusion calculator for weight-adjusted drug dosing. Converts between pump rate (ml/h) and target dose per kg — for catecholamines, sedatives, analgesics, heparin, insulin, and other continuous infusions.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 80
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Modes</h2>
+      <table>
+        <thead>
+          <tr><th>Mode</th><th>Input</th><th>Output</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Dose → Rate</td>
+            <td>Target dose (e.g. µg/kg/min) + patient weight + syringe concentration</td>
+            <td>Pump rate in ml/h</td>
+          </tr>
+          <tr>
+            <td>Rate → Dose</td>
+            <td>Current pump rate (ml/h) + patient weight + syringe concentration</td>
+            <td>Delivered dose (µg/kg/min, µg/kg/h, mg/kg/h, IU/kg/h, …)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Formula</h2>
+      <pre>Rate (ml/h) = Dose (µg/kg/min) × Weight (kg) × 60 / Concentration (µg/ml)
+
+Concentration (µg/ml) = Drug amount (µg) / Total volume (ml)</pre>
+      <p>The inverse formula gives dose from rate: Dose = Rate × Concentration / (Weight × 60).</p>
+    </div>
+
+    <div class="section">
+      <h2>Supported Units</h2>
+      <table>
+        <thead>
+          <tr><th>Mass Unit</th><th>Typical Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>µg</td><td>Catecholamines (norepinephrine, epinephrine, dobutamine), fentanyl, remifentanil</td></tr>
+          <tr><td>mg</td><td>Midazolam, propofol, amiodarone, nitroglycerin</td></tr>
+          <tr><td>IU</td><td>Heparin, insulin, vasopressin</td></tr>
+        </tbody>
+      </table>
+      <table>
+        <thead>
+          <tr><th>Time Unit</th><th>Typical Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>/min</td><td>Catecholamines, vasodilators (standard ICU dosing)</td></tr>
+          <tr><td>/h</td><td>Heparin (IU/kg/h), insulin (IU/kg/h), slow infusions</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Examples</h2>
+
+      <div class="example-block">
+        <h3>Example 1 — Norepinephrine</h3>
+        <p>Setup: 4 mg norepinephrine in 50 ml NaCl 0.9 % → Concentration = 80 µg/ml</p>
+        <p>Target dose: 0.1 µg/kg/min, Patient weight: 75 kg</p>
+        <p><strong>Rate = 0.1 × 75 × 60 / 80 = 5.6 ml/h</strong></p>
+      </div>
+
+      <div class="example-block">
+        <h3>Example 2 — Heparin</h3>
+        <p>Setup: 25,000 IU heparin in 50 ml NaCl 0.9 % → Concentration = 500 IU/ml</p>
+        <p>Target dose: 15 IU/kg/h, Patient weight: 80 kg</p>
+        <p><strong>Rate = 15 × 80 / 500 = 2.4 ml/h</strong></p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Tips</h2>
+      <ul>
+        <li>The default syringe volume is 50 ml — change it for larger bags or minivolumes.</li>
+        <li>Tap the unit chip (µg / mg / IU) to cycle through supported mass units.</li>
+        <li>In Rate → Dose mode, all equivalent dose representations (µg/kg/min, µg/kg/h, mg/kg/h) are shown simultaneously.</li>
+      </ul>
+    </div>
+
+    <div class="cta">
+      <p>Use the Dose Calculator interactively in the app.</p>
+      <a class="button" href="../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Always verify drug doses against current prescribing information and local pharmacy guidelines.</p>
+
+  </main>
+
+</body>
+</html>

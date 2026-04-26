@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAPS 3 – Scores2Go</title>
+  <meta name="description" content="SAPS 3 — sagt die Krankenhausmortalität auf der Intensivstation anhand von 20 Aufnahmevariablen voraus. Bessere internationale Kalibrierung als APACHE II und SAPS II." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">ICU · Schweregrad · Mortalität</div>
+    <h1>SAPS 3</h1>
+    <p>Simplified Acute Physiology Score 3 sagt die Krankenhausmortalität anhand von 20 bei ICU-Aufnahme erhobenen Variablen voraus. Validiert an 19.577 Patienten aus 35 Ländern.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Moreno et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2005
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 78
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>SAPS 3 ist in drei Boxen gegliedert, die Informationen zum Zeitpunkt der ICU-Aufnahme erfassen. Die Gesamtpunktzahl reicht von 0 bis 217 Punkte und wird über eine logistische Regressionsgleichung in eine vorhergesagte Krankenhausmortalität umgerechnet. Im Gegensatz zu APACHE II bietet SAPS 3 sieben regionsspezifische Gleichungen zur Korrektur internationaler Unterschiede im Patientenkollektiv und der Krankenhausstruktur.</p>
+    </div>
+
+    <div class="section">
+      <h2>Box I — Patienteninformationen</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Kategorie</th><th>Punkte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Alter</td><td>&lt; 40 Jahre</td><td>0</td></tr>
+          <tr><td></td><td>40–59 Jahre</td><td>5</td></tr>
+          <tr><td></td><td>60–69 Jahre</td><td>9</td></tr>
+          <tr><td></td><td>70–74 Jahre</td><td>13</td></tr>
+          <tr><td></td><td>75–79 Jahre</td><td>15</td></tr>
+          <tr><td></td><td>≥ 80 Jahre</td><td>18</td></tr>
+          <tr><td>Herzinsuffizienz (NYHA IV)</td><td>Vorhanden</td><td>6</td></tr>
+          <tr><td>Leberzirrhose</td><td>Vorhanden</td><td>4</td></tr>
+          <tr><td>Alkoholmissbrauch</td><td>Vorhanden</td><td>3</td></tr>
+          <tr><td>Solider Tumor</td><td>Vorhanden</td><td>6</td></tr>
+          <tr><td>Hämatologische Neoplasie</td><td>Vorhanden</td><td>6</td></tr>
+          <tr><td>Metastasiertes Karzinom</td><td>Vorhanden</td><td>9</td></tr>
+          <tr><td>AIDS</td><td>Vorhanden</td><td>8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Box II — Aufnahmeumstände</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Kategorie</th><th>Punkte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Aufenthaltsort vor ICU</td><td>Aufwachraum / postoperativ</td><td>−6</td></tr>
+          <tr><td></td><td>Notaufnahme</td><td>0</td></tr>
+          <tr><td></td><td>Anderes Krankenhaus</td><td>0</td></tr>
+          <tr><td></td><td>Normalstation</td><td>6</td></tr>
+          <tr><td></td><td>Direktaufnahme</td><td>0</td></tr>
+          <tr><td>Operative Aufnahme</td><td>Ja</td><td>+1 (Modifikator)</td></tr>
+          <tr><td>ICU-Aufnahmegrund</td><td>Sepsis</td><td>5</td></tr>
+          <tr><td></td><td>Respiratorische Insuffizienz</td><td>4</td></tr>
+          <tr><td></td><td>Herzstillstand</td><td>10</td></tr>
+          <tr><td></td><td>Herzrhythmusstörung</td><td>5</td></tr>
+          <tr><td></td><td>Trauma</td><td>−8</td></tr>
+          <tr><td></td><td>Intoxikation / Überdosierung</td><td>−13</td></tr>
+          <tr><td></td><td>Intrakranielle Raumforderung</td><td>7</td></tr>
+          <tr><td></td><td>Elektive Operation</td><td>−6</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Box III — Akute Physiologie</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Kategorie</th><th>Punkte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>GCS</td><td>15</td><td>0</td></tr>
+          <tr><td></td><td>13–14</td><td>4</td></tr>
+          <tr><td></td><td>10–12</td><td>7</td></tr>
+          <tr><td></td><td>7–9</td><td>10</td></tr>
+          <tr><td></td><td>3–6</td><td>15</td></tr>
+          <tr><td>Bilirubin (mg/dL)</td><td>&lt; 2</td><td>0</td></tr>
+          <tr><td></td><td>2–5,9</td><td>4</td></tr>
+          <tr><td></td><td>6–8,9</td><td>5</td></tr>
+          <tr><td></td><td>≥ 9</td><td>6</td></tr>
+          <tr><td>Körpertemperatur (°C)</td><td>&lt; 35</td><td>4</td></tr>
+          <tr><td></td><td>35–39,9</td><td>0</td></tr>
+          <tr><td></td><td>≥ 40</td><td>3</td></tr>
+          <tr><td>Herzfrequenz (/min)</td><td>&lt; 40</td><td>11</td></tr>
+          <tr><td></td><td>40–59</td><td>2</td></tr>
+          <tr><td></td><td>60–119</td><td>0</td></tr>
+          <tr><td></td><td>120–159</td><td>4</td></tr>
+          <tr><td></td><td>≥ 160</td><td>7</td></tr>
+          <tr><td>MAD (mmHg)</td><td>&lt; 40</td><td>18</td></tr>
+          <tr><td></td><td>40–69</td><td>7</td></tr>
+          <tr><td></td><td>70–119</td><td>0</td></tr>
+          <tr><td></td><td>≥ 120</td><td>3</td></tr>
+          <tr><td>Kreatinin (mg/dL)</td><td>&lt; 1,2</td><td>0</td></tr>
+          <tr><td></td><td>1,2–1,99</td><td>2</td></tr>
+          <tr><td></td><td>2,0–3,49</td><td>7</td></tr>
+          <tr><td></td><td>≥ 3,5</td><td>8</td></tr>
+          <tr><td>Thrombozyten (×10³/µL)</td><td>&lt; 20</td><td>13</td></tr>
+          <tr><td></td><td>20–49</td><td>8</td></tr>
+          <tr><td></td><td>50–99</td><td>5</td></tr>
+          <tr><td></td><td>100–149</td><td>3</td></tr>
+          <tr><td></td><td>≥ 150</td><td>0</td></tr>
+          <tr><td>Leukozyten (×10³/µL)</td><td>&lt; 1</td><td>12</td></tr>
+          <tr><td></td><td>1–14,9</td><td>0</td></tr>
+          <tr><td></td><td>≥ 15</td><td>3</td></tr>
+          <tr><td>Arterieller pH</td><td>&lt; 7,00</td><td>14</td></tr>
+          <tr><td></td><td>7,00–7,24</td><td>11</td></tr>
+          <tr><td></td><td>7,25–7,32</td><td>6</td></tr>
+          <tr><td></td><td>7,33–7,49</td><td>0</td></tr>
+          <tr><td></td><td>≥ 7,50</td><td>3</td></tr>
+          <tr><td>PaO₂/FiO₂ (mmHg)</td><td>&lt; 100</td><td>11</td></tr>
+          <tr><td></td><td>100–199</td><td>9</td></tr>
+          <tr><td></td><td>≥ 200</td><td>5</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Mortalitätsformel</h2>
+      <pre>logit = −32,6659 + ln(SAPS-3-Score + 1) × 7,3068
+
+Vorhergesagte Mortalität = e^logit / (1 + e^logit)</pre>
+      <p>Sieben regionsspezifische Gleichungen (Europa, Amerika usw.) stehen für eine verbesserte lokale Kalibrierung zur Verfügung.</p>
+    </div>
+
+    <div class="section">
+      <h2>Risikoklassifikation</h2>
+      <table>
+        <thead>
+          <tr><th>Vorhergesagte Mortalität</th><th>Risikoklasse</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt; 10 %</td><td>Niedrig</td></tr>
+          <tr><td>10–25 %</td><td>Moderat</td></tr>
+          <tr><td>25–50 %</td><td>Hoch</td></tr>
+          <tr><td>&gt; 50 %</td><td>Sehr hoch</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Moreno RP, Metnitz PG, Almeida E, et al. <em>SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 1: Objectives, methods and cohort description.</em> Intensive Care Med. 2005;31(10):1336–1344.</p>
+      <p>Metnitz PG, Moreno RP, Almeida E, et al. <em>SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission.</em> Intensive Care Med. 2005;31(10):1345–1355.</p>
+    </div>
+
+    <div class="cta">
+      <p>Berechne den SAPS-3-Score interaktiv in der App.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>

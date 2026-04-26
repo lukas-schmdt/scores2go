@@ -89,15 +89,22 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                   onTap: () => _tabController.animateTo(0),
                 ),
                 if (score.docUrl != null)
-                  _TabButton(
-                    icon: Icons.article_outlined,
-                    activeIcon: Icons.article,
-                    isActive: false,
-                    onTap: () async {
-                      final uri = Uri.tryParse(score.docUrl!);
-                      if (uri != null && await canLaunchUrl(uri)) {
-                        await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      }
+                  Builder(
+                    builder: (context) {
+                      final locale = Localizations.localeOf(context).languageCode;
+                      return _TabButton(
+                        icon: Icons.article_outlined,
+                        activeIcon: Icons.article,
+                        isActive: false,
+                        onTap: () async {
+                          final url = score.docUrl!.call(locale);
+                          if (url == null) return;
+                          final uri = Uri.tryParse(url);
+                          if (uri != null && await canLaunchUrl(uri)) {
+                            await launchUrl(uri, mode: LaunchMode.externalApplication);
+                          }
+                        },
+                      );
                     },
                   )
                 else if (score.doc != null)

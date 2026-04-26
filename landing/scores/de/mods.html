@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MODS – Scores2Go</title>
+  <meta name="description" content="Multiple Organ Dysfunction Score — quantifiziert die Organdysfunktion in sechs Systemen (respiratorisch, renal, hepatisch, kardiovaskulär, hämatologisch, neurologisch) von 0 bis 24." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">ICU · Schweregrad · Intensivmedizin</div>
+    <h1>MODS</h1>
+    <p>Der Multiple Organ Dysfunction Score quantifiziert die Organdysfunktion kritisch kranker Patienten in sechs Organsystemen. Jedes System wird mit 0–4 bewertet, für einen Gesamtwert von 0–24.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Marshall et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1995
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 75
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>Der Multiple Organ Dysfunction Score wurde entwickelt, um ein standardisiertes, reproduzierbares Maß für Organdysfunktionen in der klinischen Outcome-Forschung und im täglichen ICU-Monitoring bereitzustellen. Jedes der sechs Systeme wird unabhängig mit 0–4 bewertet, was einen Maximalwert von 24 ergibt. Höhere Werte korrelieren mit einer höheren vorhergesagten Sterblichkeit. Der Score ist für eine tägliche Berechnung konzipiert, um den Verlauf der Organdysfunktion während des Intensivaufenthalts zu verfolgen.</p>
+    </div>
+
+    <div class="section">
+      <h2>Organbeurteilung</h2>
+      <table>
+        <thead>
+          <tr><th>System</th><th>Parameter</th><th>Score 0</th><th>Score 1</th><th>Score 2</th><th>Score 3</th><th>Score 4</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Respiratorisch</td>
+            <td>PaO₂/FiO₂ (mmHg)</td>
+            <td>&gt; 300</td>
+            <td>226–300</td>
+            <td>151–225</td>
+            <td>76–150</td>
+            <td>≤ 75</td>
+          </tr>
+          <tr>
+            <td>Renal</td>
+            <td>Kreatinin (µmol/L)</td>
+            <td>≤ 100</td>
+            <td>101–200</td>
+            <td>201–350</td>
+            <td>351–500</td>
+            <td>&gt; 500</td>
+          </tr>
+          <tr>
+            <td>Hepatisch</td>
+            <td>Bilirubin (µmol/L)</td>
+            <td>≤ 20</td>
+            <td>21–60</td>
+            <td>61–120</td>
+            <td>121–240</td>
+            <td>&gt; 240</td>
+          </tr>
+          <tr>
+            <td>Kardiovaskulär</td>
+            <td>PAR = (HF × ZVD) / MAD</td>
+            <td>≤ 10</td>
+            <td>10,1–15</td>
+            <td>15,1–20</td>
+            <td>20,1–30</td>
+            <td>&gt; 30</td>
+          </tr>
+          <tr>
+            <td>Hämatologisch</td>
+            <td>Thrombozyten (×10³/µL)</td>
+            <td>&gt; 120</td>
+            <td>81–120</td>
+            <td>51–80</td>
+            <td>21–50</td>
+            <td>≤ 20</td>
+          </tr>
+          <tr>
+            <td>Neurologisch</td>
+            <td>Glasgow-Koma-Skala</td>
+            <td>15</td>
+            <td>13–14</td>
+            <td>10–12</td>
+            <td>7–9</td>
+            <td>≤ 6</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation des Gesamtscores</h2>
+      <table>
+        <thead>
+          <tr><th>MODS Gesamt</th><th>Schweregrad</th><th>Vorhergesagte Sterblichkeit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0</td><td>Keine Dysfunktion</td><td>~0 %</td></tr>
+          <tr><td>1–4</td><td>Leicht</td><td>~1–2 %</td></tr>
+          <tr><td>5–8</td><td>Moderat</td><td>~5–10 %</td></tr>
+          <tr><td>9–12</td><td>Schwer</td><td>~25 %</td></tr>
+          <tr><td>13–16</td><td>Sehr schwer</td><td>~50 %</td></tr>
+          <tr><td>&gt; 16</td><td>Extrem</td><td>&gt; 75 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Klinische Hinweise</h2>
+      <ul>
+        <li>Tägliche Berechnung anhand der schlechtesten Werte innerhalb jedes 24-Stunden-Zeitraums zur Verlaufsbeurteilung.</li>
+        <li>Die kardiovaskuläre Komponente erfordert die druckkorrigierte Herzfrequenz (PAR = HF × ZVD / MAD); eine Messung des zentralen Venendrucks ist notwendig.</li>
+        <li>Die neurologische Komponente (GCS) kann durch Sedierung verfälscht werden — Sedierungsniveau bei GCS-Dokumentation festhalten.</li>
+        <li>MODS wurde als Forschungsinstrument konzipiert; für die Schweregradbeurteilung am Patientenbett wird in der modernen Praxis häufiger der SOFA-Score verwendet.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Marshall JC, Cook DJ, Christou NV, Bernard GR, Sprung CL, Sibbald WJ. <em>Multiple organ dysfunction score: a reliable descriptor of a complex clinical outcome.</em> Crit Care Med. 1995;23(10):1638–1652.</p>
+    </div>
+
+    <div class="cta">
+      <p>MODS interaktiv in der App berechnen.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>
