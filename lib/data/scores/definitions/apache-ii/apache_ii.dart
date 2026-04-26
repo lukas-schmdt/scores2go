@@ -14,7 +14,7 @@ Score buildApacheIiScore(String lang) {
     scoreFunction: apacheIiFunction,
     visibilityFunction: apacheIiVisibility,
     doc: (_) => 'lib/data/scores/definitions/apache-ii/apache_ii_doc.md',
-    docUrl: 'https://www.mdcalc.com/calc/1979/apache-ii-score',
+    docUrl: 'https://scores2go.com/scores/apache2',
     author: 'Knaus et al.',
     year: 1985,
     popularity: 95,
