@@ -13,6 +13,10 @@ class Score {
   /// Returns the asset path for the documentation in the given locale.
   /// Fall back to a default by returning a path regardless of locale.
   final String? Function(String locale)? doc;
+  /// External website URL opened in a browser when the docs button is tapped.
+  /// When set, the docs button launches the URL instead of showing the in-app
+  /// markdown tab. When only [doc] is set, the markdown tab is shown instead.
+  final String? docUrl;
   final String? author;
   final int? year;
   final int? popularity;
@@ -27,6 +31,7 @@ class Score {
     this.scoreFunction,
     this.visibilityFunction,
     this.doc,
+    this.docUrl,
     this.author,
     this.year,
     this.popularity,
