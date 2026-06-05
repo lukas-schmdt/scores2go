@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disclaimer — Scores2Go</title>
+  <meta name="description" content="Disclaimer and legal notices for the Scores2Go clinical scoring app." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0DBBBA;
+      --blue: #0176E4;
+      --navy: #02122B;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --surface: #f7f8fa;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header {
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2250 60%, #0d3a6e 100%);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 600px 300px at 80% 50%, rgba(13,187,186,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-inner {
+      position: relative;
+      max-width: 760px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover { color: white; }
+
+    .header h1 {
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 800;
+    }
+
+    /* ── Language switcher ────────────────────────────────────────────────── */
+    .lang-switcher {
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 3px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      background: rgba(255,255,255,0.18);
+      color: white;
+    }
+
+    .lang-btn:hover:not(.active) { color: rgba(255,255,255,0.85); }
+
+    /* ── Content ──────────────────────────────────────────────────────────── */
+    .content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    .intro {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .legal-note {
+      margin-top: 32px;
+      font-size: 12px;
+      color: #9ca3af;
+      line-height: 1.6;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a class="back-link" href="./">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+        </svg>
+        <span data-i18n="backToHome">Back to Home</span>
+      </a>
+      <h1 data-i18n="pageTitle">Disclaimer</h1>
+      <div class="lang-switcher" role="group" aria-label="Language">
+        <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    <p class="intro" data-i18n="intro">
+      Last updated: June 2025. Please read carefully before using Scores2Go.
+    </p>
+
+    <div class="section">
+      <h2 data-i18n="intendedUseTitle">Intended Use</h2>
+      <p data-i18n="intendedUseBody">
+        Scores2Go is intended as an informational and educational reference tool for trained healthcare professionals.
+        The application performs mathematical calculations based on published clinical scoring systems and user-entered values.
+        It is not designed for, and must not be used as, the sole basis for clinical decision-making.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="regulatoryTitle">Regulatory Status</h2>
+      <p data-i18n="regulatoryBody">
+        Scores2Go is not intended to diagnose, predict, monitor, or treat disease.
+        It is not a medical device within the meaning of Regulation (EU) 2017/745 (MDR).
+        The application performs mathematical calculations only and presents results as score values
+        without diagnostic conclusions, treatment recommendations, or clinical outcome predictions.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="noAdviceTitle">No Medical Advice</h2>
+      <p data-i18n="noAdviceBody">
+        Scores2Go does not provide medical advice, diagnoses, or treatment recommendations.
+        Clinical decisions must not be based solely on results from this application.
+        Users remain solely responsible for patient assessment, diagnosis, and all clinical decisions.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="accuracyTitle">Accuracy &amp; Liability</h2>
+      <p data-i18n="accuracyBody">
+        Reasonable efforts have been made to implement scoring formulas accurately based on published scientific literature.
+        However, no guarantee is made regarding completeness, correctness, or fitness for any specific purpose.
+        The operators of Scores2Go shall not be liable for damages arising from use of this application,
+        except in cases of intent, gross negligence, or where liability is mandatory under applicable law.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2 data-i18n="privacyTitle">Data &amp; Privacy</h2>
+      <p data-i18n="privacyBody">
+        Scores2Go does not collect, store, or transmit patient data.
+        All score calculations are performed locally on your device.
+        Only your account credentials (email address) are stored for authentication purposes.
+        No health-related data is associated with your account.
+      </p>
+    </div>
+
+    <p class="legal-note" data-i18n="legalNote">
+      For questions regarding this disclaimer, please contact us via GitHub.
+      This disclaimer does not constitute legal advice. Consult a qualified lawyer for jurisdiction-specific compliance requirements.
+    </p>
+  </main>
+
+  <script>
+    const t = {
+      en: {
+        pageTitle:       "Disclaimer",
+        backToHome:      "Back to Home",
+        intro:           "Last updated: June 2025. Please read carefully before using Scores2Go.",
+        intendedUseTitle: "Intended Use",
+        intendedUseBody: "Scores2Go is intended as an informational and educational reference tool for trained healthcare professionals. The application performs mathematical calculations based on published clinical scoring systems and user-entered values. It is not designed for, and must not be used as, the sole basis for clinical decision-making.",
+        regulatoryTitle: "Regulatory Status",
+        regulatoryBody:  "Scores2Go is not intended to diagnose, predict, monitor, or treat disease. It is not a medical device within the meaning of Regulation (EU) 2017/745 (MDR). The application performs mathematical calculations only and presents results as score values without diagnostic conclusions, treatment recommendations, or clinical outcome predictions.",
+        noAdviceTitle:   "No Medical Advice",
+        noAdviceBody:    "Scores2Go does not provide medical advice, diagnoses, or treatment recommendations. Clinical decisions must not be based solely on results from this application. Users remain solely responsible for patient assessment, diagnosis, and all clinical decisions.",
+        accuracyTitle:   "Accuracy & Liability",
+        accuracyBody:    "Reasonable efforts have been made to implement scoring formulas accurately based on published scientific literature. However, no guarantee is made regarding completeness, correctness, or fitness for any specific purpose. The operators of Scores2Go shall not be liable for damages arising from use of this application, except in cases of intent, gross negligence, or where liability is mandatory under applicable law.",
+        privacyTitle:    "Data & Privacy",
+        privacyBody:     "Scores2Go does not collect, store, or transmit patient data. All score calculations are performed locally on your device. Only your account credentials (email address) are stored for authentication purposes. No health-related data is associated with your account.",
+        legalNote:       "For questions regarding this disclaimer, please contact us via GitHub. This disclaimer does not constitute legal advice. Consult a qualified lawyer for jurisdiction-specific compliance requirements.",
+      },
+      de: {
+        pageTitle:       "Haftungsausschluss",
+        backToHome:      "Zurück zur Startseite",
+        intro:           "Zuletzt aktualisiert: Juni 2025. Bitte vor der Nutzung von Scores2Go sorgfältig lesen.",
+        intendedUseTitle: "Zweckbestimmung",
+        intendedUseBody: "Scores2Go ist als informatorisches und pädagogisches Referenzwerkzeug für ausgebildete medizinische Fachkräfte konzipiert. Die Anwendung führt mathematische Berechnungen auf Basis publizierter klinischer Scoringsysteme und benutzerseitig eingegebener Werte durch. Sie ist nicht dafür vorgesehen und darf nicht als alleinige Grundlage für klinische Entscheidungen verwendet werden.",
+        regulatoryTitle: "Regulatorischer Status",
+        regulatoryBody:  "Scores2Go ist nicht zur Diagnose, Prognose, Überwachung oder Behandlung von Erkrankungen bestimmt. Es handelt sich nicht um ein Medizinprodukt im Sinne der Verordnung (EU) 2017/745 (MDR). Die Anwendung führt ausschließlich mathematische Berechnungen durch und gibt Ergebnisse als Scorewerte ohne diagnostische Schlussfolgerungen, Behandlungsempfehlungen oder klinische Prognosen aus.",
+        noAdviceTitle:   "Kein medizinischer Rat",
+        noAdviceBody:    "Scores2Go gibt keine medizinischen Ratschläge, Diagnosen oder Behandlungsempfehlungen. Klinische Entscheidungen dürfen nicht ausschließlich auf Grundlage der Ergebnisse dieser Anwendung getroffen werden. Nutzer tragen die alleinige Verantwortung für Patientenbeurteilung, Diagnose und alle klinischen Entscheidungen.",
+        accuracyTitle:   "Genauigkeit & Haftung",
+        accuracyBody:    "Es wurden angemessene Bemühungen unternommen, die Scoring-Formeln auf Grundlage publizierter wissenschaftlicher Literatur korrekt umzusetzen. Es wird jedoch keine Garantie hinsichtlich Vollständigkeit, Richtigkeit oder Eignung für einen bestimmten Zweck übernommen. Die Betreiber von Scores2Go haften nicht für Schäden, die aus der Nutzung der Anwendung entstehen, es sei denn, diese beruhen auf Vorsatz, grober Fahrlässigkeit oder gesetzlich zwingender Haftung.",
+        privacyTitle:    "Daten & Datenschutz",
+        privacyBody:     "Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.",
+        legalNote:       "Bei Fragen zu diesem Haftungsausschluss kontaktieren Sie uns bitte über GitHub. Dieser Haftungsausschluss stellt keine Rechtsberatung dar. Wenden Sie sich für jurisdiktionsspezifische Compliance-Anforderungen an einen qualifizierten Rechtsanwalt.",
+      },
+    };
+
+    function detectLang() {
+      const saved = localStorage.getItem("lang");
+      if (saved) return saved;
+      return (navigator.language || "en").toLowerCase().startsWith("de") ? "de" : "en";
+    }
+
+    let lang = detectLang();
+
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem("lang", l);
+      document.documentElement.lang = l;
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === l);
+      });
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[l][key] !== undefined) el.textContent = t[l][key];
+      });
+    }
+
+    setLang(lang);
+  </script>
+</body>
+</html>

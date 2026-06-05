@@ -529,6 +529,57 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'English'**
   String get languageEn;
+
+  /// No description provided for @disclaimerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Haftungsausschluss'**
+  String get disclaimerTitle;
+
+  /// No description provided for @disclaimerIntendedUseTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Zweckbestimmung'**
+  String get disclaimerIntendedUseTitle;
+
+  /// No description provided for @disclaimerIntendedUseBody.
+  String get disclaimerIntendedUseBody;
+
+  /// No description provided for @disclaimerRegulatoryTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Regulatorischer Status'**
+  String get disclaimerRegulatoryTitle;
+
+  /// No description provided for @disclaimerRegulatoryBody.
+  String get disclaimerRegulatoryBody;
+
+  /// No description provided for @disclaimerNoAdviceTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein medizinischer Rat'**
+  String get disclaimerNoAdviceTitle;
+
+  /// No description provided for @disclaimerNoAdviceBody.
+  String get disclaimerNoAdviceBody;
+
+  /// No description provided for @disclaimerAccuracyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Genauigkeit & Haftung'**
+  String get disclaimerAccuracyTitle;
+
+  /// No description provided for @disclaimerAccuracyBody.
+  String get disclaimerAccuracyBody;
+
+  /// No description provided for @disclaimerPrivacyTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Daten & Datenschutz'**
+  String get disclaimerPrivacyTitle;
+
+  /// No description provided for @disclaimerPrivacyBody.
+  String get disclaimerPrivacyBody;
 }
 
 class _AppLocalizationsDelegate

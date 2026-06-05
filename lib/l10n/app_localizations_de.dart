@@ -231,4 +231,42 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get languageEn => 'English';
+
+  @override
+  String get disclaimerTitle => 'Haftungsausschluss';
+
+  @override
+  String get disclaimerIntendedUseTitle => 'Zweckbestimmung';
+
+  @override
+  String get disclaimerIntendedUseBody =>
+      'Scores2Go ist als informatorisches und pädagogisches Referenzwerkzeug für ausgebildete medizinische Fachkräfte konzipiert. Die Anwendung führt mathematische Berechnungen auf Basis publizierter klinischer Scoringsysteme und benutzerseitig eingegebener Werte durch. Sie ist nicht dafür vorgesehen und darf nicht als alleinige Grundlage für klinische Entscheidungen verwendet werden.';
+
+  @override
+  String get disclaimerRegulatoryTitle => 'Regulatorischer Status';
+
+  @override
+  String get disclaimerRegulatoryBody =>
+      'Scores2Go ist nicht zur Diagnose, Prognose, Überwachung oder Behandlung von Erkrankungen bestimmt. Es handelt sich nicht um ein Medizinprodukt im Sinne der Verordnung (EU) 2017/745 (MDR). Die Anwendung führt ausschließlich mathematische Berechnungen durch und gibt Ergebnisse als Scorewerte ohne diagnostische Schlussfolgerungen, Behandlungsempfehlungen oder klinische Prognosen aus.';
+
+  @override
+  String get disclaimerNoAdviceTitle => 'Kein medizinischer Rat';
+
+  @override
+  String get disclaimerNoAdviceBody =>
+      'Scores2Go gibt keine medizinischen Ratschläge, Diagnosen oder Behandlungsempfehlungen. Klinische Entscheidungen dürfen nicht ausschließlich auf Grundlage der Ergebnisse dieser Anwendung getroffen werden. Nutzer tragen die alleinige Verantwortung für Patientenbeurteilung, Diagnose und alle klinischen Entscheidungen.';
+
+  @override
+  String get disclaimerAccuracyTitle => 'Genauigkeit & Haftung';
+
+  @override
+  String get disclaimerAccuracyBody =>
+      'Es wurden angemessene Bemühungen unternommen, die Scoring-Formeln auf Grundlage publizierter wissenschaftlicher Literatur korrekt umzusetzen. Es wird jedoch keine Garantie hinsichtlich Vollständigkeit, Richtigkeit oder Eignung für einen bestimmten Zweck übernommen. Die Betreiber von Scores2Go haften nicht für Schäden, die aus der Nutzung der Anwendung entstehen, es sei denn, diese beruhen auf Vorsatz, grober Fahrlässigkeit oder gesetzlich zwingender Haftung.';
+
+  @override
+  String get disclaimerPrivacyTitle => 'Daten & Datenschutz';
+
+  @override
+  String get disclaimerPrivacyBody =>
+      'Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.';
 }

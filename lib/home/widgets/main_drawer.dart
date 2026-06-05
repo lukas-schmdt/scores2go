@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
+import 'package:scores_2_go/settings/screen/disclaimer_screen.dart';
 import 'package:scores_2_go/settings/screen/settings_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -36,7 +37,10 @@ class CustomDrawer extends StatelessWidget {
         ListTile(
           leading: const Icon(Icons.info),
           title: Text(l.drawerAbout),
-          onTap: () => Navigator.pop(context),
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const DisclaimerScreen()),
+          ),
         ),
         const Divider(),
         ListTile(

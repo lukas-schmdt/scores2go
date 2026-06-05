@@ -376,6 +376,23 @@
       margin-top: 48px;
       line-height: 1.6;
     }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 20px 16px 32px;
+      font-size: 12px;
+      color: #9ca3af;
+      border-top: 1px solid var(--border);
+    }
+
+    .site-footer a {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .site-footer a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -460,6 +477,10 @@
     <p class="disclaimer" data-i18n="disclaimer">For research and educational purposes only. Not intended for clinical decision-making.</p>
   </section>
 
+  <footer class="site-footer">
+    <a href="./disclaimer.html" data-i18n-footer="disclaimer">Disclaimer &amp; Legal Notices</a>
+  </footer>
+
   <script>
     // ── Translations ────────────────────────────────────────────────────────
     const t = {
@@ -475,6 +496,7 @@
         countAll:       (n) => `${n} scores`,
         countFiltered:  (n, total) => `${n} of ${total} scores`,
         allChip:        "All",
+        footerDisclaimer: "Disclaimer & Legal Notices",
       },
       de: {
         eyebrow:        "Open-Source-App für klinische Scores",
@@ -488,6 +510,7 @@
         countAll:       (n) => `${n} Scores`,
         countFiltered:  (n, total) => `${n} von ${total} Scores`,
         allChip:        "Alle",
+        footerDisclaimer: "Haftungsausschluss & Rechtliche Hinweise",
       },
     };
 
@@ -654,6 +677,9 @@
       });
 
       document.getElementById("scoreSearch").placeholder = t[l].searchPlaceholder;
+
+      const footerLink = document.querySelector(".site-footer a");
+      if (footerLink) footerLink.textContent = t[l].footerDisclaimer;
 
       buildChips();
       render();
