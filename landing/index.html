@@ -120,6 +120,42 @@
       border: 1px solid rgba(255,255,255,0.18);
     }
 
+    /* ── Language switcher ────────────────────────────────────────────────── */
+    .lang-switcher {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      gap: 2px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 3px;
+      z-index: 10;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .lang-btn.active {
+      background: rgba(255,255,255,0.18);
+      color: white;
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: rgba(255,255,255,0.85);
+    }
+
     /* ── Directory section ────────────────────────────────────────────────── */
     .directory {
       max-width: 1100px;
@@ -346,6 +382,10 @@
 
   <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
   <header class="hero">
+    <div class="lang-switcher" role="group" aria-label="Language">
+      <button class="lang-btn active" data-lang="en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" data-lang="de" onclick="setLang('de')">DE</button>
+    </div>
     <div class="hero-inner">
       <div class="logo-wrap">
         <div class="logo-icon">
@@ -363,16 +403,16 @@
         </div>
       </div>
 
-      <p class="eyebrow">Open Source Clinical Scoring App</p>
+      <p class="eyebrow" data-i18n="eyebrow">Open Source Clinical Scoring App</p>
       <h1>Scores<span class="teal">2</span>Go</h1>
-      <p class="lead">Fast access to clinical scores and calculators.<br/>For research and educational purposes only.</p>
+      <p class="lead" data-i18n="lead">Fast access to clinical scores and calculators.<br/>For research and educational purposes only.</p>
 
       <div class="actions">
         <a class="button primary" href="./app/">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
           </svg>
-          Launch App
+          <span data-i18n="launchApp">Launch App</span>
         </a>
         <a class="button secondary" href="https://github.com/lukas-schmdt/scores2go">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -388,7 +428,7 @@
   <section class="directory">
 
     <div class="directory-header">
-      <h2>Score Directory</h2>
+      <h2 data-i18n="directoryTitle">Score Directory</h2>
       <span id="resultCount"></span>
     </div>
 
@@ -400,7 +440,6 @@
       <input
         id="scoreSearch"
         type="text"
-        placeholder="Search scores by name, category, or keyword…"
         autocomplete="off"
         aria-label="Search scores"
       />
@@ -413,33 +452,164 @@
     <div id="scoreGrid">
       <div id="noResults">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-        <p>No scores found</p>
-        <span>Try a different search term or category</span>
+        <p data-i18n="noResultsTitle">No scores found</p>
+        <span data-i18n="noResultsHint">Try a different search term or category</span>
       </div>
     </div>
 
-    <p class="disclaimer">For research and educational purposes only. Not intended for clinical decision-making.</p>
+    <p class="disclaimer" data-i18n="disclaimer">For research and educational purposes only. Not intended for clinical decision-making.</p>
   </section>
 
   <script>
+    // ── Translations ────────────────────────────────────────────────────────
+    const t = {
+      en: {
+        eyebrow:        "Open Source Clinical Scoring App",
+        lead:           "Fast access to clinical scores and calculators.<br/>For research and educational purposes only.",
+        launchApp:      "Launch App",
+        directoryTitle: "Score Directory",
+        searchPlaceholder: "Search scores by name, category, or keyword…",
+        noResultsTitle: "No scores found",
+        noResultsHint:  "Try a different search term or category",
+        disclaimer:     "For research and educational purposes only. Not intended for clinical decision-making.",
+        countAll:       (n) => `${n} scores`,
+        countFiltered:  (n, total) => `${n} of ${total} scores`,
+        allChip:        "All",
+      },
+      de: {
+        eyebrow:        "Open-Source-App für klinische Scores",
+        lead:           "Schneller Zugriff auf klinische Scores und Rechner.<br/>Nur für Forschungs- und Bildungszwecke.",
+        launchApp:      "App starten",
+        directoryTitle: "Score-Verzeichnis",
+        searchPlaceholder: "Scores nach Name, Kategorie oder Stichwort suchen…",
+        noResultsTitle: "Keine Scores gefunden",
+        noResultsHint:  "Anderen Suchbegriff oder Kategorie ausprobieren",
+        disclaimer:     "Nur für Forschungs- und Bildungszwecke. Nicht für klinische Entscheidungsfindung bestimmt.",
+        countAll:       (n) => `${n} Scores`,
+        countFiltered:  (n, total) => `${n} von ${total} Scores`,
+        allChip:        "Alle",
+      },
+    };
+
     // ── Score data ──────────────────────────────────────────────────────────
-    // Each entry: { name, desc, tags[], href? }
-    // href: path to landing page (omit or null if no dedicated page yet)
-    // tags: used for category filter chips — first tag is the "primary" colour class
     const scores = [
-      { name: "APACHE II",       desc: "Acute physiology and chronic health evaluation — predicts ICU mortality from 12 physiological variables, age, and chronic health status.", tags: ["ICU","Severity"],                  href: "./scores/apache2.html" },
-      { name: "SAPS 3",          desc: "Simplified Acute Physiology Score 3 — predicts in-hospital mortality from 20 variables at ICU admission. Validated in 35 countries.",     tags: ["ICU","Mortality"],                 href: "./scores/saps3.html" },
-      { name: "MODS",            desc: "Multiple Organ Dysfunction Score — quantifies organ dysfunction across six systems (respiratory, renal, hepatic, cardiovascular, haematologic, neurologic).", tags: ["ICU","Severity","Critical Care"], href: "./scores/mods.html" },
-      { name: "RASS",            desc: "Richmond Agitation-Sedation Scale — 10-point scale from +4 (combative) to −5 (unarousable) for sedation monitoring in the ICU.",          tags: ["Sedation","ICU"],                  href: "./scores/rass.html" },
-      { name: "Ramsay",          desc: "Six-level sedation scale — one of the first ICU sedation scoring systems, from anxious/agitated (1) to no response (6).",                 tags: ["Sedation","ICU"],                  href: "./scores/ramsay.html" },
-      { name: "CAM-ICU",         desc: "Confusion Assessment Method for the ICU — most validated delirium detection tool for mechanically ventilated and non-verbal patients.",   tags: ["Delirium","ICU"],                  href: "./scores/cam-icu.html" },
-      { name: "Nu-DESC",         desc: "Nursing Delirium Screening Scale — five-item nurse-administered bedside tool. Score ≥ 2 indicates delirium.",                              tags: ["Delirium","ICU","Nursing"],        href: "./scores/nudesc.html" },
-      { name: "GCS",             desc: "Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response (3–15).",                       tags: ["Neurology","ICU","Emergency"],     href: "./scores/gcs.html" },
-      { name: "EuroSCORE II",    desc: "European System for Cardiac Operative Risk Evaluation II — estimates 30-day operative mortality for adult cardiac surgery.",               tags: ["Cardiac Surgery","Mortality"],     href: "./scores/euroscore2.html" },
-      { name: "Horovitz Quotient", desc: "PaO₂/FiO₂ ratio — standard measure of oxygenation efficiency and basis of the ARDS Berlin Definition severity classification.",        tags: ["Pulmonology","ICU","ARDS"],       href: "./scores/horovitz.html" },
-      { name: "MELD",            desc: "Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.",   tags: ["Hepatology","Transplant"],         href: "./scores/meld.html" },
-      { name: "Finnegan NAS",    desc: "Neonatal Abstinence Score — assesses opioid withdrawal severity in newborns across 21 signs in CNS, metabolic, and gastrointestinal domains.", tags: ["Neonatology","NAS"],          href: "./scores/finnegan.html" },
-      { name: "Dose Calculator", desc: "Bidirectional infusion calculator — converts pump rate (ml/h) ↔ weight-adjusted dose per kg. Supports µg, mg, IU with /min and /h.",    tags: ["Calculator","ICU","Pharmacology"], href: "./scores/dose-calc.html" },
+      {
+        name: "APACHE II",
+        desc: {
+          en: "Acute physiology and chronic health evaluation — predicts ICU mortality from 12 physiological variables, age, and chronic health status.",
+          de: "Akute Physiologie und chronische Gesundheitsevaluierung — prognostiziert die ICU-Mortalität anhand von 12 physiologischen Variablen, Alter und chronischem Gesundheitsstatus.",
+        },
+        tags: ["ICU","Severity"],
+        href: "./scores/apache2.html",
+      },
+      {
+        name: "SAPS 3",
+        desc: {
+          en: "Simplified Acute Physiology Score 3 — predicts in-hospital mortality from 20 variables at ICU admission. Validated in 35 countries.",
+          de: "Simplified Acute Physiology Score 3 — prognostiziert die Krankenhausmortalität anhand von 20 Variablen bei ICU-Aufnahme. Validiert in 35 Ländern.",
+        },
+        tags: ["ICU","Mortality"],
+        href: "./scores/saps3.html",
+      },
+      {
+        name: "MODS",
+        desc: {
+          en: "Multiple Organ Dysfunction Score — quantifies organ dysfunction across six systems (respiratory, renal, hepatic, cardiovascular, haematologic, neurologic).",
+          de: "Multiple Organ Dysfunction Score — quantifiziert Organdysfunktion in sechs Systemen (Atmung, Niere, Leber, Herz-Kreislauf, Hämatologie, Neurologie).",
+        },
+        tags: ["ICU","Severity","Critical Care"],
+        href: "./scores/mods.html",
+      },
+      {
+        name: "RASS",
+        desc: {
+          en: "Richmond Agitation-Sedation Scale — 10-point scale from +4 (combative) to −5 (unarousable) for sedation monitoring in the ICU.",
+          de: "Richmond Agitation-Sedation Scale — 10-Punkte-Skala von +4 (kombativ) bis −5 (nicht erweckbar) zur Sedierungskontrolle auf der ICU.",
+        },
+        tags: ["Sedation","ICU"],
+        href: "./scores/rass.html",
+      },
+      {
+        name: "Ramsay",
+        desc: {
+          en: "Six-level sedation scale — one of the first ICU sedation scoring systems, from anxious/agitated (1) to no response (6).",
+          de: "Sechsstufige Sedierungsskala — eines der ersten ICU-Sedierungsscore-Systeme, von ängstlich/agitiert (1) bis keine Reaktion (6).",
+        },
+        tags: ["Sedation","ICU"],
+        href: "./scores/ramsay.html",
+      },
+      {
+        name: "CAM-ICU",
+        desc: {
+          en: "Confusion Assessment Method for the ICU — most validated delirium detection tool for mechanically ventilated and non-verbal patients.",
+          de: "Confusion Assessment Method für die ICU — am besten validiertes Delir-Detektionsinstrument für beatmete und nicht-verbale Patienten.",
+        },
+        tags: ["Delirium","ICU"],
+        href: "./scores/cam-icu.html",
+      },
+      {
+        name: "Nu-DESC",
+        desc: {
+          en: "Nursing Delirium Screening Scale — five-item nurse-administered bedside tool. Score ≥ 2 indicates delirium.",
+          de: "Nursing Delirium Screening Scale — fünfteiliges, pflegeadministriertes Bedside-Instrument. Score ≥ 2 zeigt ein Delir an.",
+        },
+        tags: ["Delirium","ICU","Nursing"],
+        href: "./scores/nudesc.html",
+      },
+      {
+        name: "GCS",
+        desc: {
+          en: "Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response (3–15).",
+          de: "Glasgow Coma Scale — bewertet das Bewusstseinsniveau über Augenöffnung, verbale Reaktion und motorische Reaktion (3–15).",
+        },
+        tags: ["Neurology","ICU","Emergency"],
+        href: "./scores/gcs.html",
+      },
+      {
+        name: "EuroSCORE II",
+        desc: {
+          en: "European System for Cardiac Operative Risk Evaluation II — estimates 30-day operative mortality for adult cardiac surgery.",
+          de: "European System for Cardiac Operative Risk Evaluation II — schätzt die 30-Tage-operative Mortalität bei erwachsener Herzchirurgie.",
+        },
+        tags: ["Cardiac Surgery","Mortality"],
+        href: "./scores/euroscore2.html",
+      },
+      {
+        name: "Horovitz Quotient",
+        desc: {
+          en: "PaO₂/FiO₂ ratio — standard measure of oxygenation efficiency and basis of the ARDS Berlin Definition severity classification.",
+          de: "PaO₂/FiO₂-Quotient — Standardmaß für die Oxygenierungseffizienz und Grundlage der ARDS-Berlin-Definition-Schweregradklassifikation.",
+        },
+        tags: ["Pulmonology","ICU","ARDS"],
+        href: "./scores/horovitz.html",
+      },
+      {
+        name: "MELD",
+        desc: {
+          en: "Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.",
+          de: "Model for End-Stage Liver Disease — laborbasierter Prognosescore und primärer Organzuteilungsalgorithmus für die Lebertransplantation.",
+        },
+        tags: ["Hepatology","Transplant"],
+        href: "./scores/meld.html",
+      },
+      {
+        name: "Finnegan NAS",
+        desc: {
+          en: "Neonatal Abstinence Score — assesses opioid withdrawal severity in newborns across 21 signs in CNS, metabolic, and gastrointestinal domains.",
+          de: "Neonatal Abstinence Score — bewertet die Opioid-Entzugsschwere bei Neugeborenen anhand von 21 Zeichen in ZNS-, metabolischen und gastrointestinalen Bereichen.",
+        },
+        tags: ["Neonatology","NAS"],
+        href: "./scores/finnegan.html",
+      },
+      {
+        name: "Dose Calculator",
+        desc: {
+          en: "Bidirectional infusion calculator — converts pump rate (ml/h) ↔ weight-adjusted dose per kg. Supports µg, mg, IU with /min and /h.",
+          de: "Bidirektionaler Infusionsrechner — konvertiert Pumprate (ml/h) ↔ gewichtsadjustierte Dosis pro kg. Unterstützt µg, mg, IU mit /min und /h.",
+        },
+        tags: ["Calculator","ICU","Pharmacology"],
+        href: "./scores/dose-calc.html",
+      },
     ];
 
     // ── Category config ────────────────────────────────────────────────────
@@ -460,6 +630,34 @@
     // ── State ──────────────────────────────────────────────────────────────
     let activeCategory = "All";
     let searchQuery    = "";
+    function detectLang() {
+      const saved = localStorage.getItem("lang");
+      if (saved) return saved;
+      const browser = (navigator.language || "en").toLowerCase();
+      return browser.startsWith("de") ? "de" : "en";
+    }
+    let lang = detectLang();
+
+    // ── Language switching ─────────────────────────────────────────────────
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem("lang", l);
+      document.documentElement.lang = l;
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === l);
+      });
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.dataset.i18n;
+        if (t[l][key] !== undefined) el.innerHTML = t[l][key];
+      });
+
+      document.getElementById("scoreSearch").placeholder = t[l].searchPlaceholder;
+
+      buildChips();
+      render();
+    }
 
     // ── Tag colour helper ─────────────────────────────────────────────────
     const tagClassMap = {
@@ -473,9 +671,10 @@
       "Oncology": "severity", "Obstetrics": "neo", "Gastroenterology": "hepato",
       "Rheumatology": "cardiac", "Psychiatry": "neuro",
       "Infectious Disease": "delirium", "Vascular": "cardiac",
+      "Critical Care": "icu", "Cardiac Surgery": "cardiac",
     };
 
-    function tagClass(t) { return tagClassMap[t] || ""; }
+    function tagClass(tag) { return tagClassMap[tag] || ""; }
 
     // ── Build filter chips ─────────────────────────────────────────────────
     function buildChips() {
@@ -490,13 +689,16 @@
       const row = document.getElementById("filterRow");
       row.innerHTML = cats
         .filter(c => c === "All" || counts[c] > 0)
-        .map(c => `
-          <button
-            class="chip${c === activeCategory ? " active" : ""}"
-            data-cat="${c}"
-            aria-pressed="${c === activeCategory}"
-          >${c} <span class="count">${counts[c]}</span></button>
-        `).join("");
+        .map(c => {
+          const label = c === "All" ? t[lang].allChip : c;
+          return `
+            <button
+              class="chip${c === activeCategory ? " active" : ""}"
+              data-cat="${c}"
+              aria-pressed="${c === activeCategory}"
+            >${label} <span class="count">${counts[c]}</span></button>
+          `;
+        }).join("");
 
       row.querySelectorAll(".chip").forEach(btn => {
         btn.addEventListener("click", () => {
@@ -514,10 +716,11 @@
         const matchCat = activeCategory === "All" || s.tags.includes(activeCategory);
         if (!matchCat) return false;
         if (!q) return true;
+        const desc = typeof s.desc === "object" ? s.desc[lang] : s.desc;
         return (
           s.name.toLowerCase().includes(q) ||
-          s.desc.toLowerCase().includes(q) ||
-          s.tags.some(t => t.toLowerCase().includes(q))
+          desc.toLowerCase().includes(q) ||
+          s.tags.some(tag => tag.toLowerCase().includes(q))
         );
       });
     }
@@ -530,8 +733,8 @@
       const count = document.getElementById("resultCount");
 
       count.textContent = items.length === scores.length
-        ? `${scores.length} scores`
-        : `${items.length} of ${scores.length} scores`;
+        ? t[lang].countAll(scores.length)
+        : t[lang].countFiltered(items.length, scores.length);
 
       if (!items.length) {
         grid.innerHTML = "";
@@ -543,8 +746,9 @@
       noRes.style.display = "none";
 
       grid.innerHTML = items.map(s => {
+        const desc   = typeof s.desc === "object" ? s.desc[lang] : s.desc;
         const tagHtml = s.tags
-          .map(t => `<span class="tag ${tagClass(t)}">${t}</span>`)
+          .map(tag => `<span class="tag ${tagClass(tag)}">${tag}</span>`)
           .join("");
 
         const arrow = `
@@ -559,7 +763,7 @@
                 <span class="score-name">${s.name}</span>
                 ${arrow}
               </div>
-              <p class="score-desc">${s.desc}</p>
+              <p class="score-desc">${desc}</p>
               <div class="score-tags">${tagHtml}</div>
             </a>`;
         } else {
@@ -568,7 +772,7 @@
               <div class="score-card-top">
                 <span class="score-name">${s.name}</span>
               </div>
-              <p class="score-desc">${s.desc}</p>
+              <p class="score-desc">${desc}</p>
               <div class="score-tags">${tagHtml}</div>
             </div>`;
         }
@@ -582,8 +786,7 @@
     });
 
     // ── Init ───────────────────────────────────────────────────────────────
-    buildChips();
-    render();
+    setLang(lang);
   </script>
 </body>
 </html>
