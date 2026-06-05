@@ -3,19 +3,353 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scores2Go</title>
-  <meta name="description" content="Open-source clinical scoring app for research and educational purposes." />
+  <title>Scores2Go — Clinical Scoring App</title>
+  <meta name="description" content="Open-source clinical scoring app — fast access to ICU, cardiology, neurology, and other clinical scores for research and education." />
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal: #0DBBBA;
+      --blue: #0176E4;
+      --navy: #02122B;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --surface: #f7f8fa;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #0a2250 60%, #0d3a6e 100%);
+      padding: 56px 24px 64px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 80% 20%, rgba(13,187,186,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 400px 300px at 10% 80%, rgba(1,118,228,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .logo-icon {
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+    }
+
+    .hero h1 .teal { color: var(--teal); }
+
+    .hero .eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 12px;
+    }
+
+    .hero .lead {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .button:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      color: white;
+    }
+
+    .button.secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    /* ── Directory section ────────────────────────────────────────────────── */
+    .directory {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 20px 80px;
+    }
+
+    .directory-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .directory-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    #resultCount {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    /* Search */
+    .search-wrap {
+      position: relative;
+      margin-bottom: 16px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    #scoreSearch {
+      width: 100%;
+      padding: 14px 16px 14px 46px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    #scoreSearch:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(1,118,228,0.12);
+    }
+
+    #scoreSearch::placeholder { color: #9ca3af; }
+
+    /* Filter chips */
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      user-select: none;
+    }
+
+    .chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .chip.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+
+    .chip .count {
+      background: rgba(0,0,0,0.1);
+      border-radius: 10px;
+      padding: 1px 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .chip.active .count {
+      background: rgba(255,255,255,0.25);
+    }
+
+    /* ── Score grid ───────────────────────────────────────────────────────── */
+    #scoreGrid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .score-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+      cursor: pointer;
+    }
+
+    .score-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 4px 16px rgba(1,118,228,0.10);
+      transform: translateY(-2px);
+    }
+
+    .score-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .score-name {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.25;
+    }
+
+    .score-arrow {
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+      opacity: 0;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .score-card:hover .score-arrow {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+
+    .score-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .score-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: auto;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .tag.icu    { background:#f0fdf4; color:#166534; border-color:#bbf7d0; }
+    .tag.sedation { background:#fefce8; color:#854d0e; border-color:#fef08a; }
+    .tag.neuro  { background:#faf5ff; color:#6b21a8; border-color:#e9d5ff; }
+    .tag.cardiac { background:#fff1f2; color:#be123c; border-color:#fecdd3; }
+    .tag.delirium { background:#fff7ed; color:#9a3412; border-color:#fed7aa; }
+    .tag.hepato  { background:#f0fdfa; color:#065f46; border-color:#a7f3d0; }
+    .tag.neo     { background:#fdf4ff; color:#701a75; border-color:#f0abfc; }
+    .tag.pulm    { background:#eff6ff; color:#1e40af; border-color:#bfdbfe; }
+    .tag.calc    { background:#f8fafc; color:#334155; border-color:#cbd5e1; }
+    .tag.severity { background:#fef2f2; color:#991b1b; border-color:#fecaca; }
+
+    /* No-results */
+    #noResults {
+      display: none;
+      grid-column: 1/-1;
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--muted);
+    }
+
+    #noResults svg { margin-bottom: 16px; opacity: 0.35; }
+    #noResults p { font-size: 1rem; font-weight: 600; }
+    #noResults span { font-size: 13px; }
+
+    /* Disclaimer */
+    .disclaimer {
+      text-align: center;
+      font-size: 12px;
+      color: #9ca3af;
+      margin-top: 48px;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-  <main class="hero">
-    <div class="container">
 
-      <!-- Logo -->
+  <!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+  <header class="hero">
+    <div class="hero-inner">
       <div class="logo-wrap">
         <div class="logo-icon">
-          <svg width="56" height="56" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;border-radius:14px;">
+          <svg width="64" height="64" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;border-radius:16px;">
             <rect width="300" height="300" rx="24" fill="url(#lg)"/>
             <path d="M179 30C187.837 30 195 37.1634 195 46V105H254C262.837 105 270 112.163 270 121V179C270 187.837 262.837 195 254 195H195V254C195 262.837 187.837 270 179 270H121C112.163 270 105 262.837 105 254V195H46C37.1634 195 30 187.837 30 179V121C30 112.163 37.1634 105 46 105H105V46C105 37.1634 112.163 30 121 30H179Z" fill="white" fill-opacity="0.26"/>
             <path d="M213.37 98.0737V82.7907H101.439L167.303 145.661C171.427 149.602 171.371 155.727 167.171 159.601L102.051 219.71H213.368V210.48C213.368 204.887 218.495 200.338 224.798 200.338C231.099 200.338 236.232 204.887 236.232 210.48V229.853C236.232 235.448 231.102 240 224.798 240H75.2014C70.6141 240 66.4833 237.58 64.6837 233.829C62.8832 230.08 63.7795 225.76 66.9591 222.822L143.2 152.453L66.8286 79.5535C63.7341 76.596 62.9063 72.296 64.7217 68.5932C66.539 64.8919 70.6542 62.5 75.2014 62.5H224.801C231.102 62.5 236.234 67.0503 236.234 72.6468V98.0737C236.234 103.667 231.104 108.219 224.801 108.219C218.497 108.219 213.37 103.669 213.37 98.0737Z" fill="white" style="filter:drop-shadow(0 4px 4px rgba(0,0,0,0.4))"/>
@@ -29,139 +363,227 @@
         </div>
       </div>
 
-      <!-- Title -->
-      <h1>Scores<span class="teal">2</span>Go</h1>
       <p class="eyebrow">Open Source Clinical Scoring App</p>
+      <h1>Scores<span class="teal">2</span>Go</h1>
       <p class="lead">Fast access to clinical scores and calculators.<br/>For research and educational purposes only.</p>
 
-      <!-- Score search -->
-      <div class="scores">
-        <p class="scores-label">Find a Score</p>
-
-        <div class="score-search" style="position:relative;max-width:560px;margin:0 auto;">
-          <input
-            id="scoreSearch"
-            type="text"
-            placeholder="Search scores..."
-            autocomplete="off"
-            aria-label="Search scores"
-            style="width:100%;padding:16px 18px;border-radius:16px;border:1px solid rgba(255,255,255,0.16);background:rgba(255,255,255,0.08);color:#fff;font-size:1rem;outline:none;box-sizing:border-box;"
-          />
-
-          <div
-            id="scoreSuggestions"
-            style="display:none;position:absolute;top:calc(100% + 10px);left:0;right:0;background:#101828;border:1px solid rgba(255,255,255,0.10);border-radius:16px;overflow:hidden;box-shadow:0 12px 30px rgba(0,0,0,0.28);z-index:20;"
-          ></div>
-        </div>
-      </div>
-
-      <!-- Actions -->
       <div class="actions">
         <a class="button primary" href="./app/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
           </svg>
           Launch App
         </a>
         <a class="button secondary" href="https://github.com/lukas-schmdt/scores2go">
-          <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
           </svg>
           GitHub
         </a>
       </div>
-
-      <p class="disclaimer">For research and educational purposes only. Not for clinical decision-making.</p>
     </div>
-  </main>
+  </header>
+
+  <!-- ── Score directory ────────────────────────────────────────────────────── -->
+  <section class="directory">
+
+    <div class="directory-header">
+      <h2>Score Directory</h2>
+      <span id="resultCount"></span>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input
+        id="scoreSearch"
+        type="text"
+        placeholder="Search scores by name, category, or keyword…"
+        autocomplete="off"
+        aria-label="Search scores"
+      />
+    </div>
+
+    <!-- Category filter chips -->
+    <div class="filter-row" id="filterRow" role="group" aria-label="Filter by category"></div>
+
+    <!-- Grid -->
+    <div id="scoreGrid">
+      <div id="noResults">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+        <p>No scores found</p>
+        <span>Try a different search term or category</span>
+      </div>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Not intended for clinical decision-making.</p>
+  </section>
 
   <script>
+    // ── Score data ──────────────────────────────────────────────────────────
+    // Each entry: { name, desc, tags[], href? }
+    // href: path to landing page (omit or null if no dedicated page yet)
+    // tags: used for category filter chips — first tag is the "primary" colour class
     const scores = [
-      {
-        name: "APACHE II",
-        description: "ICU severity & mortality prediction",
-        href: "./scores/apache2.html"
-      },
-      {
-        name: "SOFA",
-        description: "Sequential Organ Failure Assessment",
-        href: "./scores/sofa.html"
-      },
-      {
-        name: "SAPS II",
-        description: "Simplified Acute Physiology Score II",
-        href: "./scores/saps2.html"
-      },
-      {
-        name: "NEWS2",
-        description: "National Early Warning Score 2",
-        href: "./scores/news2.html"
-      },
-      {
-        name: "qSOFA",
-        description: "Quick sepsis risk assessment",
-        href: "./scores/qsofa.html"
-      }
+      { name: "APACHE II",       desc: "Acute physiology and chronic health evaluation — predicts ICU mortality from 12 physiological variables, age, and chronic health status.", tags: ["ICU","Severity"],                  href: "./scores/apache2.html" },
+      { name: "SAPS 3",          desc: "Simplified Acute Physiology Score 3 — predicts in-hospital mortality from 20 variables at ICU admission. Validated in 35 countries.",     tags: ["ICU","Mortality"],                 href: "./scores/saps3.html" },
+      { name: "MODS",            desc: "Multiple Organ Dysfunction Score — quantifies organ dysfunction across six systems (respiratory, renal, hepatic, cardiovascular, haematologic, neurologic).", tags: ["ICU","Severity","Critical Care"], href: "./scores/mods.html" },
+      { name: "RASS",            desc: "Richmond Agitation-Sedation Scale — 10-point scale from +4 (combative) to −5 (unarousable) for sedation monitoring in the ICU.",          tags: ["Sedation","ICU"],                  href: "./scores/rass.html" },
+      { name: "Ramsay",          desc: "Six-level sedation scale — one of the first ICU sedation scoring systems, from anxious/agitated (1) to no response (6).",                 tags: ["Sedation","ICU"],                  href: "./scores/ramsay.html" },
+      { name: "CAM-ICU",         desc: "Confusion Assessment Method for the ICU — most validated delirium detection tool for mechanically ventilated and non-verbal patients.",   tags: ["Delirium","ICU"],                  href: "./scores/cam-icu.html" },
+      { name: "Nu-DESC",         desc: "Nursing Delirium Screening Scale — five-item nurse-administered bedside tool. Score ≥ 2 indicates delirium.",                              tags: ["Delirium","ICU","Nursing"],        href: "./scores/nudesc.html" },
+      { name: "GCS",             desc: "Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response (3–15).",                       tags: ["Neurology","ICU","Emergency"],     href: "./scores/gcs.html" },
+      { name: "EuroSCORE II",    desc: "European System for Cardiac Operative Risk Evaluation II — estimates 30-day operative mortality for adult cardiac surgery.",               tags: ["Cardiac Surgery","Mortality"],     href: "./scores/euroscore2.html" },
+      { name: "Horovitz Quotient", desc: "PaO₂/FiO₂ ratio — standard measure of oxygenation efficiency and basis of the ARDS Berlin Definition severity classification.",        tags: ["Pulmonology","ICU","ARDS"],       href: "./scores/horovitz.html" },
+      { name: "MELD",            desc: "Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.",   tags: ["Hepatology","Transplant"],         href: "./scores/meld.html" },
+      { name: "Finnegan NAS",    desc: "Neonatal Abstinence Score — assesses opioid withdrawal severity in newborns across 21 signs in CNS, metabolic, and gastrointestinal domains.", tags: ["Neonatology","NAS"],          href: "./scores/finnegan.html" },
+      { name: "Dose Calculator", desc: "Bidirectional infusion calculator — converts pump rate (ml/h) ↔ weight-adjusted dose per kg. Supports µg, mg, IU with /min and /h.",    tags: ["Calculator","ICU","Pharmacology"], href: "./scores/dose-calc.html" },
     ];
 
-    const searchInput = document.getElementById("scoreSearch");
-    const suggestions = document.getElementById("scoreSuggestions");
+    // ── Category config ────────────────────────────────────────────────────
+    const categoryMeta = {
+      "All":            { class: "" },
+      "ICU":            { class: "icu" },
+      "Severity":       { class: "severity" },
+      "Sedation":       { class: "sedation" },
+      "Delirium":       { class: "delirium" },
+      "Neurology":      { class: "neuro" },
+      "Cardiac Surgery":{ class: "cardiac" },
+      "Pulmonology":    { class: "pulm" },
+      "Hepatology":     { class: "hepato" },
+      "Neonatology":    { class: "neo" },
+      "Calculator":     { class: "calc" },
+    };
 
-    function renderSuggestions(items) {
+    // ── State ──────────────────────────────────────────────────────────────
+    let activeCategory = "All";
+    let searchQuery    = "";
+
+    // ── Tag colour helper ─────────────────────────────────────────────────
+    const tagClassMap = {
+      "ICU": "icu", "Sedation": "sedation", "Delirium": "delirium",
+      "Neurology": "neuro", "Cardiology": "cardiac", "Pulmonology": "pulm",
+      "Hepatology": "hepato", "Neonatology": "neo", "Calculator": "calc",
+      "Severity": "severity", "Emergency": "severity", "Sepsis": "icu",
+      "Nursing": "delirium", "ARDS": "pulm", "Transplant": "hepato",
+      "NAS": "neo", "Trauma": "severity", "Mortality": "severity",
+      "Pharmacology": "calc", "Nephrology": "pulm", "Haematology": "cardiac",
+      "Oncology": "severity", "Obstetrics": "neo", "Gastroenterology": "hepato",
+      "Rheumatology": "cardiac", "Psychiatry": "neuro",
+      "Infectious Disease": "delirium", "Vascular": "cardiac",
+    };
+
+    function tagClass(t) { return tagClassMap[t] || ""; }
+
+    // ── Build filter chips ─────────────────────────────────────────────────
+    function buildChips() {
+      const cats = Object.keys(categoryMeta);
+      const counts = {};
+      cats.forEach(c => {
+        counts[c] = c === "All"
+          ? scores.length
+          : scores.filter(s => s.tags.includes(c)).length;
+      });
+
+      const row = document.getElementById("filterRow");
+      row.innerHTML = cats
+        .filter(c => c === "All" || counts[c] > 0)
+        .map(c => `
+          <button
+            class="chip${c === activeCategory ? " active" : ""}"
+            data-cat="${c}"
+            aria-pressed="${c === activeCategory}"
+          >${c} <span class="count">${counts[c]}</span></button>
+        `).join("");
+
+      row.querySelectorAll(".chip").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activeCategory = btn.dataset.cat;
+          buildChips();
+          render();
+        });
+      });
+    }
+
+    // ── Filter ─────────────────────────────────────────────────────────────
+    function filtered() {
+      const q = searchQuery.trim().toLowerCase();
+      return scores.filter(s => {
+        const matchCat = activeCategory === "All" || s.tags.includes(activeCategory);
+        if (!matchCat) return false;
+        if (!q) return true;
+        return (
+          s.name.toLowerCase().includes(q) ||
+          s.desc.toLowerCase().includes(q) ||
+          s.tags.some(t => t.toLowerCase().includes(q))
+        );
+      });
+    }
+
+    // ── Render grid ────────────────────────────────────────────────────────
+    function render() {
+      const items = filtered();
+      const grid  = document.getElementById("scoreGrid");
+      const noRes = document.getElementById("noResults");
+      const count = document.getElementById("resultCount");
+
+      count.textContent = items.length === scores.length
+        ? `${scores.length} scores`
+        : `${items.length} of ${scores.length} scores`;
+
       if (!items.length) {
-        suggestions.innerHTML = `
-          <div style="padding:14px 16px;color:rgba(255,255,255,0.75);font-size:0.95rem;">
-            No scores found
-          </div>
-        `;
-        suggestions.style.display = "block";
+        grid.innerHTML = "";
+        grid.appendChild(noRes);
+        noRes.style.display = "block";
         return;
       }
 
-      suggestions.innerHTML = items.map(score => `
-        <a
-          href="${score.href}"
-          style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;text-decoration:none;color:#fff;border-bottom:1px solid rgba(255,255,255,0.08);"
-          onmouseover="this.style.background='rgba(255,255,255,0.06)'"
-          onmouseout="this.style.background='transparent'"
-        >
-          <span>
-            <span style="display:block;font-weight:600;">${score.name}</span>
-            <span style="display:block;font-size:0.92rem;color:rgba(255,255,255,0.72);margin-top:2px;">${score.description}</span>
-          </span>
-          <span style="font-size:1.1rem;color:rgba(255,255,255,0.7);">→</span>
-        </a>
-      `).join("");
+      noRes.style.display = "none";
 
-      suggestions.style.display = "block";
+      grid.innerHTML = items.map(s => {
+        const tagHtml = s.tags
+          .map(t => `<span class="tag ${tagClass(t)}">${t}</span>`)
+          .join("");
+
+        const arrow = `
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>`;
+
+        if (s.href) {
+          return `
+            <a class="score-card" href="${s.href}">
+              <div class="score-card-top">
+                <span class="score-name">${s.name}</span>
+                ${arrow}
+              </div>
+              <p class="score-desc">${s.desc}</p>
+              <div class="score-tags">${tagHtml}</div>
+            </a>`;
+        } else {
+          return `
+            <div class="score-card" style="cursor:default;" title="Coming soon — available in the app">
+              <div class="score-card-top">
+                <span class="score-name">${s.name}</span>
+              </div>
+              <p class="score-desc">${s.desc}</p>
+              <div class="score-tags">${tagHtml}</div>
+            </div>`;
+        }
+      }).join("");
     }
 
-    function filterScores(query) {
-      const normalized = query.trim().toLowerCase();
-
-      if (!normalized) {
-        return scores;
-      }
-
-      return scores.filter(score =>
-        score.name.toLowerCase().includes(normalized) ||
-        score.description.toLowerCase().includes(normalized)
-      );
-    }
-
-    searchInput.addEventListener("focus", () => {
-      renderSuggestions(filterScores(searchInput.value));
+    // ── Search input ───────────────────────────────────────────────────────
+    document.getElementById("scoreSearch").addEventListener("input", e => {
+      searchQuery = e.target.value;
+      render();
     });
 
-    searchInput.addEventListener("input", (e) => {
-      renderSuggestions(filterScores(e.target.value));
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!searchInput.closest(".score-search").contains(e.target)) {
-        suggestions.style.display = "none";
-      }
-    });
+    // ── Init ───────────────────────────────────────────────────────────────
+    buildChips();
+    render();
   </script>
 </body>
 </html>
