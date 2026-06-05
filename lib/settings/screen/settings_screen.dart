@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
+import 'package:scores_2_go/settings/screen/disclaimer_screen.dart';
 import 'package:scores_2_go/theme/app_colors.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
@@ -122,6 +123,17 @@ class SettingsScreen extends StatelessWidget {
                         icon: Icons.build_outlined,
                         label: l.buildNumberLabel,
                         value: state.buildNumber),
+                    _Divider(),
+                    _ActionTile(
+                      icon: Icons.info_outline,
+                      label: l.disclaimerTitle,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const DisclaimerScreen(),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
 
