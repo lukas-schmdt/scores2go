@@ -18,8 +18,8 @@ Score buildCamIcuScore(String lang) {
     categories: ['Delirium', 'ICU'],
     doc: (_) => 'lib/data/scores/definitions/cam-icu/cam_icu_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/cam-icu'
-        : 'https://scores2go.com/scores/cam-icu',
+        ? 'https://scores2go.com/scores/de/cam-icu.html'
+        : 'https://scores2go.com/scores/cam-icu.html',
     scoreFunction: camIcuFunction,
     visibilityFunction: camIcuVisibility,
     groups: [

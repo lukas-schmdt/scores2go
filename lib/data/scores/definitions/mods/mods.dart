@@ -18,8 +18,8 @@ Score buildModsScore(String lang) {
     categories: ['ICU', 'Severity', 'Critical Care'],
     doc: (_) => 'lib/data/scores/definitions/mods/mods_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/mods'
-        : 'https://scores2go.com/scores/mods',
+        ? 'https://scores2go.com/scores/de/mods.html'
+        : 'https://scores2go.com/scores/mods.html',
     scoreFunction: modsFunction,
     visibilityFunction: modsVisibility,
     groups: [

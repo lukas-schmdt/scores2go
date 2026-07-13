@@ -543,6 +543,9 @@ abstract class AppLocalizations {
   String get disclaimerIntendedUseTitle;
 
   /// No description provided for @disclaimerIntendedUseBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Scores2Go ist als informatorisches und pädagogisches Referenzwerkzeug für ausgebildete medizinische Fachkräfte konzipiert. Die Anwendung führt mathematische Berechnungen auf Basis publizierter klinischer Scoringsysteme und benutzerseitig eingegebener Werte durch. Sie ist nicht dafür vorgesehen und darf nicht als alleinige Grundlage für klinische Entscheidungen verwendet werden.'**
   String get disclaimerIntendedUseBody;
 
   /// No description provided for @disclaimerRegulatoryTitle.
@@ -552,6 +555,9 @@ abstract class AppLocalizations {
   String get disclaimerRegulatoryTitle;
 
   /// No description provided for @disclaimerRegulatoryBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Scores2Go ist nicht zur Diagnose, Prognose, Überwachung oder Behandlung von Erkrankungen bestimmt. Es handelt sich nicht um ein Medizinprodukt im Sinne der Verordnung (EU) 2017/745 (MDR). Die Anwendung führt ausschließlich mathematische Berechnungen durch und gibt Ergebnisse als Scorewerte ohne diagnostische Schlussfolgerungen, Behandlungsempfehlungen oder klinische Prognosen aus.'**
   String get disclaimerRegulatoryBody;
 
   /// No description provided for @disclaimerNoAdviceTitle.
@@ -561,6 +567,9 @@ abstract class AppLocalizations {
   String get disclaimerNoAdviceTitle;
 
   /// No description provided for @disclaimerNoAdviceBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Scores2Go gibt keine medizinischen Ratschläge, Diagnosen oder Behandlungsempfehlungen. Klinische Entscheidungen dürfen nicht ausschließlich auf Grundlage der Ergebnisse dieser Anwendung getroffen werden. Nutzer tragen die alleinige Verantwortung für Patientenbeurteilung, Diagnose und alle klinischen Entscheidungen.'**
   String get disclaimerNoAdviceBody;
 
   /// No description provided for @disclaimerAccuracyTitle.
@@ -570,6 +579,9 @@ abstract class AppLocalizations {
   String get disclaimerAccuracyTitle;
 
   /// No description provided for @disclaimerAccuracyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Es wurden angemessene Bemühungen unternommen, die Scoring-Formeln auf Grundlage publizierter wissenschaftlicher Literatur korrekt umzusetzen. Es wird jedoch keine Garantie hinsichtlich Vollständigkeit, Richtigkeit oder Eignung für einen bestimmten Zweck übernommen. Die Betreiber von Scores2Go haften nicht für Schäden, die aus der Nutzung der Anwendung entstehen, es sei denn, diese beruhen auf Vorsatz, grober Fahrlässigkeit oder gesetzlich zwingender Haftung.'**
   String get disclaimerAccuracyBody;
 
   /// No description provided for @disclaimerPrivacyTitle.
@@ -579,6 +591,9 @@ abstract class AppLocalizations {
   String get disclaimerPrivacyTitle;
 
   /// No description provided for @disclaimerPrivacyBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.'**
   String get disclaimerPrivacyBody;
 }
 

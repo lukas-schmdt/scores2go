@@ -18,8 +18,8 @@ Score buildFinneganScore(String lang) {
     categories: ['Neonatology', 'NAS'],
     doc: (_) => 'lib/data/scores/definitions/finnegan/finnegan_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/finnegan'
-        : 'https://scores2go.com/scores/finnegan',
+        ? 'https://scores2go.com/scores/de/finnegan.html'
+        : 'https://scores2go.com/scores/finnegan.html',
     scoreFunction: finneganFunction,
     visibilityFunction: finneganVisibility,
     groups: [

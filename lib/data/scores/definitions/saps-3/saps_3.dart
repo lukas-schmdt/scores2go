@@ -12,8 +12,8 @@ Score buildSaps3Score(String lang) {
     name: 'saps3',
     doc: (_) => 'lib/data/scores/definitions/saps-3/saps_3_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/saps3'
-        : 'https://scores2go.com/scores/saps3',
+        ? 'https://scores2go.com/scores/de/saps3.html'
+        : 'https://scores2go.com/scores/saps3.html',
     scoreFunction: saps3Function,
     visibilityFunction: saps3Visibility,
     author: 'Moreno et al.',

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Landing page -->
+  <url>
+    <loc>https://scores2go.com/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Disclaimer -->
+  <url>
+    <loc>https://scores2go.com/disclaimer.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Score pages (EN) -->
+  <url>
+    <loc>https://scores2go.com/scores/apache2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/apache2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/apache2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/saps3.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps3.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/mods.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/mods.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/mods.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/rass.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/rass.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/rass.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/ramsay.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/ramsay.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/ramsay.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/cam-icu.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/cam-icu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/cam-icu.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/nudesc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/nudesc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/nudesc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/gcs.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/gcs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/gcs.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/euroscore2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/euroscore2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/euroscore2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/horovitz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/horovitz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/horovitz.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/meld.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/meld.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/meld.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/finnegan.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/dose-calc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/dose-calc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/dose-calc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Score pages (DE) -->
+  <url>
+    <loc>https://scores2go.com/scores/de/apache2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/apache2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/apache2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/saps3.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps3.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/mods.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/mods.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/mods.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/rass.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/rass.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/rass.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/ramsay.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/ramsay.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/ramsay.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/cam-icu.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/cam-icu.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/cam-icu.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/nudesc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/nudesc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/nudesc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/gcs.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/gcs.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/gcs.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/euroscore2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/euroscore2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/euroscore2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/horovitz.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/horovitz.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/horovitz.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/meld.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/meld.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/meld.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/finnegan.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/dose-calc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/dose-calc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/dose-calc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

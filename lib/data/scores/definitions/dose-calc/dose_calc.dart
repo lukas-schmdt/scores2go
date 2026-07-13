@@ -36,8 +36,8 @@ Score buildDoseCalcScore(String lang) {
     categories: ['Calculator', 'ICU', 'Pharmacology'],
     doc: (_) => 'lib/data/scores/definitions/dose-calc/dose_calc_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/dose-calc'
-        : 'https://scores2go.com/scores/dose-calc',
+        ? 'https://scores2go.com/scores/de/dose-calc.html'
+        : 'https://scores2go.com/scores/dose-calc.html',
     scoreFunction: doseCalcFunction,
     visibilityFunction: doseCalcVisibility,
     groups: [

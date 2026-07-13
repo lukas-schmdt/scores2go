@@ -15,8 +15,8 @@ Score buildApacheIiScore(String lang) {
     visibilityFunction: apacheIiVisibility,
     doc: (_) => 'lib/data/scores/definitions/apache-ii/apache_ii_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/apache2'
-        : 'https://scores2go.com/scores/apache2',
+        ? 'https://scores2go.com/scores/de/apache2.html'
+        : 'https://scores2go.com/scores/apache2.html',
     author: 'Knaus et al.',
     year: 1985,
     popularity: 95,

@@ -18,8 +18,8 @@ Score buildGcsScore(String lang) {
     categories: ['Neurology', 'ICU', 'Emergency'],
     doc: (_) => 'lib/data/scores/definitions/gcs/gcs_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/gcs'
-        : 'https://scores2go.com/scores/gcs',
+        ? 'https://scores2go.com/scores/de/gcs.html'
+        : 'https://scores2go.com/scores/gcs.html',
     scoreFunction: gcsFunction,
     visibilityFunction: gcsVisibility,
     groups: [

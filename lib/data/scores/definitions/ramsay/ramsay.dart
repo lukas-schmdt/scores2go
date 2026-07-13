@@ -12,8 +12,8 @@ Score buildRamsayScore(String lang) {
     name: 'ramsay',
     doc: (_) => 'lib/data/scores/definitions/ramsay/ramsay_doc.md',
     docUrl: (locale) => locale == 'de'
-        ? 'https://scores2go.com/scores/de/ramsay'
-        : 'https://scores2go.com/scores/ramsay',
+        ? 'https://scores2go.com/scores/de/ramsay.html'
+        : 'https://scores2go.com/scores/ramsay.html',
     scoreFunction: ramsayFunction,
     visibilityFunction: ramsayVisibility,
     author: 'Ramsay et al.',
