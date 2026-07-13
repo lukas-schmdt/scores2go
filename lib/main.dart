@@ -18,10 +18,12 @@ import 'package:scores_2_go/repo/scores_repository.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 import 'package:scores_2_go/theme/theme_data.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
+import 'package:scores_2_go/deep_link/deep_link_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' hide AuthState;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  DeepLinkService.init();
 
 
   const supabaseUrl = 'https://uvyubzssdgahfhnpmrmv.supabase.co';

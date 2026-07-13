@@ -11,11 +11,31 @@ import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 import 'package:scores_2_go/score_entry/screen/score_entry_screen.dart';
 import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
 import 'package:scores_2_go/score_list/screen/score_list_screen.dart';
+import 'package:scores_2_go/deep_link/deep_link_service.dart';
+import 'package:scores_2_go/score_entry/screen/open_score_entry.dart';
 import 'package:scores_2_go/settings/screen/settings_screen.dart';
 import 'package:scores_2_go/user_favorites/screen/user_favorites_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final pendingName = DeepLinkService.consume();
+      if (pendingName == null) return;
+      final repo = context.read<ScoresRepository>();
+      final match = repo.scores.where((s) => s.name == pendingName).firstOrNull;
+      if (match != null) openScoreEntry(context, match);
+    });
+  }
 
   Widget _buildContent(BuildContext context, int screenId) {
     return switch (screenId) {
