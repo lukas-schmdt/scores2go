@@ -12,6 +12,7 @@ import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii.dart';
+import 'package:scores_2_go/data/scores/definitions/news2/news2.dart';
 import 'package:scores_2_go/data/scores/definitions/sofa/sofa.dart';
 import 'package:scores_2_go/model/score.dart';
 
@@ -32,6 +33,7 @@ List<Score> buildScoresList(String lang) {
     buildNudescScore(lang),
     buildCamIcuScore(lang),
     buildDoseCalcScore(lang),
+    buildNews2Score(lang),
   ];
 
   assert(() {

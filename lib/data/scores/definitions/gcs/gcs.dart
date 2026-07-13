@@ -16,7 +16,6 @@ Score buildGcsScore(String lang) {
     year: 1974,
     popularity: 98,
     categories: ['Neurology', 'ICU', 'Emergency'],
-    doc: (_) => 'lib/data/scores/definitions/gcs/gcs_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/gcs.html'
         : 'https://scores2go.com/scores/gcs.html',

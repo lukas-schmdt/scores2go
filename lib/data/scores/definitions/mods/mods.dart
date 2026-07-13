@@ -16,7 +16,6 @@ Score buildModsScore(String lang) {
     year: 1995,
     popularity: 75,
     categories: ['ICU', 'Severity', 'Critical Care'],
-    doc: (_) => 'lib/data/scores/definitions/mods/mods_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/mods.html'
         : 'https://scores2go.com/scores/mods.html',

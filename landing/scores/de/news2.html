@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEWS2 (National Early Warning Score 2) – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="NEWS2 — National Early Warning Score 2: standardisiertes 7-Parameter-Instrument zur Früherkennung klinischer Verschlechterung bei Erwachsenen." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/news2.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/news2.html" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    td.pts { text-align: center; font-weight: 700; }
+    td.pts-3 { color: #dc2626; }
+    td.pts-2 { color: #d97706; }
+    td.pts-1 { color: #ca8a04; }
+    td.pts-0 { color: #16a34a; }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Emergency · Severity</div>
+    <h1>NEWS2</h1>
+    <p>National Early Warning Score 2 — standardisiertes 7-Parameter-Instrument zur Früherkennung klinischer Verschlechterung bei Erwachsenen. Weit verbreitet im britischen Gesundheitswesen (NHS).</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Royal College of Physicians
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2017
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularität 85
+      </span>
+    </div>
+    <a class="lang-link" href="../news2.html">🇬🇧 English</a>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>NEWS2 (National Early Warning Score 2) ist die überarbeitete Fassung des ursprünglichen NEWS, veröffentlicht vom Royal College of Physicians im Jahr 2017. Er bietet eine einheitliche Methode zur Einschätzung des Schweregrads akuter Erkrankungen bei erwachsenen Patienten anhand von sieben routinemäßig erhobenen physiologischen Parametern.</p>
+      <p>Der Score soll bei definierten Schwellenwerten eine eskalierte klinische Reaktion auslösen — von erhöhter Überwachungsfrequenz bei niedrigen Werten bis zum sofortigen Notfallteam-Einsatz bei hohen Werten (≥ 7). Ein Kernmerkmal ist die „Einzelparameter-Regel": Ein Score von 3 bei einem einzelnen Parameter löst automatisch eine mittlere Risikostufe aus, auch wenn der Gesamtscore unter 5 liegt.</p>
+      <p>NEWS2 brachte zwei Änderungen gegenüber dem Original von 2012: eine überarbeitete ACVPU-Bewusstseinsskala mit „Verwirrtheit" (C) als eigenem Niveau sowie ein duales SpO₂-Skalensystem für Patienten mit Risiko eines hyperkapnischen Atemversagens (z. B. COPD), deren Ziel-Sättigung 88–92 % beträgt statt ≥ 96 %.</p>
+    </div>
+
+    <div class="section">
+      <h2>Bewertungstabelle</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th class="pts">3</th>
+              <th class="pts">2</th>
+              <th class="pts">1</th>
+              <th class="pts">0</th>
+              <th class="pts">1</th>
+              <th class="pts">2</th>
+              <th class="pts">3</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Atemfrequenz (/min)</td>
+              <td class="pts pts-3">≤ 8</td>
+              <td></td>
+              <td class="pts pts-1">9–11</td>
+              <td class="pts pts-0">12–20</td>
+              <td></td>
+              <td class="pts pts-2">21–24</td>
+              <td class="pts pts-3">≥ 25</td>
+            </tr>
+            <tr>
+              <td>SpO₂ Skala 1 (%)</td>
+              <td class="pts pts-3">≤ 91</td>
+              <td class="pts pts-2">92–93</td>
+              <td class="pts pts-1">94–95</td>
+              <td class="pts pts-0">≥ 96</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>SpO₂ Skala 2 (%) *</td>
+              <td class="pts pts-3">≤ 83</td>
+              <td class="pts pts-2">84–85</td>
+              <td class="pts pts-1">86–87</td>
+              <td class="pts pts-0">88–92 / ≥ 93 an Luft</td>
+              <td class="pts pts-1">93–94 unter O₂</td>
+              <td class="pts pts-2">95–96 unter O₂</td>
+              <td class="pts pts-3">≥ 97 unter O₂</td>
+            </tr>
+            <tr>
+              <td>Sauerstoffzufuhr</td>
+              <td></td>
+              <td class="pts pts-2">Ja</td>
+              <td></td>
+              <td class="pts pts-0">Nein</td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Systolischer BD (mmHg)</td>
+              <td class="pts pts-3">≤ 90</td>
+              <td class="pts pts-2">91–100</td>
+              <td class="pts pts-1">101–110</td>
+              <td class="pts pts-0">111–219</td>
+              <td></td>
+              <td></td>
+              <td class="pts pts-3">≥ 220</td>
+            </tr>
+            <tr>
+              <td>Pulsfrequenz (/min)</td>
+              <td class="pts pts-3">≤ 40</td>
+              <td></td>
+              <td class="pts pts-1">41–50</td>
+              <td class="pts pts-0">51–90</td>
+              <td class="pts pts-1">91–110</td>
+              <td class="pts pts-2">111–130</td>
+              <td class="pts pts-3">≥ 131</td>
+            </tr>
+            <tr>
+              <td>Bewusstsein (ACVPU)</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td class="pts pts-0">Wach (A)</td>
+              <td></td>
+              <td></td>
+              <td class="pts pts-3">C / V / P / U</td>
+            </tr>
+            <tr>
+              <td>Körpertemperatur (°C)</td>
+              <td class="pts pts-3">≤ 35,0</td>
+              <td></td>
+              <td class="pts pts-1">35,1–36,0</td>
+              <td class="pts pts-0">36,1–38,0</td>
+              <td class="pts pts-1">38,1–39,0</td>
+              <td class="pts pts-2">≥ 39,1</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">* SpO₂-Skala 2 gilt nur für Patienten mit gesichertem oder vermutetem Risiko eines hyperkapnischen Atemversagens (z. B. COPD, neuromuskuläre Erkrankung); Ziel-Sättigung 88–92 %. Alle anderen Patienten erhalten Skala 1.</p>
+    </div>
+
+    <div class="section">
+      <h2>Klinisches Risiko &amp; Reaktion</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>NEWS2-Score</th><th>Klinisches Risiko</th><th>Überwachung</th><th>Maßnahme</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0</td><td>Minimal</td><td>12-stündlich</td><td>Routineüberwachung fortführen</td></tr>
+            <tr><td>1–4</td><td>Niedrig</td><td>4–6-stündlich</td><td>Stationspflegepersonal informiert Arzt</td></tr>
+            <tr><td>3 bei Einzelparameter</td><td>Mittel</td><td>Mind. 1-stündlich</td><td>Dringliche stationsbasierte Reaktion</td></tr>
+            <tr><td>5–6</td><td>Mittel</td><td>Mind. 1-stündlich</td><td>Dringliche stationsbasierte Reaktion</td></tr>
+            <tr><td>≥ 7</td><td><strong>Hoch</strong></td><td>Kontinuierlich</td><td>Notfallteam alarmieren</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>ACVPU-Bewusstseinsskala</h2>
+      <p>NEWS2 ersetzte die ursprüngliche AVPU-Skala durch ACVPU. Neu hinzugekommen ist „C" für neue Verwirrtheit oder Delir — als eigenständiges Niveau zwischen Wach (A) und Reaktion auf Ansprache (V):</p>
+      <table>
+        <thead>
+          <tr><th>Stufe</th><th>Beschreibung</th><th>Punkte</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A — Wach (Alert)</td><td>Vollständig wach und orientiert</td><td class="pts pts-0">0</td></tr>
+          <tr><td>C — Verwirrtheit</td><td>Neu aufgetretene Verwirrtheit, Desorientiertheit oder Delir</td><td class="pts pts-3">3</td></tr>
+          <tr><td>V — Ansprache (Voice)</td><td>Reagiert auf Ansprache, aber nicht vollständig wach</td><td class="pts pts-3">3</td></tr>
+          <tr><td>P — Schmerz (Pain)</td><td>Reagiert nur auf Schmerzreiz</td><td class="pts pts-3">3</td></tr>
+          <tr><td>U — Reaktionslos</td><td>Keine Reaktion auf Reize</td><td class="pts pts-3">3</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Royal College of Physicians. <em>National Early Warning Score (NEWS) 2: Standardising the assessment of acute-illness severity in the NHS.</em> Updated report of a working party. London: RCP, 2017. ISBN 978-1-86016-715-2.</p>
+      <p>Smith GB, Redfern OC, Pimentel MAF, et al. <em>The National Early Warning Score 2 (NEWS2).</em> Clin Med (Lond). 2019;19(3):260–261.</p>
+      <p>Pimentel MAF, Redfern OC, Gerry S, et al. <em>A comparison of the ability of NEWS and NEWS2 to identify patients at risk of in-hospital mortality.</em> Resuscitation. 2019;134:147–156.</p>
+    </div>
+
+    <div class="cta">
+      <p>NEWS2 interaktiv berechnen — mit automatischer SpO₂-Skalenwahl.</p>
+      <a class="button" href="../../app/">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für klinische Entscheidungen vorgesehen.</p>
+
+  </main>
+
+</body>
+</html>

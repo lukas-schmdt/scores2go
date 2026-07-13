@@ -51,3 +51,4 @@ flutter:
     - lib/data/scores/definitions/nudesc/
     - lib/data/scores/definitions/cam-icu/
     - lib/data/scores/definitions/dose-calc/
+    - lib/data/scores/definitions/news2/

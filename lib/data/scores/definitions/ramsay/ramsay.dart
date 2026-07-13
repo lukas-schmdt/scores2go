@@ -10,7 +10,6 @@ Score buildRamsayScore(String lang) {
   return Score(
     id: 8,
     name: 'ramsay',
-    doc: (_) => 'lib/data/scores/definitions/ramsay/ramsay_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/ramsay.html'
         : 'https://scores2go.com/scores/ramsay.html',

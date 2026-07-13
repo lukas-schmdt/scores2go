@@ -46,25 +46,23 @@ Score definitions are pure Dart — no network calls. Each score folder contains
 | `<score>_function.dart` | Pure function `ScoreResult fn(Score)` — the calculation |
 | `<score>_visibility.dart` | Controls which variable groups/items are shown given current state |
 | `<score>_i10n.dart` | Score-specific strings as a hardcoded `Map<locale, Map<key, String>>` |
-| `<score>_doc.md` | In-app documentation (bundled as a Flutter asset) |
 
 **Two localization systems run in parallel:**
 1. **ARB / `AppLocalizations`** — UI chrome strings (navigation labels, settings, disclaimer, etc.). Source: `lib/l10n/app_en.arb` / `app_de.arb`. Access: `AppLocalizations.of(context)!.keyName`.
 2. **`ScoreI10n`** — score-specific strings (variable labels, options, descriptions). Each score has its own `*_i10n.dart` subclassing `ScoreI10n`. Access: `_i10n.t(lang, 'key')`. Falls back to `'en'` if the requested locale is missing.
 
-**`Score.doc` vs `Score.docUrl`:**
-- `doc`: `String? Function(String locale)` — returns an asset path; rendered as in-app Markdown tab.
-- `docUrl`: `String? Function(String locale)` — returns an external URL opened in the browser. When both are set, `docUrl` takes precedence and no Markdown tab is shown.
+**`Score.docUrl`:** `String? Function(String locale)` — returns an external URL (landing page) opened in the browser when the user taps the article icon in the score screen AppBar.
 
 **Supabase tables used:**
 - `user_favorites` — columns: `user_id`, `score_id`, `position`
 
 ### Adding a new score
 
-1. Create `lib/data/scores/definitions/<name>/` with the four Dart files and a `.md` doc.
+1. Create `lib/data/scores/definitions/<name>/` with the four Dart files (no `.md` doc — documentation lives in `landing/scores/`).
 2. Register the asset folder in `pubspec.yaml` under `flutter.assets`.
 3. Add `build<Name>Score(lang)` to `lib/data/scores/scores.dart` (`buildScoresList`). The assert there enforces unique `Score.id` values.
-4. If adding a landing-page card: update `landing/index.html` (scores array) and `landing/sitemap.xml`.
+4. Create landing pages: `landing/scores/<name>.html` and `landing/scores/de/<name>.html`.
+5. Update `landing/index.html` (scores array) and `landing/sitemap.xml`.
 
 ### Landing page (`landing/`)
 

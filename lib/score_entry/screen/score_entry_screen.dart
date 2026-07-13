@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go/doc_formatting/markdown_parser.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
@@ -20,11 +18,9 @@ class ScoreEntryScreen extends StatefulWidget {
   State<ScoreEntryScreen> createState() => _ScoreEntryScreenState();
 }
 
-class _ScoreEntryScreenState extends State<ScoreEntryScreen>
-    with SingleTickerProviderStateMixin {
+class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
   final ScrollController _scrollController = ScrollController();
   final Map<String, GlobalKey> _itemKeys = {};
-  late final TabController _tabController;
 
   GlobalKey _keyFor(String variableName) =>
       _itemKeys.putIfAbsent(variableName, GlobalKey.new);
@@ -42,15 +38,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
   }
 
   @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(length: 2, vsync: this);
-    _tabController.addListener(() => setState(() {}));
-  }
-
-  @override
   void dispose() {
-    _tabController.dispose();
     _scrollController.dispose();
     super.dispose();
   }
@@ -82,108 +70,81 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
                 onPressed: widget.onClose ?? () => Navigator.of(context).pop(),
               ),
               actions: [
-                _TabButton(
-                  icon: Icons.calculate_outlined,
-                  activeIcon: Icons.calculate,
-                  isActive: _tabController.index == 0,
-                  onTap: () => _tabController.animateTo(0),
-                ),
                 if (score.docUrl != null)
                   Builder(
                     builder: (context) {
                       final locale = Localizations.localeOf(context).languageCode;
-                      return _TabButton(
-                        icon: Icons.article_outlined,
-                        activeIcon: Icons.article,
-                        isActive: false,
+                      return _DocButton(
                         onTap: () async {
                           final url = score.docUrl!.call(locale);
                           if (url == null) return;
                           final uri = Uri.tryParse(url);
                           if (uri != null && await canLaunchUrl(uri)) {
-                            await launchUrl(uri, mode: LaunchMode.externalApplication);
+                            await launchUrl(
+                              uri,
+                              mode: LaunchMode.externalApplication,
+                            );
                           }
                         },
                       );
                     },
-                  )
-                else if (score.doc != null)
-                  _TabButton(
-                    icon: Icons.article_outlined,
-                    activeIcon: Icons.article,
-                    isActive: _tabController.index == 1,
-                    onTap: () => _tabController.animateTo(1),
                   ),
                 const SizedBox(width: 4),
               ],
             ),
-            body: TabBarView(
-              controller: _tabController,
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ── Score tab ────────────────────────────────────────────
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ProgressBar(
-                      score: score,
-                      visibility: visibility,
-                      onSegmentTap: _scrollToVariable,
-                    ),
-                    Expanded(
-                      child: SingleChildScrollView(
-                        controller: _scrollController,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 8,
-                            vertical: 6,
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (score.description.isNotEmpty)
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                    4,
-                                    0,
-                                    4,
-                                    8,
-                                  ),
-                                  child: Text(
-                                    score.description,
-                                    style: Theme.of(context).textTheme.bodySmall
-                                        ?.copyWith(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onSurfaceVariant,
-                                        ),
-                                  ),
-                                ),
-                              ...score.groups.map(
-                                (group) => Card(
-                                  margin: const EdgeInsets.only(bottom: 8),
-                                  clipBehavior: Clip.antiAlias,
-                                  child: GroupWidget(
-                                    group: group,
-                                    visibility: visibility,
-                                    itemKeys: _itemKeys,
-                                    keyFor: _keyFor,
-                                  ),
-                                ),
+                ProgressBar(
+                  score: score,
+                  visibility: visibility,
+                  onSegmentTap: _scrollToVariable,
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 6,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (score.description.isNotEmpty)
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(4, 0, 4, 8),
+                              child: Text(
+                                score.description,
+                                style: Theme.of(context).textTheme.bodySmall
+                                    ?.copyWith(
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.onSurfaceVariant,
+                                    ),
                               ),
-                            ],
+                            ),
+                          ...score.groups.map(
+                            (group) => Card(
+                              margin: const EdgeInsets.only(bottom: 8),
+                              clipBehavior: Clip.antiAlias,
+                              child: GroupWidget(
+                                group: group,
+                                visibility: visibility,
+                                itemKeys: _itemKeys,
+                                keyFor: _keyFor,
+                              ),
+                            ),
                           ),
-                        ),
+                        ],
                       ),
                     ),
-                    ScoreResultWidget(
-                      scoreResult: state.scoreResult,
-                      isLoading: state.isCalculating,
-                    ),
-                  ],
+                  ),
                 ),
-
-                // ── Docs tab ─────────────────────────────────────────────
-                _DocsTab(score: score),
+                ScoreResultWidget(
+                  scoreResult: state.scoreResult,
+                  isLoading: state.isCalculating,
+                ),
               ],
             ),
           );
@@ -195,24 +156,13 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen>
   }
 }
 
-class _TabButton extends StatelessWidget {
-  const _TabButton({
-    required this.icon,
-    required this.activeIcon,
-    required this.isActive,
-    required this.onTap,
-  });
+class _DocButton extends StatelessWidget {
+  const _DocButton({required this.onTap});
 
-  final IconData icon;
-  final IconData activeIcon;
-  final bool isActive;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    final cs = Theme.of(context).colorScheme;
-    final color = isActive ? cs.primary : cs.onSurfaceVariant;
-
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
@@ -220,67 +170,14 @@ class _TabButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: [Icon(isActive ? activeIcon : icon, color: color)],
+          children: [
+            Icon(
+              Icons.article_outlined,
+              color: Theme.of(context).colorScheme.onSurfaceVariant,
+            ),
+          ],
         ),
       ),
-    );
-  }
-}
-
-class _DocsTab extends StatelessWidget {
-  const _DocsTab({required this.score});
-
-  final Score score;
-
-  Future<String> _loadDoc(String locale) async {
-    final path = score.doc?.call(locale);
-    if (path == null || path.isEmpty) return '';
-
-    // Try locale-specific file first, fall back to the returned path directly.
-    final localePath = path.replaceAll(
-      RegExp(r'\.md$'),
-      '_$locale.md',
-    );
-    try {
-      return await rootBundle.loadString(localePath);
-    } catch (_) {
-      return rootBundle.loadString(path);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (score.doc == null) {
-      return const Center(child: Text('No documentation available.'));
-    }
-
-    final locale = Localizations.localeOf(context).languageCode;
-
-    return FutureBuilder<String>(
-      future: _loadDoc(locale),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (snapshot.hasError || !snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No documentation available.'));
-        }
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: parseMarkdown(
-              snapshot.data!,
-              onLinkTap: (url) async {
-                final uri = Uri.tryParse(url);
-                if (uri != null && await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
-                }
-              },
-            ),
-          ),
-        );
-      },
     );
   }
 }

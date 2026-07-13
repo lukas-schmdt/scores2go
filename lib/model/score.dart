@@ -10,13 +10,8 @@ class Score {
   final List<Group> groups;
   final ScoreResult Function(Score)? scoreFunction;
   final ScoreVisibility Function(Score)? visibilityFunction;
-  /// Returns the asset path for the documentation in the given locale.
-  /// Fall back to a default by returning a path regardless of locale.
-  final String? Function(String locale)? doc;
   /// Returns the external website URL opened in a browser when the docs button
-  /// is tapped. Receives the current locale so locale-specific URLs can be
-  /// returned. When set, the docs button launches the URL instead of showing
-  /// the in-app markdown tab. When only [doc] is set, the markdown tab is shown.
+  /// is tapped. Receives the current locale so locale-specific URLs can be returned.
   final String? Function(String locale)? docUrl;
   final String? author;
   final int? year;
@@ -31,7 +26,6 @@ class Score {
     required this.groups,
     this.scoreFunction,
     this.visibilityFunction,
-    this.doc,
     this.docUrl,
     this.author,
     this.year,
@@ -54,7 +48,7 @@ class Score {
       groups: groups ?? this.groups,
       scoreFunction: scoreFunction,
       visibilityFunction: visibilityFunction,
-      doc: doc,
+      docUrl: docUrl,
       author: author,
       year: year,
       popularity: popularity,
@@ -69,7 +63,6 @@ class Score {
       display: json['display'] as String,
       description: json['description'] as String? ?? '',
       groups: [],
-      doc: json['doc'] != null ? (_) => json['doc'] as String : null,
     );
   }
 
@@ -80,7 +73,6 @@ class Score {
       'display': display,
       'description': description,
       'groups': [],
-      'doc': doc,
     };
   }
 }

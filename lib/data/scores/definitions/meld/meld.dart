@@ -17,7 +17,6 @@ Score buildMeldScore(String lang) {
     year: 2001,
     popularity: 88,
     categories: ['Hepatology', 'Transplant', 'Severity'],
-    doc: (_) => 'lib/data/scores/definitions/meld/meld_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/meld.html'
         : 'https://scores2go.com/scores/meld.html',

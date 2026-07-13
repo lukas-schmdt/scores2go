@@ -10,7 +10,6 @@ Score buildRassScore(String lang) {
   return Score(
     id: 7,
     name: 'rass',
-    doc: (_) => 'lib/data/scores/definitions/rass/rass_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/rass.html'
         : 'https://scores2go.com/scores/rass.html',

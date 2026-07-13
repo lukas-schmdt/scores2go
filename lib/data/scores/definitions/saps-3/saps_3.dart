@@ -10,7 +10,6 @@ Score buildSaps3Score(String lang) {
   return Score(
     id: 10,
     name: 'saps3',
-    doc: (_) => 'lib/data/scores/definitions/saps-3/saps_3_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/saps3.html'
         : 'https://scores2go.com/scores/saps3.html',

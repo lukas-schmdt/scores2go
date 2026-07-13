@@ -16,7 +16,6 @@ Score buildFinneganScore(String lang) {
     year: 1975,
     popularity: 82,
     categories: ['Neonatology', 'NAS'],
-    doc: (_) => 'lib/data/scores/definitions/finnegan/finnegan_doc.md',
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/finnegan.html'
         : 'https://scores2go.com/scores/finnegan.html',

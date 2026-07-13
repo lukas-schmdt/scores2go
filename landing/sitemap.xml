@@ -201,5 +201,19 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://scores2go.com/scores/news2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/news2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/news2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/news2.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/news2.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/news2.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>
