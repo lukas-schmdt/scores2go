@@ -13,6 +13,9 @@ Score buildSapsIiScore(String lang) {
     name: 'saps-ii',
     scoreFunction: sapsIiFunction,
     visibilityFunction: sapsIiVisibility,
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/saps-ii.html'
+        : 'https://scores2go.com/scores/saps-ii.html',
     author: 'Le Gall et al.',
     year: 1993,
     popularity: 88,

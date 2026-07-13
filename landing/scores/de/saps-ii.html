@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAPS II (Simplified Acute Physiology Score II) – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="SAPS II — Simplified Acute Physiology Score II: prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps-ii.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps-ii.html" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    td.pts { text-align: center; font-weight: 700; }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">ICU · Severity</div>
+    <h1>SAPS II</h1>
+    <p>Simplified Acute Physiology Score II — prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme. Einer der weltweit am häufigsten eingesetzten ICU-Schwere-Scores.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Le Gall et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        1993
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularität 88
+      </span>
+    </div>
+    <a class="lang-link" href="../saps-ii.html">🇬🇧 English</a>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>SAPS II (Simplified Acute Physiology Score II) wurde 1993 von Le Gall et al. nach einer europäisch-nordamerikanischen Multizenterstudie mit 13.152 ICU-Patienten in 137 Einheiten veröffentlicht. Er folgte dem ursprünglichen SAPS (1984) mit verbesserter Trennschärfe und breiterer Validierung. Der Score verwendet 17 Variablen — 12 Physiologieparameter, Alter, Aufnahmeart und eine Kategorie chronischer Erkrankungen — die alle als schlechteste Werte in den ersten 24 Stunden der ICU-Aufnahme erhoben werden.</p>
+      <p>Im Gegensatz zu organdysfunktionszentrierten Scores wie SOFA liefert SAPS II eine direkte Schätzung der Krankenhausmortalitätswahrscheinlichkeit über eine logistische Regressionsfunktion. Der Wertebereich beträgt 0–163 Punkte; die Sterbewahrscheinlichkeit ergibt sich als: logit(p) = −7,7631 + 0,0737 × SAPS II + 0,9971 × ln(SAPS II + 1).</p>
+      <p>SAPS II wird weiterhin häufig als Benchmark-Instrument zur ICU-Qualitätsbewertung und zum Zentrenvergleich eingesetzt, obwohl sein Alter in modernen Patientenpopulationen zu Kalibrierungsabweichungen führen kann.</p>
+    </div>
+
+    <div class="section">
+      <h2>Variablen &amp; Punkte</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Variable</th><th>Bereich / Kategorie</th><th class="pts">Punkte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="6"><strong>Alter</strong></td><td>&lt; 40 Jahre</td><td class="pts">0</td></tr>
+            <tr><td>40 – 59 Jahre</td><td class="pts">7</td></tr>
+            <tr><td>60 – 69 Jahre</td><td class="pts">12</td></tr>
+            <tr><td>70 – 74 Jahre</td><td class="pts">15</td></tr>
+            <tr><td>75 – 79 Jahre</td><td class="pts">16</td></tr>
+            <tr><td>≥ 80 Jahre</td><td class="pts">18</td></tr>
+            <tr><td rowspan="3"><strong>Art der Aufnahme</strong></td><td>Geplante chirurgische Aufnahme</td><td class="pts">0</td></tr>
+            <tr><td>Medizinische Aufnahme</td><td class="pts">6</td></tr>
+            <tr><td>Ungeplante chirurgische Aufnahme</td><td class="pts">8</td></tr>
+            <tr><td rowspan="4"><strong>Chronische Erkrankungen</strong></td><td>Keine</td><td class="pts">0</td></tr>
+            <tr><td>Metastasierendes Karzinom</td><td class="pts">9</td></tr>
+            <tr><td>Hämatologische Malignität</td><td class="pts">10</td></tr>
+            <tr><td>AIDS</td><td class="pts">17</td></tr>
+            <tr><td rowspan="5"><strong>Herzfrequenz</strong> (/min)</td><td>&lt; 40</td><td class="pts">11</td></tr>
+            <tr><td>40 – 69</td><td class="pts">2</td></tr>
+            <tr><td>70 – 119</td><td class="pts">0</td></tr>
+            <tr><td>120 – 159</td><td class="pts">4</td></tr>
+            <tr><td>≥ 160</td><td class="pts">7</td></tr>
+            <tr><td rowspan="4"><strong>Systolischer BD</strong> (mmHg)</td><td>&lt; 70</td><td class="pts">13</td></tr>
+            <tr><td>70 – 99</td><td class="pts">5</td></tr>
+            <tr><td>100 – 199</td><td class="pts">0</td></tr>
+            <tr><td>≥ 200</td><td class="pts">2</td></tr>
+            <tr><td rowspan="2"><strong>Körpertemperatur</strong></td><td>&lt; 39 °C</td><td class="pts">0</td></tr>
+            <tr><td>≥ 39 °C</td><td class="pts">3</td></tr>
+            <tr><td rowspan="5"><strong>Glasgow Coma Scale</strong></td><td>14 – 15</td><td class="pts">0</td></tr>
+            <tr><td>11 – 13</td><td class="pts">5</td></tr>
+            <tr><td>9 – 10</td><td class="pts">7</td></tr>
+            <tr><td>6 – 8</td><td class="pts">13</td></tr>
+            <tr><td>&lt; 6</td><td class="pts">26</td></tr>
+            <tr><td rowspan="3"><strong>PaO₂/FiO₂</strong> (mmHg) <em>bei Beatmung</em></td><td>≥ 200</td><td class="pts">6</td></tr>
+            <tr><td>100 – 199</td><td class="pts">9</td></tr>
+            <tr><td>&lt; 100</td><td class="pts">11</td></tr>
+            <tr><td rowspan="3"><strong>Urinausscheidung</strong> (mL/24 h)</td><td>≥ 1000</td><td class="pts">0</td></tr>
+            <tr><td>500 – 999</td><td class="pts">4</td></tr>
+            <tr><td>&lt; 500</td><td class="pts">11</td></tr>
+            <tr><td rowspan="3"><strong>BUN / Harnstoff-N</strong> (mg/dL)</td><td>&lt; 28</td><td class="pts">0</td></tr>
+            <tr><td>28 – 83</td><td class="pts">6</td></tr>
+            <tr><td>≥ 84</td><td class="pts">10</td></tr>
+            <tr><td rowspan="3"><strong>Leukozyten</strong> (×10³/µL)</td><td>1 – 19,9</td><td class="pts">0</td></tr>
+            <tr><td>≥ 20</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 1</td><td class="pts">12</td></tr>
+            <tr><td rowspan="2"><strong>Kalium</strong> (mmol/L)</td><td>3,0 – 4,9</td><td class="pts">0</td></tr>
+            <tr><td>&lt; 3,0 oder ≥ 5,0</td><td class="pts">3</td></tr>
+            <tr><td rowspan="3"><strong>Natrium</strong> (mmol/L)</td><td>125 – 144</td><td class="pts">0</td></tr>
+            <tr><td>≥ 145</td><td class="pts">1</td></tr>
+            <tr><td>&lt; 125</td><td class="pts">5</td></tr>
+            <tr><td rowspan="3"><strong>Bicarbonat</strong> (mmol/L)</td><td>≥ 20</td><td class="pts">0</td></tr>
+            <tr><td>15 – 19</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 15</td><td class="pts">6</td></tr>
+            <tr><td rowspan="3"><strong>Bilirubin</strong> (mg/dL)</td><td>&lt; 4,0</td><td class="pts">0</td></tr>
+            <tr><td>4,0 – 5,9</td><td class="pts">4</td></tr>
+            <tr><td>≥ 6,0</td><td class="pts">9</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Es wird immer der <em>schlechteste</em> (am stärksten pathologische) Wert der ersten 24 Stunden verwendet. PaO₂/FiO₂ wird nur gewertet, wenn der Patient beatmet oder auf CPAP ist. Bei Sedierung den geschätzten präsedativen GCS verwenden.</div>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>SAPS-II-Score</th><th>Geschätzte Krankenhausmortalität</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&lt; 29</td><td>~10 %</td></tr>
+            <tr><td>29 – 40</td><td>~25 %</td></tr>
+            <tr><td>41 – 52</td><td>~40 – 50 %</td></tr>
+            <tr><td>53 – 64</td><td>~60 – 75 %</td></tr>
+            <tr><td>≥ 65</td><td>&gt; 80 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Sterbewahrscheinlichkeit: logit(p) = −7,7631 + 0,0737 × SAPS II + 0,9971 × ln(SAPS II + 1), dann p = e^logit / (1 + e^logit). Die Scores2Go-App zeigt die berechnete Wahrscheinlichkeit direkt an.</div>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <p>Le Gall JR, Lemeshow S, Saulnier F. A new simplified acute physiology score (SAPS II) based on a European/North American multicenter study. <em>JAMA.</em> 1993;270(24):2957–2963.</p>
+      <p>Zimmerman JE, Kramer AA, McNair DS, Malila FM. Acute Physiology and Chronic Health Evaluation (APACHE) IV: hospital mortality assessment for today's critically ill patients. <em>Crit Care Med.</em> 2006;34(5):1297–1310.</p>
+    </div>
+
+    <div class="section cta">
+      <p>SAPS II direkt in Scores2Go berechnen — kostenlos, für die Web-App kein Konto erforderlich.</p>
+      <a class="button" href="../../app/?score=saps-ii">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Kein Ersatz für klinisches Urteilsvermögen. Immer aktuelle klinische Leitlinien und lokale Protokolle konsultieren.</p>
+
+  </main>
+
+</body>
+</html>

@@ -215,5 +215,33 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://scores2go.com/scores/sofa.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/sofa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/sofa.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/sofa.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/sofa.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/sofa.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/saps-ii.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps-ii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps-ii.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/saps-ii.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps-ii.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps-ii.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>

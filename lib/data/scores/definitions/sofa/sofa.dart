@@ -13,6 +13,9 @@ Score buildSofaScore(String lang) {
     name: 'sofa',
     scoreFunction: sofaFunction,
     visibilityFunction: sofaVisibility,
+    docUrl: (locale) => locale == 'de'
+        ? 'https://scores2go.com/scores/de/sofa.html'
+        : 'https://scores2go.com/scores/sofa.html',
     author: 'Vincent et al.',
     year: 1996,
     popularity: 92,
