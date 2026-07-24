@@ -112,7 +112,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         email: event.email,
         password: event.password,
         emailRedirectTo: kIsWeb
-            ? 'https://scores2go.com/app'
+            ? 'https://scores2go.com/app/'
             : 'io.supabase.scores2go://login-callback',
       );
       emit(
@@ -219,11 +219,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await Supabase.instance.client.auth.updateUser(
         UserAttributes(password: event.newPassword),
       );
-      emit(state.copyWith(status: AuthStatus.changePasswordSuccess, clearError: true));
+      emit(
+        state.copyWith(
+          status: AuthStatus.changePasswordSuccess,
+          clearError: true,
+        ),
+      );
     } on AuthException catch (e) {
-      emit(state.copyWith(status: AuthStatus.changePasswordFailed, errorMessage: e.message));
+      emit(
+        state.copyWith(
+          status: AuthStatus.changePasswordFailed,
+          errorMessage: e.message,
+        ),
+      );
     } catch (_) {
-      emit(state.copyWith(status: AuthStatus.changePasswordFailed, clearError: true));
+      emit(
+        state.copyWith(
+          status: AuthStatus.changePasswordFailed,
+          clearError: true,
+        ),
+      );
     }
   }
 
