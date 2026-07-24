@@ -112,7 +112,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         email: event.email,
         password: event.password,
         emailRedirectTo: kIsWeb
-            ? 'https://lukas-schmdt.github.io/scores2go/'
+            ? 'https://scores2go.com/app'
             : 'io.supabase.scores2go://login-callback',
       );
       emit(
@@ -145,7 +145,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       await Supabase.instance.client.auth.resetPasswordForEmail(
         event.email,
         redirectTo: kIsWeb
-            ? 'https://lukas-schmdt.github.io/scores2go/'
+            ? 'https://scores2go.com/app'
             : 'io.supabase.scores2go://login-callback',
       );
       emit(
