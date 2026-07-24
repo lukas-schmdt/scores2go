@@ -1,5 +1,6 @@
 import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii.dart';
 import 'package:scores_2_go/data/scores/definitions/cam-icu/cam_icu.dart';
+import 'package:scores_2_go/data/scores/definitions/cha2ds2-vasc/cha2ds2_vasc.dart';
 import 'package:scores_2_go/data/scores/definitions/dose-calc/dose_calc.dart';
 import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore.dart';
 import 'package:scores_2_go/data/scores/definitions/finnegan/finnegan.dart';
@@ -36,6 +37,7 @@ List<Score> buildScoresList(String lang) {
     buildDoseCalcScore(lang),
     buildNews2Score(lang),
     buildQsofaScore(lang),
+    buildCha2ds2VascScore(lang),
   ];
 
   assert(() {

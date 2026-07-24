@@ -53,3 +53,4 @@ flutter:
     - lib/data/scores/definitions/dose-calc/
     - lib/data/scores/definitions/news2/
     - lib/data/scores/definitions/qsofa/
+    - lib/data/scores/definitions/cha2ds2-vasc/
