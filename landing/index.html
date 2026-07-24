@@ -467,9 +467,171 @@
     <!-- Category filter chips -->
     <div class="filter-row" id="filterRow" role="group" aria-label="Filter by category"></div>
 
-    <!-- Grid -->
+    <!-- Grid: rendered statically so every score page is a real, crawlable link
+         even before JS runs. JS only toggles visibility for search/filter and
+         swaps the description text on language switch — see render() below. -->
     <div id="scoreGrid">
-      <div id="noResults">
+      <a class="score-card" href="./scores/apache2.html">
+        <div class="score-card-top">
+          <span class="score-name">APACHE II</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Acute physiology and chronic health evaluation — predicts ICU mortality from 12 physiological variables, age, and chronic health status.</p>
+        <div class="score-tags"><span class="tag icu">ICU</span><span class="tag severity">Severity</span></div>
+      </a>
+      <a class="score-card" href="./scores/saps3.html">
+        <div class="score-card-top">
+          <span class="score-name">SAPS 3</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Simplified Acute Physiology Score 3 — predicts in-hospital mortality from 20 variables at ICU admission. Validated in 35 countries.</p>
+        <div class="score-tags"><span class="tag icu">ICU</span><span class="tag severity">Mortality</span></div>
+      </a>
+      <a class="score-card" href="./scores/mods.html">
+        <div class="score-card-top">
+          <span class="score-name">MODS</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Multiple Organ Dysfunction Score — quantifies organ dysfunction across six systems (respiratory, renal, hepatic, cardiovascular, haematologic, neurologic).</p>
+        <div class="score-tags"><span class="tag icu">ICU</span><span class="tag severity">Severity</span><span class="tag icu">Critical Care</span></div>
+      </a>
+      <a class="score-card" href="./scores/rass.html">
+        <div class="score-card-top">
+          <span class="score-name">RASS</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Richmond Agitation-Sedation Scale — 10-point scale from +4 (combative) to −5 (unarousable) for sedation monitoring in the ICU.</p>
+        <div class="score-tags"><span class="tag sedation">Sedation</span><span class="tag icu">ICU</span></div>
+      </a>
+      <a class="score-card" href="./scores/ramsay.html">
+        <div class="score-card-top">
+          <span class="score-name">Ramsay</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Six-level sedation scale — one of the first ICU sedation scoring systems, from anxious/agitated (1) to no response (6).</p>
+        <div class="score-tags"><span class="tag sedation">Sedation</span><span class="tag icu">ICU</span></div>
+      </a>
+      <a class="score-card" href="./scores/cam-icu.html">
+        <div class="score-card-top">
+          <span class="score-name">CAM-ICU</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Confusion Assessment Method for the ICU — most validated delirium detection tool for mechanically ventilated and non-verbal patients.</p>
+        <div class="score-tags"><span class="tag delirium">Delirium</span><span class="tag icu">ICU</span></div>
+      </a>
+      <a class="score-card" href="./scores/nudesc.html">
+        <div class="score-card-top">
+          <span class="score-name">Nu-DESC</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Nursing Delirium Screening Scale — five-item nurse-administered bedside tool. Score ≥ 2 indicates delirium.</p>
+        <div class="score-tags"><span class="tag delirium">Delirium</span><span class="tag icu">ICU</span><span class="tag delirium">Nursing</span></div>
+      </a>
+      <a class="score-card" href="./scores/gcs.html">
+        <div class="score-card-top">
+          <span class="score-name">GCS</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response (3–15).</p>
+        <div class="score-tags"><span class="tag neuro">Neurology</span><span class="tag icu">ICU</span><span class="tag severity">Emergency</span></div>
+      </a>
+      <a class="score-card" href="./scores/euroscore2.html">
+        <div class="score-card-top">
+          <span class="score-name">EuroSCORE II</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">European System for Cardiac Operative Risk Evaluation II — estimates 30-day operative mortality for adult cardiac surgery.</p>
+        <div class="score-tags"><span class="tag cardiac">Cardiac Surgery</span><span class="tag severity">Mortality</span></div>
+      </a>
+      <a class="score-card" href="./scores/horovitz.html">
+        <div class="score-card-top">
+          <span class="score-name">Horovitz Quotient</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">PaO₂/FiO₂ ratio — standard measure of oxygenation efficiency and basis of the ARDS Berlin Definition severity classification.</p>
+        <div class="score-tags"><span class="tag pulm">Pulmonology</span><span class="tag icu">ICU</span><span class="tag pulm">ARDS</span></div>
+      </a>
+      <a class="score-card" href="./scores/meld.html">
+        <div class="score-card-top">
+          <span class="score-name">MELD</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.</p>
+        <div class="score-tags"><span class="tag hepato">Hepatology</span><span class="tag hepato">Transplant</span></div>
+      </a>
+      <a class="score-card" href="./scores/finnegan.html">
+        <div class="score-card-top">
+          <span class="score-name">Finnegan NAS</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Neonatal Abstinence Score — assesses opioid withdrawal severity in newborns across 21 signs in CNS, metabolic, and gastrointestinal domains.</p>
+        <div class="score-tags"><span class="tag neo">Neonatology</span><span class="tag neo">NAS</span></div>
+      </a>
+      <a class="score-card" href="./scores/dose-calc.html">
+        <div class="score-card-top">
+          <span class="score-name">Dose Calculator</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Bidirectional infusion calculator — converts pump rate (ml/h) ↔ weight-adjusted dose per kg. Supports µg, mg, IU with /min and /h.</p>
+        <div class="score-tags"><span class="tag calc">Calculator</span><span class="tag icu">ICU</span><span class="tag calc">Pharmacology</span></div>
+      </a>
+      <a class="score-card" href="./scores/news2.html">
+        <div class="score-card-top">
+          <span class="score-name">NEWS2</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">National Early Warning Score 2 — standardised 7-parameter tool for early detection of acute illness deterioration. Widely adopted in UK hospitals.</p>
+        <div class="score-tags"><span class="tag severity">Emergency</span><span class="tag severity">Severity</span></div>
+      </a>
+      <a class="score-card" href="./scores/sofa.html">
+        <div class="score-card-top">
+          <span class="score-name">SOFA</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Sequential Organ Failure Assessment — tracks organ dysfunction across 6 systems (respiratory, coagulation, liver, cardiovascular, CNS, renal) on a 0–4 scale. Central to the Sepsis-3 definition.</p>
+        <div class="score-tags"><span class="tag icu">Sepsis</span><span class="tag icu">ICU</span></div>
+      </a>
+      <a class="score-card" href="./scores/saps-ii.html">
+        <div class="score-card-top">
+          <span class="score-name">SAPS II</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Simplified Acute Physiology Score II — predicts hospital mortality from 17 variables collected in the first 24 hours of ICU admission.</p>
+        <div class="score-tags"><span class="tag icu">ICU</span><span class="tag severity">Severity</span></div>
+      </a>
+      <div id="noResults" style="display:none;">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
         <p data-i18n="noResultsTitle">No scores found</p>
         <span data-i18n="noResultsHint">Try a different search term or category</span>
@@ -714,23 +876,6 @@
       render();
     }
 
-    // ── Tag colour helper ─────────────────────────────────────────────────
-    const tagClassMap = {
-      "ICU": "icu", "Sedation": "sedation", "Delirium": "delirium",
-      "Neurology": "neuro", "Cardiology": "cardiac", "Pulmonology": "pulm",
-      "Hepatology": "hepato", "Neonatology": "neo", "Calculator": "calc",
-      "Severity": "severity", "Emergency": "severity", "Sepsis": "icu",
-      "Nursing": "delirium", "ARDS": "pulm", "Transplant": "hepato",
-      "NAS": "neo", "Trauma": "severity", "Mortality": "severity",
-      "Pharmacology": "calc", "Nephrology": "pulm", "Haematology": "cardiac",
-      "Oncology": "severity", "Obstetrics": "neo", "Gastroenterology": "hepato",
-      "Rheumatology": "cardiac", "Psychiatry": "neuro",
-      "Infectious Disease": "delirium", "Vascular": "cardiac",
-      "Critical Care": "icu", "Cardiac Surgery": "cardiac",
-    };
-
-    function tagClass(tag) { return tagClassMap[tag] || ""; }
-
     // ── Build filter chips ─────────────────────────────────────────────────
     function buildChips() {
       const cats = Object.keys(categoryMeta);
@@ -764,74 +909,38 @@
       });
     }
 
-    // ── Filter ─────────────────────────────────────────────────────────────
-    function filtered() {
-      const q = searchQuery.trim().toLowerCase();
-      return scores.filter(s => {
-        const matchCat = activeCategory === "All" || s.tags.includes(activeCategory);
-        if (!matchCat) return false;
-        if (!q) return true;
-        const desc = typeof s.desc === "object" ? s.desc[lang] : s.desc;
-        return (
-          s.name.toLowerCase().includes(q) ||
-          desc.toLowerCase().includes(q) ||
-          s.tags.some(tag => tag.toLowerCase().includes(q))
-        );
-      });
-    }
-
     // ── Render grid ────────────────────────────────────────────────────────
+    // Cards are already present in the static HTML (crawlable without JS).
+    // render() only toggles visibility for search/filter and refreshes the
+    // description text on language switch — it never rebuilds the DOM.
     function render() {
-      const items = filtered();
-      const grid  = document.getElementById("scoreGrid");
+      const q     = searchQuery.trim().toLowerCase();
+      const cards = document.querySelectorAll("#scoreGrid .score-card");
       const noRes = document.getElementById("noResults");
       const count = document.getElementById("resultCount");
 
-      count.textContent = items.length === scores.length
+      let visible = 0;
+      scores.forEach((s, i) => {
+        const card = cards[i];
+        const desc = typeof s.desc === "object" ? s.desc[lang] : s.desc;
+        const matchCat = activeCategory === "All" || s.tags.includes(activeCategory);
+        const matchQ = !q ||
+          s.name.toLowerCase().includes(q) ||
+          desc.toLowerCase().includes(q) ||
+          s.tags.some(tag => tag.toLowerCase().includes(q));
+        const show = matchCat && matchQ;
+
+        const descEl = card.querySelector(".score-desc");
+        if (descEl) descEl.textContent = desc;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+
+      count.textContent = visible === scores.length
         ? t[lang].countAll(scores.length)
-        : t[lang].countFiltered(items.length, scores.length);
+        : t[lang].countFiltered(visible, scores.length);
 
-      if (!items.length) {
-        grid.innerHTML = "";
-        grid.appendChild(noRes);
-        noRes.style.display = "block";
-        return;
-      }
-
-      noRes.style.display = "none";
-
-      grid.innerHTML = items.map(s => {
-        const desc   = typeof s.desc === "object" ? s.desc[lang] : s.desc;
-        const tagHtml = s.tags
-          .map(tag => `<span class="tag ${tagClass(tag)}">${tag}</span>`)
-          .join("");
-
-        const arrow = `
-          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-          </svg>`;
-
-        if (s.href) {
-          return `
-            <a class="score-card" href="${s.href}">
-              <div class="score-card-top">
-                <span class="score-name">${s.name}</span>
-                ${arrow}
-              </div>
-              <p class="score-desc">${desc}</p>
-              <div class="score-tags">${tagHtml}</div>
-            </a>`;
-        } else {
-          return `
-            <div class="score-card" style="cursor:default;" title="Coming soon — available in the app">
-              <div class="score-card-top">
-                <span class="score-name">${s.name}</span>
-              </div>
-              <p class="score-desc">${desc}</p>
-              <div class="score-tags">${tagHtml}</div>
-            </div>`;
-        }
-      }).join("");
+      noRes.style.display = visible ? "none" : "block";
     }
 
     // ── Search input ───────────────────────────────────────────────────────
