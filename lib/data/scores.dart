@@ -8,6 +8,7 @@ import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz.dart';
 import 'package:scores_2_go/data/scores/definitions/meld/meld.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods.dart';
 import 'package:scores_2_go/data/scores/definitions/nudesc/nudesc.dart';
+import 'package:scores_2_go/data/scores/definitions/qsofa/qsofa.dart';
 import 'package:scores_2_go/data/scores/definitions/ramsay/ramsay.dart';
 import 'package:scores_2_go/data/scores/definitions/rass/rass.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3.dart';
@@ -34,6 +35,7 @@ List<Score> buildScoresList(String lang) {
     buildCamIcuScore(lang),
     buildDoseCalcScore(lang),
     buildNews2Score(lang),
+    buildQsofaScore(lang),
   ];
 
   assert(() {

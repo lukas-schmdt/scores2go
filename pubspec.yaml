@@ -52,3 +52,4 @@ flutter:
     - lib/data/scores/definitions/cam-icu/
     - lib/data/scores/definitions/dose-calc/
     - lib/data/scores/definitions/news2/
+    - lib/data/scores/definitions/qsofa/
