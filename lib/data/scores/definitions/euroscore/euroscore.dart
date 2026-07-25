@@ -44,13 +44,26 @@ Score buildEuroscoreScore(String lang) {
             trueValue: 1,
             falseValue: 0,
           ),
-          VariableBool(
-            name: 'euroscore-creatinine_high',
-            display: t('creatinine_high.display'),
-            description: t('creatinine_high.description'),
-            value: null,
-            trueValue: 1,
-            falseValue: 0,
+          VariableSelection(
+            name: 'euroscore-renal_function',
+            display: t('renal_function.display'),
+            description: t('renal_function.description'),
+            type: VariableType.select,
+            options: [
+              VariableOption(display: t('renal_function.gt85'), value: 0.0),
+              VariableOption(
+                display: t('renal_function.moderate'),
+                value: 0.303553,
+              ),
+              VariableOption(
+                display: t('renal_function.severe'),
+                value: 0.8592256,
+              ),
+              VariableOption(
+                display: t('renal_function.dialysis'),
+                value: 0.6421508,
+              ),
+            ],
           ),
           VariableBool(
             name: 'euroscore-arteriopathy',
@@ -115,9 +128,9 @@ Score buildEuroscoreScore(String lang) {
             type: VariableType.select,
             options: [
               VariableOption(display: t('nyha.1'), value: 0.0),
-              VariableOption(display: t('nyha.2'), value: 0.1082900),
-              VariableOption(display: t('nyha.3'), value: 0.2962689),
-              VariableOption(display: t('nyha.4'), value: 0.5462446),
+              VariableOption(display: t('nyha.2'), value: 0.1070545),
+              VariableOption(display: t('nyha.3'), value: 0.2958358),
+              VariableOption(display: t('nyha.4'), value: 0.5597929),
             ],
           ),
           VariableBool(
@@ -184,7 +197,7 @@ Score buildEuroscoreScore(String lang) {
               VariableOption(display: t('urgency.elective'), value: 0.0),
               VariableOption(display: t('urgency.urgent'), value: 0.3174673),
               VariableOption(display: t('urgency.emergency'), value: 0.7039121),
-              VariableOption(display: t('urgency.salvage'), value: 1.3337492),
+              VariableOption(display: t('urgency.salvage'), value: 1.362947),
             ],
           ),
           VariableSelection(
@@ -203,14 +216,6 @@ Score buildEuroscoreScore(String lang) {
             name: 'euroscore-thoracic_aorta',
             display: t('thoracic_aorta.display'),
             description: t('thoracic_aorta.description'),
-            value: null,
-            trueValue: 1,
-            falseValue: 0,
-          ),
-          VariableBool(
-            name: 'euroscore-septal_rupture',
-            display: t('septal_rupture.display'),
-            description: t('septal_rupture.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,

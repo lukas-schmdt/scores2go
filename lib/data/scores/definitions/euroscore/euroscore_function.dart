@@ -17,8 +17,8 @@ ScoreResult euroscoreFunction(Score score, String lang) {
 
   final age = ctx.numValue('euroscore-age')?['value'] as num?;
   final female = ctx.boolValue('euroscore-female')?['value'] as bool?;
-  final creatHigh =
-      ctx.boolValue('euroscore-creatinine_high')?['value'] as bool?;
+  final renalPts =
+      ctx.singleSelect('euroscore-renal_function')?['value'] as num?;
   final arterio = ctx.boolValue('euroscore-arteriopathy')?['value'] as bool?;
   final poorMob = ctx.boolValue('euroscore-poor_mobility')?['value'] as bool?;
   final prevSurg = ctx.boolValue('euroscore-prev_surgery')?['value'] as bool?;
@@ -36,13 +36,11 @@ ScoreResult euroscoreFunction(Score score, String lang) {
   final procPts = ctx.singleSelect('euroscore-procedure')?['value'] as num?;
   final thorAorta =
       ctx.boolValue('euroscore-thoracic_aorta')?['value'] as bool?;
-  final sepRupture =
-      ctx.boolValue('euroscore-septal_rupture')?['value'] as bool?;
 
   final allComplete =
       age != null &&
       female != null &&
-      creatHigh != null &&
+      renalPts != null &&
       arterio != null &&
       poorMob != null &&
       prevSurg != null &&
@@ -57,8 +55,7 @@ ScoreResult euroscoreFunction(Score score, String lang) {
       pulmPts != null &&
       urgencyPts != null &&
       procPts != null &&
-      thorAorta != null &&
-      sepRupture != null;
+      thorAorta != null;
 
   if (!allComplete) {
     return ScoreResult.incomplete(
@@ -67,12 +64,14 @@ ScoreResult euroscoreFunction(Score score, String lang) {
     );
   }
 
-  // Age coefficient: 0.0285181 per year
-  final ageTerm = age.toDouble() * 0.0285181;
+  // Age term: EuroSCORE II defines Xi=1 for any age ≤ 60, and Xi = age-59
+  // for age > 60 (Nashef et al. 2012, Table 6 footnote) — not raw age.
+  final ageXi = age <= 60 ? 1.0 : (age.toDouble() - 59.0);
+  final ageTerm = ageXi * 0.0285181;
   final femaleTerm = (female ? 1.0 : 0.0) * 0.2196434;
-  final creatTerm = (creatHigh ? 1.0 : 0.0) * 0.6521653;
+  final renalTerm = renalPts.toDouble();
   final arterTerm = (arterio ? 1.0 : 0.0) * 0.5360268;
-  final mobTerm = (poorMob ? 1.0 : 0.0) * 0.2407651;
+  final mobTerm = (poorMob ? 1.0 : 0.0) * 0.2407181;
   final prevTerm = (prevSurg ? 1.0 : 0.0) * 1.118599;
   final copdTerm = (copd ? 1.0 : 0.0) * 0.1886564;
   final endoTerm = (endocard ? 1.0 : 0.0) * 0.6194522;
@@ -86,13 +85,12 @@ ScoreResult euroscoreFunction(Score score, String lang) {
   final urgTerm = urgencyPts.toDouble();
   final procTerm = procPts.toDouble();
   final aortaTerm = (thorAorta ? 1.0 : 0.0) * 0.6527205;
-  final sepTerm = (sepRupture ? 1.0 : 0.0) * 1.462009;
 
   final logit =
       -5.324537 +
       ageTerm +
       femaleTerm +
-      creatTerm +
+      renalTerm +
       arterTerm +
       mobTerm +
       prevTerm +
@@ -107,8 +105,7 @@ ScoreResult euroscoreFunction(Score score, String lang) {
       pulmTerm +
       urgTerm +
       procTerm +
-      aortaTerm +
-      sepTerm;
+      aortaTerm;
 
   final mortality = exp(logit) / (1 + exp(logit));
   final mortalityPct = (mortality * 100).toStringAsFixed(2);

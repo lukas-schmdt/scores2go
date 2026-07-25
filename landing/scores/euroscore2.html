@@ -172,6 +172,16 @@
       margin-bottom: 12px;
       color: #1f2937;
     }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -206,7 +216,8 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>EuroSCORE II replaced the original additive and logistic EuroSCORE (1999) as the recommended preoperative risk model for adult cardiac surgery in Europe. It uses a fully logistic regression model, yielding a predicted 30-day in-hospital mortality as a probability rather than a risk category. The model was derived from 22,381 consecutive patients undergoing cardiac surgery in 43 countries between May 2010 and July 2011.</p>
+      <p>EuroSCORE II replaced the original additive and logistic EuroSCORE (1999) as the recommended preoperative risk model for adult cardiac surgery in Europe, after the older model was shown to substantially overestimate mortality in the mostly low-risk contemporary surgical population <sup><a href="#ref2">[2]</a></sup>. It uses a fully logistic regression model, yielding a predicted 30-day in-hospital mortality as a probability rather than a risk category. The model was derived from 22,381 consecutive patients undergoing cardiac surgery in 43 countries between May 2010 and July 2011 <sup><a href="#ref1">[1]</a></sup>.</p>
+      <p>Two variables in the model have counter-intuitive definitions worth knowing before entering data: <strong>age</strong> is not used as a raw continuous value — every age of 60 or below contributes the same fixed amount of risk, and each year <em>above</em> 60 adds one further increment — and <strong>renal function</strong> is graded by creatinine <em>clearance</em> (Cockcroft-Gault, which factors in weight and sex), not by a simple serum creatinine cutoff as in the original 1999 EuroSCORE.</p>
     </div>
 
     <div class="section">
@@ -214,6 +225,7 @@
       <pre>logit = −5.324537 + Σ (variable coefficients)
 
 Predicted mortality = e^logit / (1 + e^logit)</pre>
+      <p>Age contributes as <code>Xi = 1</code> for any age ≤ 60, or <code>Xi = age − 59</code> for age &gt; 60, multiplied by the age coefficient below — so a 45-year-old and a 60-year-old receive an identical age contribution, while a 75-year-old receives 15 increments.</p>
     </div>
 
     <div class="section">
@@ -223,12 +235,14 @@ Predicted mortality = e^logit / (1 + e^logit)</pre>
           <tr><th>Variable</th><th>Coefficient (β)</th></tr>
         </thead>
         <tbody>
-          <tr><td>Age (per year above 60)</td><td>0.0285181</td></tr>
+          <tr><td>Age (Xi transform, see above)</td><td>0.0285181</td></tr>
           <tr><td>Female sex</td><td>0.2196434</td></tr>
-          <tr><td>Serum creatinine &gt; 200 µmol/L or dialysis</td><td>0.6521653</td></tr>
+          <tr><td>Renal function — CrCl 51–85 mL/min</td><td>0.303553</td></tr>
+          <tr><td>Renal function — CrCl ≤ 50 mL/min</td><td>0.8592256</td></tr>
+          <tr><td>Renal function — on dialysis</td><td>0.6421508</td></tr>
           <tr><td>Extracardiac arteriopathy</td><td>0.5360268</td></tr>
-          <tr><td>Poor mobility</td><td>0.2407949</td></tr>
-          <tr><td>Previous cardiac surgery</td><td>1.118837</td></tr>
+          <tr><td>Poor mobility</td><td>0.2407181</td></tr>
+          <tr><td>Previous cardiac surgery</td><td>1.118599</td></tr>
           <tr><td>COPD (long-term bronchodilator/steroid use)</td><td>0.1886564</td></tr>
           <tr><td>Active endocarditis</td><td>0.6194522</td></tr>
           <tr><td>Critical preoperative state</td><td>1.086517</td></tr>
@@ -244,9 +258,9 @@ Predicted mortality = e^logit / (1 + e^logit)</pre>
           <tr><th>Variable</th><th>Category</th><th>Coefficient (β)</th></tr>
         </thead>
         <tbody>
-          <tr><td>NYHA class</td><td>II</td><td>0.1082900</td></tr>
-          <tr><td></td><td>III</td><td>0.2962689</td></tr>
-          <tr><td></td><td>IV</td><td>0.5462446</td></tr>
+          <tr><td>NYHA class</td><td>II</td><td>0.1070545</td></tr>
+          <tr><td></td><td>III</td><td>0.2958358</td></tr>
+          <tr><td></td><td>IV</td><td>0.5597929</td></tr>
           <tr><td>CCS angina class 4</td><td>Yes</td><td>0.2226147</td></tr>
           <tr><td>LV function (EF)</td><td>Moderate 31–50 %</td><td>0.3150652</td></tr>
           <tr><td></td><td>Poor 21–30 %</td><td>0.8084096</td></tr>
@@ -256,11 +270,10 @@ Predicted mortality = e^logit / (1 + e^logit)</pre>
           <tr><td></td><td>Severe &gt; 55 mmHg</td><td>0.3491475</td></tr>
           <tr><td>Urgency</td><td>Urgent</td><td>0.3174673</td></tr>
           <tr><td></td><td>Emergency</td><td>0.7039121</td></tr>
-          <tr><td></td><td>Salvage</td><td>1.3337492</td></tr>
+          <tr><td></td><td>Salvage</td><td>1.362947</td></tr>
           <tr><td>Weight of procedure</td><td>Two procedures</td><td>0.5521478</td></tr>
           <tr><td></td><td>Three or more</td><td>0.9724533</td></tr>
           <tr><td>Surgery on thoracic aorta</td><td>Yes</td><td>0.6527205</td></tr>
-          <tr><td>Post-infarct septal rupture</td><td>Yes</td><td>1.462009</td></tr>
         </tbody>
       </table>
     </div>
@@ -278,17 +291,32 @@ Predicted mortality = e^logit / (1 + e^logit)</pre>
           <tr><td>&gt; 10 %</td><td>Very high</td></tr>
         </tbody>
       </table>
+      <p style="font-size:13px; color:#6b7280; margin-top:-4px;">These bands are a Scores2Go convention for quick triage, not a classification defined in the original paper — EuroSCORE II itself reports only a continuous predicted-mortality percentage.</p>
     </div>
 
     <div class="section">
-      <h2>Interpretation Note</h2>
-      <p>Contemporary single-centre and registry studies have demonstrated that EuroSCORE II may overestimate mortality in high-risk cohorts as outcomes have improved since 2010–2011 derivation. The score should be used as one component of a comprehensive preoperative assessment and discussed in a multidisciplinary Heart Team context.</p>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>External validations have generally confirmed good discrimination for EuroSCORE II, but — as with most severity scores fit to a specific era and population — calibration varies by cohort. A 2013 validation in a modern UK cardiac surgery cohort found strong discrimination alongside some miscalibration by risk stratum <sup><a href="#ref3">[3]</a></sup>. A larger multicentre comparison the same year found EuroSCORE II calibrated substantially better than either the additive or logistic versions of the original 1999 EuroSCORE, though non-trivial overestimation persisted in some risk strata <sup><a href="#ref4">[4]</a></sup>. A 2014 meta-analysis pooling 22 validation studies and more than 145,000 procedures confirmed consistently good discrimination overall, but substantial between-study heterogeneity in calibration — observed-to-expected mortality ratios varied meaningfully by country, era, and case-mix <sup><a href="#ref5">[5]</a></sup>.</p>
+      <p>Well-documented limitations, independent of any single validation study:</p>
+      <ul class="limits">
+        <li><strong>Renal variable is easy to miscode:</strong> the model requires creatinine <em>clearance</em> (Cockcroft-Gault, which needs weight, age, and sex), not a raw serum creatinine value — using serum creatinine directly, as some non-standard calculators have done, systematically misclassifies patients.</li>
+        <li><strong>Counter-intuitive age handling:</strong> the model assigns identical age-related risk to all patients aged 60 or younger; clinicians unfamiliar with this transform may expect age to behave as a smooth continuous risk factor throughout the full age range.</li>
+        <li><strong>No condition-specific endpoints:</strong> a head-to-head comparison with the Society of Thoracic Surgeons (STS) risk model found similar discrimination for mortality, but STS additionally reports stroke, renal failure, and prolonged ventilation risk — EuroSCORE II predicts operative mortality only <sup><a href="#ref6">[6]</a></sup>.</li>
+        <li><strong>Subjective urgency categories:</strong> the boundary between "urgent," "emergency," and "salvage" surgery can be judged differently between centres, and this categorical variable carries some of the largest coefficients in the model.</li>
+        <li><strong>Not validated for individual treatment decisions:</strong> like other cardiac-surgery risk models, EuroSCORE II is intended to support Heart Team discussion and population-level quality benchmarking, not to determine operability for a single patient on its own.</li>
+      </ul>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Nashef SA, Roques F, Sharples LD, et al. <em>EuroSCORE II.</em> Eur J Cardiothorac Surg. 2012;41(4):734–745.</p>
-      <p>Kirmani BH, Mazhar K, Fabri BM, Pullan DM. <em>Comparison of the EuroSCORE II and Society of Thoracic Surgeons 2008 risk tools.</em> Eur J Cardiothorac Surg. 2013;44(6):999–1005.</p>
+      <ol class="refs">
+        <li id="ref1">Nashef SA, Roques F, Sharples LD, Nilsson J, Smith C, Goldstone AR, Lockowandt U. EuroSCORE II. <em>Eur J Cardiothorac Surg.</em> 2012;41(4):734–744. doi:10.1093/ejcts/ezs043</li>
+        <li id="ref2">Nashef SA, Roques F, Michel P, Gauducheau E, Lemeshow S, Salamon R. European system for cardiac operative risk evaluation (EuroSCORE). <em>Eur J Cardiothorac Surg.</em> 1999;16(1):9–13. doi:10.1016/s1010-7940(99)00134-7</li>
+        <li id="ref3">Chalmers J, Pullan M, Fabri B, et al. Validation of EuroSCORE II in a modern cohort of patients undergoing cardiac surgery. <em>Eur J Cardiothorac Surg.</em> 2013;43(4):688–694. doi:10.1093/ejcts/ezs406</li>
+        <li id="ref4">Barili F, Pacini D, Capo A, et al. Does EuroSCORE II perform better than its original versions? A multicentre validation study. <em>Eur Heart J.</em> 2013;34(1):22–29. doi:10.1093/eurheartj/ehs342</li>
+        <li id="ref5">Guida P, Mastro F, Scrascia G, et al. Performance of the European System for Cardiac Operative Risk Evaluation II: a meta-analysis of 22 studies involving 145,592 cardiac surgery procedures. <em>J Thorac Cardiovasc Surg.</em> 2014;148(6):3049–3057. doi:10.1016/j.jtcvs.2014.07.039</li>
+        <li id="ref6">Kirmani BH, Mazhar K, Fabri BM, Pullan DM. Comparison of the EuroSCORE II and Society of Thoracic Surgeons 2008 risk tools. <em>Eur J Cardiothorac Surg.</em> 2013;44(6):999–1005. doi:10.1093/ejcts/ezt216</li>
+      </ol>
     </div>
 
     <div class="cta">

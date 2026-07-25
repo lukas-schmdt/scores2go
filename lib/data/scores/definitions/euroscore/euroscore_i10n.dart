@@ -19,12 +19,20 @@ class EuroscoreI10n extends ScoreI10n {
       'group.operation.description': 'Procedure type, urgency and complexity.',
       // Patient factors
       'age.display': 'Age',
-      'age.description': 'Patient age in years (continuous).',
+      'age.description':
+          'Patient age in years. EuroSCORE II treats every age of 60 or '
+          'below identically; each year above 60 adds further risk.',
       'female.display': 'Female sex',
       'female.description': 'Female patients carry an additional risk.',
-      'creatinine_high.display': 'Serum creatinine > 200 µmol/L',
-      'creatinine_high.description':
-          'Pre-operative serum creatinine > 200 µmol/L (> 2.27 mg/dL).',
+      'renal_function.display': 'Renal function',
+      'renal_function.description':
+          'Creatinine clearance (Cockcroft-Gault): '
+          'CrCl = ((140 − age) × weight[kg] × (0.85 if female)) / '
+          '(72 × serum creatinine[mg/dL]).',
+      'renal_function.gt85': 'Normal – CrCl > 85 mL/min',
+      'renal_function.moderate': 'Moderate – CrCl 51–85 mL/min',
+      'renal_function.severe': 'Severe – CrCl ≤ 50 mL/min (not on dialysis)',
+      'renal_function.dialysis': 'On dialysis',
       'arteriopathy.display': 'Extracardiac arteriopathy',
       'arteriopathy.description':
           'Claudication, carotid occlusion/stenosis >50%, previous/planned '
@@ -85,9 +93,6 @@ class EuroscoreI10n extends ScoreI10n {
       'thoracic_aorta.display': 'Surgery on thoracic aorta',
       'thoracic_aorta.description':
           'Ascending, arch, or descending thoracic aorta surgery.',
-      'septal_rupture.display': 'Post-infarct septal rupture',
-      'septal_rupture.description':
-          'Surgery for ventricular septal rupture following MI.',
       // Calculation output
       'calc.incomplete': 'Please fill in all required fields.',
       'calc.predicted30DayMortality': 'Predicted 30-day operative mortality',
@@ -109,12 +114,20 @@ class EuroscoreI10n extends ScoreI10n {
       'group.operation.display': 'Operationsfaktoren',
       'group.operation.description': 'Eingriff, Dringlichkeit und Komplexität.',
       'age.display': 'Alter',
-      'age.description': 'Patientenalter in Jahren (kontinuierlich).',
+      'age.description':
+          'Patientenalter in Jahren. EuroSCORE II behandelt jedes Alter von '
+          '60 Jahren oder darunter gleich; jedes Jahr über 60 erhöht das Risiko weiter.',
       'female.display': 'Weibliches Geschlecht',
       'female.description': 'Weibliche Patienten tragen ein erhöhtes Risiko.',
-      'creatinine_high.display': 'Serumkreatinin > 200 µmol/L',
-      'creatinine_high.description':
-          'Präoperatives Serumkreatinin > 200 µmol/L (> 2,27 mg/dL).',
+      'renal_function.display': 'Nierenfunktion',
+      'renal_function.description':
+          'Kreatinin-Clearance (Cockcroft-Gault): '
+          'CrCl = ((140 − Alter) × Gewicht[kg] × (0,85 bei Frauen)) / '
+          '(72 × Serumkreatinin[mg/dL]).',
+      'renal_function.gt85': 'Normal – CrCl > 85 mL/min',
+      'renal_function.moderate': 'Mäßig – CrCl 51–85 mL/min',
+      'renal_function.severe': 'Schwer – CrCl ≤ 50 mL/min (nicht dialysepflichtig)',
+      'renal_function.dialysis': 'Dialysepflichtig',
       'arteriopathy.display': 'Extrakardiäre Arteriopathie',
       'arteriopathy.description':
           'Claudicatio, Karotisstenose/-verschluss > 50 %, frühere oder geplante '
@@ -173,9 +186,6 @@ class EuroscoreI10n extends ScoreI10n {
       'thoracic_aorta.display': 'Eingriff an der thorakalen Aorta',
       'thoracic_aorta.description':
           'Eingriff an Aorta ascendens, Aortenbogen oder Aorta descendens.',
-      'septal_rupture.display': 'Postinfarzielle Septumruptur',
-      'septal_rupture.description':
-          'Chirurgie bei Ventrikelseptumruptur nach Myokardinfarkt.',
       // Calculation output
       'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
       'calc.predicted30DayMortality': 'Vorhergesagte 30-Tage-Operationsmortalität',
