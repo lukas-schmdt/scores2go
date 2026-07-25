@@ -12,7 +12,7 @@ Score buildNews2Score(String lang) {
     name: 'news2',
     display: t('display'),
     description: t('description'),
-    scoreFunction: news2Function,
+    scoreFunction: (s) => news2Function(s, lang),
     visibilityFunction: news2Visibility,
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/news2.html'

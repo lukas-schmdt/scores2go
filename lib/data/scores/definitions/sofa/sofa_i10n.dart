@@ -60,6 +60,22 @@ class SofaI10n extends ScoreI10n {
           'The worse of the two renal scores counts.',
       'urine_output.opt.lt500': '< 500 mL/day',
       'urine_output.opt.lt200': '< 200 mL/day',
+      // Calculation output
+      'calc.incomplete':
+          'Please fill in all required fields (renal: creatinine or urine output).',
+      'calc.points': 'points',
+      'calc.organSystems': 'Organ systems',
+      'calc.abbrev.resp': 'Resp',
+      'calc.abbrev.coag': 'Coag',
+      'calc.abbrev.liver': 'Liver',
+      'calc.abbrev.cardio': 'Cardio',
+      'calc.abbrev.cns': 'CNS',
+      'calc.abbrev.renal': 'Renal',
+      'calc.risk.veryLow': 'Very low risk (< 10 % mortality)',
+      'calc.risk.low': 'Low risk (~10 % mortality)',
+      'calc.risk.moderate': 'Moderate risk (~20 % mortality)',
+      'calc.risk.elevated': 'Elevated risk (~40 % mortality)',
+      'calc.risk.high': 'High risk (> 50 % mortality)',
     },
     'de': {
       'description': 'Sequential Organ Failure Assessment (SOFA)',
@@ -116,6 +132,22 @@ class SofaI10n extends ScoreI10n {
           'Der schlechtere der beiden Nierenscores zählt.',
       'urine_output.opt.lt500': '< 500 mL/Tag',
       'urine_output.opt.lt200': '< 200 mL/Tag',
+      // Calculation output
+      'calc.incomplete':
+          'Bitte alle Pflichtfelder ausfüllen (Niere: Kreatinin oder Urin).',
+      'calc.points': 'Punkte',
+      'calc.organSystems': 'Organsysteme',
+      'calc.abbrev.resp': 'Resp',
+      'calc.abbrev.coag': 'Koag',
+      'calc.abbrev.liver': 'Leber',
+      'calc.abbrev.cardio': 'Kardio',
+      'calc.abbrev.cns': 'ZNS',
+      'calc.abbrev.renal': 'Niere',
+      'calc.risk.veryLow': 'Sehr geringes Risiko (< 10 % Mortalität)',
+      'calc.risk.low': 'Geringes Risiko (~10 % Mortalität)',
+      'calc.risk.moderate': 'Moderates Risiko (~20 % Mortalität)',
+      'calc.risk.elevated': 'Erhöhtes Risiko (~40 % Mortalität)',
+      'calc.risk.high': 'Hohes Risiko (> 50 % Mortalität)',
     },
   };
 }

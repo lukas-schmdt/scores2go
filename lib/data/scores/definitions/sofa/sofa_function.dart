@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/sofa/sofa_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult sofaFunction(Score score) {
+final _i10n = SofaI10n();
+
+ScoreResult sofaFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final respirPts = ctx.singleSelect('sofa-pao2_fio2')?['value']              as num?;
@@ -24,7 +28,7 @@ ScoreResult sofaFunction(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'SOFA',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen (Niere: Kreatinin oder Urin).',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -45,20 +49,23 @@ ScoreResult sofaFunction(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'SOFA Score',
-    primaryResult: '$total Punkte',
-    primaryInterpretation: _mortalityRisk(total),
-    secondaryLabel: 'Organsysteme',
+    primaryResult: '$total ${t('calc.points')}',
+    primaryInterpretation: _mortalityRisk(total, t),
+    secondaryLabel: t('calc.organSystems'),
     secondaryResult:
-        'Resp ${respirPts.round()}  |  Koag ${coagPts.round()}  |  '
-        'Leber ${liverPts.round()}  |  Kardio ${cardPts.round()}  |  '
-        'ZNS ${cnsPts.round()}  |  Niere $renalPts',
+        '${t('calc.abbrev.resp')} ${respirPts.round()}  |  '
+        '${t('calc.abbrev.coag')} ${coagPts.round()}  |  '
+        '${t('calc.abbrev.liver')} ${liverPts.round()}  |  '
+        '${t('calc.abbrev.cardio')} ${cardPts.round()}  |  '
+        '${t('calc.abbrev.cns')} ${cnsPts.round()}  |  '
+        '${t('calc.abbrev.renal')} $renalPts',
   );
 }
 
-String _mortalityRisk(int total) {
-  if (total < 2)  return 'Sehr geringes Risiko (< 10 % Mortalität)';
-  if (total < 4)  return 'Geringes Risiko (~10 % Mortalität)';
-  if (total < 8)  return 'Moderates Risiko (~20 % Mortalität)';
-  if (total < 12) return 'Erhöhtes Risiko (~40 % Mortalität)';
-  return 'Hohes Risiko (> 50 % Mortalität)';
+String _mortalityRisk(int total, String Function(String) t) {
+  if (total < 2) return t('calc.risk.veryLow');
+  if (total < 4) return t('calc.risk.low');
+  if (total < 8) return t('calc.risk.moderate');
+  if (total < 12) return t('calc.risk.elevated');
+  return t('calc.risk.high');
 }

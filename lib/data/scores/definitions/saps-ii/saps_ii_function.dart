@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult sapsIiFunction(Score score) {
+final _i10n = SapsIiI10n();
+
+ScoreResult sapsIiFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final alterPts      = ctx.singleSelect('saps-ii-alter')?['value']                   as num?;
@@ -46,7 +50,7 @@ ScoreResult sapsIiFunction(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'SAPS II',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -72,20 +76,19 @@ ScoreResult sapsIiFunction(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'SAPS II Score',
-    primaryResult: '$total Punkte',
-    primaryInterpretation: _mortalityRisk(total),
-    secondaryLabel: 'Hinweis',
-    secondaryResult: 'Krankenhausmortalität (geschätzt)',
-    secondaryInterpretation:
-        'SAPS II ≥ 50 ist mit einer Mortalität > 50 % assoziiert.',
+    primaryResult: '$total ${t('calc.points')}',
+    primaryInterpretation: _mortalityRisk(total, t),
+    secondaryLabel: t('calc.note'),
+    secondaryResult: t('calc.hospitalMortalityEstimated'),
+    secondaryInterpretation: t('calc.highScoreNote'),
   );
 }
 
-String _mortalityRisk(int total) {
-  if (total < 30) return 'Niedriges Risiko (< 10 % Krankenhausmortalität)';
-  if (total < 40) return 'Moderates Risiko (~15 % Krankenhausmortalität)';
-  if (total < 50) return 'Erhöhtes Risiko (~25 % Krankenhausmortalität)';
-  if (total < 60) return 'Hohes Risiko (~40 % Krankenhausmortalität)';
-  if (total < 70) return 'Sehr hohes Risiko (~60 % Krankenhausmortalität)';
-  return 'Kritisch (> 80 % Krankenhausmortalität)';
+String _mortalityRisk(int total, String Function(String) t) {
+  if (total < 30) return t('calc.risk.low');
+  if (total < 40) return t('calc.risk.moderate');
+  if (total < 50) return t('calc.risk.elevated');
+  if (total < 60) return t('calc.risk.high');
+  if (total < 70) return t('calc.risk.veryHigh');
+  return t('calc.risk.critical');
 }

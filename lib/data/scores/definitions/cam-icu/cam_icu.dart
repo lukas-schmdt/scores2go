@@ -19,7 +19,7 @@ Score buildCamIcuScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/cam-icu.html'
         : 'https://scores2go.com/scores/cam-icu.html',
-    scoreFunction: camIcuFunction,
+    scoreFunction: (s) => camIcuFunction(s, lang),
     visibilityFunction: camIcuVisibility,
     groups: [
       Group(

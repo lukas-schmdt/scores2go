@@ -23,6 +23,15 @@ class CamIcuI10n extends ScoreI10n {
       'feature4.display': 'Feature 4 – Disorganized thinking',
       'feature4.description':
           'Did the patient have disorganized or incoherent thinking? Assess via 4 yes/no questions and a simple command (e.g. "Hold up this many fingers" / "Now do the same with the other hand").',
+      // Calculation output
+      'calc.incomplete12': 'Please assess features 1 and 2.',
+      'calc.incomplete34':
+          'Features 1 and 2 are positive. Please assess features 3 and 4.',
+      'calc.negative': 'Negative',
+      'calc.positive': 'Positive',
+      'calc.noDeliriumDetected': 'No delirium detected.',
+      'calc.deliriumPresent':
+          'Delirium present — initiate delirium management protocol.',
     },
     'de': {
       'display': 'CAM-ICU',
@@ -42,6 +51,15 @@ class CamIcuI10n extends ScoreI10n {
       'feature4.display': 'Merkmal 4 – Desorganisiertes Denken',
       'feature4.description':
           'Zeigt der Patient desorganisiertes oder inkohärentes Denken? Beurteilung anhand von 4 Ja/Nein-Fragen und einem einfachen Befehl (z. B. „Heben Sie so viele Finger" / „Jetzt mit der anderen Hand").',
+      // Calculation output
+      'calc.incomplete12': 'Bitte Merkmale 1 und 2 beurteilen.',
+      'calc.incomplete34':
+          'Merkmale 1 und 2 sind positiv. Bitte Merkmale 3 und 4 beurteilen.',
+      'calc.negative': 'Negativ',
+      'calc.positive': 'Positiv',
+      'calc.noDeliriumDetected': 'Kein Delir festgestellt.',
+      'calc.deliriumPresent':
+          'Delir vorhanden — Delir-Management-Protokoll einleiten.',
     },
   };
 }

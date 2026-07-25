@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/variable.dart';
 import 'package:scores_2_go/model/variable_selection.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
@@ -15,7 +16,9 @@ class SelectionVariable extends StatelessWidget {
         item.type != VariableType.multiselect) {
       return Padding(
         padding: const EdgeInsets.all(12),
-        child: Text('Nicht unterstützter Variablentyp: ${item.type}'),
+        child: Text(
+          AppLocalizations.of(context)!.unsupportedVariableTypeDetail('${item.type}'),
+        ),
       );
     }
 

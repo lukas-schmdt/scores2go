@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
@@ -8,7 +9,10 @@ import 'package:scores_2_go/model/score_result.dart';
 // logit = -5.324537 + sum(coefficient × value)
 // predicted mortality = e^logit / (1 + e^logit)
 
-ScoreResult euroscoreFunction(Score score) {
+final _i10n = EuroscoreI10n();
+
+ScoreResult euroscoreFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final age = ctx.numValue('euroscore-age')?['value'] as num?;
@@ -59,7 +63,7 @@ ScoreResult euroscoreFunction(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'EuroSCORE II',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -113,15 +117,15 @@ ScoreResult euroscoreFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'EuroSCORE II',
     primaryResult: '$mortalityPct %',
-    primaryInterpretation: 'Vorhergesagte 30-Tage-Operationsmortalität',
-    secondaryLabel: 'Risikoklasse',
-    secondaryResult: _riskClass(mortality),
+    primaryInterpretation: t('calc.predicted30DayMortality'),
+    secondaryLabel: t('calc.riskClass'),
+    secondaryResult: _riskClass(mortality, t),
   );
 }
 
-String _riskClass(double mortality) {
-  if (mortality < 0.02) return 'Niedriges Risiko (< 2 %)';
-  if (mortality < 0.05) return 'Mäßiges Risiko (2-5 %)';
-  if (mortality < 0.10) return 'Hohes Risiko (5-10 %)';
-  return 'Sehr hohes Risiko (> 10 %)';
+String _riskClass(double mortality, String Function(String) t) {
+  if (mortality < 0.02) return t('calc.risk.low');
+  if (mortality < 0.05) return t('calc.risk.moderate');
+  if (mortality < 0.10) return t('calc.risk.high');
+  return t('calc.risk.veryHigh');
 }

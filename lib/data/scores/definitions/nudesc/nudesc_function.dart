@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/nudesc/nudesc_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult nudescFunction(Score score) {
+final _i10n = NudescI10n();
+
+ScoreResult nudescFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final disorientation = ctx.singleSelect('nudesc-disorientation')?['value'] as num?;
@@ -18,7 +22,7 @@ ScoreResult nudescFunction(Score score) {
       psychomotorRetardation == null) {
     return ScoreResult.incomplete(
       label: 'Nu-DESC',
-      interpretation: 'Please rate all 5 items to obtain a score.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -33,13 +37,13 @@ ScoreResult nudescFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'Nu-DESC',
     primaryResult: '$total / 10',
-    primaryInterpretation: _interpret(total),
+    primaryInterpretation: _interpret(total, t),
   );
 }
 
-String _interpret(int total) => switch (total) {
-      0 => 'No delirium detected.',
-      1 => 'No delirium detected (borderline — reassess regularly).',
-      _ when total >= 2 && total <= 4 => 'Delirium likely (score ≥ 2) — further clinical assessment recommended.',
-      _ => 'Severe delirium likely — immediate clinical assessment required.',
+String _interpret(int total, String Function(String) t) => switch (total) {
+      0 => t('calc.interp.0'),
+      1 => t('calc.interp.1'),
+      _ when total >= 2 && total <= 4 => t('calc.interp.2to4'),
+      _ => t('calc.interp.severe'),
     };

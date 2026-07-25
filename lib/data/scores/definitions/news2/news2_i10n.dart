@@ -89,6 +89,23 @@ class News2I10n extends ScoreI10n {
       'temp.opt.36to38': '36.1–38.0 °C',
       'temp.opt.38to39': '38.1–39.0 °C',
       'temp.opt.ge39': '≥ 39.1 °C',
+      // Calculation output
+      'calc.incomplete': 'Please fill in all required fields.',
+      'calc.pointsResult': 'points',
+      'calc.recommendationLabel': 'Recommendation',
+      'calc.risk.high': 'High risk — emergency response',
+      'calc.risk.mediumUrgent': 'Medium risk — urgent review',
+      'calc.risk.mediumSingleParam': 'Medium risk — single parameter critical',
+      'calc.risk.low': 'Low risk',
+      'calc.risk.minimal': 'Minimal risk',
+      'calc.rec.high':
+          'Continuous monitoring · Consider critical care admission',
+      'calc.rec.mediumUrgent':
+          'Monitoring at least hourly · Inform doctor immediately',
+      'calc.rec.mediumSingleParam':
+          'Monitoring at least hourly · Inform doctor',
+      'calc.rec.low': 'Monitoring every 4–6 hours',
+      'calc.rec.minimal': 'Monitoring every 12 hours',
     },
     'de': {
       'display': 'NEWS2',
@@ -174,6 +191,24 @@ class News2I10n extends ScoreI10n {
       'temp.opt.36to38': '36,1–38,0 °C',
       'temp.opt.38to39': '38,1–39,0 °C',
       'temp.opt.ge39': '≥ 39,1 °C',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
+      'calc.pointsResult': 'Punkte',
+      'calc.recommendationLabel': 'Empfehlung',
+      'calc.risk.high': 'Hohes Risiko — Notfallreaktion',
+      'calc.risk.mediumUrgent': 'Mittleres Risiko — Dringende Beurteilung',
+      'calc.risk.mediumSingleParam':
+          'Mittleres Risiko — Einzelparameter kritisch',
+      'calc.risk.low': 'Niedriges Risiko',
+      'calc.risk.minimal': 'Minimales Risiko',
+      'calc.rec.high':
+          'Kontinuierliches Monitoring · Intensivaufnahme erwägen',
+      'calc.rec.mediumUrgent':
+          'Monitoring mind. stündlich · Arzt sofort informieren',
+      'calc.rec.mediumSingleParam':
+          'Monitoring mind. stündlich · Arzt informieren',
+      'calc.rec.low': 'Monitoring 4–6-stündlich',
+      'calc.rec.minimal': 'Monitoring 12-stündlich',
     },
   };
 }

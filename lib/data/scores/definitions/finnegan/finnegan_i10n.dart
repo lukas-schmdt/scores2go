@@ -119,6 +119,13 @@ class FinneganI10n extends ScoreI10n {
       'stools.0': 'Normal stools',
       'stools.2': 'Loose stools',
       'stools.3': 'Watery stools',
+      // Calculation output
+      'calc.incomplete': 'Complete at least one item to calculate the score.',
+      'calc.partialLabel': 'Finnegan NAS (partial)',
+      'calc.itemsNotAssessed': '{n} item(s) not yet assessed.',
+      'calc.interp.mild': 'Mild withdrawal — supportive care',
+      'calc.interp.moderate': 'Moderate withdrawal — consider pharmacotherapy',
+      'calc.interp.severe': 'Severe withdrawal — pharmacotherapy indicated',
     },
     'de': {
       'display': 'Finnegan NAS',
@@ -235,6 +242,16 @@ class FinneganI10n extends ScoreI10n {
       'stools.0': 'Normaler Stuhl',
       'stools.2': 'Breiiger Stuhl',
       'stools.3': 'Wässriger Stuhl',
+      // Calculation output
+      'calc.incomplete':
+          'Mindestens ein Item ausfüllen, um den Score zu berechnen.',
+      'calc.partialLabel': 'Finnegan NAS (unvollständig)',
+      'calc.itemsNotAssessed': '{n} Item(s) noch nicht beurteilt.',
+      'calc.interp.mild': 'Leichter Entzug — supportive Behandlung',
+      'calc.interp.moderate':
+          'Moderater Entzug — medikamentöse Behandlung erwägen',
+      'calc.interp.severe':
+          'Schwerer Entzug — medikamentöse Behandlung indiziert',
     },
   };
 }

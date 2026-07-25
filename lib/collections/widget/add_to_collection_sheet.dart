@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score_collection.dart';
 
 /// Shows a centered dialog for adding a score to a collection.
@@ -21,10 +22,11 @@ class _AddToCollectionDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return BlocBuilder<CollectionsBloc, CollectionsState>(
       builder: (context, state) {
         return AlertDialog(
-          title: const Text('Add to collection'),
+          title: Text(l.addToCollection),
           insetPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
           content: SizedBox(
             width: 320,
@@ -34,7 +36,7 @@ class _AddToCollectionDialog extends StatelessWidget {
                     child: Center(child: CircularProgressIndicator()),
                   )
                 : state.collections.isEmpty
-                    ? const Text('No collections yet. Create one below.')
+                    ? Text(l.noCollectionsYet)
                     : ListView(
                         shrinkWrap: true,
                         children: [
@@ -49,11 +51,11 @@ class _AddToCollectionDialog extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () => _showCreateDialog(context),
-              child: const Text('New collection'),
+              child: Text(l.newCollection),
             ),
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Done'),
+              child: Text(l.done),
             ),
           ],
         );
@@ -63,19 +65,20 @@ class _AddToCollectionDialog extends StatelessWidget {
 
   Future<void> _showCreateDialog(BuildContext context) async {
     final bloc = context.read<CollectionsBloc>();
+    final l = AppLocalizations.of(context)!;
     final controller = TextEditingController();
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('New collection'),
+        title: Text(l.newCollection),
         content: SizedBox(
           width: 320,
           child: TextField(
             controller: controller,
             autofocus: true,
-            decoration: const InputDecoration(
-              hintText: 'Collection name',
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              hintText: l.collectionNameHint,
+              border: const OutlineInputBorder(),
               isDense: true,
             ),
             textCapitalization: TextCapitalization.sentences,
@@ -85,11 +88,11 @@ class _AddToCollectionDialog extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Create'),
+            child: Text(l.create),
           ),
         ],
       ),

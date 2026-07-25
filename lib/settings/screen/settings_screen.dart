@@ -168,9 +168,9 @@ class SettingsScreen extends StatelessWidget {
                               child: SvgPicture.asset('assets/bmc-logo.svg'),
                             ),
                             const SizedBox(width: 10),
-                            const Text(
-                              'Buy me a coffee',
-                              style: TextStyle(
+                            Text(
+                              l.buyMeACoffee,
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
                                 fontSize: 15,

@@ -4,6 +4,7 @@ import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
 import 'package:scores_2_go/collections/screen/collection_detail_screen.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score_collection.dart';
 
 class CollectionsScreen extends StatelessWidget {
@@ -17,7 +18,9 @@ class CollectionsScreen extends StatelessWidget {
         final isMobile = MediaQuery.of(context).size.width < kMobileBreakpoint;
 
         return Scaffold(
-          appBar: AppBar(title: const Text('Collections')),
+          appBar: AppBar(
+            title: Text(AppLocalizations.of(context)!.collectionsTitle),
+          ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => _showCreateDialog(context),
             child: const Icon(Icons.add),
@@ -36,17 +39,18 @@ class CollectionsScreen extends StatelessWidget {
 
   Future<void> _showCreateDialog(BuildContext context) async {
     final bloc = context.read<CollectionsBloc>();
+    final l = AppLocalizations.of(context)!;
     final controller = TextEditingController();
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('New collection'),
+        title: Text(l.newCollection),
         content: TextField(
           controller: controller,
           autofocus: true,
-          decoration: const InputDecoration(
-            hintText: 'Collection name',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            hintText: l.collectionNameHint,
+            border: const OutlineInputBorder(),
             isDense: true,
           ),
           textCapitalization: TextCapitalization.sentences,
@@ -55,11 +59,11 @@ class CollectionsScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Create'),
+            child: Text(l.create),
           ),
         ],
       ),

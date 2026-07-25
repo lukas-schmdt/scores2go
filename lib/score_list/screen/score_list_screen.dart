@@ -159,7 +159,7 @@ class _SearchEmptyState extends StatelessWidget {
                 builder: (_) => FeedbackDialog(
                   repository: context.read<FeedbackRepository>(),
                   initialText: searchQuery.isNotEmpty
-                      ? 'Missing score: $searchQuery'
+                      ? l.missingScorePrefill(searchQuery)
                       : null,
                 ),
               ),

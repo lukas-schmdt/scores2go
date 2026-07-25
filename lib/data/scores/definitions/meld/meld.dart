@@ -20,7 +20,7 @@ Score buildMeldScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/meld.html'
         : 'https://scores2go.com/scores/meld.html',
-    scoreFunction: meldFunction,
+    scoreFunction: (s) => meldFunction(s, lang),
     visibilityFunction: meldVisibility,
     groups: [
       Group(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
 class ScoreResultWidget extends StatelessWidget {
@@ -14,26 +15,27 @@ class ScoreResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
     final Widget child;
 
     if (scoreResult == null) {
       if (isLoading) {
-        child = _LoadingPanel(key: const ValueKey('loading'));
+        child = const _LoadingPanel(key: ValueKey('loading'));
       } else {
-        child = const _ResultPanel(
-          key: ValueKey('no-data'),
+        child = _ResultPanel(
+          key: const ValueKey('no-data'),
           icon: Icons.pending_outlined,
           color: Colors.grey,
-          label: 'Ergebnis',
+          label: l.resultLabel,
           result: '—',
-          interpretation: 'Keine Daten verfügbar',
+          interpretation: l.noDataAvailable,
         );
       }
     } else {
       // Key on state + primary result — same value means no animation.
       final k =
           '${scoreResult!.state.name}-${scoreResult!.primaryResult ?? ''}';
-      child = KeyedSubtree(key: ValueKey(k), child: _panel());
+      child = KeyedSubtree(key: ValueKey(k), child: _panel(l));
     }
 
     return Column(
@@ -69,21 +71,21 @@ class ScoreResultWidget extends StatelessWidget {
     );
   }
 
-  Widget _panel() {
+  Widget _panel(AppLocalizations l) {
     switch (scoreResult!.state) {
       case ScoreState.incomplete:
         return _ResultPanel(
           icon: Icons.hourglass_empty_rounded,
           color: Colors.orange,
-          label: scoreResult!.primaryLabel ?? 'Punkte',
-          result: 'Unvollständig',
+          label: scoreResult!.primaryLabel ?? l.pointsLabel,
+          result: l.incompleteResult,
           interpretation: scoreResult!.primaryInterpretation,
         );
       case ScoreState.success:
         return _ResultPanel(
           icon: Icons.check_circle_rounded,
           color: Colors.green,
-          label: scoreResult!.primaryLabel ?? 'Punkte',
+          label: scoreResult!.primaryLabel ?? l.pointsLabel,
           result: scoreResult!.primaryResult ?? '—',
           interpretation: scoreResult!.primaryInterpretation,
           secondaryLabel: scoreResult!.secondaryLabel,
@@ -94,11 +96,11 @@ class ScoreResultWidget extends StatelessWidget {
         return _ResultPanel(
           icon: Icons.error_rounded,
           color: Colors.red,
-          label: 'Fehler',
+          label: l.errorLabel,
           result: scoreResult!.primaryResult ?? '—',
           interpretation:
               scoreResult!.primaryInterpretation ??
-              'Keine Interpretation verfügbar',
+              l.noInterpretationAvailable,
         );
       default:
         return const SizedBox.shrink();
@@ -115,6 +117,7 @@ class _LoadingPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
     final tt = Theme.of(context).textTheme;
+    final l = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -145,7 +148,7 @@ class _LoadingPanel extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Ergebnis',
+                      l.resultLabel,
                       style: tt.labelSmall?.copyWith(
                         color: cs.primary,
                         fontWeight: FontWeight.w600,
@@ -153,7 +156,7 @@ class _LoadingPanel extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'Berechnung läuft …',
+                      l.calculating,
                       style: tt.headlineSmall?.copyWith(
                         color: cs.onSurfaceVariant,
                         fontWeight: FontWeight.bold,

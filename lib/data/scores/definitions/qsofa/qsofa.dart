@@ -19,7 +19,7 @@ Score buildQsofaScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/qsofa.html'
         : 'https://scores2go.com/scores/qsofa.html',
-    scoreFunction: qsofaFunction,
+    scoreFunction: (s) => qsofaFunction(s, lang),
     visibilityFunction: qsofaVisibility,
     groups: [
       Group(

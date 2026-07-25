@@ -12,7 +12,7 @@ Score buildCha2ds2VascScore(String lang) {
     name: 'cha2ds2-vasc',
     display: t('display'),
     description: t('description'),
-    scoreFunction: cha2ds2VascFunction,
+    scoreFunction: (s) => cha2ds2VascFunction(s, lang),
     visibilityFunction: cha2ds2VascVisibility,
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/cha2ds2-vasc.html'

@@ -19,7 +19,7 @@ Score buildModsScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/mods.html'
         : 'https://scores2go.com/scores/mods.html',
-    scoreFunction: modsFunction,
+    scoreFunction: (s) => modsFunction(s, lang),
     visibilityFunction: modsVisibility,
     groups: [
       // ── Respiratory ─────────────────────────────────────────────────────────

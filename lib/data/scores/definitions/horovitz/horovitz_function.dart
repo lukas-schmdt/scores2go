@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult horovitzFunction(Score score) {
+final _i10n = HorovitzI10n();
+
+ScoreResult horovitzFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   // PaO2 is stored in mmHg (canonical unit of Units.pressure).
@@ -12,24 +16,26 @@ ScoreResult horovitzFunction(Score score) {
 
   if (pao2 == null && fio2 == null) {
     return ScoreResult.incomplete(
-      label: 'Horovitz Quotient',
-      interpretation: 'Enter PaO₂ and FiO₂ to calculate the ratio.',
+      label: t('display'),
+      interpretation: t('calc.incomplete.enterBoth'),
     );
   }
 
   if (pao2 == null || fio2 == null) {
     return ScoreResult.incomplete(
-      label: 'Horovitz Quotient',
-      interpretation: pao2 == null ? 'PaO₂ is missing.' : 'FiO₂ is missing.',
+      label: t('display'),
+      interpretation: pao2 == null
+          ? t('calc.incomplete.pao2Missing')
+          : t('calc.incomplete.fio2Missing'),
     );
   }
 
   if (fio2 <= 0) {
     return ScoreResult(
       state: ScoreState.error,
-      primaryLabel: 'Horovitz Quotient',
+      primaryLabel: t('display'),
       primaryResult: '—',
-      primaryInterpretation: 'FiO₂ must be greater than 0 %.',
+      primaryInterpretation: t('calc.fio2MustBeGreaterThanZero'),
     );
   }
 
@@ -39,18 +45,18 @@ ScoreResult horovitzFunction(Score score) {
 
   return ScoreResult(
     state: ScoreState.success,
-    primaryLabel: 'Horovitz Quotient',
+    primaryLabel: t('display'),
     primaryResult: '$ratioRounded mmHg',
-    primaryInterpretation: _interpret(ratio),
-    secondaryLabel: 'Inputs',
+    primaryInterpretation: _interpret(ratio, t),
+    secondaryLabel: t('calc.inputsLabel'),
     secondaryResult: 'PaO₂ ${pao2.toStringAsFixed(0)} mmHg · FiO₂ ${fio2.toStringAsFixed(0)} %',
   );
 }
 
-String _interpret(double ratio) {
-  if (ratio >= 400) return 'Normal oxygenation (≥ 400)';
-  if (ratio >= 300) return 'Mild hypoxemia (300–399)';
-  if (ratio >= 200) return 'Mild ARDS — Berlin Definition (200–299)';
-  if (ratio >= 100) return 'Moderate ARDS — Berlin Definition (100–199)';
-  return 'Severe ARDS — Berlin Definition (< 100)';
+String _interpret(double ratio, String Function(String) t) {
+  if (ratio >= 400) return t('calc.interp.normal');
+  if (ratio >= 300) return t('calc.interp.mildHypoxemia');
+  if (ratio >= 200) return t('calc.interp.mildArds');
+  if (ratio >= 100) return t('calc.interp.moderateArds');
+  return t('calc.interp.severeArds');
 }

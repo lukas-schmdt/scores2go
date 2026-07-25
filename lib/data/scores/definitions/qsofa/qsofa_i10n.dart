@@ -23,6 +23,12 @@ class QsofaI10n extends ScoreI10n {
           'Glasgow Coma Scale score below 15 (any deviation from normal alertness).',
       'sbp.display': 'Systolic Blood Pressure ≤ 100 mmHg',
       'sbp.description': 'Systolic blood pressure of 100 mmHg or lower.',
+      // Calculation output
+      'calc.incomplete': 'Please assess all three criteria.',
+      'calc.interp.high':
+          'High risk — increased risk of mortality and prolonged ICU stay. Consider further sepsis workup.',
+      'calc.interp.low':
+          'Low risk — continue routine monitoring; reassess if clinical status changes.',
     },
     'de': {
       'display': 'qSOFA',
@@ -43,6 +49,12 @@ class QsofaI10n extends ScoreI10n {
           'Glasgow Coma Scale unter 15 (jede Abweichung von normaler Wachheit).',
       'sbp.display': 'Systolischer Blutdruck ≤ 100 mmHg',
       'sbp.description': 'Systolischer Blutdruck von 100 mmHg oder niedriger.',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle drei Kriterien beurteilen.',
+      'calc.interp.high':
+          'Hohes Risiko — erhöhtes Mortalitätsrisiko und verlängerter Intensivaufenthalt. Weitere Sepsisdiagnostik erwägen.',
+      'calc.interp.low':
+          'Niedriges Risiko — Routinemonitoring fortsetzen; bei klinischer Verschlechterung neu beurteilen.',
     },
   };
 }

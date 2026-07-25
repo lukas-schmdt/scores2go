@@ -70,6 +70,21 @@ class ApacheIiI10n extends ScoreI10n {
           'Severe organ insufficiency – elective postoperative patient',
       'vorerkrankungen.opt.nonelective':
           'Severe organ insufficiency – non-operative or emergency surgery patient',
+      // Calculation output
+      'calc.incomplete': 'Please fill in all required fields.',
+      'calc.points': 'points',
+      'calc.subscoresLabel': 'Subscores',
+      'calc.subscoresAge': 'Age',
+      'calc.subscoresChronic': 'Chronic health',
+      'calc.risk.veryLow': 'Very low risk (~2 % hospital mortality)',
+      'calc.risk.low': 'Low risk (~8 % hospital mortality)',
+      'calc.risk.moderate': 'Moderate risk (~15 % hospital mortality)',
+      'calc.risk.elevated': 'Elevated risk (~24 % hospital mortality)',
+      'calc.risk.high': 'High risk (~40 % hospital mortality)',
+      'calc.risk.veryHigh': 'Very high risk (~55 % hospital mortality)',
+      'calc.risk.critical': 'Critical (~73 % hospital mortality)',
+      'calc.risk.extremelyCritical':
+          'Extremely critical (~85 % hospital mortality)',
     },
     'de': {
       'description':
@@ -136,6 +151,21 @@ class ApacheIiI10n extends ScoreI10n {
           'Schwere Organinsuffizienz – elektiver postoperativer Patient',
       'vorerkrankungen.opt.nonelective':
           'Schwere Organinsuffizienz – nicht-operativer oder Notfall-OP-Patient',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
+      'calc.points': 'Punkte',
+      'calc.subscoresLabel': 'Teilscores',
+      'calc.subscoresAge': 'Alter',
+      'calc.subscoresChronic': 'Vorerkrankungen',
+      'calc.risk.veryLow': 'Sehr niedriges Risiko (~2 % Krankenhausmortalität)',
+      'calc.risk.low': 'Niedriges Risiko (~8 % Krankenhausmortalität)',
+      'calc.risk.moderate': 'Moderates Risiko (~15 % Krankenhausmortalität)',
+      'calc.risk.elevated': 'Erhöhtes Risiko (~24 % Krankenhausmortalität)',
+      'calc.risk.high': 'Hohes Risiko (~40 % Krankenhausmortalität)',
+      'calc.risk.veryHigh': 'Sehr hohes Risiko (~55 % Krankenhausmortalität)',
+      'calc.risk.critical': 'Kritisch (~73 % Krankenhausmortalität)',
+      'calc.risk.extremelyCritical':
+          'Extrem kritisch (~85 % Krankenhausmortalität)',
     },
   };
 }

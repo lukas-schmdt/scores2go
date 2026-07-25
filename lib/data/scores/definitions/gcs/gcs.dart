@@ -19,7 +19,7 @@ Score buildGcsScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/gcs.html'
         : 'https://scores2go.com/scores/gcs.html',
-    scoreFunction: gcsFunction,
+    scoreFunction: (s) => gcsFunction(s, lang),
     visibilityFunction: gcsVisibility,
     groups: [
       Group(

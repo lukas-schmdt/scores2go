@@ -13,7 +13,7 @@ Score buildRassScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/rass.html'
         : 'https://scores2go.com/scores/rass.html',
-    scoreFunction: rassFunction,
+    scoreFunction: (s) => rassFunction(s, lang),
     visibilityFunction: rassVisibility,
     author: 'Sessler et al.',
     year: 2002,

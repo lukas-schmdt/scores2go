@@ -19,7 +19,7 @@ Score buildNudescScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/nudesc.html'
         : 'https://scores2go.com/scores/nudesc.html',
-    scoreFunction: nudescFunction,
+    scoreFunction: (s) => nudescFunction(s, lang),
     visibilityFunction: nudescVisibility,
     groups: [
       Group(

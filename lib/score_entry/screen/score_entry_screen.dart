@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
@@ -48,14 +49,15 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
     return BlocConsumer<ScoreEntryBloc, ScoreEntryState>(
       listener: (context, state) {},
       builder: (context, state) {
+        final l = AppLocalizations.of(context)!;
         if (state.status == Status.initial) {
-          return const Center(child: Text('Initialer Zustand'));
+          return Center(child: Text(l.initialState));
         } else if (state.status == Status.loading) {
           return const Material(
             child: Center(child: CircularProgressIndicator()),
           );
         } else if (state.status == Status.error) {
-          return const Center(child: Text('Fehler beim Laden des Scores'));
+          return Center(child: Text(l.errorLoadingScore));
         } else if (state.status == Status.success) {
           final score = state.score;
           final visibility =
@@ -149,7 +151,7 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
             ),
           );
         } else {
-          return const Center(child: Text('Unbekannter Zustand'));
+          return Center(child: Text(l.unknownState));
         }
       },
     );

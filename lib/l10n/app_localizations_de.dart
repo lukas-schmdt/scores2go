@@ -269,4 +269,134 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get disclaimerPrivacyBody =>
       'Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.';
+
+  @override
+  String get resultLabel => 'Ergebnis';
+
+  @override
+  String get pointsLabel => 'Punkte';
+
+  @override
+  String get incompleteResult => 'Unvollständig';
+
+  @override
+  String get errorLabel => 'Fehler';
+
+  @override
+  String get noDataAvailable => 'Keine Daten verfügbar';
+
+  @override
+  String get calculating => 'Berechnung läuft …';
+
+  @override
+  String get noInterpretationAvailable => 'Keine Interpretation verfügbar';
+
+  @override
+  String get yes => 'Ja';
+
+  @override
+  String get no => 'Nein';
+
+  @override
+  String get valueLabel => 'Wert';
+
+  @override
+  String get invalidNumber => 'Ungültige Zahl';
+
+  @override
+  String get useDotOrCommaNotBoth => 'Punkt oder Komma verwenden, nicht beides';
+
+  @override
+  String get unsupportedVariableType => 'Nicht unterstützter Variablentyp';
+
+  @override
+  String unsupportedVariableTypeDetail(Object type) {
+    return 'Nicht unterstützter Variablentyp: $type';
+  }
+
+  @override
+  String get initialState => 'Initialer Zustand';
+
+  @override
+  String get errorLoadingScore => 'Fehler beim Laden des Scores';
+
+  @override
+  String get unknownState => 'Unbekannter Zustand';
+
+  @override
+  String get collectionsTitle => 'Sammlungen';
+
+  @override
+  String get addToCollection => 'Zu Sammlung hinzufügen';
+
+  @override
+  String get noCollectionsYet =>
+      'Noch keine Sammlungen. Erstelle unten eine neue.';
+
+  @override
+  String get newCollection => 'Neue Sammlung';
+
+  @override
+  String get done => 'Fertig';
+
+  @override
+  String get collectionNameHint => 'Name der Sammlung';
+
+  @override
+  String get create => 'Erstellen';
+
+  @override
+  String get renameCollectionTooltip => 'Umbenennen';
+
+  @override
+  String get deleteCollectionTooltip => 'Sammlung löschen';
+
+  @override
+  String get renameCollectionTitle => 'Sammlung umbenennen';
+
+  @override
+  String get noScoresYetTitle => 'Noch keine Scores';
+
+  @override
+  String get noScoresYetSubtitle =>
+      'Füge Scores über den Tab „Durchsuchen“ hinzu.';
+
+  @override
+  String get deleteCollectionQuestion => 'Sammlung löschen?';
+
+  @override
+  String deleteCollectionConfirmBody(Object name) {
+    return '„$name“ wird gelöscht. Scores sind davon nicht betroffen.';
+  }
+
+  @override
+  String get shareYourFeedback => 'Teile dein Feedback';
+
+  @override
+  String get close => 'Schließen';
+
+  @override
+  String get send => 'Senden';
+
+  @override
+  String get feedbackPrompt =>
+      'Wie gefällt dir die App? Lass uns wissen, was du denkst oder was fehlt.';
+
+  @override
+  String get feedbackHint => 'Welcher Score fehlt, oder sonstiges Feedback…';
+
+  @override
+  String get feedbackSendFailed =>
+      'Feedback konnte nicht gesendet werden. Bitte erneut versuchen.';
+
+  @override
+  String get feedbackThankYou => 'Dein Feedback wurde übermittelt.';
+
+  @override
+  String missingScorePrefill(Object query) {
+    return 'Fehlender Score: $query';
+  }
+
+  @override
+  String get buyMeACoffee => 'Spendier mir einen Kaffee';
 }

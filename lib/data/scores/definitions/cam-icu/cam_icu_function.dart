@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/cam-icu/cam_icu_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult camIcuFunction(Score score) {
+final _i10n = CamIcuI10n();
+
+ScoreResult camIcuFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final f1 = ctx.boolValue('cam-icu-feature1')?['value'] as bool?;
@@ -11,7 +15,7 @@ ScoreResult camIcuFunction(Score score) {
   if (f1 == null || f2 == null) {
     return ScoreResult.incomplete(
       label: 'CAM-ICU',
-      interpretation: 'Please assess features 1 and 2.',
+      interpretation: t('calc.incomplete12'),
     );
   }
 
@@ -20,8 +24,8 @@ ScoreResult camIcuFunction(Score score) {
     return ScoreResult(
       state: ScoreState.success,
       primaryLabel: 'CAM-ICU',
-      primaryResult: 'Negative',
-      primaryInterpretation: 'No delirium detected.',
+      primaryResult: t('calc.negative'),
+      primaryInterpretation: t('calc.noDeliriumDetected'),
     );
   }
 
@@ -32,8 +36,7 @@ ScoreResult camIcuFunction(Score score) {
   if (f3 == null || f4 == null) {
     return ScoreResult.incomplete(
       label: 'CAM-ICU',
-      interpretation:
-          'Features 1 and 2 are positive. Please assess features 3 and 4.',
+      interpretation: t('calc.incomplete34'),
     );
   }
 
@@ -42,9 +45,9 @@ ScoreResult camIcuFunction(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'CAM-ICU',
-    primaryResult: positive ? 'Positive' : 'Negative',
+    primaryResult: positive ? t('calc.positive') : t('calc.negative'),
     primaryInterpretation: positive
-        ? 'Delirium present — initiate delirium management protocol.'
-        : 'No delirium detected.',
+        ? t('calc.deliriumPresent')
+        : t('calc.noDeliriumDetected'),
   );
 }

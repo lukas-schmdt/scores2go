@@ -13,7 +13,7 @@ Score buildSaps3Score(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/saps3.html'
         : 'https://scores2go.com/scores/saps3.html',
-    scoreFunction: saps3Function,
+    scoreFunction: (s) => saps3Function(s, lang),
     visibilityFunction: saps3Visibility,
     author: 'Moreno et al.',
     year: 2005,

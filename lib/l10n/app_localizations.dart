@@ -595,6 +595,246 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.'**
   String get disclaimerPrivacyBody;
+
+  /// No description provided for @resultLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Ergebnis'**
+  String get resultLabel;
+
+  /// No description provided for @pointsLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Punkte'**
+  String get pointsLabel;
+
+  /// No description provided for @incompleteResult.
+  ///
+  /// In de, this message translates to:
+  /// **'Unvollständig'**
+  String get incompleteResult;
+
+  /// No description provided for @errorLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehler'**
+  String get errorLabel;
+
+  /// No description provided for @noDataAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Daten verfügbar'**
+  String get noDataAvailable;
+
+  /// No description provided for @calculating.
+  ///
+  /// In de, this message translates to:
+  /// **'Berechnung läuft …'**
+  String get calculating;
+
+  /// No description provided for @noInterpretationAvailable.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Interpretation verfügbar'**
+  String get noInterpretationAvailable;
+
+  /// No description provided for @yes.
+  ///
+  /// In de, this message translates to:
+  /// **'Ja'**
+  String get yes;
+
+  /// No description provided for @no.
+  ///
+  /// In de, this message translates to:
+  /// **'Nein'**
+  String get no;
+
+  /// No description provided for @valueLabel.
+  ///
+  /// In de, this message translates to:
+  /// **'Wert'**
+  String get valueLabel;
+
+  /// No description provided for @invalidNumber.
+  ///
+  /// In de, this message translates to:
+  /// **'Ungültige Zahl'**
+  String get invalidNumber;
+
+  /// No description provided for @useDotOrCommaNotBoth.
+  ///
+  /// In de, this message translates to:
+  /// **'Punkt oder Komma verwenden, nicht beides'**
+  String get useDotOrCommaNotBoth;
+
+  /// No description provided for @unsupportedVariableType.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht unterstützter Variablentyp'**
+  String get unsupportedVariableType;
+
+  /// No description provided for @unsupportedVariableTypeDetail.
+  ///
+  /// In de, this message translates to:
+  /// **'Nicht unterstützter Variablentyp: {type}'**
+  String unsupportedVariableTypeDetail(Object type);
+
+  /// No description provided for @initialState.
+  ///
+  /// In de, this message translates to:
+  /// **'Initialer Zustand'**
+  String get initialState;
+
+  /// No description provided for @errorLoadingScore.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehler beim Laden des Scores'**
+  String get errorLoadingScore;
+
+  /// No description provided for @unknownState.
+  ///
+  /// In de, this message translates to:
+  /// **'Unbekannter Zustand'**
+  String get unknownState;
+
+  /// No description provided for @collectionsTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sammlungen'**
+  String get collectionsTitle;
+
+  /// No description provided for @addToCollection.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu Sammlung hinzufügen'**
+  String get addToCollection;
+
+  /// No description provided for @noCollectionsYet.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Sammlungen. Erstelle unten eine neue.'**
+  String get noCollectionsYet;
+
+  /// No description provided for @newCollection.
+  ///
+  /// In de, this message translates to:
+  /// **'Neue Sammlung'**
+  String get newCollection;
+
+  /// No description provided for @done.
+  ///
+  /// In de, this message translates to:
+  /// **'Fertig'**
+  String get done;
+
+  /// No description provided for @collectionNameHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Name der Sammlung'**
+  String get collectionNameHint;
+
+  /// No description provided for @create.
+  ///
+  /// In de, this message translates to:
+  /// **'Erstellen'**
+  String get create;
+
+  /// No description provided for @renameCollectionTooltip.
+  ///
+  /// In de, this message translates to:
+  /// **'Umbenennen'**
+  String get renameCollectionTooltip;
+
+  /// No description provided for @deleteCollectionTooltip.
+  ///
+  /// In de, this message translates to:
+  /// **'Sammlung löschen'**
+  String get deleteCollectionTooltip;
+
+  /// No description provided for @renameCollectionTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Sammlung umbenennen'**
+  String get renameCollectionTitle;
+
+  /// No description provided for @noScoresYetTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Scores'**
+  String get noScoresYetTitle;
+
+  /// No description provided for @noScoresYetSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Füge Scores über den Tab „Durchsuchen“ hinzu.'**
+  String get noScoresYetSubtitle;
+
+  /// No description provided for @deleteCollectionQuestion.
+  ///
+  /// In de, this message translates to:
+  /// **'Sammlung löschen?'**
+  String get deleteCollectionQuestion;
+
+  /// No description provided for @deleteCollectionConfirmBody.
+  ///
+  /// In de, this message translates to:
+  /// **'„{name}“ wird gelöscht. Scores sind davon nicht betroffen.'**
+  String deleteCollectionConfirmBody(Object name);
+
+  /// No description provided for @shareYourFeedback.
+  ///
+  /// In de, this message translates to:
+  /// **'Teile dein Feedback'**
+  String get shareYourFeedback;
+
+  /// No description provided for @close.
+  ///
+  /// In de, this message translates to:
+  /// **'Schließen'**
+  String get close;
+
+  /// No description provided for @send.
+  ///
+  /// In de, this message translates to:
+  /// **'Senden'**
+  String get send;
+
+  /// No description provided for @feedbackPrompt.
+  ///
+  /// In de, this message translates to:
+  /// **'Wie gefällt dir die App? Lass uns wissen, was du denkst oder was fehlt.'**
+  String get feedbackPrompt;
+
+  /// No description provided for @feedbackHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Welcher Score fehlt, oder sonstiges Feedback…'**
+  String get feedbackHint;
+
+  /// No description provided for @feedbackSendFailed.
+  ///
+  /// In de, this message translates to:
+  /// **'Feedback konnte nicht gesendet werden. Bitte erneut versuchen.'**
+  String get feedbackSendFailed;
+
+  /// No description provided for @feedbackThankYou.
+  ///
+  /// In de, this message translates to:
+  /// **'Dein Feedback wurde übermittelt.'**
+  String get feedbackThankYou;
+
+  /// No description provided for @missingScorePrefill.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehlender Score: {query}'**
+  String missingScorePrefill(Object query);
+
+  /// No description provided for @buyMeACoffee.
+  ///
+  /// In de, this message translates to:
+  /// **'Spendier mir einen Kaffee'**
+  String get buyMeACoffee;
 }
 
 class _AppLocalizationsDelegate

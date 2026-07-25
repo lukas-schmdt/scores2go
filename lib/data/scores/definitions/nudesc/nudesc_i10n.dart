@@ -30,6 +30,14 @@ class NudescI10n extends ScoreI10n {
       'opt.absent': 'Absent',
       'opt.mild': 'Mild / intermittent',
       'opt.present': 'Present / pronounced',
+      // Calculation output
+      'calc.incomplete': 'Please rate all 5 items to obtain a score.',
+      'calc.interp.0': 'No delirium detected.',
+      'calc.interp.1': 'No delirium detected (borderline — reassess regularly).',
+      'calc.interp.2to4':
+          'Delirium likely (score ≥ 2) — further clinical assessment recommended.',
+      'calc.interp.severe':
+          'Severe delirium likely — immediate clinical assessment required.',
     },
     'de': {
       'display': 'Nu-DESC',
@@ -56,6 +64,15 @@ class NudescI10n extends ScoreI10n {
       'opt.absent': 'Nicht vorhanden',
       'opt.mild': 'Leicht / intermittierend',
       'opt.present': 'Ausgeprägt / durchgehend',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle 5 Items bewerten, um einen Score zu erhalten.',
+      'calc.interp.0': 'Kein Delir festgestellt.',
+      'calc.interp.1':
+          'Kein Delir festgestellt (Grenzbereich — regelmäßig neu beurteilen).',
+      'calc.interp.2to4':
+          'Delir wahrscheinlich (Score ≥ 2) — weitere klinische Abklärung empfohlen.',
+      'calc.interp.severe':
+          'Schweres Delir wahrscheinlich — sofortige klinische Abklärung erforderlich.',
     },
   };
 }

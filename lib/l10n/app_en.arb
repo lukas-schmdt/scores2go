@@ -98,5 +98,58 @@
   "disclaimerAccuracyTitle": "Accuracy & Liability",
   "disclaimerAccuracyBody": "Reasonable efforts have been made to implement scoring formulas accurately based on published scientific literature. However, no guarantee is made regarding completeness, correctness, or fitness for any specific purpose. The operators of Scores2Go shall not be liable for damages arising from use of this application, except in cases of intent, gross negligence, or where liability is mandatory under applicable law.",
   "disclaimerPrivacyTitle": "Data & Privacy",
-  "disclaimerPrivacyBody": "Scores2Go does not collect, store, or transmit patient data. All score calculations are performed locally on your device. Only your account credentials (email address) are stored for authentication purposes. No health-related data is associated with your account."
+  "disclaimerPrivacyBody": "Scores2Go does not collect, store, or transmit patient data. All score calculations are performed locally on your device. Only your account credentials (email address) are stored for authentication purposes. No health-related data is associated with your account.",
+
+  "resultLabel": "Result",
+  "pointsLabel": "Points",
+  "incompleteResult": "Incomplete",
+  "errorLabel": "Error",
+  "noDataAvailable": "No data available",
+  "calculating": "Calculating…",
+  "noInterpretationAvailable": "No interpretation available",
+  "yes": "Yes",
+  "no": "No",
+  "valueLabel": "Value",
+  "invalidNumber": "Invalid number",
+  "useDotOrCommaNotBoth": "Use a period or comma, not both",
+  "unsupportedVariableType": "Unsupported variable type",
+  "unsupportedVariableTypeDetail": "Unsupported variable type: {type}",
+  "@unsupportedVariableTypeDetail": {
+    "placeholders": { "type": {} }
+  },
+  "initialState": "Initial state",
+  "errorLoadingScore": "Error loading score",
+  "unknownState": "Unknown state",
+
+  "collectionsTitle": "Collections",
+  "addToCollection": "Add to collection",
+  "noCollectionsYet": "No collections yet. Create one below.",
+  "newCollection": "New collection",
+  "done": "Done",
+  "collectionNameHint": "Collection name",
+  "create": "Create",
+  "renameCollectionTooltip": "Rename",
+  "deleteCollectionTooltip": "Delete collection",
+  "renameCollectionTitle": "Rename collection",
+  "noScoresYetTitle": "No scores yet",
+  "noScoresYetSubtitle": "Add scores from the Browse tab.",
+  "deleteCollectionQuestion": "Delete collection?",
+  "deleteCollectionConfirmBody": "\"{name}\" will be deleted. Scores are not affected.",
+  "@deleteCollectionConfirmBody": {
+    "placeholders": { "name": {} }
+  },
+
+  "shareYourFeedback": "Share your feedback",
+  "close": "Close",
+  "send": "Send",
+  "feedbackPrompt": "How are you finding the app? Let us know what you think or what's missing.",
+  "feedbackHint": "Which score is missing, or any other feedback…",
+  "feedbackSendFailed": "Could not send feedback. Please try again.",
+  "feedbackThankYou": "Your feedback has been submitted.",
+  "missingScorePrefill": "Missing score: {query}",
+  "@missingScorePrefill": {
+    "placeholders": { "query": {} }
+  },
+
+  "buyMeACoffee": "Buy me a coffee"
 }

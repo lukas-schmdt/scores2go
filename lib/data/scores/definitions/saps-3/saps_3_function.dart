@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult saps3Function(Score score) {
+final _i10n = Saps3I10n();
+
+ScoreResult saps3Function(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   // Box I
@@ -53,7 +57,7 @@ ScoreResult saps3Function(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'SAPS 3',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -88,10 +92,11 @@ ScoreResult saps3Function(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'SAPS 3 Score',
-    primaryResult: '$total Punkte',
-    primaryInterpretation: 'Geschätzte Krankenhausmortalität: $mortalityPct %',
-    secondaryLabel: 'Risikoklasse',
-    secondaryResult: _riskClass(mortality),
+    primaryResult: '$total ${t('calc.points')}',
+    primaryInterpretation:
+        '${t('calc.estimatedHospitalMortality')}: $mortalityPct %',
+    secondaryLabel: t('calc.riskClass'),
+    secondaryResult: _riskClass(mortality, t),
   );
 }
 
@@ -101,9 +106,9 @@ double _predictedMortality(int saps3) {
   return exp(logit) / (1 + exp(logit));
 }
 
-String _riskClass(double mortality) {
-  if (mortality < 0.10) return 'Niedriges Risiko (< 10 %)';
-  if (mortality < 0.25) return 'Mäßiges Risiko (10–25 %)';
-  if (mortality < 0.50) return 'Hohes Risiko (25–50 %)';
-  return 'Sehr hohes Risiko (> 50 %)';
+String _riskClass(double mortality, String Function(String) t) {
+  if (mortality < 0.10) return t('calc.risk.low');
+  if (mortality < 0.25) return t('calc.risk.moderate');
+  if (mortality < 0.50) return t('calc.risk.high');
+  return t('calc.risk.veryHigh');
 }

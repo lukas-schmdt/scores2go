@@ -88,6 +88,14 @@ class EuroscoreI10n extends ScoreI10n {
       'septal_rupture.display': 'Post-infarct septal rupture',
       'septal_rupture.description':
           'Surgery for ventricular septal rupture following MI.',
+      // Calculation output
+      'calc.incomplete': 'Please fill in all required fields.',
+      'calc.predicted30DayMortality': 'Predicted 30-day operative mortality',
+      'calc.riskClass': 'Risk class',
+      'calc.risk.low': 'Low risk (< 2 %)',
+      'calc.risk.moderate': 'Moderate risk (2-5 %)',
+      'calc.risk.high': 'High risk (5-10 %)',
+      'calc.risk.veryHigh': 'Very high risk (> 10 %)',
     },
     'de': {
       'display': 'EuroSCORE II',
@@ -168,6 +176,14 @@ class EuroscoreI10n extends ScoreI10n {
       'septal_rupture.display': 'Postinfarzielle Septumruptur',
       'septal_rupture.description':
           'Chirurgie bei Ventrikelseptumruptur nach Myokardinfarkt.',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
+      'calc.predicted30DayMortality': 'Vorhergesagte 30-Tage-Operationsmortalität',
+      'calc.riskClass': 'Risikoklasse',
+      'calc.risk.low': 'Niedriges Risiko (< 2 %)',
+      'calc.risk.moderate': 'Mäßiges Risiko (2-5 %)',
+      'calc.risk.high': 'Hohes Risiko (5-10 %)',
+      'calc.risk.veryHigh': 'Sehr hohes Risiko (> 10 %)',
     },
   };
 }

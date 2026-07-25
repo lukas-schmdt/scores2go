@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/mods/mods_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult modsFunction(Score score) {
+final _i10n = ModsI10n();
+
+ScoreResult modsFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final pf = ctx.singleSelect('mods-pf')?['value'] as num?;
@@ -37,7 +41,7 @@ ScoreResult modsFunction(Score score) {
   if (!anyAnswered) {
     return ScoreResult.incomplete(
       label: 'MODS',
-      interpretation: 'Complete all six organ systems.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -58,11 +62,11 @@ ScoreResult modsFunction(Score score) {
   if (!allAnswered || cardioIncomplete) {
     return ScoreResult(
       state: ScoreState.incomplete,
-      primaryLabel: 'MODS (partial)',
+      primaryLabel: t('calc.partialLabel'),
       primaryResult: '$total',
       primaryInterpretation: cardioIncomplete
-          ? 'Enter HR, MAP, and CVP to score cardiovascular.'
-          : 'Complete all six organ systems for full result.',
+          ? t('calc.enterCardioValues')
+          : t('calc.completeAllSix'),
     );
   }
 
@@ -70,7 +74,7 @@ ScoreResult modsFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'MODS',
     primaryResult: '$total / 24',
-    primaryInterpretation: _interpret(total),
+    primaryInterpretation: _interpret(total, t),
     secondaryLabel: 'PAR',
     secondaryResult: _parLabel(hr, map, cvp),
   );
@@ -95,11 +99,11 @@ String _parLabel(num hr, num map, num cvp) {
   return 'PAR = ${par.toStringAsFixed(1)}';
 }
 
-String _interpret(int mods) {
-  if (mods == 0) return 'No dysfunction';
-  if (mods <= 4) return 'Mild — MODS 1–4';
-  if (mods <= 8) return 'Moderate — MODS 5–8';
-  if (mods <= 12) return 'Severe — MODS 9–12';
-  if (mods <= 16) return 'Very severe — MODS 13–16';
-  return 'Maximum dysfunction — MODS > 16';
+String _interpret(int mods, String Function(String) t) {
+  if (mods == 0) return t('calc.interp.none');
+  if (mods <= 4) return t('calc.interp.mild');
+  if (mods <= 8) return t('calc.interp.moderate');
+  if (mods <= 12) return t('calc.interp.severe');
+  if (mods <= 16) return t('calc.interp.verySevere');
+  return t('calc.interp.maximum');
 }

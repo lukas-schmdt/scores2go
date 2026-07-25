@@ -11,7 +11,7 @@ Score buildSofaScore(String lang) {
   return Score(
     id: 3,
     name: 'sofa',
-    scoreFunction: sofaFunction,
+    scoreFunction: (s) => sofaFunction(s, lang),
     visibilityFunction: sofaVisibility,
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/sofa.html'

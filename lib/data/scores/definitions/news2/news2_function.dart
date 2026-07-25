@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/news2/news2_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult news2Function(Score score) {
+final _i10n = News2I10n();
+
+ScoreResult news2Function(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final rrPts           = ctx.singleSelect('news2-rr')?['value']             as num?;
@@ -34,7 +38,7 @@ ScoreResult news2Function(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'NEWS2',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -51,25 +55,25 @@ ScoreResult news2Function(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'NEWS2',
-    primaryResult: '$total Punkte',
-    primaryInterpretation: _clinicalRisk(total, maxSingleParam),
-    secondaryLabel: 'Empfehlung',
-    secondaryResult: _recommendation(total, maxSingleParam),
+    primaryResult: '$total ${t('calc.pointsResult')}',
+    primaryInterpretation: _clinicalRisk(total, maxSingleParam, t),
+    secondaryLabel: t('calc.recommendationLabel'),
+    secondaryResult: _recommendation(total, maxSingleParam, t),
   );
 }
 
-String _clinicalRisk(int total, int maxSingle) {
-  if (total >= 7) return 'Hohes Risiko — Notfallreaktion';
-  if (total >= 5) return 'Mittleres Risiko — Dringende Beurteilung';
-  if (maxSingle >= 3) return 'Mittleres Risiko — Einzelparameter kritisch';
-  if (total >= 1) return 'Niedriges Risiko';
-  return 'Minimales Risiko';
+String _clinicalRisk(int total, int maxSingle, String Function(String) t) {
+  if (total >= 7) return t('calc.risk.high');
+  if (total >= 5) return t('calc.risk.mediumUrgent');
+  if (maxSingle >= 3) return t('calc.risk.mediumSingleParam');
+  if (total >= 1) return t('calc.risk.low');
+  return t('calc.risk.minimal');
 }
 
-String _recommendation(int total, int maxSingle) {
-  if (total >= 7) return 'Kontinuierliches Monitoring · Intensivaufnahme erwägen';
-  if (total >= 5) return 'Monitoring mind. stündlich · Arzt sofort informieren';
-  if (maxSingle >= 3) return 'Monitoring mind. stündlich · Arzt informieren';
-  if (total >= 1) return 'Monitoring 4–6-stündlich';
-  return 'Monitoring 12-stündlich';
+String _recommendation(int total, int maxSingle, String Function(String) t) {
+  if (total >= 7) return t('calc.rec.high');
+  if (total >= 5) return t('calc.rec.mediumUrgent');
+  if (maxSingle >= 3) return t('calc.rec.mediumSingleParam');
+  if (total >= 1) return t('calc.rec.low');
+  return t('calc.rec.minimal');
 }

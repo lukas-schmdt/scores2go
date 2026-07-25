@@ -19,7 +19,7 @@ Score buildFinneganScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/finnegan.html'
         : 'https://scores2go.com/scores/finnegan.html',
-    scoreFunction: finneganFunction,
+    scoreFunction: (s) => finneganFunction(s, lang),
     visibilityFunction: finneganVisibility,
     groups: [
       // ── Central Nervous System ───────────────────────────────────────────────

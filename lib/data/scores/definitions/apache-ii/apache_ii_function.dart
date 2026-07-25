@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/apache-ii/apache_ii_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult apacheIiFunction(Score score) {
+final _i10n = ApacheIiI10n();
+
+ScoreResult apacheIiFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final tempPts    = ctx.singleSelect('apache-ii-temperatur')?['value']    as num?;
@@ -46,7 +50,7 @@ ScoreResult apacheIiFunction(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'APACHE II',
-      interpretation: 'Bitte alle Pflichtfelder ausfüllen.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -76,21 +80,22 @@ ScoreResult apacheIiFunction(Score score) {
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'APACHE II Score',
-    primaryResult: '$total Punkte',
-    primaryInterpretation: _mortalityRisk(total),
-    secondaryLabel: 'Teilscores',
+    primaryResult: '$total ${t('calc.points')}',
+    primaryInterpretation: _mortalityRisk(total, t),
+    secondaryLabel: t('calc.subscoresLabel'),
     secondaryResult:
-        'APS $aps  |  Alter $agePtsInt  |  Vorerkrankungen $chronic',
+        'APS $aps  |  ${t('calc.subscoresAge')} $agePtsInt  |  '
+        '${t('calc.subscoresChronic')} $chronic',
   );
 }
 
-String _mortalityRisk(int total) {
-  if (total < 5)  return 'Sehr niedriges Risiko (~2 % Krankenhausmortalität)';
-  if (total < 10) return 'Niedriges Risiko (~8 % Krankenhausmortalität)';
-  if (total < 15) return 'Moderates Risiko (~15 % Krankenhausmortalität)';
-  if (total < 20) return 'Erhöhtes Risiko (~24 % Krankenhausmortalität)';
-  if (total < 25) return 'Hohes Risiko (~40 % Krankenhausmortalität)';
-  if (total < 30) return 'Sehr hohes Risiko (~55 % Krankenhausmortalität)';
-  if (total < 35) return 'Kritisch (~73 % Krankenhausmortalität)';
-  return 'Extrem kritisch (~85 % Krankenhausmortalität)';
+String _mortalityRisk(int total, String Function(String) t) {
+  if (total < 5) return t('calc.risk.veryLow');
+  if (total < 10) return t('calc.risk.low');
+  if (total < 15) return t('calc.risk.moderate');
+  if (total < 20) return t('calc.risk.elevated');
+  if (total < 25) return t('calc.risk.high');
+  if (total < 30) return t('calc.risk.veryHigh');
+  if (total < 35) return t('calc.risk.critical');
+  return t('calc.risk.extremelyCritical');
 }

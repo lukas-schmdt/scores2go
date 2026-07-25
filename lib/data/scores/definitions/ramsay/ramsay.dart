@@ -13,7 +13,7 @@ Score buildRamsayScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/ramsay.html'
         : 'https://scores2go.com/scores/ramsay.html',
-    scoreFunction: ramsayFunction,
+    scoreFunction: (s) => ramsayFunction(s, lang),
     visibilityFunction: ramsayVisibility,
     author: 'Ramsay et al.',
     year: 1974,

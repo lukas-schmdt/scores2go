@@ -1,10 +1,14 @@
 import 'dart:math';
 
+import 'package:scores_2_go/data/scores/definitions/meld/meld_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult meldFunction(Score score) {
+final _i10n = MeldI10n();
+
+ScoreResult meldFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final bilirubinRaw = ctx.numValue('meld-bilirubin')?['value'] as num?;
@@ -15,14 +19,14 @@ ScoreResult meldFunction(Score score) {
   if (bilirubinRaw == null && inrRaw == null && creatinineRaw == null) {
     return ScoreResult.incomplete(
       label: 'MELD',
-      interpretation: 'Enter bilirubin, INR, and creatinine.',
+      interpretation: t('calc.incomplete.enterAll'),
     );
   }
 
   if (bilirubinRaw == null || inrRaw == null || creatinineRaw == null) {
     return ScoreResult.incomplete(
       label: 'MELD',
-      interpretation: 'All three lab values are required.',
+      interpretation: t('calc.incomplete.allRequired'),
     );
   }
 
@@ -46,17 +50,17 @@ ScoreResult meldFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'MELD',
     primaryResult: '$meldInt',
-    primaryInterpretation: _interpret(meldInt),
-    secondaryLabel: '90-day mortality',
+    primaryInterpretation: _interpret(meldInt, t),
+    secondaryLabel: t('calc.mortality90day'),
     secondaryResult: _mortality(meldInt),
   );
 }
 
-String _interpret(int meld) {
-  if (meld < 10) return 'Low — MELD < 10';
-  if (meld < 20) return 'Moderate — MELD 10–19';
-  if (meld < 30) return 'High — MELD 20–29';
-  return 'Very high — MELD ≥ 30';
+String _interpret(int meld, String Function(String) t) {
+  if (meld < 10) return t('calc.risk.low');
+  if (meld < 20) return t('calc.risk.moderate');
+  if (meld < 30) return t('calc.risk.high');
+  return t('calc.risk.veryHigh');
 }
 
 String _mortality(int meld) {

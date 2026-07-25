@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_collection.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
@@ -32,6 +33,7 @@ class CollectionDetailScreen extends StatelessWidget {
             .map((id) => allScores.where((s) => s.id == id).firstOrNull)
             .whereType<Score>()
             .toList();
+        final l = AppLocalizations.of(context)!;
 
         return Scaffold(
           appBar: AppBar(
@@ -39,21 +41,21 @@ class CollectionDetailScreen extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.edit_outlined),
-                tooltip: 'Rename',
+                tooltip: l.renameCollectionTooltip,
                 onPressed: () => _showRenameDialog(context, collection),
               ),
               IconButton(
                 icon: const Icon(Icons.delete_outline),
-                tooltip: 'Delete collection',
+                tooltip: l.deleteCollectionTooltip,
                 onPressed: () => _confirmDelete(context, collection),
               ),
             ],
           ),
           body: scores.isEmpty
-              ? const EmptyState(
+              ? EmptyState(
                   iconData: Icons.folder_open_outlined,
-                  title: 'No scores yet',
-                  subtitle: 'Add scores from the Browse tab.',
+                  title: l.noScoresYetTitle,
+                  subtitle: l.noScoresYetSubtitle,
                 )
               : ListView.builder(
                   padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
@@ -173,11 +175,12 @@ class CollectionDetailScreen extends StatelessWidget {
     ScoreCollection collection,
   ) async {
     final bloc = context.read<CollectionsBloc>();
+    final l = AppLocalizations.of(context)!;
     final controller = TextEditingController(text: collection.display);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Rename collection'),
+        title: Text(l.renameCollectionTitle),
         content: TextField(
           controller: controller,
           autofocus: true,
@@ -190,11 +193,11 @@ class CollectionDetailScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text('Save'),
+            child: Text(l.save),
           ),
         ],
       ),
@@ -211,24 +214,23 @@ class CollectionDetailScreen extends StatelessWidget {
   ) async {
     final bloc = context.read<CollectionsBloc>();
     final nav = Navigator.of(context);
+    final l = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('Delete collection?'),
-        content: Text(
-          '"${collection.display}" will be deleted. Scores are not affected.',
-        ),
+        title: Text(l.deleteCollectionQuestion),
+        content: Text(l.deleteCollectionConfirmBody(collection.display)),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l.cancel),
           ),
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(true),
             style: TextButton.styleFrom(
               foregroundColor: Theme.of(ctx).colorScheme.error,
             ),
-            child: const Text('Delete'),
+            child: Text(l.delete),
           ),
         ],
       ),

@@ -49,6 +49,19 @@ class Cha2ds2VascI10n extends ScoreI10n {
       'sex.description': 'Biological sex.',
       'sex.opt.female': 'Female',
       'sex.opt.male': 'Male',
+      // Calculation output
+      'calc.incomplete': 'Please answer all risk factors.',
+      'calc.secondaryLabel': 'Annual Stroke Risk',
+      'calc.citation':
+          'Based on the Friberg et al. 2012 Swedish Atlas cohort (n=182,678).',
+      'calc.guidance.threshold': 'Oral anticoagulation is recommended (ESC 2020) — ',
+      'calc.guidance.consider':
+          'Oral anticoagulation may be considered — individualize based on '
+          'patient preference and bleeding risk (ESC 2020) — ',
+      'calc.guidance.none':
+          'No antithrombotic therapy is needed based on stroke risk alone — ',
+      'calc.scoreSuffix.female': 'score {n} in a woman.',
+      'calc.scoreSuffix.male': 'score {n} in a man.',
     },
     'de': {
       'display': 'CHA2DS2-VASc-Score',
@@ -94,6 +107,22 @@ class Cha2ds2VascI10n extends ScoreI10n {
       'sex.description': 'Biologisches Geschlecht.',
       'sex.opt.female': 'Weiblich',
       'sex.opt.male': 'Männlich',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Risikofaktoren beantworten.',
+      'calc.secondaryLabel': 'Jährliches Schlaganfallrisiko',
+      'calc.citation':
+          'Basierend auf der Friberg et al. 2012 Swedish-Atlas-Kohorte (n=182.678).',
+      'calc.guidance.threshold':
+          'Orale Antikoagulation wird empfohlen (ESC 2020) — ',
+      'calc.guidance.consider':
+          'Orale Antikoagulation kann erwogen werden — individuelle '
+          'Entscheidung anhand von Patientenpräferenz und Blutungsrisiko '
+          '(ESC 2020) — ',
+      'calc.guidance.none':
+          'Basierend auf dem Schlaganfallrisiko allein ist keine '
+          'antithrombotische Therapie erforderlich — ',
+      'calc.scoreSuffix.female': 'Score {n} bei einer Frau.',
+      'calc.scoreSuffix.male': 'Score {n} bei einem Mann.',
     },
   };
 }

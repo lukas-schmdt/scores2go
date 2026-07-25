@@ -13,7 +13,7 @@ Score buildEuroscoreScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/euroscore2.html'
         : 'https://scores2go.com/scores/euroscore2.html',
-    scoreFunction: euroscoreFunction,
+    scoreFunction: (s) => euroscoreFunction(s, lang),
     visibilityFunction: euroscoreVisibility,
     author: 'Nashef et al.',
     year: 2012,

@@ -11,7 +11,7 @@ Score buildSapsIiScore(String lang) {
   return Score(
     id: 2,
     name: 'saps-ii',
-    scoreFunction: sapsIiFunction,
+    scoreFunction: (s) => sapsIiFunction(s, lang),
     visibilityFunction: sapsIiVisibility,
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/saps-ii.html'

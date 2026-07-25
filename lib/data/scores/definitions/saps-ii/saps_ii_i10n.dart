@@ -68,6 +68,19 @@ class SapsIiI10n extends ScoreI10n {
       'bicarbonat.description': 'Lowest value in mmol/L or mEq/L.',
       'bilirubin.display': 'Bilirubin',
       'bilirubin.description': 'Total bilirubin.',
+      // Calculation output
+      'calc.incomplete': 'Please fill in all required fields.',
+      'calc.points': 'points',
+      'calc.note': 'Note',
+      'calc.hospitalMortalityEstimated': 'Hospital mortality (estimated)',
+      'calc.highScoreNote':
+          'SAPS II ≥ 50 is associated with a mortality > 50 %.',
+      'calc.risk.low': 'Low risk (< 10 % hospital mortality)',
+      'calc.risk.moderate': 'Moderate risk (~15 % hospital mortality)',
+      'calc.risk.elevated': 'Elevated risk (~25 % hospital mortality)',
+      'calc.risk.high': 'High risk (~40 % hospital mortality)',
+      'calc.risk.veryHigh': 'Very high risk (~60 % hospital mortality)',
+      'calc.risk.critical': 'Critical (> 80 % hospital mortality)',
     },
     'de': {
       'description': 'Simplified Acute Physiology Score (SAPS) II',
@@ -133,6 +146,19 @@ class SapsIiI10n extends ScoreI10n {
       'bicarbonat.description': 'Niedrigster Wert in mmol/L bzw. mEq/L.',
       'bilirubin.display': 'Bilirubin',
       'bilirubin.description': 'Gesamtbilirubin.',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
+      'calc.points': 'Punkte',
+      'calc.note': 'Hinweis',
+      'calc.hospitalMortalityEstimated': 'Krankenhausmortalität (geschätzt)',
+      'calc.highScoreNote':
+          'SAPS II ≥ 50 ist mit einer Mortalität > 50 % assoziiert.',
+      'calc.risk.low': 'Niedriges Risiko (< 10 % Krankenhausmortalität)',
+      'calc.risk.moderate': 'Moderates Risiko (~15 % Krankenhausmortalität)',
+      'calc.risk.elevated': 'Erhöhtes Risiko (~25 % Krankenhausmortalität)',
+      'calc.risk.high': 'Hohes Risiko (~40 % Krankenhausmortalität)',
+      'calc.risk.veryHigh': 'Sehr hohes Risiko (~60 % Krankenhausmortalität)',
+      'calc.risk.critical': 'Kritisch (> 80 % Krankenhausmortalität)',
     },
   };
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/variable_bool.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
@@ -11,6 +12,7 @@ class BooleanVariable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
@@ -36,7 +38,7 @@ class BooleanVariable extends StatelessWidget {
             children: [
               Expanded(
                 child: _BoolCard(
-                  label: 'Ja',
+                  label: l.yes,
                   points: item.trueValue!,
                   selected: item.value == true,
                   onTap: () => context
@@ -47,7 +49,7 @@ class BooleanVariable extends StatelessWidget {
               const SizedBox(width: 8),
               Expanded(
                 child: _BoolCard(
-                  label: 'Nein',
+                  label: l.no,
                   points: item.falseValue!,
                   selected: item.value == false,
                   onTap: () => context

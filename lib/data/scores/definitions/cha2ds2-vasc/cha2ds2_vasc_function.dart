@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/cha2ds2-vasc/cha2ds2_vasc_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult cha2ds2VascFunction(Score score) {
+final _i10n = Cha2ds2VascI10n();
+
+ScoreResult cha2ds2VascFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final chfPts = ctx.boolValue('cha2ds2-vasc-chf')?['points'] as num?;
@@ -29,7 +33,7 @@ ScoreResult cha2ds2VascFunction(Score score) {
   if (!allComplete) {
     return ScoreResult.incomplete(
       label: 'CHA2DS2-VASc Score',
-      interpretation: 'Please answer all risk factors.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -49,11 +53,10 @@ ScoreResult cha2ds2VascFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'CHA2DS2-VASc Score',
     primaryResult: '$total / 9',
-    primaryInterpretation: _anticoagulationGuidance(total, isFemale),
-    secondaryLabel: 'Annual Stroke Risk',
+    primaryInterpretation: _anticoagulationGuidance(total, isFemale, t),
+    secondaryLabel: t('calc.secondaryLabel'),
     secondaryResult: '${_strokeRisk(total)}% per year',
-    secondaryInterpretation:
-        'Based on the Friberg et al. 2012 Swedish Atlas cohort (n=182,678).',
+    secondaryInterpretation: t('calc.citation'),
   );
 }
 
@@ -74,19 +77,24 @@ const _strokeRiskByScore = [
 
 double _strokeRisk(int total) => _strokeRiskByScore[total];
 
-String _anticoagulationGuidance(int total, bool isFemale) {
+String _anticoagulationGuidance(
+  int total,
+  bool isFemale,
+  String Function(String) t,
+) {
   final threshold = isFemale ? total >= 3 : total >= 2;
   final consider = isFemale ? total == 2 : total == 1;
 
+  final suffix = (isFemale
+          ? t('calc.scoreSuffix.female')
+          : t('calc.scoreSuffix.male'))
+      .replaceFirst('{n}', '$total');
+
   if (threshold) {
-    return 'Oral anticoagulation is recommended (ESC 2020) — '
-        'score $total in a ${isFemale ? 'woman' : 'man'}.';
+    return '${t('calc.guidance.threshold')}$suffix';
   }
   if (consider) {
-    return 'Oral anticoagulation may be considered — individualize based on '
-        'patient preference and bleeding risk (ESC 2020) — score $total in a '
-        '${isFemale ? 'woman' : 'man'}.';
+    return '${t('calc.guidance.consider')}$suffix';
   }
-  return 'No antithrombotic therapy is needed based on stroke risk alone — '
-      'score $total in a ${isFemale ? 'woman' : 'man'}.';
+  return '${t('calc.guidance.none')}$suffix';
 }

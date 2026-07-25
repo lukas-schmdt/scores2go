@@ -78,6 +78,17 @@ class ModsI10n extends ScoreI10n {
       'gcs.2': '10–12',
       'gcs.3': '7–9',
       'gcs.4': '≤ 6',
+      // Calculation output
+      'calc.incomplete': 'Complete all six organ systems.',
+      'calc.partialLabel': 'MODS (partial)',
+      'calc.enterCardioValues': 'Enter HR, MAP, and CVP to score cardiovascular.',
+      'calc.completeAllSix': 'Complete all six organ systems for full result.',
+      'calc.interp.none': 'No dysfunction',
+      'calc.interp.mild': 'Mild — MODS 1–4',
+      'calc.interp.moderate': 'Moderate — MODS 5–8',
+      'calc.interp.severe': 'Severe — MODS 9–12',
+      'calc.interp.verySevere': 'Very severe — MODS 13–16',
+      'calc.interp.maximum': 'Maximum dysfunction — MODS > 16',
     },
     'de': {
       'display': 'MODS',
@@ -152,6 +163,19 @@ class ModsI10n extends ScoreI10n {
       'gcs.2': '10–12',
       'gcs.3': '7–9',
       'gcs.4': '≤ 6',
+      // Calculation output
+      'calc.incomplete': 'Alle sechs Organsysteme vervollständigen.',
+      'calc.partialLabel': 'MODS (unvollständig)',
+      'calc.enterCardioValues':
+          'HF, MAP und ZVD eingeben, um Kardiovaskulär zu bewerten.',
+      'calc.completeAllSix':
+          'Alle sechs Organsysteme für das vollständige Ergebnis eingeben.',
+      'calc.interp.none': 'Keine Dysfunktion',
+      'calc.interp.mild': 'Leicht — MODS 1–4',
+      'calc.interp.moderate': 'Moderat — MODS 5–8',
+      'calc.interp.severe': 'Schwer — MODS 9–12',
+      'calc.interp.verySevere': 'Sehr schwer — MODS 13–16',
+      'calc.interp.maximum': 'Maximale Dysfunktion — MODS > 16',
     },
   };
 }

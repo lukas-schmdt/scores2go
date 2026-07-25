@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/variable_number.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
 
@@ -51,10 +52,12 @@ class _NumberVariableState extends State<NumberVariable> {
         .replaceAll(RegExp(r'\.$'), '');
   }
 
-  String _hintText(VariableNumber item) {
+  String _hintText(BuildContext context, VariableNumber item) {
     final min = item.normMin;
     final max = item.normMax;
-    if (min == null || max == null) return 'Wert';
+    if (min == null || max == null) {
+      return AppLocalizations.of(context)!.valueLabel;
+    }
     final unit = item.activeUnit;
     if (unit == null) return '$min – $max';
     return '${_fmt(unit.toDisplay(min))} – ${_fmt(unit.toDisplay(max))}';
@@ -66,6 +69,7 @@ class _NumberVariableState extends State<NumberVariable> {
     final activeUnit = item.activeUnit;
     final hasMultipleUnits = (item.units?.length ?? 0) > 1;
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 4),
@@ -117,9 +121,9 @@ class _NumberVariableState extends State<NumberVariable> {
               validator: (value) {
                 if (value == null || value.isEmpty) return null;
                 final regex = RegExp(r'^-?\d*([.,])?\d*$');
-                if (!regex.hasMatch(value)) return 'Ungültige Zahl';
+                if (!regex.hasMatch(value)) return l.invalidNumber;
                 if (value.contains('.') && value.contains(',')) {
-                  return 'Punkt oder Komma verwenden, nicht beides';
+                  return l.useDotOrCommaNotBoth;
                 }
                 return null;
               },
@@ -134,7 +138,7 @@ class _NumberVariableState extends State<NumberVariable> {
                   vertical: 10,
                 ),
                 border: const OutlineInputBorder(),
-                hintText: _hintText(item),
+                hintText: _hintText(context, item),
                 hintStyle: TextStyle(color: cs.onSurfaceVariant.withValues(alpha: 0.45)),
               ),
             ),

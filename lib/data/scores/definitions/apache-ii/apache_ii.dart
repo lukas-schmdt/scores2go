@@ -11,7 +11,7 @@ Score buildApacheIiScore(String lang) {
   return Score(
     id: 1,
     name: 'apache-ii',
-    scoreFunction: apacheIiFunction,
+    scoreFunction: (s) => apacheIiFunction(s, lang),
     visibilityFunction: apacheIiVisibility,
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/apache2.html'

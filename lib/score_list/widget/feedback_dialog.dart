@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/theme/app_colors.dart';
 
@@ -34,7 +35,9 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
       if (mounted) {
         setState(() => _submitting = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Could not send feedback. Please try again.')),
+          SnackBar(
+            content: Text(AppLocalizations.of(context)!.feedbackSendFailed),
+          ),
         );
       }
     }
@@ -42,20 +45,21 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
     return AlertDialog(
-      title: _submitted ? null : const Text('Share your feedback'),
+      title: _submitted ? null : Text(l.shareYourFeedback),
       content: _submitted ? _buildThankYou(context) : _buildForm(context),
       actions: _submitted
           ? [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
+                child: Text(l.close),
               ),
             ]
           : [
               TextButton(
                 onPressed: _submitting ? null : () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
+                child: Text(l.cancel),
               ),
               TextButton(
                 onPressed: (_stars == 0 || _submitting) ? null : _submit,
@@ -65,7 +69,7 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
                         height: 16,
                         child: CircularProgressIndicator(strokeWidth: 2),
                       )
-                    : const Text('Send'),
+                    : Text(l.send),
               ),
             ],
     );
@@ -73,12 +77,13 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
 
   Widget _buildForm(BuildContext context) {
     final cs = Theme.of(context).colorScheme;
+    final l = AppLocalizations.of(context)!;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'How are you finding the app? Let us know what you think or what\'s missing.',
+          l.feedbackPrompt,
           style: Theme.of(context).textTheme.bodySmall,
         ),
         const SizedBox(height: 16),
@@ -101,9 +106,9 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
         TextField(
           controller: _controller,
           maxLines: 4,
-          decoration: const InputDecoration(
-            hintText: 'Which score is missing, or any other feedback…',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            hintText: l.feedbackHint,
+            border: const OutlineInputBorder(),
             isDense: true,
           ),
         ),
@@ -118,7 +123,10 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
         Icon(Icons.check_circle_rounded,
             color: Theme.of(context).colorScheme.primary, size: 48),
         const SizedBox(height: 12),
-        const Text('Your feedback has been submitted.', textAlign: TextAlign.center),
+        Text(
+          AppLocalizations.of(context)!.feedbackThankYou,
+          textAlign: TextAlign.center,
+        ),
       ],
     );
   }

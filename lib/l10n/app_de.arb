@@ -98,5 +98,58 @@
   "disclaimerAccuracyTitle": "Genauigkeit & Haftung",
   "disclaimerAccuracyBody": "Es wurden angemessene Bemühungen unternommen, die Scoring-Formeln auf Grundlage publizierter wissenschaftlicher Literatur korrekt umzusetzen. Es wird jedoch keine Garantie hinsichtlich Vollständigkeit, Richtigkeit oder Eignung für einen bestimmten Zweck übernommen. Die Betreiber von Scores2Go haften nicht für Schäden, die aus der Nutzung der Anwendung entstehen, es sei denn, diese beruhen auf Vorsatz, grober Fahrlässigkeit oder gesetzlich zwingender Haftung.",
   "disclaimerPrivacyTitle": "Daten & Datenschutz",
-  "disclaimerPrivacyBody": "Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft."
+  "disclaimerPrivacyBody": "Scores2Go erhebt, speichert oder übermittelt keine Patientendaten. Alle Score-Berechnungen werden lokal auf Ihrem Gerät durchgeführt. Lediglich Ihre Zugangsdaten (E-Mail-Adresse) werden zu Authentifizierungszwecken gespeichert. Gesundheitsbezogene Daten werden nicht mit Ihrem Konto verknüpft.",
+
+  "resultLabel": "Ergebnis",
+  "pointsLabel": "Punkte",
+  "incompleteResult": "Unvollständig",
+  "errorLabel": "Fehler",
+  "noDataAvailable": "Keine Daten verfügbar",
+  "calculating": "Berechnung läuft …",
+  "noInterpretationAvailable": "Keine Interpretation verfügbar",
+  "yes": "Ja",
+  "no": "Nein",
+  "valueLabel": "Wert",
+  "invalidNumber": "Ungültige Zahl",
+  "useDotOrCommaNotBoth": "Punkt oder Komma verwenden, nicht beides",
+  "unsupportedVariableType": "Nicht unterstützter Variablentyp",
+  "unsupportedVariableTypeDetail": "Nicht unterstützter Variablentyp: {type}",
+  "@unsupportedVariableTypeDetail": {
+    "placeholders": { "type": {} }
+  },
+  "initialState": "Initialer Zustand",
+  "errorLoadingScore": "Fehler beim Laden des Scores",
+  "unknownState": "Unbekannter Zustand",
+
+  "collectionsTitle": "Sammlungen",
+  "addToCollection": "Zu Sammlung hinzufügen",
+  "noCollectionsYet": "Noch keine Sammlungen. Erstelle unten eine neue.",
+  "newCollection": "Neue Sammlung",
+  "done": "Fertig",
+  "collectionNameHint": "Name der Sammlung",
+  "create": "Erstellen",
+  "renameCollectionTooltip": "Umbenennen",
+  "deleteCollectionTooltip": "Sammlung löschen",
+  "renameCollectionTitle": "Sammlung umbenennen",
+  "noScoresYetTitle": "Noch keine Scores",
+  "noScoresYetSubtitle": "Füge Scores über den Tab „Durchsuchen“ hinzu.",
+  "deleteCollectionQuestion": "Sammlung löschen?",
+  "deleteCollectionConfirmBody": "„{name}“ wird gelöscht. Scores sind davon nicht betroffen.",
+  "@deleteCollectionConfirmBody": {
+    "placeholders": { "name": {} }
+  },
+
+  "shareYourFeedback": "Teile dein Feedback",
+  "close": "Schließen",
+  "send": "Senden",
+  "feedbackPrompt": "Wie gefällt dir die App? Lass uns wissen, was du denkst oder was fehlt.",
+  "feedbackHint": "Welcher Score fehlt, oder sonstiges Feedback…",
+  "feedbackSendFailed": "Feedback konnte nicht gesendet werden. Bitte erneut versuchen.",
+  "feedbackThankYou": "Dein Feedback wurde übermittelt.",
+  "missingScorePrefill": "Fehlender Score: {query}",
+  "@missingScorePrefill": {
+    "placeholders": { "query": {} }
+  },
+
+  "buyMeACoffee": "Spendier mir einen Kaffee"
 }

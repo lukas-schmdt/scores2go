@@ -1,3 +1,4 @@
+import 'package:scores_2_go/data/scores/definitions/gcs/gcs_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
@@ -5,7 +6,10 @@ import 'package:scores_2_go/model/score_result.dart';
 // Sentinel value stored in VariableOption.value for "not testable".
 const _kNt = -1;
 
-ScoreResult gcsFunction(Score score) {
+final _i10n = GcsI10n();
+
+ScoreResult gcsFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final eRaw = ctx.singleSelect('gcs-eyes')?['value'] as num?;
@@ -15,7 +19,7 @@ ScoreResult gcsFunction(Score score) {
   if (eRaw == null && vRaw == null && mRaw == null) {
     return ScoreResult.incomplete(
       label: 'GCS',
-      interpretation: 'Select a response in each subscale.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -46,10 +50,10 @@ ScoreResult gcsFunction(Score score) {
     ].join(' ');
     return ScoreResult(
       state: ScoreState.incomplete,
-      primaryLabel: 'GCS (partial)',
+      primaryLabel: t('calc.partialLabel'),
       primaryResult: '$total',
-      primaryInterpretation: 'Complete all three subscales for full result.',
-      secondaryLabel: 'EVM',
+      primaryInterpretation: t('calc.completeAllThree'),
+      secondaryLabel: t('calc.evmLabel'),
       secondaryResult: evm,
     );
   }
@@ -67,15 +71,15 @@ ScoreResult gcsFunction(Score score) {
     primaryLabel: 'GCS',
     primaryResult: anyNt ? '$total / $maxTotal' : '$total / 15',
     primaryInterpretation: anyNt
-        ? '${_interpret(total)} (NT subscale excluded)'
-        : _interpret(total),
-    secondaryLabel: 'EVM',
+        ? '${_interpret(total, t)} ${t('calc.ntExcluded')}'
+        : _interpret(total, t),
+    secondaryLabel: t('calc.evmLabel'),
     secondaryResult: evm,
   );
 }
 
-String _interpret(int gcs) {
-  if (gcs >= 13) return 'Mild — GCS 13–15';
-  if (gcs >= 9) return 'Moderate — GCS 9–12';
-  return 'Severe — GCS 3–8';
+String _interpret(int gcs, String Function(String) t) {
+  if (gcs >= 13) return t('calc.interp.mild');
+  if (gcs >= 9) return t('calc.interp.moderate');
+  return t('calc.interp.severe');
 }

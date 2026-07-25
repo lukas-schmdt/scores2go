@@ -25,7 +25,7 @@ Score buildHorovitzScore(String lang) {
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/horovitz.html'
         : 'https://scores2go.com/scores/horovitz.html',
-    scoreFunction: horovitzFunction,
+    scoreFunction: (s) => horovitzFunction(s, lang),
     visibilityFunction: horovitzVisibility,
     groups: [
       Group(

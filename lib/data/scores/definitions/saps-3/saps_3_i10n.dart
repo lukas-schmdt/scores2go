@@ -123,6 +123,15 @@ class Saps3I10n extends ScoreI10n {
       'pao2_fio2.lt100': '< 100',
       'pao2_fio2.100_199': '100–199',
       'pao2_fio2.ge200': '≥ 200',
+      // Calculation output
+      'calc.incomplete': 'Please fill in all required fields.',
+      'calc.points': 'points',
+      'calc.estimatedHospitalMortality': 'Estimated hospital mortality',
+      'calc.riskClass': 'Risk class',
+      'calc.risk.low': 'Low risk (< 10 %)',
+      'calc.risk.moderate': 'Moderate risk (10–25 %)',
+      'calc.risk.high': 'High risk (25–50 %)',
+      'calc.risk.veryHigh': 'Very high risk (> 50 %)',
     },
     'de': {
       'display': 'SAPS 3',
@@ -238,6 +247,15 @@ class Saps3I10n extends ScoreI10n {
       'pao2_fio2.lt100': '< 100',
       'pao2_fio2.100_199': '100–199',
       'pao2_fio2.ge200': '≥ 200',
+      // Calculation output
+      'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
+      'calc.points': 'Punkte',
+      'calc.estimatedHospitalMortality': 'Geschätzte Krankenhausmortalität',
+      'calc.riskClass': 'Risikoklasse',
+      'calc.risk.low': 'Niedriges Risiko (< 10 %)',
+      'calc.risk.moderate': 'Mäßiges Risiko (10–25 %)',
+      'calc.risk.high': 'Hohes Risiko (25–50 %)',
+      'calc.risk.veryHigh': 'Sehr hohes Risiko (> 50 %)',
     },
   };
 }

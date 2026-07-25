@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/qsofa/qsofa_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult qsofaFunction(Score score) {
+final _i10n = QsofaI10n();
+
+ScoreResult qsofaFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   final respRate = ctx.boolValue('qsofa-resp-rate')?['points'] as num?;
@@ -12,7 +16,7 @@ ScoreResult qsofaFunction(Score score) {
   if (respRate == null || mentation == null || sbp == null) {
     return ScoreResult.incomplete(
       label: 'qSOFA',
-      interpretation: 'Please assess all three criteria.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -22,10 +26,9 @@ ScoreResult qsofaFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'qSOFA',
     primaryResult: '$total / 3',
-    primaryInterpretation: _interpret(total),
+    primaryInterpretation: _interpret(total, t),
   );
 }
 
-String _interpret(int total) => total >= 2
-    ? 'High risk — increased risk of mortality and prolonged ICU stay. Consider further sepsis workup.'
-    : 'Low risk — continue routine monitoring; reassess if clinical status changes.';
+String _interpret(int total, String Function(String) t) =>
+    total >= 2 ? t('calc.interp.high') : t('calc.interp.low');

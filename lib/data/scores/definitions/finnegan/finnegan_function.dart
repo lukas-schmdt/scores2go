@@ -1,8 +1,12 @@
+import 'package:scores_2_go/data/scores/definitions/finnegan/finnegan_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/model/score_result.dart';
 
-ScoreResult finneganFunction(Score score) {
+final _i10n = FinneganI10n();
+
+ScoreResult finneganFunction(Score score, String lang) {
+  String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
   // ── CNS ────────────────────────────────────────────────────────────────────
@@ -70,7 +74,7 @@ ScoreResult finneganFunction(Score score) {
   if (allVars.every((v) => v == null)) {
     return ScoreResult.incomplete(
       label: 'Finnegan NAS',
-      interpretation: 'Complete at least one item to calculate the score.',
+      interpretation: t('calc.incomplete'),
     );
   }
 
@@ -105,10 +109,10 @@ ScoreResult finneganFunction(Score score) {
   if (!isComplete) {
     return ScoreResult(
       state: ScoreState.incomplete,
-      primaryLabel: 'Finnegan NAS (partial)',
+      primaryLabel: t('calc.partialLabel'),
       primaryResult: '$total',
-      primaryInterpretation:
-          '${allVars.length - answeredCount} item(s) not yet assessed.',
+      primaryInterpretation: t('calc.itemsNotAssessed')
+          .replaceFirst('{n}', '${allVars.length - answeredCount}'),
     );
   }
 
@@ -116,12 +120,12 @@ ScoreResult finneganFunction(Score score) {
     state: ScoreState.success,
     primaryLabel: 'Finnegan NAS',
     primaryResult: '$total',
-    primaryInterpretation: _interpret(total),
+    primaryInterpretation: _interpret(total, t),
   );
 }
 
-String _interpret(int score) {
-  if (score < 8) return 'Mild withdrawal — supportive care';
-  if (score < 12) return 'Moderate withdrawal — consider pharmacotherapy';
-  return 'Severe withdrawal — pharmacotherapy indicated';
+String _interpret(int score, String Function(String) t) {
+  if (score < 8) return t('calc.interp.mild');
+  if (score < 12) return t('calc.interp.moderate');
+  return t('calc.interp.severe');
 }

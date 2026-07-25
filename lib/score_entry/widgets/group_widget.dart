@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score_group.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/model/variable_bool.dart';
@@ -60,9 +61,9 @@ class GroupWidget extends StatelessWidget {
           } else if (item is VariableSelection) {
             return SelectionVariable(key: keyFor(item.name), item: item);
           } else {
-            return const Padding(
-              padding: EdgeInsets.all(8),
-              child: Text('Nicht unterstützter Variablentyp'),
+            return Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(AppLocalizations.of(context)!.unsupportedVariableType),
             );
           }
         }),

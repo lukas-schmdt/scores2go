@@ -34,6 +34,14 @@ class MeldI10n extends ScoreI10n {
       'dialysis.display': 'Dialysis ≥ 2×/week',
       'dialysis.description':
           'Patient received dialysis at least twice in the preceding week. If yes, creatinine is set to 4.0 mg/dL.',
+      // Calculation output
+      'calc.incomplete.enterAll': 'Enter bilirubin, INR, and creatinine.',
+      'calc.incomplete.allRequired': 'All three lab values are required.',
+      'calc.mortality90day': '90-day mortality',
+      'calc.risk.low': 'Low — MELD < 10',
+      'calc.risk.moderate': 'Moderate — MELD 10–19',
+      'calc.risk.high': 'High — MELD 20–29',
+      'calc.risk.veryHigh': 'Very high — MELD ≥ 30',
     },
     'de': {
       'display': 'MELD',
@@ -67,6 +75,15 @@ class MeldI10n extends ScoreI10n {
       'dialysis.display': 'Dialyse ≥ 2×/Woche',
       'dialysis.description':
           'Patient erhielt innerhalb der letzten Woche mindestens zweimal Dialyse. Falls ja, wird Kreatinin auf 4,0 mg/dL gesetzt.',
+      // Calculation output
+      'calc.incomplete.enterAll': 'Bilirubin, INR und Kreatinin eingeben.',
+      'calc.incomplete.allRequired':
+          'Alle drei Laborwerte sind erforderlich.',
+      'calc.mortality90day': '90-Tage-Mortalität',
+      'calc.risk.low': 'Niedrig — MELD < 10',
+      'calc.risk.moderate': 'Moderat — MELD 10–19',
+      'calc.risk.high': 'Hoch — MELD 20–29',
+      'calc.risk.veryHigh': 'Sehr hoch — MELD ≥ 30',
     },
   };
 }

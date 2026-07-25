@@ -25,6 +25,23 @@ class RassI10n extends ScoreI10n {
       'level.minus3': '-3 · Moderate sedation',
       'level.minus4': '-4 · Deep sedation',
       'level.minus5': '-5 · Unarousable',
+      // Calculation output
+      'calc.incomplete': 'Please select a RASS level.',
+      'calc.interp.plus4': 'Combative – overtly combative, violent, immediate danger to staff',
+      'calc.interp.plus3': 'Very agitated – pulls or removes tubes/catheters, aggressive',
+      'calc.interp.plus2': 'Agitated – frequent non-purposeful movement',
+      'calc.interp.plus1': 'Restless – anxious but movements not aggressive',
+      'calc.interp.zero': 'Alert and calm',
+      'calc.interp.minus1':
+          'Drowsy – not fully alert, but sustained awakening to voice > 10 s',
+      'calc.interp.minus2':
+          'Light sedation – briefly awakens to voice < 10 s',
+      'calc.interp.minus3':
+          'Moderate sedation – movement or eye opening to voice, no eye contact',
+      'calc.interp.minus4':
+          'Deep sedation – no response to voice, response to physical stimulation',
+      'calc.interp.minus5':
+          'Unarousable – no response to voice or physical stimulation',
     },
     'de': {
       'display': 'RASS',
@@ -47,6 +64,25 @@ class RassI10n extends ScoreI10n {
       'level.minus3': '-3 · Mäßige Sedierung',
       'level.minus4': '-4 · Tiefe Sedierung',
       'level.minus5': '-5 · Nicht erweckbar',
+      // Calculation output
+      'calc.incomplete': 'Bitte RASS-Grad auswählen.',
+      'calc.interp.plus4': 'Streitlustig – kämpferisch, gefährlich',
+      'calc.interp.plus3':
+          'Stark agitiert – zieht Zugänge, kämpft gegen Beatmung',
+      'calc.interp.plus2': 'Agitiert – häufige, ungezielte Bewegungen',
+      'calc.interp.plus1':
+          'Unruhig – ängstlich, aber Bewegungen nicht aggressiv',
+      'calc.interp.zero': 'Wach und kooperativ',
+      'calc.interp.minus1':
+          'Schläfrig – nicht ganz wach, aber auf Stimme wach > 10 s',
+      'calc.interp.minus2':
+          'Leichte Sedierung – kurz wach auf Ansprache < 10 s',
+      'calc.interp.minus3':
+          'Mäßige Sedierung – Bewegung auf Ansprache, kein Augenkontakt',
+      'calc.interp.minus4':
+          'Tiefe Sedierung – keine Reaktion auf Ansprache, Reaktion auf Schmerz',
+      'calc.interp.minus5':
+          'Nicht erweckbar – keine Reaktion auf Stimme oder Schmerzreiz',
     },
   };
 }

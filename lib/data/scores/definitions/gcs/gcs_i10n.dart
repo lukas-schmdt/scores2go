@@ -45,6 +45,15 @@ class GcsI10n extends ScoreI10n {
       'motor.2': 'M2 · Extension (Decerebrate)',
       'motor.1': 'M1 · None',
       'motor.nt': 'MNT · Not testable',
+      // Calculation output
+      'calc.incomplete': 'Select a response in each subscale.',
+      'calc.partialLabel': 'GCS (partial)',
+      'calc.completeAllThree': 'Complete all three subscales for full result.',
+      'calc.evmLabel': 'EVM',
+      'calc.ntExcluded': '(NT subscale excluded)',
+      'calc.interp.mild': 'Mild — GCS 13–15',
+      'calc.interp.moderate': 'Moderate — GCS 9–12',
+      'calc.interp.severe': 'Severe — GCS 3–8',
     },
     'de': {
       'display': 'GCS',
@@ -86,6 +95,16 @@ class GcsI10n extends ScoreI10n {
       'motor.2': 'M2 · Strecksynergien (Dezerebration)',
       'motor.1': 'M1 · Keine',
       'motor.nt': 'MNT · Nicht beurteilbar',
+      // Calculation output
+      'calc.incomplete': 'Bitte in jeder Subskala eine Antwort auswählen.',
+      'calc.partialLabel': 'GCS (unvollständig)',
+      'calc.completeAllThree':
+          'Alle drei Subskalen für das vollständige Ergebnis ausfüllen.',
+      'calc.evmLabel': 'EVM',
+      'calc.ntExcluded': '(Subskala NT ausgeschlossen)',
+      'calc.interp.mild': 'Leicht — GCS 13–15',
+      'calc.interp.moderate': 'Moderat — GCS 9–12',
+      'calc.interp.severe': 'Schwer — GCS 3–8',
     },
   };
 }
