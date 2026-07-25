@@ -40,9 +40,11 @@ class SapsIiI10n extends ScoreI10n {
       'chronische_erkrankungen.opt.hematologic': 'Hematologic malignancy',
       'chronische_erkrankungen.opt.aids': 'AIDS',
       'herzfrequenz.display': 'Heart Rate',
-      'herzfrequenz.description': 'Worst value in the first 24 hours.',
+      'herzfrequenz.description':
+          'Value giving the highest points in the first 24 hours (worst of bradycardia or tachycardia).',
       'systolischer_blutdruck.display': 'Systolic Blood Pressure',
-      'systolischer_blutdruck.description': 'Worst value in mmHg.',
+      'systolischer_blutdruck.description':
+          'Value giving the highest points in mmHg (worst of hypotension or hypertension) in the first 24 hours.',
       'temperatur.display': 'Body Temperature',
       'temperatur.description': 'Highest measured temperature.',
       'gcs.display': 'Glasgow Coma Scale',
@@ -59,11 +61,14 @@ class SapsIiI10n extends ScoreI10n {
       'bun.display': 'BUN / Blood Urea Nitrogen',
       'bun.description': 'Blood urea nitrogen in mg/dL.',
       'leukozyten.display': 'White Blood Cells',
-      'leukozyten.description': 'Worst value.',
+      'leukozyten.description':
+          'Value giving the highest points (worst of leukopenia or leukocytosis) in the first 24 hours.',
       'kalium.display': 'Potassium',
-      'kalium.description': 'Worst value in mmol/L.',
+      'kalium.description':
+          'Value giving the highest points in mmol/L (worst of hypo- or hyperkalemia) in the first 24 hours.',
       'natrium.display': 'Sodium',
-      'natrium.description': 'Worst value in mmol/L.',
+      'natrium.description':
+          'Value giving the highest points in mmol/L (worst of hypo- or hypernatremia) in the first 24 hours.',
       'bicarbonat.display': 'Bicarbonate',
       'bicarbonat.description': 'Lowest value in mmol/L or mEq/L.',
       'bilirubin.display': 'Bilirubin',
@@ -71,16 +76,12 @@ class SapsIiI10n extends ScoreI10n {
       // Calculation output
       'calc.incomplete': 'Please fill in all required fields.',
       'calc.points': 'points',
-      'calc.note': 'Note',
-      'calc.hospitalMortalityEstimated': 'Hospital mortality (estimated)',
-      'calc.highScoreNote':
-          'SAPS II ≥ 50 is associated with a mortality > 50 %.',
-      'calc.risk.low': 'Low risk (< 10 % hospital mortality)',
-      'calc.risk.moderate': 'Moderate risk (~15 % hospital mortality)',
-      'calc.risk.elevated': 'Elevated risk (~25 % hospital mortality)',
-      'calc.risk.high': 'High risk (~40 % hospital mortality)',
-      'calc.risk.veryHigh': 'Very high risk (~60 % hospital mortality)',
-      'calc.risk.critical': 'Critical (> 80 % hospital mortality)',
+      'calc.estimatedHospitalMortality': 'Estimated hospital mortality',
+      'calc.riskClass': 'Risk class',
+      'calc.risk.low': 'Low risk (< 10 %)',
+      'calc.risk.moderate': 'Moderate risk (10–25 %)',
+      'calc.risk.high': 'High risk (25–50 %)',
+      'calc.risk.veryHigh': 'Very high risk (> 50 %)',
     },
     'de': {
       'description': 'Simplified Acute Physiology Score (SAPS) II',
@@ -117,9 +118,11 @@ class SapsIiI10n extends ScoreI10n {
       'chronische_erkrankungen.opt.hematologic': 'Hämatologische Malignität',
       'chronische_erkrankungen.opt.aids': 'AIDS',
       'herzfrequenz.display': 'Herzfrequenz',
-      'herzfrequenz.description': 'Worst value in den ersten 24 Stunden.',
+      'herzfrequenz.description':
+          'Wert mit der höchsten Punktzahl in den ersten 24 Stunden (schlechtester Wert bei Brady- oder Tachykardie).',
       'systolischer_blutdruck.display': 'Systolischer Blutdruck',
-      'systolischer_blutdruck.description': 'Worst value in mmHg.',
+      'systolischer_blutdruck.description':
+          'Wert mit der höchsten Punktzahl in mmHg (schlechtester Wert bei Hypo- oder Hypertonie) in den ersten 24 Stunden.',
       'temperatur.display': 'Körpertemperatur',
       'temperatur.description': 'Höchste gemessene Temperatur.',
       'gcs.display': 'Glasgow Coma Scale',
@@ -137,11 +140,14 @@ class SapsIiI10n extends ScoreI10n {
       'bun.display': 'BUN / Harnstoffstickstoff',
       'bun.description': 'Harnstoffstickstoff in mg/dL.',
       'leukozyten.display': 'Leukozyten',
-      'leukozyten.description': 'Worst value.',
+      'leukozyten.description':
+          'Wert mit der höchsten Punktzahl (schlechtester Wert bei Leukopenie oder Leukozytose) in den ersten 24 Stunden.',
       'kalium.display': 'Kalium',
-      'kalium.description': 'Worst value in mmol/L.',
+      'kalium.description':
+          'Wert mit der höchsten Punktzahl in mmol/L (schlechtester Wert bei Hypo- oder Hyperkaliämie) in den ersten 24 Stunden.',
       'natrium.display': 'Natrium',
-      'natrium.description': 'Worst value in mmol/L.',
+      'natrium.description':
+          'Wert mit der höchsten Punktzahl in mmol/L (schlechtester Wert bei Hypo- oder Hypernatriämie) in den ersten 24 Stunden.',
       'bicarbonat.display': 'Bicarbonat',
       'bicarbonat.description': 'Niedrigster Wert in mmol/L bzw. mEq/L.',
       'bilirubin.display': 'Bilirubin',
@@ -149,16 +155,12 @@ class SapsIiI10n extends ScoreI10n {
       // Calculation output
       'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
       'calc.points': 'Punkte',
-      'calc.note': 'Hinweis',
-      'calc.hospitalMortalityEstimated': 'Krankenhausmortalität (geschätzt)',
-      'calc.highScoreNote':
-          'SAPS II ≥ 50 ist mit einer Mortalität > 50 % assoziiert.',
-      'calc.risk.low': 'Niedriges Risiko (< 10 % Krankenhausmortalität)',
-      'calc.risk.moderate': 'Moderates Risiko (~15 % Krankenhausmortalität)',
-      'calc.risk.elevated': 'Erhöhtes Risiko (~25 % Krankenhausmortalität)',
-      'calc.risk.high': 'Hohes Risiko (~40 % Krankenhausmortalität)',
-      'calc.risk.veryHigh': 'Sehr hohes Risiko (~60 % Krankenhausmortalität)',
-      'calc.risk.critical': 'Kritisch (> 80 % Krankenhausmortalität)',
+      'calc.estimatedHospitalMortality': 'Geschätzte Krankenhausmortalität',
+      'calc.riskClass': 'Risikoklasse',
+      'calc.risk.low': 'Niedriges Risiko (< 10 %)',
+      'calc.risk.moderate': 'Mäßiges Risiko (10–25 %)',
+      'calc.risk.high': 'Hohes Risiko (25–50 %)',
+      'calc.risk.veryHigh': 'Sehr hohes Risiko (> 50 %)',
     },
   };
 }

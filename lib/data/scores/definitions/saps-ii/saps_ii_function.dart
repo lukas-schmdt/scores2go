@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii_i10n.dart';
 import 'package:scores_2_go/function/score_items_to_map.dart';
 import 'package:scores_2_go/model/score.dart';
@@ -73,22 +75,31 @@ ScoreResult sapsIiFunction(Score score, String lang) {
       bicarbPts.round() +
       bilirubinPts.round();
 
+  final mortality = _predictedMortality(total);
+  final mortalityPct = (mortality * 100).toStringAsFixed(1);
+
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'SAPS II Score',
     primaryResult: '$total ${t('calc.points')}',
-    primaryInterpretation: _mortalityRisk(total, t),
-    secondaryLabel: t('calc.note'),
-    secondaryResult: t('calc.hospitalMortalityEstimated'),
-    secondaryInterpretation: t('calc.highScoreNote'),
+    primaryInterpretation:
+        '${t('calc.estimatedHospitalMortality')}: $mortalityPct %',
+    secondaryLabel: t('calc.riskClass'),
+    secondaryResult: _riskClass(mortality, t),
   );
 }
 
-String _mortalityRisk(int total, String Function(String) t) {
-  if (total < 30) return t('calc.risk.low');
-  if (total < 40) return t('calc.risk.moderate');
-  if (total < 50) return t('calc.risk.elevated');
-  if (total < 60) return t('calc.risk.high');
-  if (total < 70) return t('calc.risk.veryHigh');
-  return t('calc.risk.critical');
+/// Le Gall JR, Lemeshow S, Saulnier F. A new Simplified Acute Physiology
+/// Score (SAPS II) based on a European/North American multicenter study.
+/// JAMA. 1993;270(24):2957-2963.
+double _predictedMortality(int sapsII) {
+  final logit = -7.7631 + 0.0737 * sapsII + 0.9971 * log(sapsII + 1);
+  return exp(logit) / (1 + exp(logit));
+}
+
+String _riskClass(double mortality, String Function(String) t) {
+  if (mortality < 0.10) return t('calc.risk.low');
+  if (mortality < 0.25) return t('calc.risk.moderate');
+  if (mortality < 0.50) return t('calc.risk.high');
+  return t('calc.risk.veryHigh');
 }

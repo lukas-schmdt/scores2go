@@ -6,7 +6,7 @@
   <title>SAPS II (Simplified Acute Physiology Score II) – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="SAPS II — Simplified Acute Physiology Score II: prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme." />
+  <meta name="description" content="SAPS II — Simplified Acute Physiology Score II: prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme, mit der originalen logistischen Regressionsgleichung, vollständigen Quellenangaben und bekannten Kalibrierungsgrenzen." />
   <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/saps-ii.html" />
   <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/saps-ii.html" />
   <style>
@@ -137,6 +137,24 @@
       line-height: 1.6;
     }
 
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+
     .cta {
       text-align: center;
       background: white;
@@ -187,9 +205,9 @@
         Scores2Go
       </a>
     </div>
-    <div class="badge">ICU · Severity</div>
+    <div class="badge">ICU · Severity · Mortalität</div>
     <h1>SAPS II</h1>
-    <p>Simplified Acute Physiology Score II — prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme. Einer der weltweit am häufigsten eingesetzten ICU-Schwere-Scores.</p>
+    <p>Simplified Acute Physiology Score II — prognostiziert die Krankenhausmortalität anhand von 17 Variablen aus den ersten 24 Stunden der ICU-Aufnahme, mit der originalen logistischen Regressionsgleichung. Einer der weltweit am häufigsten eingesetzten ICU-Schwere-Scores.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -211,9 +229,9 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>SAPS II (Simplified Acute Physiology Score II) wurde 1993 von Le Gall et al. nach einer europäisch-nordamerikanischen Multizenterstudie mit 13.152 ICU-Patienten in 137 Einheiten veröffentlicht. Er folgte dem ursprünglichen SAPS (1984) mit verbesserter Trennschärfe und breiterer Validierung. Der Score verwendet 17 Variablen — 12 Physiologieparameter, Alter, Aufnahmeart und eine Kategorie chronischer Erkrankungen — die alle als schlechteste Werte in den ersten 24 Stunden der ICU-Aufnahme erhoben werden.</p>
-      <p>Im Gegensatz zu organdysfunktionszentrierten Scores wie SOFA liefert SAPS II eine direkte Schätzung der Krankenhausmortalitätswahrscheinlichkeit über eine logistische Regressionsfunktion. Der Wertebereich beträgt 0–163 Punkte; die Sterbewahrscheinlichkeit ergibt sich als: logit(p) = −7,7631 + 0,0737 × SAPS II + 0,9971 × ln(SAPS II + 1).</p>
-      <p>SAPS II wird weiterhin häufig als Benchmark-Instrument zur ICU-Qualitätsbewertung und zum Zentrenvergleich eingesetzt, obwohl sein Alter in modernen Patientenpopulationen zu Kalibrierungsabweichungen führen kann.</p>
+      <p>SAPS II (Simplified Acute Physiology Score II) wurde 1993 von Le Gall, Lemeshow und Saulnier anhand einer Studie mit 13.152 Aufnahmen aus 137 ICUs in 12 Ländern — überwiegend in Europa und Nordamerika — entwickelt und validiert (65&nbsp;% der Kohorte für die Modellentwicklung, 35&nbsp;% für die Validierung). Patienten unter 18 Jahren, Verbrennungspatienten sowie Aufnahmen nach Herzchirurgie oder auf Coronary-Care-Stationen wurden ausgeschlossen. SAPS II löste den ursprünglichen SAPS (1984) mit deutlich verbesserter Trennschärfe ab — eine Fläche unter der ROC-Kurve (AUC) von 0,88 in der Entwicklungsstichprobe und 0,86 in der Validierungsstichprobe — bei guter Kalibrierung im Hosmer-Lemeshow-Test (p&nbsp;=&nbsp;0,883 bzw. p&nbsp;=&nbsp;0,104).</p>
+      <p>Der Score summiert 17 Variablen — 12 Akutphysiologie-Parameter, Alter, Aufnahmeart und eine Kategorie chronischer Erkrankungen — jeweils als schlechtesten Wert innerhalb der ersten 24 Stunden der ICU-Aufnahme. Im Gegensatz zu organdysfunktionszentrierten Scores wie SOFA ist SAPS II so konzipiert, dass er über eine logistische Regressionsgleichung direkt in eine Krankenhausmortalitätswahrscheinlichkeit übersetzt wird, statt nur ein relativer Schweregrad-Index zu sein.</p>
+      <p>SAPS II gehört weiterhin zu den weltweit am häufigsten genutzten ICU-Benchmarking-Instrumenten. Wie jedes an einen bestimmten Ort und eine bestimmte Ära angepasste Modell ist seine Kalibrierung seit 1993 jedoch nicht mehr uneingeschränkt gültig (siehe <em>Wissenschaftliche Validität &amp; Limitationen</em> unten). Der Score ist für die populationsbezogene Risikoadjustierung und das Qualitäts-Benchmarking gedacht, nicht als alleinige Grundlage für Entscheidungen bei einzelnen Patient:innen.</p>
     </div>
 
     <div class="section">
@@ -279,32 +297,66 @@
           </tbody>
         </table>
       </div>
-      <div class="note">Es wird immer der <em>schlechteste</em> (am stärksten pathologische) Wert der ersten 24 Stunden verwendet. PaO₂/FiO₂ wird nur gewertet, wenn der Patient beatmet oder auf CPAP ist. Bei Sedierung den geschätzten präsedativen GCS verwenden.</div>
+      <div class="note">Verwende den Wert der ersten 24 Stunden, der für die jeweilige Variable die <em>höchste</em> Punktzahl ergibt. Bei bidirektional bewerteten Variablen (Herzfrequenz, systolischer Blutdruck, Natrium, Kalium, Leukozyten) bedeutet das: welcher Extremwert — hoch oder niedrig — schlechter bewertet wird, nicht der aktuellste oder ein gemittelter Wert. PaO₂/FiO₂ wird nur gewertet, wenn der Patient beatmet oder auf CPAP ist; andernfalls trägt die Variable unabhängig vom gemessenen Quotienten 0 Punkte bei. Bei sedierten Patient:innen sollte die geschätzte präsedative GCS verwendet werden — eine etablierte ICU-Konvention, die im Originalpapier von 1993 jedoch nicht explizit festgelegt ist. Die Punkte für chronische Erkrankungen sind nicht additiv: Es zählt nur die höchste zutreffende Kategorie (metastasierendes Karzinom = bildgebend, operativ oder histologisch gesicherte Metastasierung; hämatologische Malignität = Lymphom, akute Leukämie oder multiples Myelom; AIDS = HIV-positiv mit AIDS-definierender Erkrankung, nicht bloße Seropositivität).</div>
     </div>
 
     <div class="section">
-      <h2>Interpretation</h2>
+      <h2>Mortalitätsformel &amp; Interpretation</h2>
+      <p>SAPS II rechnet die Punktsumme über die logistische Regressionsgleichung aus der Originalpublikation von 1993 in eine Krankenhausmortalitätswahrscheinlichkeit um:</p>
+      <pre>logit(p) = −7,7631 + 0,0737 × SAPS II + 0,9971 × ln(SAPS II + 1)
+
+Geschätzte Krankenhausmortalität p = e^logit / (1 + e^logit)</pre>
+      <p>Da dieser Zusammenhang sigmoidal und nicht linear verläuft, wirkt sich eine gleich große Punktdifferenz im mittleren Bereich (etwa 30–65 Punkte) deutlich stärker aus als an den Extremen. Repräsentative berechnete Werte:</p>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>SAPS-II-Score</th><th>Geschätzte Krankenhausmortalität</th></tr>
+            <tr><th>SAPS-II-Punkte</th><th>Geschätzte Krankenhausmortalität</th></tr>
           </thead>
           <tbody>
-            <tr><td>&lt; 29</td><td>~10 %</td></tr>
-            <tr><td>29 – 40</td><td>~25 %</td></tr>
-            <tr><td>41 – 52</td><td>~40 – 50 %</td></tr>
-            <tr><td>53 – 64</td><td>~60 – 75 %</td></tr>
-            <tr><td>≥ 65</td><td>&gt; 80 %</td></tr>
+            <tr><td>0</td><td>≈ 0,04 %</td></tr>
+            <tr><td>20</td><td>≈ 3,7 %</td></tr>
+            <tr><td>29</td><td>≈ 9,7 %</td></tr>
+            <tr><td>40</td><td>≈ 24,7 %</td></tr>
+            <tr><td>52</td><td>≈ 50,7 %</td></tr>
+            <tr><td>60</td><td>≈ 68,1 %</td></tr>
+            <tr><td>64</td><td>≈ 75,3 %</td></tr>
+            <tr><td>77</td><td>≈ 90,5 %</td></tr>
+            <tr><td>100</td><td>≈ 98,5 %</td></tr>
+            <tr><td>163 (Maximum)</td><td>&gt; 99,9 %</td></tr>
           </tbody>
         </table>
       </div>
-      <div class="note">Sterbewahrscheinlichkeit: logit(p) = −7,7631 + 0,0737 × SAPS II + 0,9971 × ln(SAPS II + 1), dann p = e^logit / (1 + e^logit). Die Scores2Go-App zeigt die berechnete Wahrscheinlichkeit direkt an.</div>
+      <div class="note">Scores2Go berechnet und zeigt die exakte, aus der Formel berechnete Mortalitätswahrscheinlichkeit für die eingegebenen Variablen an — ohne die Punktsumme in grobe, ungenaue Risikobänder einzuteilen. Für eine schnelle qualitative Einordnung zeigt die App zusätzlich eine aus dieser berechneten Wahrscheinlichkeit abgeleitete Risikoklasse: &lt; 10&nbsp;% niedrig, 10–25&nbsp;% mäßig, 25–50&nbsp;% hoch, &gt; 50&nbsp;% sehr hoch.</div>
+    </div>
+
+    <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>Externe Validierungsstudien der letzten drei Jahrzehnte zeigen übereinstimmend, dass die ursprünglichen Koeffizienten von 1993 heutige ICU-Populationen nicht mehr perfekt kalibrieren — wobei die Richtung der Fehlkalibrierung je nach Kohorte und Zeitraum variiert, was für eine echte populations- und zeitabhängige Drift spricht und nicht für einen einzelnen, einfach zu behebenden Bias. Eine britische Multizenter-Validierung von 2003 (16.646 Patient:innen, 17 ICUs) fand eine gute Trennschärfe (AUC 0,852), aber unvollständige Kalibrierung. Le Galls eigenes Update für französische ICUs von 2005 (77.490 Aufnahmen, 106 ICUs) fand, dass die ursprüngliche Gleichung die Mortalität mittlerweile <em>unterschätzt</em>, was zur Entwicklung von "customized" und "expanded" SAPS-II-Varianten mit verbesserter Anpassungsgüte (AUC bis 0,879) führte. Im Gegensatz dazu fanden eine kroatische Multizenter-Validierung von 2012 sowie die SUP-ICU-Post-hoc-Analyse von 2016, dass die ursprüngliche Gleichung die Mortalität in modernen Kohorten <em>überschätzt</em>; SUP-ICU berichtete zudem einen Rückgang der Trennschärfe auf AUC 0,80. Eine europäische Multizenter-Analyse der Kalibrierungsdeterminanten von 2017 fand eine systematische Überschätzung (standardisierte Mortalitätsratio 0,75) und berichtete, dass einzelne Items — extreme Herzfrequenz, niedrige GCS und die AIDS-Kategorie — seit 1993 an prädiktivem Gewicht verloren haben, plausibel als Folge von Fortschritten in der allgemeinen Intensivmedizin und der antiretroviralen Therapie.</p>
+      <p>Gut dokumentierte strukturelle Limitationen, unabhängig von einzelnen Validierungsstudien:</p>
+      <ul class="limits">
+        <li><strong>Keine Aufnahmediagnose:</strong> anders als APACHE und SAPS 3 stratifiziert SAPS II nicht nach dem Aufnahmegrund — einem der stärksten unabhängigen Prädiktoren der Mortalität und dem Hauptgrund für die Entwicklung von SAPS 3 als Nachfolger.</li>
+        <li><strong>Keine Berücksichtigung von Therapiebegrenzungen:</strong> der Score erfasst weder DNR-Status noch Therapiezieländerungen, die unabhängig die beobachtete Mortalität beeinflussen und die Kalibrierung in Populationen mit hoher Rate an Therapiebegrenzungen verzerren können.</li>
+        <li><strong>Lead-Time-/Therapie-Bias:</strong> eine aggressive Frühtherapie in den Stunden vor Ablauf des 24-Stunden-Erhebungsfensters kann die erfasste Schwere im Vergleich zum tatsächlichen Aufnahmezustand künstlich senken.</li>
+        <li><strong>Asymmetrische physiologische Bewertung:</strong> Hypothermie und ein erhöhtes Serumbicarbonat werden nicht bewertet — nur Fieber und niedriges Bicarbonat tragen Punkte bei, eine Vereinfachung aus der ursprünglichen Entwicklungskohorte.</li>
+        <li><strong>"Schlechtester-Wert"-Methodik:</strong> die Regel des schlechtesten Werts innerhalb von 24 Stunden ist anfällig für Beobachterabhängigkeit und Erfassungsfehler; Audits haben eine uneinheitliche Erhebung des SAPS-II-Scores durch ICU-Personal dokumentiert.</li>
+        <li><strong>Nicht für Einzelfallentscheidungen validiert:</strong> wie alle ICU-Schwere-Scores ist SAPS II für die kohortenbezogene Risikoadjustierung und den Vergleich zwischen Einheiten gedacht, nicht zur Prognose oder Therapiesteuerung bei einzelnen Patient:innen.</li>
+      </ul>
+      <p>Direkte Vergleiche zeigen überwiegend eine ähnliche Performance von SAPS II gegenüber APACHE II und APACHE III, ohne dass ein Score über verschiedene Settings hinweg konsistent und klinisch relevant überlegen wäre. SAPS 3 (Moreno &amp; Metnitz, 2005) wurde gezielt entwickelt, um die alternde Kalibrierung von SAPS II sowie das Fehlen von Aufnahmediagnose und Prä-ICU-Verlauf zu adressieren; spätere Validierungen zeigen jedoch, dass auch SAPS 3 einer standort- und zeitabhängigen Kalibrierungsdrift unterliegt — keiner der beiden Scores hat das grundlegende Problem gelöst, dass an einen bestimmten Ort und eine bestimmte Zeit angepasste Modelle andernorts an Genauigkeit verlieren.</p>
     </div>
 
     <div class="section">
       <h2>Literatur</h2>
-      <p>Le Gall JR, Lemeshow S, Saulnier F. A new simplified acute physiology score (SAPS II) based on a European/North American multicenter study. <em>JAMA.</em> 1993;270(24):2957–2963.</p>
-      <p>Zimmerman JE, Kramer AA, McNair DS, Malila FM. Acute Physiology and Chronic Health Evaluation (APACHE) IV: hospital mortality assessment for today's critically ill patients. <em>Crit Care Med.</em> 2006;34(5):1297–1310.</p>
+      <ol class="refs">
+        <li>Le Gall JR, Lemeshow S, Saulnier F. A new Simplified Acute Physiology Score (SAPS&nbsp;II) based on a European/North American multicenter study. <em>JAMA.</em> 1993;270(24):2957–2963. doi:10.1001/jama.1993.03510240069035</li>
+        <li>Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256. doi:10.1007/s00134-002-1607-9</li>
+        <li>Le Gall JR, Neumann A, Hemery F, et al. Mortality prediction using SAPS&nbsp;II: an update for French intensive care units. <em>Crit Care.</em> 2005;9(6):R645–R652. doi:10.1186/cc3821</li>
+        <li>Moreno RP, Metnitz PGH, Almeida E, et al. SAPS&nbsp;3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission. <em>Intensive Care Med.</em> 2005;31(10):1345–1355. doi:10.1007/s00134-005-2763-5</li>
+        <li>Deša K, Perić M, Husedžinović I, et al. Prognostic performance of the Simplified Acute Physiology Score&nbsp;II in major Croatian hospitals: a prospective multicenter study. <em>Croat Med J.</em> 2012;53(5):442–449. doi:10.3325/cmj.2012.53.442</li>
+        <li>Granholm A, Møller MH, Krag M, Perner A, Hjortrup PB. Predictive performance of the Simplified Acute Physiology Score (SAPS)&nbsp;II and the initial Sequential Organ Failure Assessment (SOFA) score in acutely ill intensive care patients: post-hoc analyses of the SUP-ICU inception cohort study. <em>PLoS One.</em> 2016;11(12):e0168948. doi:10.1371/journal.pone.0168948</li>
+        <li>Poncet A, Perneger TV, Merlani P, Capuzzo M, Combescure C. Determinants of the calibration of SAPS&nbsp;II and SAPS&nbsp;3 mortality scores in intensive care: a European multicenter study. <em>Crit Care.</em> 2017;21:85. doi:10.1186/s13054-017-1673-6</li>
+        <li>Czajka S, Ziębińska K, Marczenko K, et al. Validation of APACHE&nbsp;II, APACHE&nbsp;III and SAPS&nbsp;II scores in in-hospital and one year mortality prediction in a mixed intensive care unit in Poland: a cohort study. <em>BMC Anesthesiol.</em> 2020;20:296. doi:10.1186/s12871-020-01203-7</li>
+        <li>Vincent JL, Moreno R. Clinical review: scoring systems in the critically ill. <em>Crit Care.</em> 2010;14(2):207. doi:10.1186/cc8204</li>
+      </ol>
     </div>
 
     <div class="section cta">
