@@ -154,6 +154,10 @@
 
     ol.refs { padding-left: 20px; }
     ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -229,7 +233,7 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>SAPS II (Simplified Acute Physiology Score II) was derived and validated by Le Gall, Lemeshow, and Saulnier in a 1993 study spanning 13,152 admissions across 137 ICUs in 12 countries, mainly in Europe and North America (65&nbsp;% of the cohort used for model development, 35&nbsp;% for validation). It excluded patients younger than 18, burn patients, and coronary-care or cardiac-surgery admissions. SAPS II succeeded the original SAPS (1984) with markedly better discrimination — an area under the ROC curve of 0.88 in the development sample and 0.86 in the validation sample — and good calibration on Hosmer–Lemeshow testing (p&nbsp;=&nbsp;0.883 and p&nbsp;=&nbsp;0.104, respectively).</p>
+      <p>SAPS II (Simplified Acute Physiology Score II) was derived and validated by Le Gall, Lemeshow, and Saulnier in a 1993 study spanning 13,152 admissions across 137 ICUs in 12 countries, mainly in Europe and North America (65&nbsp;% of the cohort used for model development, 35&nbsp;% for validation). It excluded patients younger than 18, burn patients, and coronary-care or cardiac-surgery admissions. SAPS II succeeded the original SAPS (1984) with markedly better discrimination — an area under the ROC curve of 0.88 in the development sample and 0.86 in the validation sample — and good calibration on Hosmer–Lemeshow testing (p&nbsp;=&nbsp;0.883 and p&nbsp;=&nbsp;0.104, respectively) <sup><a href="#ref1">[1]</a></sup>.</p>
       <p>The score sums 17 variables — 12 acute physiology items, age, type of admission, and one chronic-disease category — using the single worst value recorded during the first 24 hours of ICU stay. Unlike organ-dysfunction-centric scores such as SOFA, SAPS II is designed to translate directly into a hospital-mortality probability via a logistic regression equation, rather than serving only as a relative severity index.</p>
       <p>SAPS II remains one of the most widely used ICU benchmarking tools worldwide, but — like any score fit to a specific place and era — its calibration has drifted since 1993 (see <em>Scientific Validity &amp; Limitations</em> below). It is intended for population-level risk-adjustment and quality benchmarking, not as a stand-alone basis for individual-patient decisions.</p>
     </div>
@@ -303,7 +307,7 @@
 
     <div class="section">
       <h2>Mortality Formula &amp; Interpretation</h2>
-      <p>SAPS II converts the point total into a predicted hospital-mortality probability using the logistic regression equation from the original 1993 publication:</p>
+      <p>SAPS II converts the point total into a predicted hospital-mortality probability using the logistic regression equation from the original 1993 publication <sup><a href="#ref1">[1]</a></sup>:</p>
       <pre>logit(p) = −7.7631 + 0.0737 × SAPS II + 0.9971 × ln(SAPS II + 1)
 
 Predicted hospital mortality p = e^logit / (1 + e^logit)</pre>
@@ -332,7 +336,7 @@ Predicted hospital mortality p = e^logit / (1 + e^logit)</pre>
 
     <div class="section">
       <h2>Scientific Validity &amp; Limitations</h2>
-      <p>External validations conducted over three decades consistently show that the original 1993 coefficients no longer calibrate perfectly to contemporary ICU populations — though the direction of miscalibration varies by cohort and era, evidence of genuine population- and time-dependent drift rather than one fixable bias. A 2003 UK multicentre validation (16,646 patients, 17 ICUs) found good discrimination (AUC 0.852) but imperfect calibration. Le Gall's own 2005 update for French ICUs (77,490 admissions, 106 ICUs) found the original equation had drifted toward <em>underestimating</em> mortality, prompting "customized" and "expanded" SAPS II variants with improved fit (AUC up to 0.879). In contrast, a 2012 Croatian multicentre validation and the 2016 SUP-ICU post-hoc analysis both found the original equation now <em>overestimates</em> mortality in modern cohorts, with SUP-ICU reporting a fall in discrimination to AUC 0.80. A 2017 European multicentre analysis of calibration determinants found systematic overestimation (standardized mortality ratio 0.75) and reported that specific items — extreme heart rate, low GCS, and the AIDS category — have lost predictive weight since 1993, plausibly reflecting advances in general critical care and antiretroviral therapy.</p>
+      <p>External validations conducted over three decades consistently show that the original 1993 coefficients no longer calibrate perfectly to contemporary ICU populations — though the direction of miscalibration varies by cohort and era, evidence of genuine population- and time-dependent drift rather than one fixable bias. A 2003 UK multicentre validation (16,646 patients, 17 ICUs) found good discrimination (AUC 0.852) but imperfect calibration <sup><a href="#ref2">[2]</a></sup>. Le Gall's own 2005 update for French ICUs (77,490 admissions, 106 ICUs) found the original equation had drifted toward <em>underestimating</em> mortality, prompting "customized" and "expanded" SAPS II variants with improved fit (AUC up to 0.879) <sup><a href="#ref3">[3]</a></sup>. In contrast, a 2012 Croatian multicentre validation <sup><a href="#ref5">[5]</a></sup> and the 2016 SUP-ICU post-hoc analysis <sup><a href="#ref6">[6]</a></sup> both found the original equation now <em>overestimates</em> mortality in modern cohorts, with SUP-ICU reporting a fall in discrimination to AUC 0.80. A 2017 European multicentre analysis of calibration determinants found systematic overestimation (standardized mortality ratio 0.75) and reported that specific items — extreme heart rate, low GCS, and the AIDS category — have lost predictive weight since 1993, plausibly reflecting advances in general critical care and antiretroviral therapy <sup><a href="#ref7">[7]</a></sup>.</p>
       <p>Well-documented structural limitations, independent of any single validation study:</p>
       <ul class="limits">
         <li><strong>No admission diagnosis:</strong> unlike APACHE and SAPS 3, SAPS II does not stratify by the reason for ICU admission — one of the strongest independent predictors of mortality, and the primary rationale for SAPS 3's design as a successor.</li>
@@ -340,23 +344,23 @@ Predicted hospital mortality p = e^logit / (1 + e^logit)</pre>
         <li><strong>Lead-time / treatment bias:</strong> aggressive resuscitation in the hours before the 24-hour scoring window closes can artificially lower recorded severity relative to the patient's true presenting condition.</li>
         <li><strong>Asymmetric physiologic scoring:</strong> hypothermia and high serum bicarbonate are not scored at all — only fever and low bicarbonate contribute points, a simplification inherited from the original derivation cohort.</li>
         <li><strong>"Worst value" methodology:</strong> the worst-value-in-24-hours rule is vulnerable to inter-observer variability and manual-abstraction error; audits have specifically documented inconsistent bedside SAPS II scoring by ICU staff.</li>
-        <li><strong>Not validated for individual decisions:</strong> like all ICU severity scores, SAPS II is intended for cohort-level risk-adjustment and inter-unit benchmarking, not for prognosticating or guiding treatment for a single patient.</li>
+        <li><strong>Not validated for individual decisions:</strong> like all ICU severity scores, SAPS II is intended for cohort-level risk-adjustment and inter-unit benchmarking, not for prognosticating or guiding treatment for a single patient <sup><a href="#ref9">[9]</a></sup>.</li>
       </ul>
-      <p>Head-to-head validations generally show SAPS II performing similarly to APACHE II and APACHE III, with no score demonstrating consistent, clinically meaningful superiority across settings. SAPS 3 (Moreno &amp; Metnitz, 2005) was designed specifically to address SAPS II's aging calibration and its lack of admission-diagnosis and pre-ICU-course data, but later validations show SAPS 3 itself is also subject to site- and era-dependent calibration drift — neither score has definitively solved the underlying problem of models fit to one place and time losing accuracy elsewhere.</p>
+      <p>Head-to-head validations generally show SAPS II performing similarly to APACHE II and APACHE III, with no score demonstrating consistent, clinically meaningful superiority across settings <sup><a href="#ref8">[8]</a></sup>. SAPS 3 (Moreno &amp; Metnitz, 2005) was designed specifically to address SAPS II's aging calibration and its lack of admission-diagnosis and pre-ICU-course data <sup><a href="#ref4">[4]</a></sup>, but later validations show SAPS 3 itself is also subject to site- and era-dependent calibration drift <sup><a href="#ref7">[7]</a></sup> — neither score has definitively solved the underlying problem of models fit to one place and time losing accuracy elsewhere.</p>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
       <ol class="refs">
-        <li>Le Gall JR, Lemeshow S, Saulnier F. A new Simplified Acute Physiology Score (SAPS&nbsp;II) based on a European/North American multicenter study. <em>JAMA.</em> 1993;270(24):2957–2963. doi:10.1001/jama.1993.03510240069035</li>
-        <li>Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256. doi:10.1007/s00134-002-1607-9</li>
-        <li>Le Gall JR, Neumann A, Hemery F, et al. Mortality prediction using SAPS&nbsp;II: an update for French intensive care units. <em>Crit Care.</em> 2005;9(6):R645–R652. doi:10.1186/cc3821</li>
-        <li>Moreno RP, Metnitz PGH, Almeida E, et al. SAPS&nbsp;3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission. <em>Intensive Care Med.</em> 2005;31(10):1345–1355. doi:10.1007/s00134-005-2763-5</li>
-        <li>Deša K, Perić M, Husedžinović I, et al. Prognostic performance of the Simplified Acute Physiology Score&nbsp;II in major Croatian hospitals: a prospective multicenter study. <em>Croat Med J.</em> 2012;53(5):442–449. doi:10.3325/cmj.2012.53.442</li>
-        <li>Granholm A, Møller MH, Krag M, Perner A, Hjortrup PB. Predictive performance of the Simplified Acute Physiology Score (SAPS)&nbsp;II and the initial Sequential Organ Failure Assessment (SOFA) score in acutely ill intensive care patients: post-hoc analyses of the SUP-ICU inception cohort study. <em>PLoS One.</em> 2016;11(12):e0168948. doi:10.1371/journal.pone.0168948</li>
-        <li>Poncet A, Perneger TV, Merlani P, Capuzzo M, Combescure C. Determinants of the calibration of SAPS&nbsp;II and SAPS&nbsp;3 mortality scores in intensive care: a European multicenter study. <em>Crit Care.</em> 2017;21:85. doi:10.1186/s13054-017-1673-6</li>
-        <li>Czajka S, Ziębińska K, Marczenko K, et al. Validation of APACHE&nbsp;II, APACHE&nbsp;III and SAPS&nbsp;II scores in in-hospital and one year mortality prediction in a mixed intensive care unit in Poland: a cohort study. <em>BMC Anesthesiol.</em> 2020;20:296. doi:10.1186/s12871-020-01203-7</li>
-        <li>Vincent JL, Moreno R. Clinical review: scoring systems in the critically ill. <em>Crit Care.</em> 2010;14(2):207. doi:10.1186/cc8204</li>
+        <li id="ref1">Le Gall JR, Lemeshow S, Saulnier F. A new Simplified Acute Physiology Score (SAPS&nbsp;II) based on a European/North American multicenter study. <em>JAMA.</em> 1993;270(24):2957–2963. doi:10.1001/jama.1993.03510240069035</li>
+        <li id="ref2">Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256. doi:10.1007/s00134-002-1607-9</li>
+        <li id="ref3">Le Gall JR, Neumann A, Hemery F, et al. Mortality prediction using SAPS&nbsp;II: an update for French intensive care units. <em>Crit Care.</em> 2005;9(6):R645–R652. doi:10.1186/cc3821</li>
+        <li id="ref4">Moreno RP, Metnitz PGH, Almeida E, et al. SAPS&nbsp;3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission. <em>Intensive Care Med.</em> 2005;31(10):1345–1355. doi:10.1007/s00134-005-2763-5</li>
+        <li id="ref5">Deša K, Perić M, Husedžinović I, et al. Prognostic performance of the Simplified Acute Physiology Score&nbsp;II in major Croatian hospitals: a prospective multicenter study. <em>Croat Med J.</em> 2012;53(5):442–449. doi:10.3325/cmj.2012.53.442</li>
+        <li id="ref6">Granholm A, Møller MH, Krag M, Perner A, Hjortrup PB. Predictive performance of the Simplified Acute Physiology Score (SAPS)&nbsp;II and the initial Sequential Organ Failure Assessment (SOFA) score in acutely ill intensive care patients: post-hoc analyses of the SUP-ICU inception cohort study. <em>PLoS One.</em> 2016;11(12):e0168948. doi:10.1371/journal.pone.0168948</li>
+        <li id="ref7">Poncet A, Perneger TV, Merlani P, Capuzzo M, Combescure C. Determinants of the calibration of SAPS&nbsp;II and SAPS&nbsp;3 mortality scores in intensive care: a European multicenter study. <em>Crit Care.</em> 2017;21:85. doi:10.1186/s13054-017-1673-6</li>
+        <li id="ref8">Czajka S, Ziębińska K, Marczenko K, et al. Validation of APACHE&nbsp;II, APACHE&nbsp;III and SAPS&nbsp;II scores in in-hospital and one year mortality prediction in a mixed intensive care unit in Poland: a cohort study. <em>BMC Anesthesiol.</em> 2020;20:296. doi:10.1186/s12871-020-01203-7</li>
+        <li id="ref9">Vincent JL, Moreno R. Clinical review: scoring systems in the critically ill. <em>Crit Care.</em> 2010;14(2):207. doi:10.1186/cc8204</li>
       </ol>
     </div>
 

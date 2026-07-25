@@ -165,6 +165,10 @@
 
     ol.refs { padding-left: 20px; }
     ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -240,9 +244,9 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>APACHE II (Acute Physiology and Chronic Health Evaluation II) was published by Knaus, Draper, Wagner, and Zimmerman in 1985, derived from 5,815 ICU admissions across 13 US hospitals with data collected between 1979 and 1982. It is the direct successor to the original 1981 APACHE (34-variable) system, simplified to 12 routinely available physiological variables plus age and chronic-health points, and remains — four decades on — the most widely cited ICU severity score in the medical literature.</p>
+      <p>APACHE II (Acute Physiology and Chronic Health Evaluation II) was published by Knaus, Draper, Wagner, and Zimmerman in 1985, derived from 5,815 ICU admissions across 13 US hospitals with data collected between 1979 and 1982 <sup><a href="#ref1">[1]</a></sup>. It is the direct successor to the original 1981 APACHE (34-variable) system, simplified to 12 routinely available physiological variables plus age and chronic-health points, and remains — four decades on — the most widely cited ICU severity score in the medical literature.</p>
       <p>The total score (0–71) is the sum of three components measured or recorded within the first 24 hours of ICU admission: the Acute Physiology Score (APS, 0–60, from 12 physiological variables scored on their most deranged value), Age Points (0–6), and Chronic Health Points (0–5, for severe pre-existing organ insufficiency or immunocompromise).</p>
-      <p>APACHE II was formally superseded by APACHE III (1991) and APACHE IV (2006), both of which use more variables, larger and more contemporary derivation cohorts, and diagnosis-specific customization with better-documented calibration. APACHE II nonetheless remains the version most widely used and cited today, largely because it is free and published in full, whereas APACHE III and IV are proprietary commercial systems — which is exactly why it matters that a free public reference gets the score's real capabilities and limits right (see <em>The Mortality Formula</em> below).</p>
+      <p>APACHE II was formally superseded by APACHE III (1991) <sup><a href="#ref2">[2]</a></sup> and APACHE IV (2006) <sup><a href="#ref3">[3]</a></sup>, both of which use more variables, larger and more contemporary derivation cohorts, and diagnosis-specific customization with better-documented calibration. APACHE II nonetheless remains the version most widely used and cited today, largely because it is free and published in full, whereas APACHE III and IV are proprietary commercial systems — which is exactly why it matters that a free public reference gets the score's real capabilities and limits right (see <em>The Mortality Formula</em> below).</p>
     </div>
 
     <div class="section">
@@ -385,13 +389,13 @@
 
     <div class="section">
       <h2>The Mortality Formula — and Why This Calculator Doesn't Compute It</h2>
-      <p>The Knaus 1985 paper defines predicted hospital mortality as:</p>
+      <p>The Knaus 1985 paper <sup><a href="#ref1">[1]</a></sup> defines predicted hospital mortality as:</p>
       <pre>Ln(R / 1−R) = −3.517 + (0.146 × APACHE II score) + 0.603 [if emergency surgery] + diagnostic-category weight
 
 R = e^x / (1 + e^x)</pre>
       <p>The first two terms are simple and public: a fixed intercept and a per-point coefficient on the total score. The remaining two terms are not: a +0.603 addition applies only if the ICU admission followed <em>emergency</em> surgery, and a <strong>diagnostic-category weight</strong> is added from a lookup table of roughly 50 discrete admission-diagnosis categories (Knaus 1985, Table 5) — separate nonoperative and postoperative lists, each with its own empirically fitted coefficient.</p>
       <div class="warn">This calculator does not collect an admission diagnosis or emergency-surgery status, so it <strong>cannot</strong> compute the validated Knaus mortality probability — and neither can any calculator that shows a mortality percentage from the point total alone. The diagnostic-category weight is not a minor refinement: two patients with an identical 20-point APACHE II score can have meaningfully different true predicted mortality depending on why they are in the ICU. We chose not to publish invented or approximate diagnostic-category weights here, since the original values are not freely reproducible from the primary literature and a wrong number would be worse than an honest gap.</div>
-      <p>What we do show is a commonly circulated, diagnosis-independent reference range that appears consistently across several independent ICU-calculator sources. Treat it as an illustrative population-level trend, not a patient-specific prediction, and never for benchmarking or performance measurement without diagnosis adjustment (Soares &amp; Dongelmans, 2017 — see Literature):</p>
+      <p>What we do show is a commonly circulated, diagnosis-independent reference range that appears consistently across several independent ICU-calculator sources. Treat it as an illustrative population-level trend, not a patient-specific prediction, and never for benchmarking or performance measurement without diagnosis adjustment <sup><a href="#ref6">[6]</a></sup>:</p>
       <div class="table-wrap">
         <table>
           <thead>
@@ -414,30 +418,30 @@ R = e^x / (1 + e^x)</pre>
 
     <div class="section">
       <h2>Scientific Validity &amp; Limitations</h2>
-      <p>APACHE II's derivation cohort (5,815 admissions, 13 US hospitals, 1979–1982) predates modern critical care by more than four decades — before lung-protective ventilation, early goal-directed sepsis therapy, widespread renal-replacement therapy, and the general decline in ICU mortality that has occurred since. Because absolute mortality has fallen since 1985, APACHE II now <em>systematically overestimates</em> death probability in many contemporary populations, which — if used uncritically — inflates apparent quality (artificially low standardized mortality ratios) in benchmarking exercises. This is well documented: the UK's ICNARC national audit programme moved to its own bespoke model rather than continuing to recalibrate APACHE II, and the Dutch NICE registry found even a recalibrated APACHE II fit inadequately to the local population. Studies during the COVID-19 pandemic (2020–2021) found inconsistent, population-dependent calibration, illustrating that novel disease phenotypes not present in the derivation cohort further destabilise an already-aging model.</p>
+      <p>APACHE II's derivation cohort (5,815 admissions, 13 US hospitals, 1979–1982) predates modern critical care by more than four decades — before lung-protective ventilation, early goal-directed sepsis therapy, widespread renal-replacement therapy, and the general decline in ICU mortality that has occurred since. Because absolute mortality has fallen since 1985, APACHE II now <em>systematically overestimates</em> death probability in many contemporary populations, which — if used uncritically — inflates apparent quality (artificially low standardized mortality ratios) in benchmarking exercises. This is well documented: the UK's ICNARC national audit programme moved to its own bespoke model rather than continuing to recalibrate APACHE II, and the Dutch NICE registry found even a recalibrated APACHE II fit inadequately to the local population <sup><a href="#ref6">[6]</a></sup>. Studies during the COVID-19 pandemic (2020–2021) found inconsistent, population-dependent calibration, illustrating that novel disease phenotypes not present in the derivation cohort further destabilise an already-aging model.</p>
       <p>Well-documented structural limitations, independent of any single validation study:</p>
       <ul class="limits">
         <li><strong>Diagnosis dependence:</strong> the validated mortality equation requires an admission-diagnosis category weight and an emergency-surgery flag — without them, the point total is an intermediate severity index, not a stand-alone mortality predictor (see above).</li>
         <li><strong>Lead-time / treatment bias:</strong> aggressive resuscitation before the 24-hour scoring window closes can artificially lower recorded severity, a limitation shared with SAPS II, SOFA, and MPM.</li>
         <li><strong>No adjustment for treatment-limitation decisions:</strong> DNR status or withdrawal-of-care decisions independently affect observed mortality without being captured by the score.</li>
         <li><strong>"Worst value in 24 hours" methodology:</strong> vulnerable to inter-observer variability and to sampling frequency/documentation practice differing between institutions.</li>
-        <li><strong>Cohort and region specificity:</strong> derived and validated almost exclusively on a North American population; performance has been shown to require local recalibration when transplanted internationally (e.g., the UK ICNARC validation below).</li>
-        <li><strong>Superseded but still dominant:</strong> APACHE III (1991) and APACHE IV (2006) generally show equal or better discrimination and calibration with diagnosis-specific customization, but both are proprietary commercial systems — a practical and economic reason APACHE II, despite its age, remains the version most widely taught, cited, and used in practice.</li>
+        <li><strong>Cohort and region specificity:</strong> derived and validated almost exclusively on a North American population; performance has been shown to require local recalibration when transplanted internationally <sup><a href="#ref4">[4]</a></sup>.</li>
+        <li><strong>Superseded but still dominant:</strong> APACHE III (1991) <sup><a href="#ref2">[2]</a></sup> and APACHE IV (2006) <sup><a href="#ref3">[3]</a></sup> generally show equal or better discrimination and calibration with diagnosis-specific customization, but both are proprietary commercial systems — a practical and economic reason APACHE II, despite its age, remains the version most widely taught, cited, and used in practice.</li>
       </ul>
-      <p>Comparative studies against SAPS II, SAPS 3, and SOFA generally find APACHE II performs comparably, with reported discrimination (AUC) typically in the 0.72–0.81 range depending on population and ICU case-mix, and no single score uniformly superior across all settings — the score an institution should trust most is usually the one it has validated or recalibrated locally, not the one with the best AUC in a single external cohort.</p>
+      <p>Comparative studies against SAPS II, SAPS 3, and SOFA generally find APACHE II performs comparably, with reported discrimination (AUC) typically in the 0.72–0.81 range depending on population and ICU case-mix <sup><a href="#ref5">[5]</a></sup><sup><a href="#ref7">[7]</a></sup>, and no single score uniformly superior across all settings <sup><a href="#ref8">[8]</a></sup> — the score an institution should trust most is usually the one it has validated or recalibrated locally, not the one with the best AUC in a single external cohort.</p>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
       <ol class="refs">
-        <li>Knaus WA, Draper EA, Wagner DP, Zimmerman JE. APACHE&nbsp;II: a severity of disease classification system. <em>Crit Care Med.</em> 1985;13(10):818–829.</li>
-        <li>Knaus WA, Wagner DP, Draper EA, et al. The APACHE&nbsp;III prognostic system: risk prediction of hospital mortality for critically ill hospitalized adults. <em>Chest.</em> 1991;100(6):1619–1636.</li>
-        <li>Zimmerman JE, Kramer AA, McNair DS, Malila FM. Acute Physiology and Chronic Health Evaluation (APACHE)&nbsp;IV: hospital mortality assessment for today's critically ill patients. <em>Crit Care Med.</em> 2006;34(5):1297–1310.</li>
-        <li>Rowan KM, Kerr JH, Major E, McPherson K, Short A, Vessey MP. Intensive Care Society's Acute Physiology and Chronic Health Evaluation (APACHE&nbsp;II) study in Britain and Ireland: a prospective, multicentre, cohort study comparing two methods for the prediction of hospital mortality. <em>Crit Care Med.</em> 1994;22(9):1392–1401.</li>
-        <li>Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256.</li>
-        <li>Soares M, Dongelmans DA. Why should we not use APACHE&nbsp;II for performance measurement and benchmarking? <em>Rev Bras Ter Intensiva.</em> 2017;29(3):268–270. doi:10.5935/0103-507X.20170043</li>
-        <li>Fuchs PA, Czech IJ, Krzych ŁJ. The pros and cons of the prediction game: the never-ending debate of mortality in the intensive care unit. <em>Int J Environ Res Public Health.</em> 2019;16(18):3394. doi:10.3390/ijerph16183394</li>
-        <li>Salluh JIF, Soares M. ICU severity of illness scores: APACHE, SAPS and MPM. <em>Curr Opin Crit Care.</em> 2014;20(5):557–565.</li>
+        <li id="ref1">Knaus WA, Draper EA, Wagner DP, Zimmerman JE. APACHE&nbsp;II: a severity of disease classification system. <em>Crit Care Med.</em> 1985;13(10):818–829.</li>
+        <li id="ref2">Knaus WA, Wagner DP, Draper EA, et al. The APACHE&nbsp;III prognostic system: risk prediction of hospital mortality for critically ill hospitalized adults. <em>Chest.</em> 1991;100(6):1619–1636.</li>
+        <li id="ref3">Zimmerman JE, Kramer AA, McNair DS, Malila FM. Acute Physiology and Chronic Health Evaluation (APACHE)&nbsp;IV: hospital mortality assessment for today's critically ill patients. <em>Crit Care Med.</em> 2006;34(5):1297–1310.</li>
+        <li id="ref4">Rowan KM, Kerr JH, Major E, McPherson K, Short A, Vessey MP. Intensive Care Society's Acute Physiology and Chronic Health Evaluation (APACHE&nbsp;II) study in Britain and Ireland: a prospective, multicentre, cohort study comparing two methods for the prediction of hospital mortality. <em>Crit Care Med.</em> 1994;22(9):1392–1401.</li>
+        <li id="ref5">Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256.</li>
+        <li id="ref6">Soares M, Dongelmans DA. Why should we not use APACHE&nbsp;II for performance measurement and benchmarking? <em>Rev Bras Ter Intensiva.</em> 2017;29(3):268–270. doi:10.5935/0103-507X.20170043</li>
+        <li id="ref7">Fuchs PA, Czech IJ, Krzych ŁJ. The pros and cons of the prediction game: the never-ending debate of mortality in the intensive care unit. <em>Int J Environ Res Public Health.</em> 2019;16(18):3394. doi:10.3390/ijerph16183394</li>
+        <li id="ref8">Salluh JIF, Soares M. ICU severity of illness scores: APACHE, SAPS and MPM. <em>Curr Opin Crit Care.</em> 2014;20(5):557–565.</li>
       </ol>
     </div>
 
