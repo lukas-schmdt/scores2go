@@ -86,9 +86,16 @@ ScoreResult apacheIiFunction(Score score, String lang) {
     secondaryResult:
         'APS $aps  |  ${t('calc.subscoresAge')} $agePtsInt  |  '
         '${t('calc.subscoresChronic')} $chronic',
+    secondaryInterpretation: t('calc.approxNote'),
   );
 }
 
+/// Diagnosis-independent illustrative reference range only. The validated
+/// Knaus mortality equation — Ln(R/1-R) = -3.517 + 0.146×score + 0.603 (if
+/// emergency surgery) + diagnostic-category weight — also requires the
+/// admission diagnosis and emergency-surgery status, neither of which is
+/// collected here, so it cannot be computed from the point total alone.
+/// Knaus WA, Draper EA, Wagner DP, Zimmerman JE. Crit Care Med. 1985;13(10):818-829.
 String _mortalityRisk(int total, String Function(String) t) {
   if (total < 5) return t('calc.risk.veryLow');
   if (total < 10) return t('calc.risk.low');

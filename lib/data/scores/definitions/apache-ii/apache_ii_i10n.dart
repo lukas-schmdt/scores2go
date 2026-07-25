@@ -64,7 +64,8 @@ class ApacheIiI10n extends ScoreI10n {
       'alter.opt.ge75': '≥ 75 years',
       // Chronic health variable
       'vorerkrankungen.display': 'Chronic Disease / Immunosuppression',
-      'vorerkrankungen.description': 'Select the applicable category.',
+      'vorerkrankungen.description':
+          'Select the applicable category. This is separate from — and scored differently than — whether the current ICU admission itself followed emergency surgery.',
       'vorerkrankungen.opt.none': 'No significant chronic disease',
       'vorerkrankungen.opt.elective':
           'Severe organ insufficiency – elective postoperative patient',
@@ -76,15 +77,17 @@ class ApacheIiI10n extends ScoreI10n {
       'calc.subscoresLabel': 'Subscores',
       'calc.subscoresAge': 'Age',
       'calc.subscoresChronic': 'Chronic health',
-      'calc.risk.veryLow': 'Very low risk (~2 % hospital mortality)',
+      'calc.risk.veryLow': 'Very low risk (~4 % hospital mortality)',
       'calc.risk.low': 'Low risk (~8 % hospital mortality)',
       'calc.risk.moderate': 'Moderate risk (~15 % hospital mortality)',
-      'calc.risk.elevated': 'Elevated risk (~24 % hospital mortality)',
+      'calc.risk.elevated': 'Elevated risk (~25 % hospital mortality)',
       'calc.risk.high': 'High risk (~40 % hospital mortality)',
       'calc.risk.veryHigh': 'Very high risk (~55 % hospital mortality)',
-      'calc.risk.critical': 'Critical (~73 % hospital mortality)',
+      'calc.risk.critical': 'Critical (~75 % hospital mortality)',
       'calc.risk.extremelyCritical':
           'Extremely critical (~85 % hospital mortality)',
+      'calc.approxNote':
+          'Illustrative, diagnosis-independent reference range only — not the validated Knaus mortality equation, which also requires admission diagnosis and emergency-surgery status (not collected here).',
     },
     'de': {
       'description':
@@ -145,7 +148,8 @@ class ApacheIiI10n extends ScoreI10n {
       'alter.opt.ge75': '≥ 75 Jahre',
       // Chronic health variable
       'vorerkrankungen.display': 'Chronische Erkrankungen / Immunsuppression',
-      'vorerkrankungen.description': 'Wähle die zutreffende Kategorie aus.',
+      'vorerkrankungen.description':
+          'Wähle die zutreffende Kategorie aus. Dies ist unabhängig davon — und wird anders bewertet als —, ob die aktuelle ICU-Aufnahme selbst auf eine Notfalloperation zurückgeht.',
       'vorerkrankungen.opt.none': 'Keine schwerwiegenden Vorerkrankungen',
       'vorerkrankungen.opt.elective':
           'Schwere Organinsuffizienz – elektiver postoperativer Patient',
@@ -157,15 +161,17 @@ class ApacheIiI10n extends ScoreI10n {
       'calc.subscoresLabel': 'Teilscores',
       'calc.subscoresAge': 'Alter',
       'calc.subscoresChronic': 'Vorerkrankungen',
-      'calc.risk.veryLow': 'Sehr niedriges Risiko (~2 % Krankenhausmortalität)',
+      'calc.risk.veryLow': 'Sehr niedriges Risiko (~4 % Krankenhausmortalität)',
       'calc.risk.low': 'Niedriges Risiko (~8 % Krankenhausmortalität)',
       'calc.risk.moderate': 'Moderates Risiko (~15 % Krankenhausmortalität)',
-      'calc.risk.elevated': 'Erhöhtes Risiko (~24 % Krankenhausmortalität)',
+      'calc.risk.elevated': 'Erhöhtes Risiko (~25 % Krankenhausmortalität)',
       'calc.risk.high': 'Hohes Risiko (~40 % Krankenhausmortalität)',
       'calc.risk.veryHigh': 'Sehr hohes Risiko (~55 % Krankenhausmortalität)',
-      'calc.risk.critical': 'Kritisch (~73 % Krankenhausmortalität)',
+      'calc.risk.critical': 'Kritisch (~75 % Krankenhausmortalität)',
       'calc.risk.extremelyCritical':
           'Extrem kritisch (~85 % Krankenhausmortalität)',
+      'calc.approxNote':
+          'Nur eine illustrative, diagnoseunabhängige Orientierungsgröße — nicht die validierte Knaus-Mortalitätsgleichung, die zusätzlich Aufnahmediagnose und Notfall-OP-Status erfordert (hier nicht erfasst).',
     },
   };
 }

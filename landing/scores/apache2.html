@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>APACHE II – Scores2Go</title>
+  <title>APACHE II (Acute Physiology and Chronic Health Evaluation II) – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="APACHE II severity scoring system for ICU patients. Calculate predicted mortality based on acute physiology, age, and chronic health." />
+  <meta name="description" content="APACHE II severity-of-disease score for ICU patients: full 12-variable Acute Physiology Score table, age and chronic-health points, an honest explanation of the Knaus mortality equation's diagnosis-dependence, and full citations." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/apache2.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/apache2.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -94,6 +96,8 @@
 
     p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
 
+    .table-wrap { overflow-x: auto; }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -108,6 +112,7 @@
       font-weight: 700;
       color: #374151;
       border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
     }
 
     td {
@@ -116,19 +121,50 @@
       color: #374151;
     }
 
+    td.pts { text-align: center; font-weight: 700; }
+
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) td { background: #fafafa; }
 
-    .tag {
-      display: inline-block;
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-      border-radius: 20px;
-      padding: 2px 10px;
-      font-size: 12px;
-      font-weight: 600;
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
     }
+
+    .warn {
+      font-size: 14px;
+      color: #92400e;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
 
     .cta {
       text-align: center;
@@ -160,6 +196,15 @@
       margin-top: 32px;
       line-height: 1.6;
     }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -173,7 +218,7 @@
     </div>
     <div class="badge">ICU · Severity</div>
     <h1>APACHE II</h1>
-    <p>Acute Physiology and Chronic Health Evaluation II — predicts ICU mortality from 12 physiological variables, age, and chronic health status.</p>
+    <p>Acute Physiology and Chronic Health Evaluation II — a severity-of-disease score from 12 physiological variables, age, and chronic health status, measured in the first 24 hours of ICU admission.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -188,86 +233,223 @@
         Popularity 95
       </span>
     </div>
+    <a class="lang-link" href="./de/apache2.html">🇩🇪 Deutsch</a>
   </header>
 
   <main>
 
     <div class="section">
       <h2>Overview</h2>
-      <p>APACHE II uses 17 variables measured within the first 24 hours of ICU admission to estimate in-hospital mortality. Scores range from 0 to 71; higher scores indicate greater severity of illness.</p>
-      <p>The score is the sum of three components: Acute Physiology Score (APS), Age Points, and Chronic Health Points.</p>
+      <p>APACHE II (Acute Physiology and Chronic Health Evaluation II) was published by Knaus, Draper, Wagner, and Zimmerman in 1985, derived from 5,815 ICU admissions across 13 US hospitals with data collected between 1979 and 1982. It is the direct successor to the original 1981 APACHE (34-variable) system, simplified to 12 routinely available physiological variables plus age and chronic-health points, and remains — four decades on — the most widely cited ICU severity score in the medical literature.</p>
+      <p>The total score (0–71) is the sum of three components measured or recorded within the first 24 hours of ICU admission: the Acute Physiology Score (APS, 0–60, from 12 physiological variables scored on their most deranged value), Age Points (0–6), and Chronic Health Points (0–5, for severe pre-existing organ insufficiency or immunocompromise).</p>
+      <p>APACHE II was formally superseded by APACHE III (1991) and APACHE IV (2006), both of which use more variables, larger and more contemporary derivation cohorts, and diagnosis-specific customization with better-documented calibration. APACHE II nonetheless remains the version most widely used and cited today, largely because it is free and published in full, whereas APACHE III and IV are proprietary commercial systems — which is exactly why it matters that a free public reference gets the score's real capabilities and limits right (see <em>The Mortality Formula</em> below).</p>
     </div>
 
     <div class="section">
       <h2>Score Components</h2>
-      <table>
-        <thead>
-          <tr><th>Component</th><th>Variables</th><th>Max Points</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Acute Physiology Score (APS)</td><td>12 physiological variables</td><td>60</td></tr>
-          <tr><td>Age Points</td><td>Age in years</td><td>6</td></tr>
-          <tr><td>Chronic Health Points</td><td>Severe organ insufficiency / immunocompromise</td><td>5</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Component</th><th>Variables</th><th class="pts">Max Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Acute Physiology Score (APS)</td><td>12 physiological variables, worst value in 24 h</td><td class="pts">60</td></tr>
+            <tr><td>Age Points</td><td>Age in years</td><td class="pts">6</td></tr>
+            <tr><td>Chronic Health Points</td><td>Severe organ insufficiency / immunocompromise</td><td class="pts">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Total APACHE II = APS + Age Points + Chronic Health Points, range 0–71. Use the value in the first 24 hours that gives the <em>highest</em> points for each physiological variable — the original methodology defines the APS as the sum of weights for the most deranged value of each variable, the same "worst value" convention used by SAPS II.</div>
     </div>
 
     <div class="section">
-      <h2>Physiological Variables (APS)</h2>
-      <table>
-        <thead>
-          <tr><th>Variable</th><th>Normal Range</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Temperature (rectal, °C)</td><td>36–38.4</td></tr>
-          <tr><td>Mean arterial pressure (mmHg)</td><td>70–109</td></tr>
-          <tr><td>Heart rate (bpm)</td><td>70–109</td></tr>
-          <tr><td>Respiratory rate (/min)</td><td>12–24</td></tr>
-          <tr><td>Oxygenation (AaDO₂ or PaO₂)</td><td>FiO₂ dependent</td></tr>
-          <tr><td>Arterial pH</td><td>7.33–7.49</td></tr>
-          <tr><td>Serum sodium (mmol/L)</td><td>130–149</td></tr>
-          <tr><td>Serum potassium (mmol/L)</td><td>3.5–5.4</td></tr>
-          <tr><td>Serum creatinine (mg/dL)</td><td>0.6–1.4</td></tr>
-          <tr><td>Haematocrit (%)</td><td>30–45.9</td></tr>
-          <tr><td>White blood cells (×10³/µL)</td><td>3–14.9</td></tr>
-          <tr><td>Glasgow Coma Scale</td><td>15 = 0 points</td></tr>
-        </tbody>
-      </table>
+      <h2>Acute Physiology Score (APS) — Full Point Table</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Variable</th><th>Range / Category</th><th class="pts">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="8"><strong>Temperature</strong> (rectal, °C)</td><td>≥ 41</td><td class="pts">4</td></tr>
+            <tr><td>39 – 40.9</td><td class="pts">3</td></tr>
+            <tr><td>38.5 – 38.9</td><td class="pts">1</td></tr>
+            <tr><td>36 – 38.4</td><td class="pts">0</td></tr>
+            <tr><td>34 – 35.9</td><td class="pts">1</td></tr>
+            <tr><td>32 – 33.9</td><td class="pts">2</td></tr>
+            <tr><td>30 – 31.9</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 30</td><td class="pts">4</td></tr>
+            <tr><td rowspan="6"><strong>Mean Arterial Pressure</strong> (mmHg)</td><td>≥ 160</td><td class="pts">4</td></tr>
+            <tr><td>130 – 159</td><td class="pts">3</td></tr>
+            <tr><td>110 – 129</td><td class="pts">2</td></tr>
+            <tr><td>70 – 109</td><td class="pts">0</td></tr>
+            <tr><td>50 – 69</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 50</td><td class="pts">4</td></tr>
+            <tr><td rowspan="7"><strong>Heart Rate</strong> (/min)</td><td>≥ 180</td><td class="pts">4</td></tr>
+            <tr><td>140 – 179</td><td class="pts">3</td></tr>
+            <tr><td>110 – 139</td><td class="pts">2</td></tr>
+            <tr><td>70 – 109</td><td class="pts">0</td></tr>
+            <tr><td>55 – 69</td><td class="pts">2</td></tr>
+            <tr><td>40 – 54</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 40</td><td class="pts">4</td></tr>
+            <tr><td rowspan="7"><strong>Respiratory Rate</strong> (/min)</td><td>≥ 50</td><td class="pts">4</td></tr>
+            <tr><td>35 – 49</td><td class="pts">3</td></tr>
+            <tr><td>25 – 34</td><td class="pts">1</td></tr>
+            <tr><td>12 – 24</td><td class="pts">0</td></tr>
+            <tr><td>10 – 11</td><td class="pts">1</td></tr>
+            <tr><td>6 – 9</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 6</td><td class="pts">4</td></tr>
+            <tr><td rowspan="4"><strong>A-aDO₂</strong> (mmHg) <em>if FiO₂ ≥ 50 %</em></td><td>≥ 500</td><td class="pts">4</td></tr>
+            <tr><td>350 – 499</td><td class="pts">3</td></tr>
+            <tr><td>200 – 349</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 200</td><td class="pts">0</td></tr>
+            <tr><td rowspan="4"><strong>PaO₂</strong> (mmHg) <em>if FiO₂ &lt; 50 %</em></td><td>&gt; 70</td><td class="pts">0</td></tr>
+            <tr><td>61 – 70</td><td class="pts">1</td></tr>
+            <tr><td>55 – 60</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 55</td><td class="pts">4</td></tr>
+            <tr><td rowspan="7"><strong>Arterial pH</strong></td><td>≥ 7.70</td><td class="pts">4</td></tr>
+            <tr><td>7.60 – 7.69</td><td class="pts">3</td></tr>
+            <tr><td>7.50 – 7.59</td><td class="pts">1</td></tr>
+            <tr><td>7.33 – 7.49</td><td class="pts">0</td></tr>
+            <tr><td>7.25 – 7.32</td><td class="pts">2</td></tr>
+            <tr><td>7.15 – 7.24</td><td class="pts">3</td></tr>
+            <tr><td>&lt; 7.15</td><td class="pts">4</td></tr>
+            <tr><td rowspan="8"><strong>Sodium</strong> (mmol/L)</td><td>≥ 180</td><td class="pts">4</td></tr>
+            <tr><td>160 – 179</td><td class="pts">3</td></tr>
+            <tr><td>155 – 159</td><td class="pts">2</td></tr>
+            <tr><td>150 – 154</td><td class="pts">1</td></tr>
+            <tr><td>130 – 149</td><td class="pts">0</td></tr>
+            <tr><td>120 – 129</td><td class="pts">2</td></tr>
+            <tr><td>111 – 119</td><td class="pts">3</td></tr>
+            <tr><td>≤ 110</td><td class="pts">4</td></tr>
+            <tr><td rowspan="7"><strong>Potassium</strong> (mmol/L)</td><td>≥ 7.0</td><td class="pts">4</td></tr>
+            <tr><td>6.0 – 6.9</td><td class="pts">3</td></tr>
+            <tr><td>5.5 – 5.9</td><td class="pts">1</td></tr>
+            <tr><td>3.5 – 5.4</td><td class="pts">0</td></tr>
+            <tr><td>3.0 – 3.4</td><td class="pts">1</td></tr>
+            <tr><td>2.5 – 2.9</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 2.5</td><td class="pts">4</td></tr>
+            <tr><td rowspan="5"><strong>Creatinine</strong> (mg/dL) <em>×2 if acute renal failure</em></td><td>≥ 3.5</td><td class="pts">4</td></tr>
+            <tr><td>2.0 – 3.4</td><td class="pts">3</td></tr>
+            <tr><td>1.5 – 1.9</td><td class="pts">2</td></tr>
+            <tr><td>0.6 – 1.4</td><td class="pts">0</td></tr>
+            <tr><td>&lt; 0.6</td><td class="pts">2</td></tr>
+            <tr><td rowspan="6"><strong>Hematocrit</strong> (%)</td><td>≥ 60</td><td class="pts">4</td></tr>
+            <tr><td>50 – 59.9</td><td class="pts">2</td></tr>
+            <tr><td>46 – 49.9</td><td class="pts">1</td></tr>
+            <tr><td>30 – 45.9</td><td class="pts">0</td></tr>
+            <tr><td>20 – 29.9</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 20</td><td class="pts">4</td></tr>
+            <tr><td rowspan="6"><strong>White Blood Cells</strong> (×10³/µL)</td><td>≥ 40</td><td class="pts">4</td></tr>
+            <tr><td>20 – 39.9</td><td class="pts">2</td></tr>
+            <tr><td>15 – 19.9</td><td class="pts">1</td></tr>
+            <tr><td>3 – 14.9</td><td class="pts">0</td></tr>
+            <tr><td>1 – 2.9</td><td class="pts">2</td></tr>
+            <tr><td>&lt; 1</td><td class="pts">4</td></tr>
+            <tr><td><strong>Glasgow Coma Scale</strong></td><td>APS points = 15 − GCS</td><td class="pts">0 – 12</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Creatinine points are doubled only for <em>acute</em> renal failure — chronic renal failure does not double the subscore. Oxygenation uses A-aDO₂ when FiO₂ ≥ 50 %, or PaO₂ when FiO₂ &lt; 50 % (this 50 % threshold is the original cutoff, not an approximation). The GCS subscore is a literal computation (15 minus the current GCS), not a lookup table, clamped to 0–12. The original 1985 protocol also allows a serum-HCO₃ fallback for the acid-base variable when no arterial blood gas is available; this app, like virtually all modern implementations, assumes an ABG is available and does not include that fallback path.</div>
     </div>
 
     <div class="section">
-      <h2>Mortality Prediction</h2>
-      <table>
-        <thead>
-          <tr><th>APACHE II Score</th><th>Predicted Hospital Mortality</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>0–4</td><td>~4 %</td></tr>
-          <tr><td>5–9</td><td>~8 %</td></tr>
-          <tr><td>10–14</td><td>~15 %</td></tr>
-          <tr><td>15–19</td><td>~25 %</td></tr>
-          <tr><td>20–24</td><td>~40 %</td></tr>
-          <tr><td>25–29</td><td>~55 %</td></tr>
-          <tr><td>30–34</td><td>~75 %</td></tr>
-          <tr><td>≥ 35</td><td>&gt; 80 %</td></tr>
-        </tbody>
-      </table>
+      <h2>Age &amp; Chronic Health Points</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Age</th><th class="pts">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>≤ 44 years</td><td class="pts">0</td></tr>
+            <tr><td>45 – 54 years</td><td class="pts">2</td></tr>
+            <tr><td>55 – 64 years</td><td class="pts">3</td></tr>
+            <tr><td>65 – 74 years</td><td class="pts">5</td></tr>
+            <tr><td>≥ 75 years</td><td class="pts">6</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap" style="margin-top:16px">
+        <table>
+          <thead>
+            <tr><th>Chronic Health Status</th><th class="pts">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>No significant chronic disease</td><td class="pts">0</td></tr>
+            <tr><td>Severe organ insufficiency or immunocompromise, elective postoperative admission</td><td class="pts">2</td></tr>
+            <tr><td>Severe organ insufficiency or immunocompromise, nonoperative or emergency postoperative admission</td><td class="pts">5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">"Severe organ insufficiency" is defined per organ system: liver cirrhosis with portal hypertension or prior hepatic failure/encephalopathy; NYHA class IV cardiac disease; severe chronic respiratory disease (chronic hypoxia/hypercapnia, severe restriction, or ventilator-dependence); chronic dialysis; or immunocompromise (from therapy or disease) — the deficiency must have been evident before the current admission. This chronic-health category is a different fact from "was this ICU admission itself an emergency surgical case," which is a separate input required only by the mortality-prediction equation below and is not collected by this calculator.</div>
     </div>
 
     <div class="section">
-      <h2>Reference</h2>
-      <p>Knaus WA, Draper EA, Wagner DP, Zimmerman JE. <em>APACHE II: a severity of disease classification system.</em> Crit Care Med. 1985;13(10):818–829.</p>
+      <h2>The Mortality Formula — and Why This Calculator Doesn't Compute It</h2>
+      <p>The Knaus 1985 paper defines predicted hospital mortality as:</p>
+      <pre>Ln(R / 1−R) = −3.517 + (0.146 × APACHE II score) + 0.603 [if emergency surgery] + diagnostic-category weight
+
+R = e^x / (1 + e^x)</pre>
+      <p>The first two terms are simple and public: a fixed intercept and a per-point coefficient on the total score. The remaining two terms are not: a +0.603 addition applies only if the ICU admission followed <em>emergency</em> surgery, and a <strong>diagnostic-category weight</strong> is added from a lookup table of roughly 50 discrete admission-diagnosis categories (Knaus 1985, Table 5) — separate nonoperative and postoperative lists, each with its own empirically fitted coefficient.</p>
+      <div class="warn">This calculator does not collect an admission diagnosis or emergency-surgery status, so it <strong>cannot</strong> compute the validated Knaus mortality probability — and neither can any calculator that shows a mortality percentage from the point total alone. The diagnostic-category weight is not a minor refinement: two patients with an identical 20-point APACHE II score can have meaningfully different true predicted mortality depending on why they are in the ICU. We chose not to publish invented or approximate diagnostic-category weights here, since the original values are not freely reproducible from the primary literature and a wrong number would be worse than an honest gap.</div>
+      <p>What we do show is a commonly circulated, diagnosis-independent reference range that appears consistently across several independent ICU-calculator sources. Treat it as an illustrative population-level trend, not a patient-specific prediction, and never for benchmarking or performance measurement without diagnosis adjustment (Soares &amp; Dongelmans, 2017 — see Literature):</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>APACHE II Score</th><th>Illustrative Hospital Mortality</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0 – 4</td><td>≈ 4 %</td></tr>
+            <tr><td>5 – 9</td><td>≈ 8 %</td></tr>
+            <tr><td>10 – 14</td><td>≈ 15 %</td></tr>
+            <tr><td>15 – 19</td><td>≈ 25 %</td></tr>
+            <tr><td>20 – 24</td><td>≈ 40 %</td></tr>
+            <tr><td>25 – 29</td><td>≈ 55 %</td></tr>
+            <tr><td>30 – 34</td><td>≈ 75 %</td></tr>
+            <tr><td>≥ 35</td><td>≈ 85 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Scores2Go displays this same illustrative range in the app, clearly labelled as a diagnosis-independent approximation rather than a computed probability — unlike SAPS II or SAPS 3, whose mortality equations depend only on the point total and are fully computable here.</div>
     </div>
 
-    <div class="cta">
-      <p>Calculate the APACHE II score interactively in the app.</p>
+    <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>APACHE II's derivation cohort (5,815 admissions, 13 US hospitals, 1979–1982) predates modern critical care by more than four decades — before lung-protective ventilation, early goal-directed sepsis therapy, widespread renal-replacement therapy, and the general decline in ICU mortality that has occurred since. Because absolute mortality has fallen since 1985, APACHE II now <em>systematically overestimates</em> death probability in many contemporary populations, which — if used uncritically — inflates apparent quality (artificially low standardized mortality ratios) in benchmarking exercises. This is well documented: the UK's ICNARC national audit programme moved to its own bespoke model rather than continuing to recalibrate APACHE II, and the Dutch NICE registry found even a recalibrated APACHE II fit inadequately to the local population. Studies during the COVID-19 pandemic (2020–2021) found inconsistent, population-dependent calibration, illustrating that novel disease phenotypes not present in the derivation cohort further destabilise an already-aging model.</p>
+      <p>Well-documented structural limitations, independent of any single validation study:</p>
+      <ul class="limits">
+        <li><strong>Diagnosis dependence:</strong> the validated mortality equation requires an admission-diagnosis category weight and an emergency-surgery flag — without them, the point total is an intermediate severity index, not a stand-alone mortality predictor (see above).</li>
+        <li><strong>Lead-time / treatment bias:</strong> aggressive resuscitation before the 24-hour scoring window closes can artificially lower recorded severity, a limitation shared with SAPS II, SOFA, and MPM.</li>
+        <li><strong>No adjustment for treatment-limitation decisions:</strong> DNR status or withdrawal-of-care decisions independently affect observed mortality without being captured by the score.</li>
+        <li><strong>"Worst value in 24 hours" methodology:</strong> vulnerable to inter-observer variability and to sampling frequency/documentation practice differing between institutions.</li>
+        <li><strong>Cohort and region specificity:</strong> derived and validated almost exclusively on a North American population; performance has been shown to require local recalibration when transplanted internationally (e.g., the UK ICNARC validation below).</li>
+        <li><strong>Superseded but still dominant:</strong> APACHE III (1991) and APACHE IV (2006) generally show equal or better discrimination and calibration with diagnosis-specific customization, but both are proprietary commercial systems — a practical and economic reason APACHE II, despite its age, remains the version most widely taught, cited, and used in practice.</li>
+      </ul>
+      <p>Comparative studies against SAPS II, SAPS 3, and SOFA generally find APACHE II performs comparably, with reported discrimination (AUC) typically in the 0.72–0.81 range depending on population and ICU case-mix, and no single score uniformly superior across all settings — the score an institution should trust most is usually the one it has validated or recalibrated locally, not the one with the best AUC in a single external cohort.</p>
+    </div>
+
+    <div class="section">
+      <h2>Literature</h2>
+      <ol class="refs">
+        <li>Knaus WA, Draper EA, Wagner DP, Zimmerman JE. APACHE&nbsp;II: a severity of disease classification system. <em>Crit Care Med.</em> 1985;13(10):818–829.</li>
+        <li>Knaus WA, Wagner DP, Draper EA, et al. The APACHE&nbsp;III prognostic system: risk prediction of hospital mortality for critically ill hospitalized adults. <em>Chest.</em> 1991;100(6):1619–1636.</li>
+        <li>Zimmerman JE, Kramer AA, McNair DS, Malila FM. Acute Physiology and Chronic Health Evaluation (APACHE)&nbsp;IV: hospital mortality assessment for today's critically ill patients. <em>Crit Care Med.</em> 2006;34(5):1297–1310.</li>
+        <li>Rowan KM, Kerr JH, Major E, McPherson K, Short A, Vessey MP. Intensive Care Society's Acute Physiology and Chronic Health Evaluation (APACHE&nbsp;II) study in Britain and Ireland: a prospective, multicentre, cohort study comparing two methods for the prediction of hospital mortality. <em>Crit Care Med.</em> 1994;22(9):1392–1401.</li>
+        <li>Beck DH, Smith GB, Pappachan JV, Millar B. External validation of the SAPS&nbsp;II, APACHE&nbsp;II and APACHE&nbsp;III prognostic models in South England: a multicentre study. <em>Intensive Care Med.</em> 2003;29(2):249–256.</li>
+        <li>Soares M, Dongelmans DA. Why should we not use APACHE&nbsp;II for performance measurement and benchmarking? <em>Rev Bras Ter Intensiva.</em> 2017;29(3):268–270. doi:10.5935/0103-507X.20170043</li>
+        <li>Fuchs PA, Czech IJ, Krzych ŁJ. The pros and cons of the prediction game: the never-ending debate of mortality in the intensive care unit. <em>Int J Environ Res Public Health.</em> 2019;16(18):3394. doi:10.3390/ijerph16183394</li>
+        <li>Salluh JIF, Soares M. ICU severity of illness scores: APACHE, SAPS and MPM. <em>Curr Opin Crit Care.</em> 2014;20(5):557–565.</li>
+      </ol>
+    </div>
+
+    <div class="section cta">
+      <p>Calculate the APACHE II score interactively in Scores2Go — free, no account required for the web app.</p>
       <a class="button" href="../app/?score=apache-ii">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
         Open in Scores2Go
       </a>
     </div>
 
-    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+    <p class="disclaimer">For research and educational use only. Not a substitute for clinical judgement. Always consult current clinical guidelines and local protocols.</p>
 
   </main>
 
