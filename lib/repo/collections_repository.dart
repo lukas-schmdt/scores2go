@@ -7,7 +7,13 @@ class CollectionsRepository {
 
   final CollectionsDataProvider dataProvider;
 
-  String get _userId => Supabase.instance.client.auth.currentUser!.id;
+  String get _userId {
+    final id = Supabase.instance.client.auth.currentUser?.id;
+    if (id == null) {
+      throw StateError('No authenticated user; cannot access collections.');
+    }
+    return id;
+  }
 
   Future<List<ScoreCollection>> getCollections() =>
       dataProvider.fetchCollections(_userId);
@@ -16,14 +22,14 @@ class CollectionsRepository {
       dataProvider.insertCollection(_userId, display);
 
   Future<void> renameCollection(int id, String display) =>
-      dataProvider.updateCollectionDisplay(id, display);
+      dataProvider.updateCollectionDisplay(_userId, id, display);
 
   Future<void> deleteCollection(int id) =>
-      dataProvider.deleteCollection(id);
+      dataProvider.deleteCollection(_userId, id);
 
   Future<void> addScore(int collectionId, int scoreId) =>
       dataProvider.insertScoreToCollection(_userId, collectionId, scoreId);
 
   Future<void> removeScore(int collectionId, int scoreId) =>
-      dataProvider.removeScoreFromCollection(collectionId, scoreId);
+      dataProvider.removeScoreFromCollection(_userId, collectionId, scoreId);
 }

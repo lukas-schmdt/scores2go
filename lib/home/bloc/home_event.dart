@@ -9,7 +9,7 @@ sealed class HomeEvent extends Equatable {
 
 class SetScreenEvent extends HomeEvent {
   final int screenId;
-  SetScreenEvent({required this.screenId});
+  const SetScreenEvent({required this.screenId});
 }
 
 class SelectScoreEvent extends HomeEvent {

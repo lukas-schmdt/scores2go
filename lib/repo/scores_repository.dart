@@ -9,7 +9,13 @@ class ScoresRepository {
 
   ScoresRepository(this.dataProvider);
 
-  String get _userId => Supabase.instance.client.auth.currentUser!.id;
+  String get _userId {
+    final id = Supabase.instance.client.auth.currentUser?.id;
+    if (id == null) {
+      throw StateError('No authenticated user; cannot access favorites.');
+    }
+    return id;
+  }
 
   void setLocale(String locale) {
     _locale = locale;

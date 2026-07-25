@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
@@ -24,14 +24,19 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     try {
       final favoriteIds = await repo.getFavoriteScoreIds();
       final allScores = await repo.getScores();
-      final favoriteScores = allScores
-          .where((s) => favoriteIds.contains(s.id))
-          .toList();
+      final scoresById = {for (final s in allScores) s.id: s};
+      // Keep only favorites that still resolve to a known score, preserving the
+      // stored order. This keeps `favorites` and `scores` consistent so lookups
+      // elsewhere can't fail on a stale/removed score id.
+      final resolvedIds =
+          favoriteIds.where(scoresById.containsKey).toList();
+      final favoriteScores =
+          resolvedIds.map((id) => scoresById[id]!).toList();
 
       emit(
         state.copyWith(
           status: UserFavoritesStatus.loaded,
-          favorites: favoriteIds,
+          favorites: resolvedIds,
           scores: favoriteScores,
         ),
       );
@@ -52,10 +57,7 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
     if (state.favorites.contains(event.scoreId)) return;
     emit(state.copyWith(pendingId: event.scoreId));
     try {
-      await Future.wait([
-        repo.addFavoriteScoreId(event.scoreId, state.favorites.length),
-        Future.delayed(const Duration(milliseconds: 500)),
-      ]);
+      await repo.addFavoriteScoreId(event.scoreId, state.favorites.length);
 
       final allScores = await repo.getScores();
       final updatedIds = [...state.favorites, event.scoreId];
@@ -120,9 +122,9 @@ class UserFavoritesBloc extends Bloc<UserFavoritesEvent, UserFavoritesState> {
         : event.newIndex;
     list.insert(insertAt, moved);
 
-    final reorderedScores = list
-        .map((id) => state.scores.firstWhere((s) => s.id == id))
-        .toList();
+    final scoresById = {for (final s in state.scores) s.id: s};
+    final reorderedScores =
+        list.map((id) => scoresById[id]).whereType<Score>().toList();
 
     emit(state.copyWith(favorites: list, scores: reorderedScores));
 

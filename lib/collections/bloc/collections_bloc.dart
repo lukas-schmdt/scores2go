@@ -1,6 +1,6 @@
 import 'dart:developer' as dev;
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:scores_2_go/model/score_collection.dart';
 import 'package:scores_2_go/repo/collections_repository.dart';

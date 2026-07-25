@@ -9,7 +9,7 @@ part 'settings_state.dart';
 class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
   SettingsBloc() : super(const SettingsState()) {
     on<SettingsEvent>((event, emit) async {
-      if (event is getAppVersion) {
+      if (event is GetAppVersion) {
         WidgetsFlutterBinding.ensureInitialized();
         final packageInfo = await PackageInfo.fromPlatform();
         emit(state.copyWith(

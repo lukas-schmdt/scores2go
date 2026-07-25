@@ -49,7 +49,12 @@ class UserFavoritesScreen extends StatelessWidget {
             },
             itemBuilder: (context, index) {
               final favId = state.favorites[index];
-              final score = scores.firstWhere((s) => s.id == favId);
+              final score = scores.where((s) => s.id == favId).firstOrNull;
+              if (score == null) {
+                // Favourite id with no matching score (e.g. removed score);
+                // skip rendering it rather than crash the list.
+                return SizedBox.shrink(key: Key('fav_missing_$favId'));
+              }
               final cs = Theme.of(context).colorScheme;
               final tt = Theme.of(context).textTheme;
 

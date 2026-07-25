@@ -1,6 +1,6 @@
 part of 'home_bloc.dart';
 
-enum homeStatus { initial, loading, success, failed }
+enum HomeStatus { initial, loading, success, failed }
 
 class HomeState extends Equatable {
   const HomeState({
@@ -9,7 +9,7 @@ class HomeState extends Equatable {
     this.selectedScore,
   });
 
-  final homeStatus status;
+  final HomeStatus status;
   final int screenId;
   final Score? selectedScore;
 
@@ -17,7 +17,7 @@ class HomeState extends Equatable {
   List<Object?> get props => [status, screenId, selectedScore];
 
   HomeState copyWith({
-    homeStatus? status,
+    HomeStatus? status,
     int? screenId,
     Score? selectedScore,
     bool clearSelectedScore = false,

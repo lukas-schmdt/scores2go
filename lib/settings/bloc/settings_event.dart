@@ -20,7 +20,7 @@ class SetLocaleEvent extends SettingsEvent {
   final Locale? locale; // null = use device locale
 
   @override
-  List<Object> get props => [if (locale != null) locale!];
+  List<Object> get props => [?locale];
 }
 
-class getAppVersion extends SettingsEvent {}
+class GetAppVersion extends SettingsEvent {}

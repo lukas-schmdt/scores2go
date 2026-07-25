@@ -101,13 +101,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://scores2go.com/scores/dose-calc.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/dose-calc.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/dose-calc.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
 
   <!-- Score pages (DE) -->
   <url>
@@ -191,13 +184,6 @@
     <loc>https://scores2go.com/scores/de/finnegan.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html"/>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://scores2go.com/scores/de/dose-calc.html</loc>
-    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/dose-calc.html"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/dose-calc.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

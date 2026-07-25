@@ -3,7 +3,6 @@ import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz_i10n.dart'
 import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz_visibility.dart';
 import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
-import 'package:scores_2_go/model/unit_definition.dart';
 
 final _i10n = HorovitzI10n();
 

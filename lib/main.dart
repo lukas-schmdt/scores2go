@@ -52,7 +52,7 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<SettingsBloc>(
-            create: (context) => SettingsBloc()..add(getAppVersion()),
+            create: (context) => SettingsBloc()..add(GetAppVersion()),
           ),
           BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
         ],
@@ -63,7 +63,7 @@ void main() async {
 }
 
 class Scores2GoApp extends StatelessWidget {
-  Scores2GoApp({super.key});
+  const Scores2GoApp({super.key});
 
   @override
   Widget build(BuildContext context) {

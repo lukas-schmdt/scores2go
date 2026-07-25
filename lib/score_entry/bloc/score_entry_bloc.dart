@@ -47,7 +47,12 @@ class ScoreEntryBloc extends Bloc<ScoreEntryEvent, ScoreEntryState> {
     ScoreEntryLoadEvent event,
     Emitter<ScoreEntryState> emit,
   ) async {
-    final score = repo.scores.firstWhere((e) => e.name == event.scoreName);
+    final matches = repo.scores.where((e) => e.name == event.scoreName);
+    if (matches.isEmpty) {
+      emit(state.copyWith(status: Status.error));
+      return;
+    }
+    final score = matches.first;
     emit(ScoreEntryState(status: Status.loading, score: score));
     await Future.delayed(const Duration(seconds: 1));
     emit(

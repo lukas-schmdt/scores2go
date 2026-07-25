@@ -39,18 +39,27 @@ class CollectionsDataProvider {
     dev.log('insertCollection() → ok', name: _tag);
   }
 
-  Future<void> updateCollectionDisplay(int id, String display) async {
+  Future<void> updateCollectionDisplay(
+    String userId,
+    int id,
+    String display,
+  ) async {
     dev.log('updateCollectionDisplay(id=$id, display=$display)', name: _tag);
     await _db
         .from('user_score_collections')
         .update({'display': display})
-        .eq('id', id);
+        .eq('id', id)
+        .eq('user_id', userId);
     dev.log('updateCollectionDisplay() → ok', name: _tag);
   }
 
-  Future<void> deleteCollection(int id) async {
+  Future<void> deleteCollection(String userId, int id) async {
     dev.log('deleteCollection(id=$id)', name: _tag);
-    await _db.from('user_score_collections').delete().eq('id', id);
+    await _db
+        .from('user_score_collections')
+        .delete()
+        .eq('id', id)
+        .eq('user_id', userId);
     dev.log('deleteCollection() → ok', name: _tag);
   }
 
@@ -72,7 +81,11 @@ class CollectionsDataProvider {
     }
   }
 
-  Future<void> removeScoreFromCollection(int collectionId, int scoreId) async {
+  Future<void> removeScoreFromCollection(
+    String userId,
+    int collectionId,
+    int scoreId,
+  ) async {
     dev.log(
       'removeScoreFromCollection(collectionId=$collectionId, scoreId=$scoreId)',
       name: _tag,
@@ -81,7 +94,8 @@ class CollectionsDataProvider {
         .from('score_collection_scores')
         .delete()
         .eq('user_score_collection_id', collectionId)
-        .eq('score_id', scoreId);
+        .eq('score_id', scoreId)
+        .eq('user_id', userId);
     dev.log('removeScoreFromCollection() → ok', name: _tag);
   }
 }
