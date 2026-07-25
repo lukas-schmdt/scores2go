@@ -200,6 +200,16 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -234,7 +244,9 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>Delirium is positive when <strong>Feature 1 + Feature 2 + (Feature 3 or Feature 4)</strong> are all present. If RASS is −4 or −5, the patient is too deeply sedated to assess — CAM-ICU should not be performed and the result is recorded as "unable to assess".</p>
+      <p>The Confusion Assessment Method for the ICU (CAM-ICU) was developed by Ely and colleagues to adapt the original ward-based Confusion Assessment Method for mechanically ventilated and otherwise non-verbal ICU patients, who cannot answer the verbal questions the original CAM relies on. It was derived and validated against a DSM-IV-based psychiatric reference standard in a cohort of medical and coronary ICU patients, reporting sensitivity of 93–100&nbsp;%, specificity of 98–100&nbsp;%, and near-perfect inter-rater reliability (κ&nbsp;=&nbsp;0.96) when administered by trained research nurses <sup><a href="#ref1">[1]</a></sup><sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Delirium is positive when <strong>Feature 1 + Feature 2 + (Feature 3 or Feature 4)</strong> are all present. If RASS is −4 or −5, the patient is too deeply sedated to assess — CAM-ICU should not be performed and the result is recorded as "unable to assess" until a spontaneous awakening trial raises the sedation level <sup><a href="#ref3">[3]</a></sup>.</p>
+      <p>CAM-ICU takes under two minutes at the bedside and needs no equipment beyond the RASS assessment already performed as part of routine sedation monitoring, which is part of why it became the most widely adopted ICU delirium tool worldwide — though, as detailed in <em>Scientific Validity &amp; Limitations</em> below, its real-world performance outside the original validation studies is more variable than the headline sensitivity and specificity figures suggest.</p>
     </div>
 
     <div class="section">
@@ -259,7 +271,7 @@
 
       <p><strong>Feature 1 — Acute Change or Fluctuation:</strong> Is there evidence of an acute change in mental status from the patient's baseline, OR did the patient's mental status fluctuate during the past 24 hours (RASS or GCS fluctuating)? If YES, proceed.</p>
 
-      <p><strong>Feature 2 — Inattention (SAVE test):</strong> The assessor reads the letter sequence "S-A-V-E-A-H-A-A-R-T" and asks the patient to squeeze the hand on the letter "A". The patient scores 1 point for each correct response (squeeze on A, no squeeze on other letters). Score = number of errors subtracted from 10. A score &lt; 8 (i.e. ≥ 3 errors) is positive for inattention.</p>
+      <p><strong>Feature 2 — Inattention (SAVE test):</strong> The assessor reads the letter sequence "S-A-V-E-A-H-A-A-R-T" and asks the patient to squeeze the hand on the letter "A". The patient scores 1 point for each correct response (squeeze on A, no squeeze on other letters). Score = number of errors subtracted from 10. A score &lt; 8 (i.e. ≥ 3 errors) is positive for inattention <sup><a href="#ref1">[1]</a></sup>.</p>
       <table>
         <thead>
           <tr><th>SAVE Sequence</th><th>Expected Response</th></tr>
@@ -298,19 +310,31 @@
     </div>
 
     <div class="section">
-      <h2>Psychometric Properties</h2>
-      <ul>
-        <li>Sensitivity: 93–100 %</li>
-        <li>Specificity: 98–100 %</li>
-        <li>Inter-rater reliability: κ = 0.96</li>
-        <li>Validated in mechanically ventilated patients and non-verbal non-intubated patients</li>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>The original derivation study reported near-ideal accuracy — sensitivity 93–100&nbsp;%, specificity 98–100&nbsp;%, and inter-rater reliability κ&nbsp;=&nbsp;0.96 — when CAM-ICU was administered by trained research nurses under close supervision <sup><a href="#ref1">[1]</a></sup><sup><a href="#ref2">[2]</a></sup>. Subsequent real-world and meta-analytic data show a meaningful gap between this efficacy ceiling and routine bedside performance.</p>
+      <p>A 2011 multicenter Dutch study found that when bedside ICU nurses used CAM-ICU as part of standard care — rather than trained researchers working under strict protocol conditions — sensitivity fell to approximately 47&nbsp;%, even though specificity remained high at 98&nbsp;% <sup><a href="#ref4">[4]</a></sup>. A 2012 systematic review and meta-analysis pooling multiple validation cohorts reported overall sensitivity around 80&nbsp;% and specificity around 96&nbsp;% <sup><a href="#ref5">[5]</a></sup>, and a separate 2012 meta-analysis of ICU delirium screening tools found comparably imperfect pooled accuracy for both CAM-ICU and the Intensive Care Delirium Screening Checklist (ICDSC), with neither tool demonstrating clear superiority <sup><a href="#ref6">[6]</a></sup>.</p>
+      <p>Well-documented limitations, independent of any single validation study:</p>
+      <ul class="limits">
+        <li><strong>Training-dependent accuracy:</strong> CAM-ICU's sensitivity is highly sensitive to how well the assessor has been trained and how strictly the algorithm is followed — the drop from ~93&nbsp;% to ~47&nbsp;% sensitivity between research and routine-care settings is one of the largest reported for any ICU screening tool.</li>
+        <li><strong>Point-in-time assessment:</strong> CAM-ICU captures mental status only at the moment of testing; because delirium fluctuates, a single negative assessment does not exclude delirium earlier or later in the same shift, so current guidelines recommend assessing at least once per shift <sup><a href="#ref7">[7]</a></sup>.</li>
+        <li><strong>Cannot assess deeply sedated patients:</strong> at RASS −4/−5 the patient cannot participate in the attention and thinking tests, so CAM-ICU cannot be scored at all during deep sedation — a coverage gap rather than a false result.</li>
+        <li><strong>Hypoactive delirium under-recognition:</strong> like other screening tools built around active-response testing, CAM-ICU is more likely to miss quiet, hypoactive delirium than hyperactive delirium unless assessors are specifically vigilant for subtle inattention.</li>
+        <li><strong>Binary output:</strong> CAM-ICU reports only present/absent and does not grade severity, unlike scales such as the CAM-ICU-7 or ICDSC that produce a numeric score.</li>
       </ul>
+      <p>Both CAM-ICU and ICDSC remain endorsed by the 2018 Society of Critical Care Medicine PADIS guidelines as validated delirium-monitoring tools for routine ICU use, with the choice between them left to institutional preference rather than one having demonstrated superiority <sup><a href="#ref7">[7]</a></sup>.</p>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Ely EW, Inouye SK, Bernard GR, et al. <em>Delirium in mechanically ventilated patients: validity and reliability of the confusion assessment method for the intensive care unit (CAM-ICU).</em> JAMA. 2001;286(21):2703–2710.</p>
-      <p>Devlin JW, Skrobik Y, Gélinas C, et al. <em>Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.</em> Crit Care Med. 2018;46(9):e825–e873.</p>
+      <ol class="refs">
+        <li id="ref1">Ely EW, Inouye SK, Bernard GR, et al. Delirium in mechanically ventilated patients: validity and reliability of the confusion assessment method for the intensive care unit (CAM-ICU). <em>JAMA.</em> 2001;286(21):2703–2710. doi:10.1001/jama.286.21.2703</li>
+        <li id="ref2">Ely EW, Margolin R, Francis J, et al. Evaluation of delirium in critically ill patients: validation of the Confusion Assessment Method for the Intensive Care Unit (CAM-ICU). <em>Crit Care Med.</em> 2001;29(7):1370–1379. doi:10.1097/00003246-200107000-00012</li>
+        <li id="ref3">Sessler CN, Gosnell MS, Grap MJ, et al. The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. <em>Am J Respir Crit Care Med.</em> 2002;166(10):1338–1344. doi:10.1164/rccm.2107138</li>
+        <li id="ref4">van Eijk MM, van den Boogaard M, van Marum RJ, et al. Routine use of the confusion assessment method for the intensive care unit: a multicenter study. <em>Am J Respir Crit Care Med.</em> 2011;184(3):340–344. doi:10.1164/rccm.201101-0065OC</li>
+        <li id="ref5">Gusmao-Flores D, Salluh JIF, Chalhub RÁ, Quarantini LC. The confusion assessment method for the intensive care unit (CAM-ICU) and intensive care delirium screening checklist (ICDSC) for the diagnosis of delirium: a systematic review and meta-analysis of clinical studies. <em>Crit Care.</em> 2012;16(4):R115. doi:10.1186/cc11407</li>
+        <li id="ref6">Neto AS, Nassar AP Jr, Cardoso SO, et al. Delirium screening in critically ill patients: a systematic review and meta-analysis. <em>Crit Care Med.</em> 2012;40(6):1946–1951. doi:10.1097/CCM.0b013e31824e16c9</li>
+        <li id="ref7">Devlin JW, Skrobik Y, Gélinas C, et al. Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU. <em>Crit Care Med.</em> 2018;46(9):e825–e873. doi:10.1097/CCM.0000000000003299</li>
+      </ol>
     </div>
 
     <div class="cta">
