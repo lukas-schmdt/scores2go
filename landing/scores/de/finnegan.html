@@ -6,7 +6,9 @@
   <title>Finnegan NAS Score – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Finnegan Neonatal Abstinence Score — bewertet den Schweregrad des neonatalen Opioidentzugs anhand von 21 Zeichen in den Domänen ZNS, metabolisch-vasomotorisch-respiratorisch und gastrointestinal." />
+  <meta name="description" content="Finnegan Neonatal Abstinence Score — das 21-Item-Instrument mit maximal 46 Punkten zur Beurteilung des Schweregrads des neonatalen Opioidentzugs in den Domänen ZNS, metabolisch-vasomotorisch-respiratorisch und gastrointestinal, mit vollständigen Quellenangaben und Validitätsdiskussion." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -94,11 +96,13 @@
 
     p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
 
+    .table-wrap { overflow-x: auto; }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     th {
@@ -129,6 +133,24 @@
       font-size: 12px;
       font-weight: 600;
     }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -163,6 +185,15 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -176,7 +207,7 @@
     </div>
     <div class="badge">Neonatologie · NAS</div>
     <h1>Finnegan NAS</h1>
-    <p>Der Finnegan Neonatal Abstinence Score ist das am weitesten verbreitete Instrument zur Beurteilung des Schweregrads des neonatalen Opioidentzugssyndroms (NOWS). Er bewertet 21 Zeichen in drei Domänen: Zentralnervensystem (ZNS), metabolisch/vasomotorisch/respiratorisch (MVR) und gastrointestinal (GI).</p>
+    <p>Der Finnegan Neonatal Abstinence Score ist das am weitesten verbreitete Instrument zur Beurteilung des Schweregrads des neonatalen Opioidentzugssyndroms (NOWS). Die hier implementierte modifizierte Version bewertet 21 Zeichen in den Domänen ZNS, metabolisch/vasomotorisch/respiratorisch und gastrointestinal, mit einem Maximalscore von 46.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -191,112 +222,146 @@
         Beliebtheit 82
       </span>
     </div>
+    <a class="lang-link" href="../finnegan.html">🇬🇧 English</a>
   </header>
 
   <main>
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>Das neonatale Opioidentzugssyndrom (NOWS) — früher neonatales Abstinenzsyndrom (NAS) — tritt bei Neugeborenen auf, deren Mütter während der Schwangerschaft Opioide eingenommen haben. Der Finnegan-Score quantifiziert den Entzugsschweregrad in drei Domänen: Zentralnervensystem (ZNS), metabolisch/vasomotorisch/respiratorisch (MVR) und gastrointestinal (GI). Beurteilungen erfolgen in der Regel alle 3–4 Stunden oder nach jeder Mahlzeit in den ersten Lebenstagen.</p>
+      <p>Das neonatale Opioidentzugssyndrom (NOWS) — früher neonatales Abstinenzsyndrom (NAS) — tritt bei Neugeborenen auf, deren Mütter während der Schwangerschaft Opioide eingenommen haben. Finnegan und Kollegen veröffentlichten 1975 die erste strukturierte Entzugsschweregrad-Skala <sup><a href="#ref1">[1]</a></sup>; die in Scores2Go implementierte Version ist die gebräuchliche 21-Item-Modifikation mit einem Score von 0–46, gegliedert in drei Domänen: Zentralnervensystem (ZNS), metabolisch/vasomotorisch/respiratorisch (MVR) und gastrointestinal (GI).</p>
+      <p>Beurteilungen erfolgen in der Regel alle 3–4 Stunden oder nach jeder Mahlzeit in den ersten Lebenstagen. Für die Behandlungsentscheidung ist ein <strong>Trend über mehrere aufeinanderfolgende Beurteilungen</strong> maßgeblich — nicht ein einzelner erhöhter Score (siehe <em>Score-Interpretation</em> unten).</p>
     </div>
 
     <div class="section">
       <h2>ZNS-Domäne</h2>
-      <table>
-        <thead>
-          <tr><th>Zeichen</th><th>Punkte</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Schreien: kein übermäßiges Schreien</td><td>0</td></tr>
-          <tr><td>Schreien: übermäßiges, schrilles Schreien (&lt; 5 min)</td><td>2</td></tr>
-          <tr><td>Schreien: übermäßiges, schrilles Schreien (≥ 5 min)</td><td>3</td></tr>
-          <tr><td>Schlaf nach Mahlzeit: &gt; 3 h</td><td>0</td></tr>
-          <tr><td>Schlaf nach Mahlzeit: 2–3 h</td><td>1</td></tr>
-          <tr><td>Schlaf nach Mahlzeit: 1–2 h</td><td>2</td></tr>
-          <tr><td>Schlaf nach Mahlzeit: &lt; 1 h</td><td>3</td></tr>
-          <tr><td>Moro-Reflex: normal</td><td>0</td></tr>
-          <tr><td>Moro-Reflex: gesteigert</td><td>2</td></tr>
-          <tr><td>Moro-Reflex: stark gesteigert</td><td>3</td></tr>
-          <tr><td>Tremor bei Stimulation: leicht</td><td>1</td></tr>
-          <tr><td>Tremor bei Stimulation: mittel–schwer</td><td>2</td></tr>
-          <tr><td>Tremor in Ruhe: leicht</td><td>3</td></tr>
-          <tr><td>Tremor in Ruhe: mittel–schwer</td><td>4</td></tr>
-          <tr><td>Erhöhter Muskeltonus</td><td>2</td></tr>
-          <tr><td>Exkoriation (z. B. Kinn, Knie)</td><td>1</td></tr>
-          <tr><td>Myoklonische Zuckungen</td><td>3</td></tr>
-          <tr><td>Generalisierte Krämpfe</td><td>5</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Zeichen</th><th>Punkte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Schreien: kein übermäßiges Schreien</td><td>0</td></tr>
+            <tr><td>Schreien: übermäßiges, schrilles Schreien (&lt; 5 min)</td><td>2</td></tr>
+            <tr><td>Schreien: übermäßiges, schrilles Schreien (≥ 5 min)</td><td>3</td></tr>
+            <tr><td>Schlaf nach Mahlzeit: &gt; 3 h</td><td>0</td></tr>
+            <tr><td>Schlaf nach Mahlzeit: &lt; 3 h</td><td>1</td></tr>
+            <tr><td>Schlaf nach Mahlzeit: &lt; 2 h</td><td>2</td></tr>
+            <tr><td>Schlaf nach Mahlzeit: &lt; 1 h</td><td>3</td></tr>
+            <tr><td>Moro-Reflex: normal</td><td>0</td></tr>
+            <tr><td>Moro-Reflex: gesteigert</td><td>2</td></tr>
+            <tr><td>Moro-Reflex: stark gesteigert</td><td>3</td></tr>
+            <tr><td>Tremor: keiner</td><td>0</td></tr>
+            <tr><td>Tremor: leicht, bei Störung</td><td>1</td></tr>
+            <tr><td>Tremor: mäßig bis stark, bei Störung</td><td>2</td></tr>
+            <tr><td>Tremor: leicht, in Ruhe</td><td>3</td></tr>
+            <tr><td>Tremor: mäßig bis stark, in Ruhe</td><td>4</td></tr>
+            <tr><td>Erhöhter Muskeltonus</td><td>2</td></tr>
+            <tr><td>Exkoriation (z. B. Kinn, Knie, Zehen, Nase)</td><td>1</td></tr>
+            <tr><td>Myoklonische Zuckungen</td><td>3</td></tr>
+            <tr><td>Generalisierte Krämpfe</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Tremor ist ein <strong>einziges</strong> Item mit 0–4 Punkten, keine zwei additiven Scores. Das Kind sowohl gestört als auch ungestört beobachten und nur die jeweils höchste zutreffende Stufe eintragen.</div>
     </div>
 
     <div class="section">
       <h2>Metabolisch / Vasomotorisch / Respiratorisch (MVR)-Domäne</h2>
-      <table>
-        <thead>
-          <tr><th>Zeichen</th><th>Punkte</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Schwitzen</td><td>1</td></tr>
-          <tr><td>Fieber 37,2–38,3 °C</td><td>1</td></tr>
-          <tr><td>Fieber &gt; 38,4 °C</td><td>2</td></tr>
-          <tr><td>Häufiges Gähnen (&gt; 3-mal pro Beurteilung)</td><td>1</td></tr>
-          <tr><td>Marmorierung der Haut</td><td>1</td></tr>
-          <tr><td>Nasale Verstopfung</td><td>1</td></tr>
-          <tr><td>Niesen (&gt; 3-mal pro Beurteilung)</td><td>1</td></tr>
-          <tr><td>Nasenflügeln</td><td>2</td></tr>
-          <tr><td>Atemfrequenz 60–80 /min</td><td>1</td></tr>
-          <tr><td>Atemfrequenz &gt; 80 /min oder Einziehungen</td><td>2</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Zeichen</th><th>Punkte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Schwitzen</td><td>1</td></tr>
+            <tr><td>Fieber 37,2–38,3 °C</td><td>1</td></tr>
+            <tr><td>Fieber &gt; 38,3 °C</td><td>2</td></tr>
+            <tr><td>Häufiges Gähnen (&gt; 3-mal pro Beurteilung)</td><td>1</td></tr>
+            <tr><td>Marmorierung der Haut</td><td>1</td></tr>
+            <tr><td>Nasale Verstopfung</td><td>1</td></tr>
+            <tr><td>Niesen (&gt; 3-mal pro Beurteilung)</td><td>1</td></tr>
+            <tr><td>Nasenflügeln</td><td>2</td></tr>
+            <tr><td>Atemfrequenz: normal (≤ 60 /min)</td><td>0</td></tr>
+            <tr><td>Atemfrequenz &gt; 60 /min, keine Einziehungen</td><td>1</td></tr>
+            <tr><td>Atemfrequenz &gt; 60 /min mit Einziehungen</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Einziehungen sind die <strong>oberste Stufe</strong> des Atemfrequenz-Items, kein separater Punktwert — beide oberen Stufen teilen sich denselben &gt; 60&nbsp;/min-Schwellenwert; Einziehungen sind das unterscheidende Merkmal. Auch publizierte Fieber-Grenzwerte variieren: Das D'Apolito/Finnegan-Schulungshandbuch verwendet 38,0–38,3 °C für die 1-Punkt-Stufe, während die Schweizer Zimmermann-Baer-Variante 37,5–38,0 °C verwendet <sup><a href="#ref2">[2]</a></sup>. Wir verwenden 37,2–38,3 °C / &gt; 38,3 °C, entsprechend der in der App implementierten Version.</div>
     </div>
 
     <div class="section">
       <h2>Gastrointestinale (GI)-Domäne</h2>
-      <table>
-        <thead>
-          <tr><th>Zeichen</th><th>Punkte</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Übermäßiges Saugen</td><td>1</td></tr>
-          <tr><td>Trinkschwäche</td><td>2</td></tr>
-          <tr><td>Regurgitation</td><td>2</td></tr>
-          <tr><td>Schwallartig erbrechen</td><td>3</td></tr>
-          <tr><td>Breiige Stühle</td><td>2</td></tr>
-          <tr><td>Wässrige Stühle</td><td>3</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Zeichen</th><th>Punkte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Übermäßiges Saugen</td><td>1</td></tr>
+            <tr><td>Trinkschwäche</td><td>2</td></tr>
+            <tr><td>Regurgitation</td><td>2</td></tr>
+            <tr><td>Schwallartiges Erbrechen</td><td>3</td></tr>
+            <tr><td>Breiige Stühle</td><td>2</td></tr>
+            <tr><td>Wässrige Stühle</td><td>3</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="section">
       <h2>Score-Interpretation</h2>
-      <table>
-        <thead>
-          <tr><th>Score</th><th>Schweregrad</th><th>Empfohlene Maßnahme</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>0–7</td><td>Leicht / kein Entzug</td><td>Supportive Maßnahmen; Neubeurteilung bei nächster Mahlzeit</td></tr>
-          <tr><td>8–11</td><td>Moderat</td><td>Nicht-pharmakologische Maßnahmen; Beurteilungsintervall verkürzen</td></tr>
-          <tr><td>≥ 12 (zwei aufeinanderfolgende Scores)</td><td>Schwer</td><td>Pharmakotherapie erwägen (Morphin oder Methadon); Neonatologen hinzuziehen</td></tr>
-        </tbody>
-      </table>
+      <p>21 Items, Maximalscore 46.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Schweregrad</th><th>Typische Maßnahme</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0–7</td><td>Leicht / kein Entzug</td><td>Supportive Maßnahmen; Neubeurteilung bei nächster Mahlzeit</td></tr>
+            <tr><td>8–11</td><td>Moderat</td><td>Nicht-pharmakologische Maßnahmen intensivieren</td></tr>
+            <tr><td>≥ 12</td><td>Schwer</td><td>Neonatologie hinzuziehen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Ein <strong>einzelner</strong> erhöhter Score löst für sich genommen keine medikamentöse Behandlung aus. Die AAP-referenzierte Standardregel lautet <strong>drei aufeinanderfolgende Scores ≥ 8 oder zwei aufeinanderfolgende Scores ≥ 12</strong> <sup><a href="#ref3">[3]</a></sup>. Unterhalb dieses Trends: nicht-pharmakologische Maßnahmen intensivieren und erneut beurteilen.</div>
     </div>
 
     <div class="section">
       <h2>Klinische Hinweise</h2>
       <ul>
         <li>Beurteilung alle 3–4 Stunden nach jeder Mahlzeit mindestens für die ersten 5 Lebenstage bei Risikoneugeborenen.</li>
-        <li>Pharmakotherapieschwelle liegt typischerweise bei zwei aufeinanderfolgenden Scores ≥ 8 oder drei Scores ≥ 8 gemäß lokalem Protokoll.</li>
+        <li>Eine medikamentöse Behandlung wird typischerweise nach drei aufeinanderfolgenden Scores ≥ 8 oder zwei aufeinanderfolgenden Scores ≥ 12 begonnen <sup><a href="#ref3">[3]</a></sup> — nicht aufgrund eines einzelnen isolierten Scores.</li>
         <li>Stillen (sofern nicht kontraindiziert) und Rooming-in werden als erste nicht-pharmakologische Maßnahmen empfohlen.</li>
-        <li>Der Eat Sleep Console (ESC)-Ansatz ist eine aufkommende, auf funktionellen Endpunkten basierende Alternative, die möglicherweise die Pharmakotherapierate reduziert.</li>
+        <li>Eat, Sleep, Console (ESC) ist eine aufkommende, funktionsbasierte Alternative, die nachweislich den Einsatz medikamentöser Behandlung und die Verweildauer reduziert (siehe <em>Wissenschaftliche Validität &amp; Limitationen</em>).</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Literatur</h2>
-      <p>Finnegan LP, Connaughton JF Jr, Kron RE, Emich JP. <em>Neonatal abstinence syndrome: assessment and management.</em> Addict Dis. 1975;2(1-2):141–158.</p>
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>Die ursprüngliche Finnegan-Skala wurde in den 1970er-Jahren anhand von 55 termingeborenen Kindern heroinabhängiger Mütter an einem einzigen Zentrum entwickelt <sup><a href="#ref1">[1]</a></sup> und wurde nie formal bei Frühgeborenen validiert, bei denen mehrere Zeichen (Tonus, Tremor, Saugen) unabhängig vom Entzug durch die Unreife der Gestationsalter beeinflusst werden.</p>
+      <p>Die Items des Instruments — Schreiqualität, Tremorschwere, Marmorierung — erfordern erhebliches klinisches Urteilsvermögen, und eine geringe Interrater-Reliabilität zwischen Untersuchern gilt seit Langem als praktische Limitation der Finnegan-Familie von Scores, was sowohl die Vergleichbarkeit am Krankenbett als auch die Nutzung als Studien-Endpunkt erschwert.</p>
+      <p>Der weithin verwendete Schwellenwert von ≥ 8 ist ein statistischer "Wie abnormal ist abnormal"-Grenzwert, kein anhand von Behandlungsergebnissen validierter Therapieschwellenwert. Er beruht auf der Beobachtung, dass der 95.-Perzentil-Score nicht-opioidexponierter, gesunder Neugeborener in den ersten drei Lebenstagen 8 nicht überschreitet <sup><a href="#ref2">[2]</a></sup> — er definiert also eine Obergrenze des Normalen bei nicht exponierten Kindern, nicht einen durch Studiendaten belegten Schwellenwert zur Identifikation jener exponierten Kinder, die am meisten von einer medikamentösen Behandlung profitieren. Keine randomisierte Studie hat unterschiedliche Score-Schwellenwerte zum Behandlungsbeginn direkt verglichen.</p>
+      <p>Entzugsschweregrad und Behandlungsdauer variieren zudem bekanntermaßen je nach mütterlicher Opioidexposition: In der MOTHER-Studie benötigten Buprenorphin-exponierte Neugeborene signifikant weniger Morphin und einen kürzeren Krankenhausaufenthalt als Methadon-exponierte Neugeborene, trotz ähnlicher NAS-Inzidenz in beiden Gruppen <sup><a href="#ref4">[4]</a></sup> — eine Variabilitätsquelle, die der Finnegan-Score selbst nicht erfasst.</p>
+      <p>Praktisch stellt die rund um die Uhr alle 3–4 Stunden durchzuführende 21-Item-Skala eine erhebliche pflegerische Belastung dar, und ihr subjektives, auf Zeichenzählung basierendes Design hat funktionsbasierte Alternativen motiviert. Eat, Sleep, Console (ESC) beurteilt, ob ein Kind ausreichend essen, ungestört schlafen und beruhigt werden kann, statt einzelne Zeichen zu zählen; Qualitätsverbesserungsstudien mit ESC berichteten deutlich kürzere Krankenhausaufenthalte und wesentlich niedrigere Raten medikamentöser Behandlung ohne erhöhte unerwünschte Sicherheitsereignisse im Vergleich zum historischen, Finnegan-basierten Management <sup><a href="#ref5">[5]</a></sup><sup><a href="#ref6">[6]</a></sup>.</p>
+      <p>Die Finnegan-Skala war nicht die einzige Mitte der 1970er-Jahre vorgeschlagene Entzugsskala: Lipsitz veröffentlichte im selben Jahr eine einfachere alternative Entzugsscore <sup><a href="#ref7">[7]</a></sup>, die jedoch nie eine vergleichbar breite Verbreitung erreichte.</p>
     </div>
 
-    <div class="cta">
+    <div class="section">
+      <h2>Literatur</h2>
+      <ol class="refs">
+        <li id="ref1">Finnegan LP, Connaughton JF Jr, Kron RE, Emich JP. Neonatal abstinence syndrome: assessment and management. <em>Addict Dis.</em> 1975;2(1-2):141–158.</li>
+        <li id="ref2">Zimmermann-Baer U, Nötzli U, Rentsch K, Bucher HU. Finnegan neonatal abstinence scoring system: normal values for first 3 days and weeks 5–6 in non-addicted infants. <em>Addiction.</em> 2010;105(3):524–528.</li>
+        <li id="ref3">Hudak ML, Tan RC; Committee on Drugs; Committee on Fetus and Newborn; American Academy of Pediatrics. Neonatal drug withdrawal. <em>Pediatrics.</em> 2012;129(2):e540–e561.</li>
+        <li id="ref4">Jones HE, Kaltenbach K, Heil SH, et al. Neonatal abstinence syndrome after methadone or buprenorphine exposure. <em>N Engl J Med.</em> 2010;363(24):2320–2331.</li>
+        <li id="ref5">Grossman MR, Berkwitt AK, Osborn RR, et al. An initiative to improve the quality of care of infants with neonatal abstinence syndrome. <em>Pediatrics.</em> 2017;139(6):e20163360.</li>
+        <li id="ref6">Grossman MR, Lipshaw MJ, Osborn RR, Berkwitt AK. A novel approach to assessing infants with neonatal abstinence syndrome. <em>Hosp Pediatr.</em> 2018;8(1):1–6.</li>
+        <li id="ref7">Lipsitz PJ. A proposed narcotic withdrawal score for use with newborn infants. <em>Clin Pediatr.</em> 1975;14(6):592–594.</li>
+      </ol>
+    </div>
+
+    <div class="section cta">
       <p>Finnegan-NAS-Score interaktiv in der App berechnen.</p>
       <a class="button" href="../../app/?score=finnegan">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>

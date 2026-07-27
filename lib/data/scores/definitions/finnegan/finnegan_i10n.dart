@@ -9,8 +9,9 @@ class FinneganI10n extends ScoreI10n {
       'display': 'Finnegan NAS',
       'description':
           'Finnegan Neonatal Abstinence Score — assesses withdrawal severity '
-          'in newborns exposed to opioids in utero. Score ≥ 8 on two consecutive '
-          'assessments typically triggers pharmacological treatment.',
+          'in newborns exposed to opioids in utero (21 items, max 46). '
+          'Pharmacotherapy is typically considered after three consecutive '
+          'scores ≥ 8, or two consecutive scores ≥ 12.',
 
       // CNS group
       'cns.group.display': 'Central Nervous System',
@@ -36,17 +37,16 @@ class FinneganI10n extends ScoreI10n {
       'moro.2': 'Hyperactive Moro reflex',
       'moro.3': 'Markedly hyperactive Moro reflex',
 
-      'tremors-disturbed.display': 'Tremors when disturbed',
-      'tremors-disturbed.description': 'Tremors observed when the infant is disturbed.',
-      'tremors-disturbed.0': 'No tremors',
-      'tremors-disturbed.1': 'Mild tremors when disturbed',
-      'tremors-disturbed.2': 'Moderate–severe tremors when disturbed',
-
-      'tremors-undisturbed.display': 'Tremors when undisturbed',
-      'tremors-undisturbed.description': 'Tremors observed when the infant is at rest.',
-      'tremors-undisturbed.0': 'No tremors',
-      'tremors-undisturbed.3': 'Mild tremors when undisturbed',
-      'tremors-undisturbed.4': 'Moderate–severe tremors when undisturbed',
+      'tremors.display': 'Tremors',
+      'tremors.description':
+          'Observe the infant both disturbed and undisturbed; record the '
+          'single highest applicable tier (do not add disturbed and '
+          'undisturbed scores together).',
+      'tremors.0': 'No tremors',
+      'tremors.1': 'Mild tremors when disturbed',
+      'tremors.2': 'Moderate–severe tremors when disturbed',
+      'tremors.3': 'Mild tremors when undisturbed',
+      'tremors.4': 'Moderate–severe tremors when undisturbed',
 
       'muscle-tone.display': 'Increased muscle tone',
       'muscle-tone.description': 'Hypertonia on passive movement.',
@@ -90,13 +90,12 @@ class FinneganI10n extends ScoreI10n {
       'nasal-flaring.description': 'Nasal flaring during respiration.',
 
       'respiratory-rate.display': 'Respiratory rate',
-      'respiratory-rate.description': 'Select the highest rate observed.',
-      'respiratory-rate.0': '< 60 /min',
-      'respiratory-rate.1': '60–80 /min',
-      'respiratory-rate.2': '> 80 /min',
-
-      'retractions.display': 'Retractions',
-      'retractions.description': 'Intercostal or subcostal retractions.',
+      'respiratory-rate.description':
+          'Select the highest rate observed. Retractions (intercostal or '
+          'subcostal) are the top tier of this item, not a separate score.',
+      'respiratory-rate.0': 'Normal (≤ 60 /min)',
+      'respiratory-rate.1': '> 60 /min, no retractions',
+      'respiratory-rate.2': '> 60 /min with retractions',
 
       // GI group
       'gi.group.display': 'Gastrointestinal',
@@ -123,17 +122,24 @@ class FinneganI10n extends ScoreI10n {
       'calc.incomplete': 'Complete at least one item to calculate the score.',
       'calc.partialLabel': 'Finnegan NAS (partial)',
       'calc.itemsNotAssessed': '{n} item(s) not yet assessed.',
-      'calc.interp.mild': 'Mild withdrawal — supportive care',
-      'calc.interp.moderate': 'Moderate withdrawal — consider pharmacotherapy',
-      'calc.interp.severe': 'Severe withdrawal — pharmacotherapy indicated',
+      'calc.interp.mild':
+          'Mild / no withdrawal — supportive care, reassess at next feed',
+      'calc.interp.moderate':
+          'Moderate withdrawal — intensify non-pharmacological measures; '
+          'pharmacotherapy if 3 consecutive scores ≥ 8',
+      'calc.interp.severe':
+          'Severe withdrawal — pharmacotherapy indicated if 2 consecutive '
+          'scores ≥ 12; consult neonatology',
+      'calc.domainLabel': 'CNS / MVR / GI',
     },
     'de': {
       'display': 'Finnegan NAS',
       'description':
           'Finnegan Neonatal Abstinence Score — bewertet den Entzugsschweregrad '
-          'bei Neugeborenen mit pränataler Opioidexposition. Ein Score ≥ 8 bei '
-          'zwei aufeinanderfolgenden Assessments erfordert in der Regel '
-          'pharmakologische Behandlung.',
+          'bei Neugeborenen mit pränataler Opioidexposition (21 Items, '
+          'Maximum 46). Eine pharmakologische Behandlung wird in der Regel '
+          'erwogen bei drei aufeinanderfolgenden Scores ≥ 8 oder zwei '
+          'aufeinanderfolgenden Scores ≥ 12.',
 
       // CNS group
       'cns.group.display': 'Zentralnervensystem',
@@ -159,17 +165,16 @@ class FinneganI10n extends ScoreI10n {
       'moro.2': 'Hyperaktiver Moro-Reflex',
       'moro.3': 'Deutlich hyperaktiver Moro-Reflex',
 
-      'tremors-disturbed.display': 'Tremor bei Störung',
-      'tremors-disturbed.description': 'Tremor bei Berührung des Kindes.',
-      'tremors-disturbed.0': 'Kein Tremor',
-      'tremors-disturbed.1': 'Leichter Tremor bei Störung',
-      'tremors-disturbed.2': 'Mäßiger bis starker Tremor bei Störung',
-
-      'tremors-undisturbed.display': 'Tremor in Ruhe',
-      'tremors-undisturbed.description': 'Tremor ohne äußere Störung.',
-      'tremors-undisturbed.0': 'Kein Tremor',
-      'tremors-undisturbed.3': 'Leichter Tremor in Ruhe',
-      'tremors-undisturbed.4': 'Mäßiger bis starker Tremor in Ruhe',
+      'tremors.display': 'Tremor',
+      'tremors.description':
+          'Das Kind sowohl gestört als auch ungestört beobachten und die '
+          'jeweils höchste zutreffende Stufe eintragen (die Werte für '
+          'gestört/ungestört nicht addieren).',
+      'tremors.0': 'Kein Tremor',
+      'tremors.1': 'Leichter Tremor bei Störung',
+      'tremors.2': 'Mäßiger bis starker Tremor bei Störung',
+      'tremors.3': 'Leichter Tremor in Ruhe',
+      'tremors.4': 'Mäßiger bis starker Tremor in Ruhe',
 
       'muscle-tone.display': 'Erhöhter Muskeltonus',
       'muscle-tone.description': 'Hypertonie bei passiver Bewegung.',
@@ -213,13 +218,13 @@ class FinneganI10n extends ScoreI10n {
       'nasal-flaring.description': 'Nasenflügeln beim Atmen.',
 
       'respiratory-rate.display': 'Atemfrequenz',
-      'respiratory-rate.description': 'Höchste beobachtete Atemfrequenz auswählen.',
-      'respiratory-rate.0': '< 60 /min',
-      'respiratory-rate.1': '60–80 /min',
-      'respiratory-rate.2': '> 80 /min',
-
-      'retractions.display': 'Einziehungen',
-      'retractions.description': 'Interkostale oder subkostale Einziehungen.',
+      'respiratory-rate.description':
+          'Höchste beobachtete Atemfrequenz auswählen. Einziehungen '
+          '(interkostal oder subkostal) sind die oberste Stufe dieses '
+          'Items, kein separater Punktwert.',
+      'respiratory-rate.0': 'Normal (≤ 60 /min)',
+      'respiratory-rate.1': '> 60 /min, keine Einziehungen',
+      'respiratory-rate.2': '> 60 /min mit Einziehungen',
 
       // GI group
       'gi.group.display': 'Gastrointestinal',
@@ -247,11 +252,16 @@ class FinneganI10n extends ScoreI10n {
           'Mindestens ein Item ausfüllen, um den Score zu berechnen.',
       'calc.partialLabel': 'Finnegan NAS (unvollständig)',
       'calc.itemsNotAssessed': '{n} Item(s) noch nicht beurteilt.',
-      'calc.interp.mild': 'Leichter Entzug — supportive Behandlung',
+      'calc.interp.mild':
+          'Leichter oder kein Entzug — supportive Behandlung, '
+          'Reassessment bei nächster Mahlzeit',
       'calc.interp.moderate':
-          'Moderater Entzug — medikamentöse Behandlung erwägen',
+          'Moderater Entzug — nicht-medikamentöse Maßnahmen intensivieren; '
+          'medikamentöse Behandlung bei 3 aufeinanderfolgenden Scores ≥ 8',
       'calc.interp.severe':
-          'Schwerer Entzug — medikamentöse Behandlung indiziert',
+          'Schwerer Entzug — medikamentöse Behandlung indiziert bei 2 '
+          'aufeinanderfolgenden Scores ≥ 12; Neonatologie hinzuziehen',
+      'calc.domainLabel': 'ZNS / MVR / GI',
     },
   };
 }

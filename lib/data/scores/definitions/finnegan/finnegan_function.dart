@@ -13,14 +13,20 @@ ScoreResult finneganFunction(Score score, String lang) {
   final cry = ctx.singleSelect('finnegan-cry')?['value'] as num? ?? 0;
   final sleep = ctx.singleSelect('finnegan-sleep')?['value'] as num? ?? 0;
   final moro = ctx.singleSelect('finnegan-moro')?['value'] as num? ?? 0;
-  final tremorsDist =
-      ctx.singleSelect('finnegan-tremors-disturbed')?['value'] as num? ?? 0;
-  final tremorsUndist =
-      ctx.singleSelect('finnegan-tremors-undisturbed')?['value'] as num? ?? 0;
+  final tremors = ctx.singleSelect('finnegan-tremors')?['value'] as num? ?? 0;
   final muscleTone = ctx.boolValue('finnegan-muscle-tone')?['points'] as num? ?? 0;
   final excoriation = ctx.boolValue('finnegan-excoriation')?['points'] as num? ?? 0;
   final myoclonic = ctx.boolValue('finnegan-myoclonic-jerks')?['points'] as num? ?? 0;
   final convulsions = ctx.boolValue('finnegan-convulsions')?['points'] as num? ?? 0;
+
+  final cnsTotal = cry +
+      sleep +
+      moro +
+      tremors +
+      muscleTone +
+      excoriation +
+      myoclonic +
+      convulsions;
 
   // ── MVR ────────────────────────────────────────────────────────────────────
   final sweating = ctx.boolValue('finnegan-sweating')?['points'] as num? ?? 0;
@@ -34,7 +40,15 @@ ScoreResult finneganFunction(Score score, String lang) {
       ctx.boolValue('finnegan-nasal-flaring')?['points'] as num? ?? 0;
   final respiratoryRate =
       ctx.singleSelect('finnegan-respiratory-rate')?['value'] as num? ?? 0;
-  final retractions = ctx.boolValue('finnegan-retractions')?['points'] as num? ?? 0;
+
+  final mvrTotal = sweating +
+      fever +
+      yawning +
+      mottling +
+      nasalStuffiness +
+      sneezing +
+      nasalFlaring +
+      respiratoryRate;
 
   // ── GI ─────────────────────────────────────────────────────────────────────
   final sucking = ctx.boolValue('finnegan-sucking')?['points'] as num? ?? 0;
@@ -44,13 +58,14 @@ ScoreResult finneganFunction(Score score, String lang) {
   final vomiting = ctx.boolValue('finnegan-vomiting')?['points'] as num? ?? 0;
   final stools = ctx.singleSelect('finnegan-stools')?['value'] as num? ?? 0;
 
+  final giTotal = sucking + feeding + regurgitation + vomiting + stools;
+
   // Check if any item has been answered
   final allVars = [
     ctx.singleSelect('finnegan-cry'),
     ctx.singleSelect('finnegan-sleep'),
     ctx.singleSelect('finnegan-moro'),
-    ctx.singleSelect('finnegan-tremors-disturbed'),
-    ctx.singleSelect('finnegan-tremors-undisturbed'),
+    ctx.singleSelect('finnegan-tremors'),
     ctx.boolValue('finnegan-muscle-tone'),
     ctx.boolValue('finnegan-excoriation'),
     ctx.boolValue('finnegan-myoclonic-jerks'),
@@ -63,7 +78,6 @@ ScoreResult finneganFunction(Score score, String lang) {
     ctx.boolValue('finnegan-sneezing'),
     ctx.boolValue('finnegan-nasal-flaring'),
     ctx.singleSelect('finnegan-respiratory-rate'),
-    ctx.boolValue('finnegan-retractions'),
     ctx.boolValue('finnegan-sucking'),
     ctx.boolValue('finnegan-feeding'),
     ctx.boolValue('finnegan-regurgitation'),
@@ -78,30 +92,9 @@ ScoreResult finneganFunction(Score score, String lang) {
     );
   }
 
-  final total = (cry +
-          sleep +
-          moro +
-          tremorsDist +
-          tremorsUndist +
-          muscleTone +
-          excoriation +
-          myoclonic +
-          convulsions +
-          sweating +
-          fever +
-          yawning +
-          mottling +
-          nasalStuffiness +
-          sneezing +
-          nasalFlaring +
-          respiratoryRate +
-          retractions +
-          sucking +
-          feeding +
-          regurgitation +
-          vomiting +
-          stools)
-      .toInt();
+  final total = (cnsTotal + mvrTotal + giTotal).toInt();
+  final domainBreakdown =
+      '${cnsTotal.toInt()} / ${mvrTotal.toInt()} / ${giTotal.toInt()}';
 
   final answeredCount = allVars.where((v) => v != null).length;
   final isComplete = answeredCount == allVars.length;
@@ -110,17 +103,21 @@ ScoreResult finneganFunction(Score score, String lang) {
     return ScoreResult(
       state: ScoreState.incomplete,
       primaryLabel: t('calc.partialLabel'),
-      primaryResult: '$total',
+      primaryResult: '$total / 46',
       primaryInterpretation: t('calc.itemsNotAssessed')
           .replaceFirst('{n}', '${allVars.length - answeredCount}'),
+      secondaryLabel: t('calc.domainLabel'),
+      secondaryResult: domainBreakdown,
     );
   }
 
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'Finnegan NAS',
-    primaryResult: '$total',
+    primaryResult: '$total / 46',
     primaryInterpretation: _interpret(total, t),
+    secondaryLabel: t('calc.domainLabel'),
+    secondaryResult: domainBreakdown,
   );
 }
 

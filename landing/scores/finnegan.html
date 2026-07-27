@@ -6,7 +6,9 @@
   <title>Finnegan NAS Score – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Finnegan Neonatal Abstinence Score — assesses opioid withdrawal severity in newborns across 21 signs in CNS, metabolic, and gastrointestinal domains." />
+  <meta name="description" content="Finnegan Neonatal Abstinence Score — the 21-item, 46-point tool for assessing opioid withdrawal severity in newborns across CNS, metabolic/vasomotor/respiratory, and gastrointestinal domains, with full citations and a validity discussion." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -94,11 +96,13 @@
 
     p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
 
+    .table-wrap { overflow-x: auto; }
+
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     th {
@@ -129,6 +133,24 @@
       font-size: 12px;
       font-weight: 600;
     }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -163,6 +185,15 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -176,7 +207,7 @@
     </div>
     <div class="badge">Neonatology · NAS</div>
     <h1>Finnegan NAS</h1>
-    <p>The Finnegan Neonatal Abstinence Score is the most widely used tool for assessing neonatal opioid withdrawal syndrome (NOWS) severity. It evaluates 21 signs across CNS, metabolic/vasomotor/respiratory, and gastrointestinal domains.</p>
+    <p>The Finnegan Neonatal Abstinence Score is the most widely used tool for assessing neonatal opioid withdrawal syndrome (NOWS) severity. The modified version implemented here evaluates 21 signs across CNS, metabolic/vasomotor/respiratory, and gastrointestinal domains, for a maximum score of 46.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -191,112 +222,146 @@
         Popularity 82
       </span>
     </div>
+    <a class="lang-link" href="./de/finnegan.html">🇩🇪 Deutsch</a>
   </header>
 
   <main>
 
     <div class="section">
       <h2>Overview</h2>
-      <p>Neonatal opioid withdrawal syndrome (NOWS) — formerly neonatal abstinence syndrome (NAS) — occurs in infants born to mothers who used opioids during pregnancy. The Finnegan score quantifies withdrawal severity across three domains: central nervous system (CNS), metabolic/vasomotor/respiratory (MVR), and gastrointestinal (GI). Scores are typically performed every 3–4 hours or after each feeding in the first days of life.</p>
+      <p>Neonatal opioid withdrawal syndrome (NOWS) — formerly neonatal abstinence syndrome (NAS) — occurs in infants born to mothers who used opioids during pregnancy. Finnegan and colleagues first published a structured withdrawal-severity scale in 1975 <sup><a href="#ref1">[1]</a></sup>; the version implemented in Scores2Go is the commonly used 21-item modification, scored 0–46, and organized into three domains: central nervous system (CNS), metabolic/vasomotor/respiratory (MVR), and gastrointestinal (GI).</p>
+      <p>Scores are typically performed every 3–4 hours or after each feeding in the first days of life. A rising trend over consecutive assessments — not a single elevated score — is what informs treatment decisions (see <em>Score Interpretation</em> below).</p>
     </div>
 
     <div class="section">
       <h2>CNS Domain</h2>
-      <table>
-        <thead>
-          <tr><th>Sign</th><th>Points</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Cry: no excessive crying</td><td>0</td></tr>
-          <tr><td>Cry: excessive high-pitched crying (&lt; 5 min)</td><td>2</td></tr>
-          <tr><td>Cry: excessive high-pitched crying (≥ 5 min)</td><td>3</td></tr>
-          <tr><td>Sleep after feeding: &gt; 3 h</td><td>0</td></tr>
-          <tr><td>Sleep after feeding: 2–3 h</td><td>1</td></tr>
-          <tr><td>Sleep after feeding: 1–2 h</td><td>2</td></tr>
-          <tr><td>Sleep after feeding: &lt; 1 h</td><td>3</td></tr>
-          <tr><td>Moro reflex: normal</td><td>0</td></tr>
-          <tr><td>Moro reflex: hyperactive</td><td>2</td></tr>
-          <tr><td>Moro reflex: markedly hyperactive</td><td>3</td></tr>
-          <tr><td>Tremors when disturbed: mild</td><td>1</td></tr>
-          <tr><td>Tremors when disturbed: moderate–severe</td><td>2</td></tr>
-          <tr><td>Tremors when undisturbed: mild</td><td>3</td></tr>
-          <tr><td>Tremors when undisturbed: moderate–severe</td><td>4</td></tr>
-          <tr><td>Increased muscle tone</td><td>2</td></tr>
-          <tr><td>Excoriation (e.g. chin, knees)</td><td>1</td></tr>
-          <tr><td>Myoclonic jerks</td><td>3</td></tr>
-          <tr><td>Generalised convulsions</td><td>5</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sign</th><th>Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Cry: no excessive crying</td><td>0</td></tr>
+            <tr><td>Cry: excessive high-pitched crying (&lt; 5 min)</td><td>2</td></tr>
+            <tr><td>Cry: excessive high-pitched crying (≥ 5 min)</td><td>3</td></tr>
+            <tr><td>Sleep after feeding: &gt; 3 h</td><td>0</td></tr>
+            <tr><td>Sleep after feeding: &lt; 3 h</td><td>1</td></tr>
+            <tr><td>Sleep after feeding: &lt; 2 h</td><td>2</td></tr>
+            <tr><td>Sleep after feeding: &lt; 1 h</td><td>3</td></tr>
+            <tr><td>Moro reflex: normal</td><td>0</td></tr>
+            <tr><td>Moro reflex: hyperactive</td><td>2</td></tr>
+            <tr><td>Moro reflex: markedly hyperactive</td><td>3</td></tr>
+            <tr><td>Tremors: none</td><td>0</td></tr>
+            <tr><td>Tremors: mild, when disturbed</td><td>1</td></tr>
+            <tr><td>Tremors: moderate–severe, when disturbed</td><td>2</td></tr>
+            <tr><td>Tremors: mild, when undisturbed</td><td>3</td></tr>
+            <tr><td>Tremors: moderate–severe, when undisturbed</td><td>4</td></tr>
+            <tr><td>Increased muscle tone</td><td>2</td></tr>
+            <tr><td>Excoriation (e.g. chin, knees, toes, nose)</td><td>1</td></tr>
+            <tr><td>Myoclonic jerks</td><td>3</td></tr>
+            <tr><td>Generalised convulsions</td><td>5</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Tremors is a <strong>single</strong> 0–4 item, not two additive scores. Observe the infant both disturbed and undisturbed, and record only the single highest applicable tier.</div>
     </div>
 
     <div class="section">
       <h2>Metabolic / Vasomotor / Respiratory (MVR) Domain</h2>
-      <table>
-        <thead>
-          <tr><th>Sign</th><th>Points</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Sweating</td><td>1</td></tr>
-          <tr><td>Fever 37.2–38.3 °C</td><td>1</td></tr>
-          <tr><td>Fever &gt; 38.4 °C</td><td>2</td></tr>
-          <tr><td>Frequent yawning (&gt; 3 times per assessment)</td><td>1</td></tr>
-          <tr><td>Mottling</td><td>1</td></tr>
-          <tr><td>Nasal stuffiness</td><td>1</td></tr>
-          <tr><td>Sneezing (&gt; 3 times per assessment)</td><td>1</td></tr>
-          <tr><td>Nasal flaring</td><td>2</td></tr>
-          <tr><td>Respiratory rate 60–80 /min</td><td>1</td></tr>
-          <tr><td>Respiratory rate &gt; 80 /min or retractions</td><td>2</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sign</th><th>Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sweating</td><td>1</td></tr>
+            <tr><td>Fever 37.2–38.3 °C</td><td>1</td></tr>
+            <tr><td>Fever &gt; 38.3 °C</td><td>2</td></tr>
+            <tr><td>Frequent yawning (&gt; 3 times per assessment)</td><td>1</td></tr>
+            <tr><td>Mottling</td><td>1</td></tr>
+            <tr><td>Nasal stuffiness</td><td>1</td></tr>
+            <tr><td>Sneezing (&gt; 3 times per assessment)</td><td>1</td></tr>
+            <tr><td>Nasal flaring</td><td>2</td></tr>
+            <tr><td>Respiratory rate: normal (≤ 60 /min)</td><td>0</td></tr>
+            <tr><td>Respiratory rate &gt; 60 /min, no retractions</td><td>1</td></tr>
+            <tr><td>Respiratory rate &gt; 60 /min with retractions</td><td>2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Retractions are the <strong>top tier</strong> of the respiratory-rate item, not a separate score — both upper tiers share the same &gt; 60&nbsp;/min threshold; retractions is what distinguishes them. Published fever cutoffs also vary: the D'Apolito/Finnegan training manual uses 38.0–38.3 °C for the 1-point tier, while the Swiss Zimmermann-Baer variant uses 37.5–38.0 °C <sup><a href="#ref2">[2]</a></sup>. We use 37.2–38.3 °C / &gt; 38.3 °C, matching the version implemented in the app.</div>
     </div>
 
     <div class="section">
       <h2>Gastrointestinal (GI) Domain</h2>
-      <table>
-        <thead>
-          <tr><th>Sign</th><th>Points</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Excessive sucking</td><td>1</td></tr>
-          <tr><td>Poor feeding</td><td>2</td></tr>
-          <tr><td>Regurgitation</td><td>2</td></tr>
-          <tr><td>Projectile vomiting</td><td>3</td></tr>
-          <tr><td>Loose stools</td><td>2</td></tr>
-          <tr><td>Watery stools</td><td>3</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Sign</th><th>Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Excessive sucking</td><td>1</td></tr>
+            <tr><td>Poor feeding</td><td>2</td></tr>
+            <tr><td>Regurgitation</td><td>2</td></tr>
+            <tr><td>Projectile vomiting</td><td>3</td></tr>
+            <tr><td>Loose stools</td><td>2</td></tr>
+            <tr><td>Watery stools</td><td>3</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <div class="section">
       <h2>Score Interpretation</h2>
-      <table>
-        <thead>
-          <tr><th>Score</th><th>Severity</th><th>Recommended Action</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>0–7</td><td>Mild / absent withdrawal</td><td>Supportive care; reassess at next feed</td></tr>
-          <tr><td>8–11</td><td>Moderate</td><td>Non-pharmacological measures; increase assessment frequency</td></tr>
-          <tr><td>≥ 12 (two consecutive scores)</td><td>Severe</td><td>Consider pharmacotherapy (morphine or methadone); consult neonatologist</td></tr>
-        </tbody>
-      </table>
+      <p>21 items, maximum score 46.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Severity</th><th>Typical Action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>0–7</td><td>Mild / absent withdrawal</td><td>Supportive care; reassess at next feed</td></tr>
+            <tr><td>8–11</td><td>Moderate</td><td>Intensify non-pharmacological measures</td></tr>
+            <tr><td>≥ 12</td><td>Severe</td><td>Consult neonatology</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">A <strong>single</strong> elevated score does not by itself trigger pharmacotherapy. The AAP-referenced standard rule is <strong>three consecutive scores ≥ 8, or two consecutive scores ≥ 12</strong> <sup><a href="#ref3">[3]</a></sup>. Below that trend, intensify non-pharmacological measures and reassess.</div>
     </div>
 
     <div class="section">
       <h2>Clinical Notes</h2>
       <ul>
         <li>Assess every 3–4 hours after each feeding for at least the first 5 days of life in at-risk neonates.</li>
-        <li>Pharmacotherapy threshold is typically two consecutive scores ≥ 8 or three scores ≥ 8, depending on local protocol.</li>
+        <li>Pharmacotherapy is typically initiated after three consecutive scores ≥ 8, or two consecutive scores ≥ 12 <sup><a href="#ref3">[3]</a></sup> — not from a single isolated score.</li>
         <li>Breastfeeding (unless contraindicated) and rooming-in are recommended as first-line non-pharmacological measures.</li>
-        <li>The Eat Sleep Console (ESC) approach is an emerging functional outcome-based alternative that may reduce pharmacotherapy rates.</li>
+        <li>Eat, Sleep, Console (ESC) is an emerging function-based alternative that has been shown to reduce pharmacotherapy use and length of stay (see <em>Scientific Validity &amp; Limitations</em>).</li>
       </ul>
     </div>
 
     <div class="section">
-      <h2>Literature</h2>
-      <p>Finnegan LP, Connaughton JF Jr, Kron RE, Emich JP. <em>Neonatal abstinence syndrome: assessment and management.</em> Addict Dis. 1975;2(1-2):141–158.</p>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>The original Finnegan scale was derived from observations of 55 term infants of heroin-dependent mothers at a single centre in the 1970s <sup><a href="#ref1">[1]</a></sup>, and it has never been formally validated in preterm infants, in whom several signs (tone, tremor, sucking) are confounded by gestational immaturity independent of withdrawal.</p>
+      <p>The tool's items — cry quality, tremor severity, mottling — require substantial clinical judgement, and poor inter-rater reliability between examiners has long been recognised as a practical limitation of Finnegan-family scores, complicating both bedside comparability and use as a research outcome measure.</p>
+      <p>The widely used ≥ 8 threshold is a statistical "how abnormal is abnormal" cutoff, not an outcome-validated treatment threshold. It derives from the observation that non-opioid-exposed, healthy infants' 95th-percentile score does not exceed 8 in the first three days of life <sup><a href="#ref2">[2]</a></sup> — i.e. it defines an upper bound of normal in unexposed infants, not a threshold shown by trial evidence to identify the exposed infants who most benefit from pharmacotherapy. No randomised trial has directly compared different score thresholds for initiating treatment.</p>
+      <p>Withdrawal severity and treatment duration are also known to vary by which opioid the mother was exposed to: in the MOTHER trial, infants exposed to buprenorphine required significantly less morphine and a shorter hospital stay than those exposed to methadone, despite similar NAS incidence between groups <sup><a href="#ref4">[4]</a></sup> — a source of variability the Finnegan score itself does not capture.</p>
+      <p>Practically, the 21-item scale performed every 3–4 hours around the clock is a substantial nursing burden, and its subjective, sign-counting design has motivated function-based alternatives. Eat, Sleep, Console (ESC) assesses whether an infant can eat adequately, sleep undisturbed, and be consoled, rather than counting discrete signs; quality-improvement studies applying ESC have reported markedly shorter hospital stays and substantially lower rates of pharmacological treatment without an increase in adverse safety outcomes, compared with historical Finnegan-based management <sup><a href="#ref5">[5]</a></sup><sup><a href="#ref6">[6]</a></sup>.</p>
+      <p>The Finnegan tool was not the only withdrawal scale proposed in the mid-1970s: Lipsitz published a simpler alternative narcotic withdrawal score the same year <sup><a href="#ref7">[7]</a></sup>, though it never achieved the same widespread adoption.</p>
     </div>
 
-    <div class="cta">
+    <div class="section">
+      <h2>Literature</h2>
+      <ol class="refs">
+        <li id="ref1">Finnegan LP, Connaughton JF Jr, Kron RE, Emich JP. Neonatal abstinence syndrome: assessment and management. <em>Addict Dis.</em> 1975;2(1-2):141–158.</li>
+        <li id="ref2">Zimmermann-Baer U, Nötzli U, Rentsch K, Bucher HU. Finnegan neonatal abstinence scoring system: normal values for first 3 days and weeks 5–6 in non-addicted infants. <em>Addiction.</em> 2010;105(3):524–528.</li>
+        <li id="ref3">Hudak ML, Tan RC; Committee on Drugs; Committee on Fetus and Newborn; American Academy of Pediatrics. Neonatal drug withdrawal. <em>Pediatrics.</em> 2012;129(2):e540–e561.</li>
+        <li id="ref4">Jones HE, Kaltenbach K, Heil SH, et al. Neonatal abstinence syndrome after methadone or buprenorphine exposure. <em>N Engl J Med.</em> 2010;363(24):2320–2331.</li>
+        <li id="ref5">Grossman MR, Berkwitt AK, Osborn RR, et al. An initiative to improve the quality of care of infants with neonatal abstinence syndrome. <em>Pediatrics.</em> 2017;139(6):e20163360.</li>
+        <li id="ref6">Grossman MR, Lipshaw MJ, Osborn RR, Berkwitt AK. A novel approach to assessing infants with neonatal abstinence syndrome. <em>Hosp Pediatr.</em> 2018;8(1):1–6.</li>
+        <li id="ref7">Lipsitz PJ. A proposed narcotic withdrawal score for use with newborn infants. <em>Clin Pediatr.</em> 1975;14(6):592–594.</li>
+      </ol>
+    </div>
+
+    <div class="section cta">
       <p>Calculate the Finnegan NAS score interactively in the app.</p>
       <a class="button" href="../app/?score=finnegan">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
