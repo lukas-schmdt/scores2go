@@ -5,6 +5,7 @@ import 'package:scores_2_go/data/scores/definitions/euroscore/euroscore.dart';
 import 'package:scores_2_go/data/scores/definitions/finnegan/finnegan.dart';
 import 'package:scores_2_go/data/scores/definitions/gcs/gcs.dart';
 import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz.dart';
+import 'package:scores_2_go/data/scores/definitions/icdsc/icdsc.dart';
 import 'package:scores_2_go/data/scores/definitions/meld/meld.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods.dart';
 import 'package:scores_2_go/data/scores/definitions/nudesc/nudesc.dart';
@@ -36,6 +37,7 @@ List<Score> buildScoresList(String lang) {
     buildNews2Score(lang),
     buildQsofaScore(lang),
     buildCha2ds2VascScore(lang),
+    buildIcdscScore(lang),
   ];
 
   assert(() {

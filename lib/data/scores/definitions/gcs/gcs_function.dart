@@ -60,22 +60,52 @@ ScoreResult gcsFunction(Score score, String lang) {
 
   final evm = '${eLabel()} ${vLabel()} ${mLabel()}';
 
-  // Max possible total depends on which subscales are NT.
-  final maxE = eNt ? 0 : 4;
-  final maxV = vNt ? 0 : 5;
-  final maxM = mNt ? 0 : 6;
-  final maxTotal = maxE + maxV + maxM;
+  if (anyNt) {
+    // Per the official Glasgow structured approach, a total is not reported
+    // when any component is Not Testable — a reduced-denominator sum would
+    // read as a value on the 15-point scale and understate severity.
+    final ntComponents = <String>[
+      if (eNt) t('calc.component.eyes'),
+      if (vNt) t('calc.component.verbal'),
+      if (mNt) t('calc.component.motor'),
+    ];
+    final interpretation = ntComponents.length == 1
+        ? t('calc.ntTotalSingle')
+              .replaceAll('{component}', ntComponents.first)
+              .replaceAll('{evm}', evm)
+        : t('calc.ntTotalMultiple')
+              .replaceAll(
+                '{components}',
+                _joinWithAnd(ntComponents, t('calc.component.and')),
+              )
+              .replaceAll('{evm}', evm);
+
+    return ScoreResult(
+      state: ScoreState.success,
+      primaryLabel: 'GCS',
+      primaryResult: evm,
+      primaryInterpretation: interpretation,
+      secondaryLabel: t('calc.ntNoteLabel'),
+      secondaryResult: t('calc.ntNoteValue'),
+    );
+  }
 
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: 'GCS',
-    primaryResult: anyNt ? '$total / $maxTotal' : '$total / 15',
-    primaryInterpretation: anyNt
-        ? '${_interpret(total, t)} ${t('calc.ntExcluded')}'
-        : _interpret(total, t),
+    primaryResult: '$total / 15',
+    primaryInterpretation: _interpret(total, t),
     secondaryLabel: t('calc.evmLabel'),
     secondaryResult: evm,
   );
+}
+
+// No serial comma before the conjunction — an Oxford comma is non-idiomatic in
+// German ("A, B und C"), and this helper is shared across locales.
+String _joinWithAnd(List<String> items, String and) {
+  if (items.length <= 1) return items.join();
+  if (items.length == 2) return '${items[0]} $and ${items[1]}';
+  return '${items.sublist(0, items.length - 1).join(', ')} $and ${items.last}';
 }
 
 String _interpret(int gcs, String Function(String) t) {

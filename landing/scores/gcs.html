@@ -6,7 +6,9 @@
   <title>Glasgow Coma Scale (GCS) – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response. Score ranges from 3 (deep coma) to 15 (normal)." />
+  <meta name="description" content="Glasgow Coma Scale — assesses level of consciousness via eye opening, verbal response, and motor response, using the 2014 official structured-approach wording, the do-not-report-a-total-when-NT rule, and a full validity discussion with citations." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/gcs.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/gcs.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -98,7 +100,7 @@
       width: 100%;
       border-collapse: collapse;
       font-size: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 8px;
     }
 
     th {
@@ -129,6 +131,25 @@
       font-size: 12px;
       font-weight: 600;
     }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -163,6 +184,15 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -191,9 +221,15 @@
         Popularity 98
       </span>
     </div>
+    <a class="lang-link" href="./de/gcs.html">🇩🇪 Deutsch</a>
   </header>
 
   <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>The GCS was introduced by Teasdale and Jennett in 1974 as a practical bedside scale for grading impaired consciousness <sup><a href="#ref1">[1]</a></sup>. In 2014, the original authors marked 40 years of the scale with a review that reaffirmed its core three-component structure while updating terminology and assessment guidance <sup><a href="#ref2">[2]</a></sup>. That guidance is maintained as an official "structured approach" at glasgowcomascale.org <sup><a href="#ref3">[3]</a></sup>, and Scores2Go follows its current wording, shown below with the familiar older term in parentheses.</p>
+    </div>
 
     <div class="section">
       <h2>Subscales</h2>
@@ -203,10 +239,11 @@
           <tr><th>E — Eye Opening</th><th>Score</th></tr>
         </thead>
         <tbody>
-          <tr><td>Spontaneous</td><td>4</td></tr>
-          <tr><td>To voice / verbal command</td><td>3</td></tr>
-          <tr><td>To pain / pressure</td><td>2</td></tr>
-          <tr><td>None</td><td>1</td></tr>
+          <tr><td>E4 · Spontaneous</td><td>4</td></tr>
+          <tr><td>E3 · To sound (to speech)</td><td>3</td></tr>
+          <tr><td>E2 · To pressure (to pain)</td><td>2</td></tr>
+          <tr><td>E1 · None</td><td>1</td></tr>
+          <tr><td>ENT · Not testable</td><td>—</td></tr>
         </tbody>
       </table>
 
@@ -215,11 +252,12 @@
           <tr><th>V — Verbal Response</th><th>Score</th></tr>
         </thead>
         <tbody>
-          <tr><td>Orientated</td><td>5</td></tr>
-          <tr><td>Confused / disoriented</td><td>4</td></tr>
-          <tr><td>Inappropriate words</td><td>3</td></tr>
-          <tr><td>Incomprehensible sounds</td><td>2</td></tr>
-          <tr><td>None</td><td>1</td></tr>
+          <tr><td>V5 · Orientated</td><td>5</td></tr>
+          <tr><td>V4 · Confused</td><td>4</td></tr>
+          <tr><td>V3 · Words (inappropriate words)</td><td>3</td></tr>
+          <tr><td>V2 · Sounds (incomprehensible sounds)</td><td>2</td></tr>
+          <tr><td>V1 · None</td><td>1</td></tr>
+          <tr><td>VNT · Not testable</td><td>—</td></tr>
         </tbody>
       </table>
 
@@ -228,14 +266,16 @@
           <tr><th>M — Motor Response</th><th>Score</th></tr>
         </thead>
         <tbody>
-          <tr><td>Obeys commands</td><td>6</td></tr>
-          <tr><td>Localises pain</td><td>5</td></tr>
-          <tr><td>Normal flexion (withdrawal)</td><td>4</td></tr>
-          <tr><td>Abnormal flexion (decorticate)</td><td>3</td></tr>
-          <tr><td>Extension (decerebrate)</td><td>2</td></tr>
-          <tr><td>None</td><td>1</td></tr>
+          <tr><td>M6 · Obeys commands</td><td>6</td></tr>
+          <tr><td>M5 · Localising to pressure</td><td>5</td></tr>
+          <tr><td>M4 · Normal flexion (withdraws)</td><td>4</td></tr>
+          <tr><td>M3 · Abnormal flexion (decorticate)</td><td>3</td></tr>
+          <tr><td>M2 · Extension (decerebrate)</td><td>2</td></tr>
+          <tr><td>M1 · None</td><td>1</td></tr>
+          <tr><td>MNT · Not testable</td><td>—</td></tr>
         </tbody>
       </table>
+      <div class="note">"Pressure" replaces the older "pain" terminology because the stimulus is a graded, standardised pressure — finger-nail-bed pressure peripherally, or a trapezius pinch or supraorbital-notch pressure centrally — rather than an unstandardised painful stimulus. A sternal rub is explicitly discouraged by the structured approach because it causes bruising <sup><a href="#ref3">[3]</a></sup>.</div>
     </div>
 
     <div class="section">
@@ -247,29 +287,48 @@
         <tbody>
           <tr><td>13–15</td><td>Mild</td></tr>
           <tr><td>9–12</td><td>Moderate</td></tr>
-          <tr><td>3–8</td><td>Severe (GCS ≤ 8 = indication for intubation)</td></tr>
+          <tr><td>3–8</td><td>Severe</td></tr>
         </tbody>
       </table>
+      <div class="note">"GCS ≤ 8 → intubate" is a longstanding teaching heuristic used to prompt consideration of airway protection, not an evidence-graded indication — the decision should incorporate the full clinical picture (airway reflexes, trajectory, oxygenation) rather than the number alone. Separately, GCS 13 is not uniformly benign: observational literature suggests GCS-13 patients carry a rate of intracranial lesions closer to the moderate group than to 14–15, even though ATLS still bands 13–15 together as "mild" and no major guideline has formally moved the boundary.</div>
     </div>
 
     <div class="section">
-      <h2>EVM Notation</h2>
-      <p>Results should always be reported in EVM format (e.g. E3V4M5 = GCS 12) to allow clinicians to identify which component is impaired. Reporting only the total sum obscures important clinical information — a patient with E1V1M6 and one with E3V3M2 both score 8 but have very different presentations.</p>
+      <h2>EVM Notation &amp; Reporting</h2>
+      <p>Results should always be reported in EVM format (e.g. E3 V4 M5 = GCS 12) so clinicians can identify which component is impaired, rather than as the sum alone.</p>
+      <div class="note"><strong>Do not report a total when a component is Not Testable.</strong> The official structured approach is explicit that a total should not be computed in this situation, because a reduced-denominator sum will be low and could be misread as a value on the 15-point scale <sup><a href="#ref3">[3]</a></sup>. Scores2Go follows this rule: when any component is NT, the app reports the components individually (e.g. <strong>E4 VNT M6</strong>) instead of a numeric total, with no severity band attached.</div>
+      <p>Two related conventions are common but not part of the official scale: the informal <strong>"T" suffix</strong> (e.g. "GCS 10T" for an intubated patient) is widely used at the bedside to flag that verbal could not be assessed, but it is ambiguous about how the score was actually handled and is not an official term. <strong>Imputing a verbal score of 1 for intubated patients is deprecated</strong> <sup><a href="#ref2">[2]</a></sup>. A linear-regression method for estimating a "derived verbal score" from the eye and motor components was proposed by Meredith and Rutledge <sup><a href="#ref4">[4]</a></sup> and remains in use for research and trauma-registry purposes (e.g. TRISS), but it is explicitly not intended for individual bedside score reporting.</p>
     </div>
 
     <div class="section">
       <h2>Assessment Notes</h2>
       <ul>
-        <li>Record the <strong>best response</strong> from each component — do not average or take worst.</li>
-        <li>For intubated patients, verbal response is scored as <strong>VT</strong> (intubated) or <strong>VA</strong> (tracheostomy, aphasic), and should not be imputed as 1.</li>
-        <li>Motor response is the most prognostically powerful component; it should never be omitted.</li>
+        <li>Record the <strong>best response</strong> from each component — do not average or take the worst.</li>
+        <li>When a component genuinely cannot be assessed (e.g. verbal in an intubated patient, eyes in facial trauma with periorbital swelling), mark it <strong>Not Testable</strong> rather than scoring it as 1 — see the reporting rule above.</li>
         <li>Serial GCS measurements over time are more informative than any single value — a falling GCS indicates clinical deterioration requiring immediate re-assessment.</li>
       </ul>
     </div>
 
     <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p><strong>Inter-rater reliability.</strong> A 2016 systematic review by Reith and colleagues found substantial heterogeneity in reported inter-rater reliability across studies, with agreement generally better where structured training and assessment protocols were used <sup><a href="#ref5">[5]</a></sup>. The underlying studies do not agree on any single component being definitively the most reliable, so no such claim should be drawn from the literature as a whole.</p>
+      <p><strong>Confounders.</strong> GCS assumes an assessable patient, and several common ICU and trauma states invalidate or distort it: sedation, neuromuscular blockade, intoxication, aphasia, periorbital swelling or facial trauma, hypoxia, and hypotension can all suppress or alter individual components independent of the underlying brain injury.</p>
+      <p><strong>Information loss in the sum.</strong> The same total can arise from very different, and prognostically very different, component combinations — for example E1 V1 M6 and E3 V3 M2 both sum to 8, yet represent different clinical pictures. This is precisely why the 2014 review and the current structured approach emphasise reporting the components rather than the sum alone <sup><a href="#ref2">[2]</a></sup><sup><a href="#ref3">[3]</a></sup>.</p>
+      <p><strong>The verbal blind spot and the FOUR score.</strong> Because the verbal component cannot be assessed in intubated patients, Wijdicks and colleagues proposed the FOUR (Full Outline of UnResponsiveness) score, which replaces verbal response with brainstem reflexes and a respiration component <sup><a href="#ref6">[6]</a></sup>. It is not implemented in this app but is a recognised alternative in intubated or ventilated patients.</p>
+      <p><strong>GCS-Pupils (GCS-P).</strong> Brennan, Murray, and Teasdale proposed an extended prognostic index for traumatic brain injury that combines the GCS with pupil reactivity <sup><a href="#ref7">[7]</a></sup>: a Pupil Reactivity Score (PRS) of 2 is assigned if both pupils are unreactive, 1 if one pupil is unreactive, and 0 if neither is; GCS-P = GCS − PRS, giving a range of 1–15. It was derived from the pooled CRASH and IMPACT trauma datasets and is intended as a separate prognostic extension for TBI outcome estimation, not as part of the core GCS. Scores2Go does not implement GCS-P.</p>
+    </div>
+
+    <div class="section">
       <h2>Literature</h2>
-      <p>Teasdale G, Jennett B. <em>Assessment of coma and impaired consciousness. A practical scale.</em> Lancet. 1974;2(7872):81–84.</p>
+      <ol class="refs">
+        <li id="ref1">Teasdale G, Jennett B. Assessment of coma and impaired consciousness. A practical scale. <em>Lancet.</em> 1974;2(7872):81–84.</li>
+        <li id="ref2">Teasdale G, Maas A, Lecky F, Manley G, Stocchetti N, Murray G. The Glasgow Coma Scale at 40 years: standing the test of time. <em>Lancet Neurol.</em> 2014;13(8):844–854.</li>
+        <li id="ref3">Glasgow Coma Scale — structured approach and assessment aid. <em>glasgowcomascale.org.</em> Accessed 2026.</li>
+        <li id="ref4">Meredith W, Rutledge R, Fakhry SM, Emery S, Kromhout-Schiro S. The conundrum of the Glasgow Coma Scale in intubated patients: a linear regression prediction of the Glasgow verbal score from the Glasgow eye and motor scores. <em>J Trauma.</em> 1998;44(5):839–844.</li>
+        <li id="ref5">Reith FCM, Van den Brande R, Synnot A, Gruen R, Maas AIR. The reliability of the Glasgow Coma Scale: a systematic review. <em>Intensive Care Med.</em> 2016;42(1):3–15.</li>
+        <li id="ref6">Wijdicks EFM, Bamlet WR, Maramattom BV, Manno EM, McClelland RL. Validation of a new coma scale: The FOUR score. <em>Ann Neurol.</em> 2005;58(4):585–593.</li>
+        <li id="ref7">Brennan PM, Murray GD, Teasdale GM. Simplifying the use of prognostic information in traumatic brain injury. Part 1: The GCS-Pupils score: an extended index of clinical severity. <em>J Neurosurg.</em> 2018;128(6):1612–1620.</li>
+      </ol>
     </div>
 
     <div class="cta">

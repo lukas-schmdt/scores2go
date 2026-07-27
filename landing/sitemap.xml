@@ -67,6 +67,13 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://scores2go.com/scores/icdsc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/icdsc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/icdsc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://scores2go.com/scores/gcs.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/gcs.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/gcs.html"/>
@@ -149,6 +156,13 @@
     <loc>https://scores2go.com/scores/de/nudesc.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/nudesc.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/nudesc.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/icdsc.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/icdsc.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/icdsc.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

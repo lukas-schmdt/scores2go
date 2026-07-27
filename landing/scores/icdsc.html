@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICDSC – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="Intensive Care Delirium Screening Checklist — 8-item nurse-rated checklist scored once per shift. Score ≥ 4 indicates delirium; 1–3 indicates subsyndromal delirium." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol { padding-left: 20px; margin-bottom: 12px; }
+    ol li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Delirium · ICU · Nursing</div>
+    <h1>ICDSC</h1>
+    <p>The Intensive Care Delirium Screening Checklist is an 8-item nurse-rated checklist completed once per shift to detect and grade ICU delirium, including subsyndromal states. A total score of 0–8 is derived from level of consciousness plus seven behavioural items.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Bergeron et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2001
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 75
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>The Intensive Care Delirium Screening Checklist (ICDSC) was developed by Bergeron and colleagues as a checklist-style alternative to algorithmic delirium tools, designed to be completed by bedside ICU nurses from routine observation rather than a scripted cognitive test. In the original derivation cohort of 93 patients, the ICDSC showed a sensitivity of approximately 99&nbsp;% and specificity of approximately 64&nbsp;% against a psychiatric reference standard, and nurse-rated scores correlated strongly with an independent adjudicator's ratings (r&nbsp;=&nbsp;0.924, p&nbsp;&lt;&nbsp;0.0005) <sup><a href="#ref1">[1]</a></sup>.</p>
+      <p>Unlike the binary present/absent output of the CAM-ICU, the ICDSC produces a graded 0–8 total, which allows it to flag an intermediate <em>subsyndromal delirium</em> state — patients who meet some but not all criteria for delirium — rather than forcing every patient into a simple positive/negative bucket <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Item 1 (level of consciousness) is assessed first and acts as a gate: if the patient is unresponsive or responds only to intense, repeated stimulation (options A/B, roughly corresponding to RASS −4/−5), the remaining seven items cannot be meaningfully rated and the checklist is recorded as not assessable rather than scored as 0 <sup><a href="#ref1">[1]</a></sup>. Once the patient responds at least to mild-to-moderate stimulation (C, D, or E), all eight items are rated independently and summed.</p>
+    </div>
+
+    <div class="section">
+      <h2>Scale Items</h2>
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Description</th><th>Points</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1. Altered level of consciousness</td>
+            <td>See gating table below (A–E)</td>
+            <td>0–1 or not assessable</td>
+          </tr>
+          <tr>
+            <td>2. Inattention</td>
+            <td>Difficulty following instructions or conversation; easily distracted by external stimuli; difficulty shifting focus</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>3. Disorientation</td>
+            <td>Any obvious mistake in time, place, or person</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>4. Hallucinations, delusions or psychosis</td>
+            <td>Unequivocal hallucinations or behaviour likely due to them; delusions; gross impairment in reality testing</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>5. Psychomotor agitation or retardation</td>
+            <td>Hyperactivity requiring extra sedatives/restraints, OR clinically noticeable psychomotor slowing</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>6. Inappropriate speech or mood</td>
+            <td>Disorganised/incoherent speech; inappropriate emotional display (apathetic or overly demanding); inappropriate comments</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>7. Sleep/wake cycle disturbance</td>
+            <td>Sleep &lt; 4 h at night, or frequent nighttime awakening (excluding staff/noise-caused), or sleeping most of the day</td>
+            <td>0 / 1</td>
+          </tr>
+          <tr>
+            <td>8. Symptom fluctuation</td>
+            <td>Fluctuation of any of items 1–7 over the preceding 24 hours</td>
+            <td>0 / 1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Item 1 — Level of Consciousness (Gating)</h2>
+      <p>Item 1 uses the original sedation-scale-agnostic A–E wording. Approximate RASS equivalence is shown for orientation only — ICDSC does not require RASS to be scored.</p>
+      <table>
+        <thead>
+          <tr><th>Option</th><th>Description</th><th>≈ RASS</th><th>Points</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>A</td><td>No response to stimulation (coma)</td><td>−4 / −5</td><td>Not assessable — assessment halts</td></tr>
+          <tr><td>B</td><td>Response only to intense/repeated stimulation (stupor)</td><td>−4 / −5</td><td>Not assessable — assessment halts</td></tr>
+          <tr><td>C</td><td>Response to mild-to-moderate stimulation (drowsy / sopor)</td><td>−1 to −3</td><td>1</td></tr>
+          <tr><td>D</td><td>Normal wakefulness</td><td>0</td><td>0</td></tr>
+          <tr><td>E</td><td>Exaggerated response to normal stimulation (agitation)</td><td>+1 to +4</td><td>1</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Score Interpretation</h2>
+      <table>
+        <thead>
+          <tr><th>Total Score</th><th>Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Not assessable</td><td>LOC = A or B (coma/stupor) — assessment cannot be completed</td></tr>
+          <tr><td>0</td><td>No delirium</td></tr>
+          <tr><td>1–3</td><td>Subsyndromal delirium — intermediate state, worse outcomes than 0 but not diagnostic of delirium; increased monitoring recommended</td></tr>
+          <tr><td>≥ 4</td><td>Delirium present</td></tr>
+        </tbody>
+      </table>
+      <p>The subsyndromal delirium category was characterised by Ouimet and colleagues, who followed a mixed medical-surgical ICU cohort and found ICU mortality of 2.4&nbsp;% among patients scoring 0, 10.6&nbsp;% among those scoring 1–3, and 15.9&nbsp;% among those scoring ≥&nbsp;4, with ICU length of stay increasing across the same gradient <sup><a href="#ref2">[2]</a></sup>. This dose-response relationship is the main evidence for treating 1–3 as a clinically meaningful intermediate state rather than simply "negative."</p>
+      <p>Above the ≥ 4 threshold, the ICDSC indicates the presence of delirium only — it was not designed and has not been validated to grade delirium <em>severity</em> beyond that point.</p>
+    </div>
+
+    <div class="section">
+      <h2>Assessment Procedure</h2>
+      <ol>
+        <li>Rate item 1 (level of consciousness) first, at the bedside.</li>
+        <li>If item 1 is A or B, stop — record the assessment as not assessable and reassess once the patient responds at least to mild-to-moderate stimulation.</li>
+        <li>If item 1 is C, D, or E, rate items 2–4 from a focused bedside evaluation, and items 5–8 from observations made across the whole shift; items 7 and 8 specifically refer to the preceding 24 hours.</li>
+        <li>Sum all eight items (maximum 8) and classify using the interpretation table above.</li>
+        <li>Repeat once per 8-hour nursing shift, or at least once every 24 hours, per current ICU delirium-monitoring guidance <sup><a href="#ref3">[3]</a></sup>.</li>
+      </ol>
+    </div>
+
+    <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>A 2012 systematic review and meta-analysis pooling multiple validation cohorts found that both the ICDSC and the CAM-ICU have imperfect, and broadly comparable, diagnostic accuracy in routine use, with neither tool demonstrating clear superiority over the other <sup><a href="#ref4">[4]</a></sup>. The lower specificity observed in some cohorts (in contrast to the near-ceiling ~99&nbsp;% sensitivity / ~64&nbsp;% specificity of the original derivation study <sup><a href="#ref1">[1]</a></sup>) has prompted re-examination of the ≥ 4 cutoff itself.</p>
+      <p>A 2018 re-evaluation by Boettger and colleagues, benchmarked against DSM-IV-TR diagnosis, reported sensitivity of 61.5&nbsp;% and specificity of 95.2&nbsp;% at the standard ≥ 4 cutoff, but sensitivity of 83&nbsp;% and specificity of 85.5&nbsp;% at a lower cutoff of ≥ 3, arguing that the conventional ≥ 4 threshold under-diagnoses delirium in some populations <sup><a href="#ref5">[5]</a></sup>. This is a secondary re-evaluation in a specific cohort, not a revision adopted by the original authors or by current guidelines — Scores2Go implements the original, guideline-endorsed ≥ 4 threshold, not the proposed ≥ 3 cutoff.</p>
+      <p>A 2019 prospective cohort study by Boßelmann and colleagues found that ICDSC specificity dropped to roughly 55&nbsp;% in aphasic ICU patients — items 2, 3, 4, and 6 are difficult to rate reliably when a patient cannot communicate for reasons unrelated to delirium — and proposed a higher cutoff of ≥ 5 specifically for that subgroup <sup><a href="#ref6">[6]</a></sup>. This subgroup-specific adjustment is likewise not implemented here; clinicians assessing aphasic patients should interpret borderline ICDSC scores with this caveat in mind.</p>
+      <p>Other well-documented limitations, independent of any single study:</p>
+      <ul class="limits">
+        <li><strong>Unassessability in deep sedation/coma:</strong> at LOC A/B the checklist cannot be scored at all — a coverage gap rather than a false result, analogous to the CAM-ICU's inability to assess patients at RASS −4/−5.</li>
+        <li><strong>Reliance on nursing observation across a shift:</strong> items 5–8 are rated from behaviour over several hours rather than a single structured test, which makes the checklist fast to complete but dependent on the observing nurse's attentiveness and continuity of care.</li>
+        <li><strong>Language and communication barriers:</strong> beyond aphasia specifically, patients with limited language proficiency, hearing impairment, or heavy sedation-related dysarthria may score falsely high on the inattention, disorientation, and speech items.</li>
+        <li><strong>Original validation was in a single, relatively small cohort:</strong> the ~99&nbsp;%/~64&nbsp;% sensitivity/specificity figures come from 93 patients at one centre <sup><a href="#ref1">[1]</a></sup>; subsequent multicentre and meta-analytic data show more variable, generally lower accuracy <sup><a href="#ref4">[4]</a></sup>.</li>
+      </ul>
+      <p>A validated German-language version of the ICDSC exists <sup><a href="#ref7">[7]</a></sup>. Both the ICDSC and CAM-ICU remain endorsed by the 2018 Society of Critical Care Medicine PADIS guidelines as validated delirium-monitoring tools for at-least-once-per-shift ICU use, with the choice between them left to institutional preference <sup><a href="#ref3">[3]</a></sup>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Literature</h2>
+      <ol class="refs">
+        <li id="ref1">Bergeron N, Dubois M-J, Dumont M, Dial S, Skrobik Y. Intensive Care Delirium Screening Checklist: evaluation of a new screening tool. <em>Intensive Care Med.</em> 2001;27(5):859–864. doi:10.1007/s001340100909</li>
+        <li id="ref2">Ouimet S, Riker R, Bergeron N, Cossette M, Kavanagh B, Skrobik Y. Subsyndromal delirium in the ICU: evidence for a disease spectrum. <em>Intensive Care Med.</em> 2007;33(6):1007–1013. doi:10.1007/s00134-007-0618-y</li>
+        <li id="ref3">Devlin JW, Skrobik Y, Gélinas C, et al. Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU. <em>Crit Care Med.</em> 2018;46(9):e825–e873. doi:10.1097/CCM.0000000000003299</li>
+        <li id="ref4">Gusmao-Flores D, Salluh JIF, Chalhub RÁ, Quarantini LC. The confusion assessment method for the intensive care unit (CAM-ICU) and intensive care delirium screening checklist (ICDSC) for the diagnosis of delirium: a systematic review and meta-analysis of clinical studies. <em>Crit Care.</em> 2012;16(4):R115. doi:10.1186/cc11407</li>
+        <li id="ref5">Boettger S, Garcia Nuñez D, Meyer R, et al. Screening for delirium with the Intensive Care Delirium Screening Checklist (ICDSC): a re-evaluation of the threshold for delirium. <em>Swiss Med Wkly.</em> 2018;148:w14597. doi:10.4414/smw.2018.14597</li>
+        <li id="ref6">Boßelmann C, et al. Delirium Screening in Aphasic Patients With the Intensive Care Delirium Screening Checklist (ICDSC): A Prospective Cohort Study. <em>Front Neurol.</em> 2019;10:1198.</li>
+        <li id="ref7">Radtke FM, Franck M, Oppermann S, et al. Die Intensive Care Delirium Screening Checklist (ICDSC) – Richtlinienkonforme Übersetzung und Validierung einer intensivmedizinischen Delirium-Checkliste. <em>Anästhesiol Intensivmed Notfallmed Schmerzther.</em> 2009;44(2):80–86.</li>
+      </ol>
+    </div>
+
+    <div class="cta">
+      <p>Assess delirium with ICDSC interactively in the app.</p>
+      <a class="button" href="../app/?score=icdsc">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+
+  </main>
+
+</body>
+</html>
