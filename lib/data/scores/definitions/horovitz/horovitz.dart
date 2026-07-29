@@ -11,6 +11,11 @@ const _fio2Units = [
   UnitDefinition(label: '%'),
 ];
 
+/// PEEP: single unit, cmH₂O. Units.pressure (mmHg/kPa) does not apply here.
+const _peepUnits = [
+  UnitDefinition(label: 'cmH₂O'),
+];
+
 Score buildHorovitzScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
   return Score(
@@ -51,6 +56,15 @@ Score buildHorovitzScore(String lang) {
             normMin: 21,
             normMax: 100,
             units: _fio2Units,
+          ),
+          VariableNumber(
+            name: 'horovitz-peep',
+            display: t('peep.display'),
+            description: t('peep.description'),
+            value: null,
+            normMin: 5,
+            normMax: 15,
+            units: _peepUnits,
           ),
         ],
       ),

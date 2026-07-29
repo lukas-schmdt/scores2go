@@ -23,18 +23,49 @@ class HorovitzI10n extends ScoreI10n {
       'fio2.display': 'FiO₂',
       'fio2.description':
           'Fraction of inspired oxygen. Enter as percentage (e.g. 40 for 40 %).',
+
+      'peep.display': 'PEEP',
+      'peep.description':
+          'Positive end-expiratory pressure (or CPAP level). Optional — '
+          'entering it enables the formal Berlin ARDS classification, which '
+          'is only valid at PEEP/CPAP ≥ 5 cmH₂O. Leave blank if unknown.',
+
       // Calculation output
       'calc.incomplete.enterBoth': 'Enter PaO₂ and FiO₂ to calculate the ratio.',
       'calc.incomplete.pao2Missing': 'PaO₂ is missing.',
       'calc.incomplete.fio2Missing': 'FiO₂ is missing.',
       'calc.fio2MustBeGreaterThanZero': 'FiO₂ must be greater than 0 %.',
       'calc.inputsLabel': 'Inputs',
+
       'calc.interp.normal': 'Normal oxygenation (≥ 400)',
-      'calc.interp.mildHypoxemia': 'Mild hypoxemia (300–399)',
-      'calc.interp.mildArds': 'Mild ARDS — Berlin Definition (200–299)',
-      'calc.interp.moderateArds':
-          'Moderate ARDS — Berlin Definition (100–199)',
-      'calc.interp.severeArds': 'Severe ARDS — Berlin Definition (< 100)',
+      'calc.interp.mildImpairment': 'Mild impairment (300 < P/F < 400)',
+
+      'calc.interp.mildArds.full':
+          'Mild ARDS — Berlin Definition (200 < P/F ≤ 300)',
+      'calc.interp.mildArds.peepLow':
+          'Mild ARDS range (200 < P/F ≤ 300) — Berlin classification does '
+          'not apply: PEEP/CPAP is below 5 cmH₂O.',
+      'calc.interp.mildArds.peepUnknown':
+          'Mild ARDS range (200 < P/F ≤ 300) — Berlin classification '
+          'additionally requires PEEP/CPAP ≥ 5 cmH₂O.',
+
+      'calc.interp.moderateArds.full':
+          'Moderate ARDS — Berlin Definition (100 < P/F ≤ 200)',
+      'calc.interp.moderateArds.peepLow':
+          'Moderate ARDS range (100 < P/F ≤ 200) — Berlin classification '
+          'does not apply: PEEP/CPAP is below 5 cmH₂O.',
+      'calc.interp.moderateArds.peepUnknown':
+          'Moderate ARDS range (100 < P/F ≤ 200) — Berlin classification '
+          'additionally requires PEEP/CPAP ≥ 5 cmH₂O.',
+
+      'calc.interp.severeArds.full':
+          'Severe ARDS — Berlin Definition (P/F ≤ 100)',
+      'calc.interp.severeArds.peepLow':
+          'Severe ARDS range (P/F ≤ 100) — Berlin classification does not '
+          'apply: PEEP/CPAP is below 5 cmH₂O.',
+      'calc.interp.severeArds.peepUnknown':
+          'Severe ARDS range (P/F ≤ 100) — Berlin classification '
+          'additionally requires PEEP/CPAP ≥ 5 cmH₂O.',
     },
     'de': {
       'display': 'Horovitz-Quotient',
@@ -54,6 +85,13 @@ class HorovitzI10n extends ScoreI10n {
       'fio2.display': 'FiO₂',
       'fio2.description':
           'Inspiratorische Sauerstofffraktion. Als Prozent eingeben (z. B. 40 für 40 %).',
+
+      'peep.display': 'PEEP',
+      'peep.description':
+          'Positiver endexspiratorischer Druck (bzw. CPAP-Niveau). Optional — '
+          'die Angabe ermöglicht die formale Berlin-ARDS-Klassifikation, die '
+          'nur bei PEEP/CPAP ≥ 5 cmH₂O gültig ist. Bei Unbekanntem leer lassen.',
+
       // Calculation output
       'calc.incomplete.enterBoth':
           'PaO₂ und FiO₂ eingeben, um den Quotienten zu berechnen.',
@@ -61,12 +99,36 @@ class HorovitzI10n extends ScoreI10n {
       'calc.incomplete.fio2Missing': 'FiO₂ fehlt.',
       'calc.fio2MustBeGreaterThanZero': 'FiO₂ muss größer als 0 % sein.',
       'calc.inputsLabel': 'Eingaben',
+
       'calc.interp.normal': 'Normale Oxygenierung (≥ 400)',
-      'calc.interp.mildHypoxemia': 'Leichte Hypoxämie (300–399)',
-      'calc.interp.mildArds': 'Leichtes ARDS — Berlin-Definition (200–299)',
-      'calc.interp.moderateArds':
-          'Moderates ARDS — Berlin-Definition (100–199)',
-      'calc.interp.severeArds': 'Schweres ARDS — Berlin-Definition (< 100)',
+      'calc.interp.mildImpairment': 'Leichte Einschränkung (300 < P/F < 400)',
+
+      'calc.interp.mildArds.full':
+          'Leichtes ARDS — Berlin-Definition (200 < P/F ≤ 300)',
+      'calc.interp.mildArds.peepLow':
+          'Bereich leichtes ARDS (200 < P/F ≤ 300) — Berlin-Klassifikation '
+          'nicht anwendbar: PEEP/CPAP liegt unter 5 cmH₂O.',
+      'calc.interp.mildArds.peepUnknown':
+          'Bereich leichtes ARDS (200 < P/F ≤ 300) — Berlin-Klassifikation '
+          'erfordert zusätzlich PEEP/CPAP ≥ 5 cmH₂O.',
+
+      'calc.interp.moderateArds.full':
+          'Moderates ARDS — Berlin-Definition (100 < P/F ≤ 200)',
+      'calc.interp.moderateArds.peepLow':
+          'Bereich moderates ARDS (100 < P/F ≤ 200) — Berlin-Klassifikation '
+          'nicht anwendbar: PEEP/CPAP liegt unter 5 cmH₂O.',
+      'calc.interp.moderateArds.peepUnknown':
+          'Bereich moderates ARDS (100 < P/F ≤ 200) — Berlin-Klassifikation '
+          'erfordert zusätzlich PEEP/CPAP ≥ 5 cmH₂O.',
+
+      'calc.interp.severeArds.full':
+          'Schweres ARDS — Berlin-Definition (P/F ≤ 100)',
+      'calc.interp.severeArds.peepLow':
+          'Bereich schweres ARDS (P/F ≤ 100) — Berlin-Klassifikation nicht '
+          'anwendbar: PEEP/CPAP liegt unter 5 cmH₂O.',
+      'calc.interp.severeArds.peepUnknown':
+          'Bereich schweres ARDS (P/F ≤ 100) — Berlin-Klassifikation '
+          'erfordert zusätzlich PEEP/CPAP ≥ 5 cmH₂O.',
     },
   };
 }

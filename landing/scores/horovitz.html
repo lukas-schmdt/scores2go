@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Horovitz Quotient (P/F Ratio) – Scores2Go</title>
+  <title>Horovitz Quotient (Horowitz Index, P/F Ratio) – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Horovitz quotient (PaO₂/FiO₂ ratio) — standard measure of oxygenation efficiency and the basis of the ARDS Berlin Definition severity classification." />
+  <meta name="description" content="Horovitz quotient (also written Horowitz index) — the PaO₂/FiO₂ ratio (P/F ratio), the standard measure of oxygenation efficiency and the basis of the ARDS Berlin Definition severity classification." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/horovitz.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/horovitz.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -175,6 +177,25 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -203,59 +224,108 @@
         Popularity 85
       </span>
     </div>
+    <a class="lang-link" href="./de/horovitz.html">🇩🇪 Deutsch</a>
   </header>
 
   <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>The Horovitz quotient — the ratio of arterial partial pressure of oxygen to the fraction of inspired oxygen (PaO₂/FiO₂, or "P/F ratio") — is one of the most widely used bedside measures of oxygenation efficiency in critical care. A low ratio indicates that a given amount of inspired oxygen is producing disproportionately little arterial oxygenation, which reflects shunt, ventilation-perfusion mismatch, or diffusion impairment in the lung.</p>
+      <p>The index takes its name from Horovitz, Carrico, and Shires, who examined pulmonary responses to major trauma in 1974 and used the PaO₂/FiO₂ relationship to track post-injury respiratory deterioration <sup><a href="#ref1">[1]</a></sup>. The eponym is commonly written "Horowitz index" in English-language sources, although the author's name is spelled Horovitz.</p>
+      <p>The ratio's largest clinical impact came decades later, when the ARDS Definition Task Force adopted it as the sole oxygenation criterion of the 2012 Berlin Definition of ARDS, using fixed thresholds at 300, 200, and 100 mmHg to separate mild, moderate, and severe disease <sup><a href="#ref2">[2]</a></sup>. Because of that role, the P/F ratio is now inseparable from ARDS staging, prognosis discussions, and enrolment criteria in critical-care trials.</p>
+      <p>A single P/F value, however, is not a fixed property of the lung — it also depends on the ventilator settings under which it was measured, especially PEEP. The Berlin Definition therefore requires PEEP/CPAP ≥ 5 cmH₂O for its ARDS bands to apply. Our PEEP field is optional so the ratio itself can still be calculated with only PaO₂ and FiO₂, but entering PEEP lets Scores2Go confirm whether the formal Berlin classification actually applies to the value shown, rather than silently assuming it does.</p>
+    </div>
 
     <div class="section">
       <h2>Formula</h2>
       <pre>P/F Ratio = PaO₂ (mmHg) / FiO₂ (fraction, 0.21–1.0)
 
 Example: PaO₂ = 80 mmHg, FiO₂ = 0.4 (40 %)
-P/F Ratio = 80 / 0.4 = 200 mmHg  →  Moderate ARDS</pre>
+P/F Ratio = 80 / 0.4 = 200 mmHg  →  Moderate ARDS (on PEEP/CPAP ≥ 5 cmH₂O)</pre>
     </div>
 
     <div class="section">
       <h2>Interpretation</h2>
       <table>
         <thead>
-          <tr><th>P/F Ratio (mmHg)</th><th>Classification</th></tr>
+          <tr><th>P/F Ratio (mmHg)</th><th>Classification</th><th>Reported mortality <sup><a href="#ref2">[2]</a></sup></th></tr>
         </thead>
         <tbody>
-          <tr><td>≥ 400</td><td>Normal oxygenation</td></tr>
-          <tr><td>300–399</td><td>Mild impairment</td></tr>
-          <tr><td>200–299</td><td>Mild ARDS (Berlin 2012)</td></tr>
-          <tr><td>100–199</td><td>Moderate ARDS (Berlin 2012)</td></tr>
-          <tr><td>&lt; 100</td><td>Severe ARDS (Berlin 2012)</td></tr>
+          <tr><td>≥ 400</td><td>Normal oxygenation</td><td>—</td></tr>
+          <tr><td>300 &lt; P/F &lt; 400</td><td>Mild impairment (non-Berlin)</td><td>—</td></tr>
+          <tr><td>200 &lt; P/F ≤ 300</td><td>Mild ARDS (Berlin 2012)</td><td>≈ 27 %</td></tr>
+          <tr><td>100 &lt; P/F ≤ 200</td><td>Moderate ARDS (Berlin 2012)</td><td>≈ 32 %</td></tr>
+          <tr><td>P/F ≤ 100</td><td>Severe ARDS (Berlin 2012)</td><td>≈ 45 %</td></tr>
+        </tbody>
+      </table>
+      <p>The Berlin ARDS bands (≤ 300 mmHg) are only valid when measured on PEEP or CPAP ≥ 5 cmH₂O <sup><a href="#ref2">[2]</a></sup>. The mortality figures above are hospital mortality reported for the corresponding severity groups in the Berlin Definition validation cohort.</p>
+    </div>
+
+    <div class="section">
+      <h2>ARDS Berlin Definition (2012)</h2>
+      <p>For ARDS diagnosis, all four criteria must be met <sup><a href="#ref2">[2]</a></sup>:</p>
+      <ul>
+        <li><strong>Timing:</strong> Acute onset within 1 week of a known clinical insult or new / worsening respiratory symptoms.</li>
+        <li><strong>Chest imaging:</strong> Bilateral opacities not fully explained by effusions, lobar/lung collapse, or nodules (CXR or CT).</li>
+        <li><strong>Origin of oedema:</strong> Respiratory failure not fully explained by cardiac failure or fluid overload (objective assessment, e.g. echocardiography, required if no risk factor).</li>
+        <li><strong>Oxygenation impairment:</strong> P/F ratio ≤ 300 mmHg on PEEP or CPAP ≥ 5 cmH₂O.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Related Indices</h2>
+      <table>
+        <thead>
+          <tr><th>Index</th><th>Formula / relation to P/F</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Oxygenation Index (OI)</td>
+            <td>OI = (FiO₂ × Mean Airway Pressure × 100) / PaO₂. Incorporates ventilator mean airway pressure, so it also captures the PEEP dependence that a bare P/F ratio misses. Used mainly in paediatric and neonatal ARDS.</td>
+          </tr>
+          <tr>
+            <td>a/A gradient (A-aDO₂)</td>
+            <td>Compares alveolar and arterial oxygen tension. Our <a href="./apache2.html">APACHE II</a> score uses A-aDO₂ when FiO₂ ≥ 0.5 and raw PaO₂ when FiO₂ &lt; 0.5 — it does <strong>not</strong> use the P/F ratio, a common misconception.</td>
+          </tr>
+          <tr>
+            <td>SpO₂/FiO₂ (S/F) ratio</td>
+            <td>Non-invasive surrogate when arterial blood gas is unavailable. Rice and colleagues reported approximate equivalences of S/F 315 ≈ P/F 300, S/F 235 ≈ P/F 200, and S/F 148 ≈ P/F 100 <sup><a href="#ref3">[3]</a></sup>.</td>
+          </tr>
+          <tr>
+            <td>P/FP ratio (PEEP-adjusted)</td>
+            <td>An investigational normalisation of P/F by PEEP, proposed to reduce ventilator-setting dependence. Not in routine clinical use and not implemented here.</td>
+          </tr>
+          <tr>
+            <td>SOFA respiratory subscore</td>
+            <td>Bands P/F at &gt; 400 → 0 points, ≤ 400 → 1, ≤ 300 → 2, ≤ 200 with respiratory support → 3, ≤ 100 with respiratory support → 4 <sup><a href="#ref4">[4]</a></sup>. See our <a href="./sofa.html">SOFA</a> score.</td>
+          </tr>
+          <tr>
+            <td>Murray Lung Injury Score</td>
+            <td>Uses a graded P/F component (0–4 points) as one of four subscores (alongside chest X-ray, PEEP, and compliance) to quantify acute lung injury severity <sup><a href="#ref5">[5]</a></sup>.</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
     <div class="section">
-      <h2>ARDS Berlin Definition (2012)</h2>
-      <p>For ARDS diagnosis, all four criteria must be met:</p>
-      <ul>
-        <li><strong>Timing:</strong> Acute onset within 1 week of a known clinical insult or new / worsening respiratory symptoms.</li>
-        <li><strong>Chest imaging:</strong> Bilateral opacities not fully explained by effusions, lobar/lung collapse, or nodules (CXR or CT).</li>
-        <li><strong>Origin of oedema:</strong> Respiratory failure not fully explained by cardiac failure or fluid overload (objective assessment, e.g. echocardiography, required if no risk factor).</li>
-        <li><strong>Oxygenation impairment:</strong> P/F ratio &lt; 300 mmHg on PEEP or CPAP ≥ 5 cmH₂O.</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>Clinical Notes</h2>
-      <ul>
-        <li>PaO₂ must be measured from an arterial blood gas — venous or capillary values are not valid.</li>
-        <li>Verify actual delivered FiO₂: high-flow systems may differ from set FiO₂; room air = 0.21.</li>
-        <li>Serial P/F measurements during the first 24 hours after PEEP optimisation better reflect true ARDS severity than a single early value.</li>
-        <li>The SpO₂/FiO₂ (SF) ratio is a non-invasive surrogate when ABG is unavailable; SF ≈ 235 corresponds to PF ≈ 200 mmHg.</li>
-      </ul>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p><strong>FiO₂ dependence.</strong> The P/F ratio is often treated as an FiO₂-independent property of the lung, but it is not: Aboab and colleagues showed mathematically and experimentally that the same underlying lung can produce different P/F values at different FiO₂ levels, with the relationship becoming particularly non-linear at the extremes of FiO₂ <sup><a href="#ref6">[6]</a></sup>. This undermines both single-timepoint severity assignment at an arbitrary FiO₂ and serial comparison of P/F values obtained at different FiO₂ settings over time.</p>
+      <p><strong>PEEP dependence.</strong> Because P/F improves as PEEP recruits collapsed alveoli, severity classification measured before PEEP optimisation systematically overstates ARDS severity, and patients frequently reclassify to a milder Berlin band once PEEP has been titrated upward. This is the rationale behind the Berlin Definition's PEEP/CPAP ≥ 5 cmH₂O requirement, and why standard ICU practice reassesses P/F after ventilator stabilisation rather than relying on an early value.</p>
+      <p><strong>Altitude / barometric pressure.</strong> P/F is derived from oxygen tension, which falls with barometric pressure independent of any lung pathology — the same patient and the same FiO₂ will produce a lower P/F at altitude than at sea level. The Berlin Definition's supplementary material proposed a naive correction of the form P/F × (Pbar / 760), but Jibaja and colleagues found that this correction performed poorly in acclimatized ICU patients on invasive mechanical ventilation, where altitude above sea level was not an independent predictor of hospital mortality in a multicentre cohort <sup><a href="#ref7">[7]</a></sup>. No major calculator, including MDCalc, applies an altitude correction to P/F, and Scores2Go does not either.</p>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Horovitz JH, Carrico CJ, Shires GT. <em>Pulmonary response to major injury.</em> Arch Surg. 1974;108(3):349–355.</p>
-      <p>ARDS Definition Task Force; Ranieri VM, Rubenfeld GD, Thompson BT, et al. <em>Acute respiratory distress syndrome: the Berlin Definition.</em> JAMA. 2012;307(23):2526–2533.</p>
+      <ol class="refs">
+        <li id="ref1">Horovitz JH, Carrico CJ, Shires GT. Pulmonary response to major injury. <em>Arch Surg.</em> 1974;108(3):349–355. doi:10.1001/archsurg.1974.01350270079014</li>
+        <li id="ref2">ARDS Definition Task Force; Ranieri VM, Rubenfeld GD, Thompson BT, et al. Acute respiratory distress syndrome: the Berlin Definition. <em>JAMA.</em> 2012;307(23):2526–2533. doi:10.1001/jama.2012.5669</li>
+        <li id="ref3">Rice TW, Wheeler AP, Bernard GR, et al. Comparison of the SpO2/FiO2 ratio and the PaO2/FiO2 ratio in patients with acute lung injury or ARDS. <em>Chest.</em> 2007;132(2):410–417. doi:10.1378/chest.07-0617</li>
+        <li id="ref4">Vincent JL, Moreno R, Takala J, et al. The SOFA (Sepsis-related Organ Failure Assessment) score to describe organ dysfunction/failure. <em>Intensive Care Med.</em> 1996;22(7):707–710.</li>
+        <li id="ref5">Murray JF, Matthay MA, Luce JM, Flick MR. An expanded definition of the adult respiratory distress syndrome. <em>Am Rev Respir Dis.</em> 1988;138(3):720–723.</li>
+        <li id="ref6">Aboab J, Louis B, Jonson B, Brochard L. Relation between PaO2/FIO2 ratio and FIO2: a mathematical description. <em>Intensive Care Med.</em> 2006;32(10):1494–1497. doi:10.1007/s00134-006-0337-9</li>
+        <li id="ref7">Jibaja M, Ortiz-Ruiz G, García F, et al. Hospital Mortality and Effect of Adjusting PaO2/FiO2 According to Altitude Above the Sea Level in Acclimatized Patients Undergoing Invasive Mechanical Ventilation. A Multicenter Study. <em>Arch Bronconeumol (Engl Ed).</em> 2020;56(4):218–224. PMID: 31582181</li>
+      </ol>
     </div>
 
     <div class="cta">

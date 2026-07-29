@@ -11,8 +11,12 @@ ScoreResult horovitzFunction(Score score, String lang) {
 
   // PaO2 is stored in mmHg (canonical unit of Units.pressure).
   // FiO2 is stored as % (21–100).
+  // PEEP is stored in cmH₂O and is optional — a missing PEEP must never
+  // make the score incomplete, it only affects how confidently we can
+  // apply the Berlin ARDS labels.
   final pao2 = ctx.numValue('horovitz-pao2')?['value'] as num?;
   final fio2 = ctx.numValue('horovitz-fio2')?['value'] as num?;
+  final peep = ctx.numValue('horovitz-peep')?['value'] as num?;
 
   if (pao2 == null && fio2 == null) {
     return ScoreResult.incomplete(
@@ -41,22 +45,56 @@ ScoreResult horovitzFunction(Score score, String lang) {
 
   // FiO2 stored as %, convert to fraction for the ratio.
   final ratio = pao2.toDouble() / (fio2.toDouble() / 100.0);
+  // Interpret on the rounded, displayed value so the shown number and the
+  // assigned band can never contradict each other at a boundary.
   final ratioRounded = ratio.round();
+
+  var secondary =
+      'PaO₂ ${pao2.toStringAsFixed(0)} mmHg · FiO₂ ${fio2.toStringAsFixed(0)} %';
+  if (peep != null) {
+    secondary += ' · PEEP ${peep.toStringAsFixed(0)} cmH₂O';
+  }
 
   return ScoreResult(
     state: ScoreState.success,
     primaryLabel: t('display'),
     primaryResult: '$ratioRounded mmHg',
-    primaryInterpretation: _interpret(ratio, t),
+    primaryInterpretation: _interpret(ratioRounded, peep, t),
     secondaryLabel: t('calc.inputsLabel'),
-    secondaryResult: 'PaO₂ ${pao2.toStringAsFixed(0)} mmHg · FiO₂ ${fio2.toStringAsFixed(0)} %',
+    secondaryResult: secondary,
   );
 }
 
-String _interpret(double ratio, String Function(String) t) {
+/// Berlin Definition bands, upper-bound inclusive, assigned to the worse
+/// band at the boundary:
+///   Normal / informal:  ratio ≥ 400
+///   Mild impairment:    300 < ratio < 400   (non-Berlin, informal)
+///   Mild ARDS:          200 < ratio ≤ 300
+///   Moderate ARDS:      100 < ratio ≤ 200
+///   Severe ARDS:               ratio ≤ 100
+///
+/// The Berlin ARDS bands are only formally valid on PEEP/CPAP ≥ 5 cmH₂O.
+/// Since PEEP is optional here, the ARDS labels are hedged when PEEP is
+/// missing, and explicitly flagged as non-applicable when PEEP is entered
+/// but below 5 cmH₂O.
+String _interpret(int ratio, num? peep, String Function(String) t) {
   if (ratio >= 400) return t('calc.interp.normal');
-  if (ratio >= 300) return t('calc.interp.mildHypoxemia');
-  if (ratio >= 200) return t('calc.interp.mildArds');
-  if (ratio >= 100) return t('calc.interp.moderateArds');
-  return t('calc.interp.severeArds');
+  if (ratio > 300) return t('calc.interp.mildImpairment');
+
+  final String ardsKeyBase;
+  if (ratio > 200) {
+    ardsKeyBase = 'calc.interp.mildArds';
+  } else if (ratio > 100) {
+    ardsKeyBase = 'calc.interp.moderateArds';
+  } else {
+    ardsKeyBase = 'calc.interp.severeArds';
+  }
+
+  if (peep == null) {
+    return t('$ardsKeyBase.peepUnknown');
+  }
+  if (peep < 5) {
+    return t('$ardsKeyBase.peepLow');
+  }
+  return t('$ardsKeyBase.full');
 }
