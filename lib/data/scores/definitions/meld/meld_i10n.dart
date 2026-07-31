@@ -9,7 +9,9 @@ class MeldI10n extends ScoreI10n {
       'display': 'MELD',
       'description':
           'Model for End-Stage Liver Disease — predicts 90-day mortality '
-          'in patients with liver cirrhosis based on creatinine, bilirubin, and INR.',
+          'in patients with liver cirrhosis based on creatinine, bilirubin, and INR. '
+          'This is the original (pre-2016) MELD formula; current transplant allocation '
+          'in the US and Eurotransplant region uses successor scores.',
 
       // Liver group
       'liver.group.display': 'Liver Function',
@@ -33,7 +35,8 @@ class MeldI10n extends ScoreI10n {
           'Serum creatinine. Values < 1.0 are floored to 1.0; values > 4.0 are capped at 4.0.',
       'dialysis.display': 'Dialysis ≥ 2×/week',
       'dialysis.description':
-          'Patient received dialysis at least twice in the preceding week. If yes, creatinine is set to 4.0 mg/dL.',
+          'Patient received dialysis at least twice in the preceding week. If yes, creatinine is set to 4.0 mg/dL. '
+          'Leaving this unanswered is treated as not on dialysis.',
       // Calculation output
       'calc.incomplete.enterAll': 'Enter bilirubin, INR, and creatinine.',
       'calc.incomplete.allRequired': 'All three lab values are required.',
@@ -47,7 +50,10 @@ class MeldI10n extends ScoreI10n {
       'display': 'MELD',
       'description':
           'Model for End-Stage Liver Disease — schätzt die 90-Tage-Mortalität '
-          'bei Leberzirrhose anhand von Kreatinin, Bilirubin und INR.',
+          'bei Leberzirrhose anhand von Kreatinin, Bilirubin und INR. '
+          'Dies ist die ursprüngliche (Vor-2016-)MELD-Formel; die aktuelle '
+          'Transplantationsallokation in den USA und im Eurotransplant-Raum '
+          'verwendet Nachfolge-Scores.',
 
       // Liver group
       'liver.group.display': 'Leberfunktion',
@@ -74,7 +80,8 @@ class MeldI10n extends ScoreI10n {
           'Serumkreatinin. Werte < 1,0 werden auf 1,0 gesetzt; Werte > 4,0 auf 4,0 begrenzt.',
       'dialysis.display': 'Dialyse ≥ 2×/Woche',
       'dialysis.description':
-          'Patient erhielt innerhalb der letzten Woche mindestens zweimal Dialyse. Falls ja, wird Kreatinin auf 4,0 mg/dL gesetzt.',
+          'Patient erhielt innerhalb der letzten Woche mindestens zweimal Dialyse. Falls ja, wird Kreatinin auf 4,0 mg/dL gesetzt. '
+          'Bleibt diese Frage unbeantwortet, wird dies als "keine Dialyse" gewertet.',
       // Calculation output
       'calc.incomplete.enterAll': 'Bilirubin, INR und Kreatinin eingeben.',
       'calc.incomplete.allRequired':

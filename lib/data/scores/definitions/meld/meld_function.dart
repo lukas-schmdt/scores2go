@@ -18,14 +18,14 @@ ScoreResult meldFunction(Score score, String lang) {
 
   if (bilirubinRaw == null && inrRaw == null && creatinineRaw == null) {
     return ScoreResult.incomplete(
-      label: 'MELD',
+      label: t('display'),
       interpretation: t('calc.incomplete.enterAll'),
     );
   }
 
   if (bilirubinRaw == null || inrRaw == null || creatinineRaw == null) {
     return ScoreResult.incomplete(
-      label: 'MELD',
+      label: t('display'),
       interpretation: t('calc.incomplete.allRequired'),
     );
   }
@@ -48,7 +48,7 @@ ScoreResult meldFunction(Score score, String lang) {
 
   return ScoreResult(
     state: ScoreState.success,
-    primaryLabel: 'MELD',
+    primaryLabel: t('display'),
     primaryResult: '$meldInt',
     primaryInterpretation: _interpret(meldInt, t),
     secondaryLabel: t('calc.mortality90day'),
@@ -64,9 +64,9 @@ String _interpret(int meld, String Function(String) t) {
 }
 
 String _mortality(int meld) {
-  if (meld <= 9) return '< 2 %';
-  if (meld <= 19) return '6 %';
-  if (meld <= 29) return '20 %';
-  if (meld <= 39) return '52 %';
-  return '> 71 %';
+  if (meld <= 9) return '1.9 %';
+  if (meld <= 19) return '6.0 %';
+  if (meld <= 29) return '19.6 %';
+  if (meld <= 39) return '52.6 %';
+  return '71.3 %';
 }

@@ -6,7 +6,7 @@
   <title>MELD Score – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="MELD — laboratory-based score for end-stage liver disease prognosis and transplant allocation, based on bilirubin, INR, and creatinine." />
+  <meta name="description" content="MELD — the original 2001 laboratory-based score for end-stage liver disease prognosis, based on bilirubin, INR, and creatinine. Still widely cited, but no longer the live US or Eurotransplant allocation score." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -92,6 +92,14 @@
       border-bottom: 2px solid #e5e7eb;
     }
 
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+
     p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
 
     table {
@@ -175,6 +183,19 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol { padding-left: 20px; margin-bottom: 12px; }
+    ol li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -188,7 +209,7 @@
     </div>
     <div class="badge">Hepatology · Transplant · Severity</div>
     <h1>MELD</h1>
-    <p>The Model for End-Stage Liver Disease is an objective, laboratory-based score for assessing short-term prognosis in end-stage liver disease and the primary organ allocation algorithm for liver transplantation.</p>
+    <p>The Model for End-Stage Liver Disease is the original 2001 laboratory-based score for short-term prognosis in end-stage liver disease. It became the first objective liver allocation algorithm in the US and is still the most-cited and most portable MELD formula, though it is no longer the live allocation score in the US or the Eurotransplant region.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -209,14 +230,18 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>MELD was originally developed to predict 90-day mortality after transjugular intrahepatic portosystemic shunt (TIPS) placement. In 2002 it was adopted by UNOS/OPTN as the primary algorithm for prioritising liver transplant allocation in the United States, replacing the Child-Pugh score. It has since been adopted internationally. Scores are clamped between 6 and 40.</p>
+      <p>The MELD equation began as a survival model for a much narrower purpose than transplant allocation. Malinchoc and colleagues derived it at the Mayo Clinic in 2000 to predict short-term mortality in cirrhotic patients undergoing transjugular intrahepatic portosystemic shunt (TIPS) placement, using bilirubin, INR, creatinine, and the underlying liver disease aetiology as predictors <sup><a href="#ref1">[1]</a></sup>.</p>
+      <p>Kamath and colleagues subsequently showed the same three laboratory variables — dropping aetiology — predicted survival accurately across a much broader population of patients with end-stage liver disease, not just TIPS candidates, and formalised the equation in its now-familiar form <sup><a href="#ref2">[2]</a></sup>. On the strength of that validation, UNOS/OPTN adopted MELD as the primary algorithm for prioritising adult liver transplant candidates in the United States in February 2002, replacing the older, partly subjective Child-Pugh classification.</p>
+      <p>Because it uses only three objective, universally available laboratory values and no clinician judgement, MELD was rapidly adopted well beyond US transplant allocation — for prognosis in cirrhosis and acute-on-chronic liver failure generally, in pre-TIPS risk assessment, and as a comparator against which every later liver severity score has been benchmarked.</p>
+      <p>The calculator on this page implements this original, pre-2016 MELD formula exactly as published by Kamath and colleagues. It remains the most widely cited and most portable version of MELD — the one most commonly referenced in the literature outside the US allocation context — but it is <strong>not</strong> the score currently used to allocate livers in the United States (which uses MELD 3.0 since July 2023) or in the Eurotransplant region (which uses labReMELD-Na since April 2025). See the Successor Scores section below.</p>
     </div>
 
     <div class="section">
       <h2>Formula</h2>
       <pre>MELD = 3.78 × ln(Bilirubin) + 11.2 × ln(INR) + 9.57 × ln(Creatinine) + 6.43
 
-All values in mg/dL. Result rounded to nearest integer, clamped 6–40.</pre>
+All values in mg/dL (bilirubin, creatinine). Result rounded to nearest integer, clamped 6–40.</pre>
+      <p>This is algebraically identical to the "×10" form published by OPTN: MELD = 10 × [0.957 × ln(Creatinine) + 0.378 × ln(Bilirubin) + 1.120 × ln(INR) + 0.643]. Scores2Go uses the non-multiplied coefficients above, which give the same result without an intermediate rounding step.</p>
     </div>
 
     <div class="section">
@@ -235,39 +260,61 @@ All values in mg/dL. Result rounded to nearest integer, clamped 6–40.</pre>
     </div>
 
     <div class="section">
-      <h2>Score Interpretation</h2>
+      <h2>Interpretation</h2>
       <table>
         <thead>
-          <tr><th>MELD Score</th><th>Severity</th><th>Approx. 90-day Mortality</th></tr>
+          <tr><th>MELD Score</th><th>Severity</th><th>90-day Mortality</th></tr>
         </thead>
         <tbody>
-          <tr><td>6–9</td><td>Mild</td><td>~1.9 %</td></tr>
-          <tr><td>10–19</td><td>Moderate</td><td>~6–20 %</td></tr>
-          <tr><td>20–29</td><td>Severe</td><td>~20–76 %</td></tr>
-          <tr><td>30–39</td><td>Very severe</td><td>~52–83 %</td></tr>
-          <tr><td>≥ 40</td><td>End-stage</td><td>&gt; 71 %</td></tr>
+          <tr><td>&lt; 10</td><td>Low</td><td>1.9 %</td></tr>
+          <tr><td>10–19</td><td>Moderate</td><td>6.0 %</td></tr>
+          <tr><td>20–29</td><td>High</td><td>19.6 %</td></tr>
+          <tr><td>30–39</td><td>Very high</td><td>52.6 %</td></tr>
+          <tr><td>≥ 40</td><td>Very high</td><td>71.3 %</td></tr>
         </tbody>
       </table>
+      <p>These precise 90-day mortality figures come from the UNOS validation analysis of the MELD-based allocation system by Wiesner and colleagues <sup><a href="#ref3">[3]</a></sup>. Note that the mortality table's bottom band breaks at the score's mathematical floor of 6 and its top band continues to the ceiling of 40, while the severity bands used in the app top out at 30 — a MELD of 35 and a MELD of 40 are both labelled "Very high" even though their measured 90-day mortality differs (52.6 % vs 71.3 %).</p>
     </div>
 
     <div class="section">
-      <h2>Clinical Use</h2>
-      <ul>
-        <li>Liver transplant waitlist prioritisation (UNOS/OPTN, Eurotransplant)</li>
-        <li>Prognosis in acute-on-chronic liver failure (ACLF), hepatocellular carcinoma, and cirrhosis</li>
-        <li>Pre-TIPS patient selection and post-procedure outcome prediction</li>
-        <li>Risk stratification in spontaneous bacterial peritonitis (SBP)</li>
-      </ul>
+      <h2>Successor Scores</h2>
+      <p>MELD has been revised twice since 2001, and the original formula on this page is no longer the live allocation score in the US or in the Eurotransplant region. MELD-Na added a sodium term (applied only when the base MELD exceeded 11, sodium bounded to 125–137 mmol/L) <sup><a href="#ref4">[4]</a></sup> and was adopted by OPTN as the US allocation standard on 11 January 2016. MELD-Na was in turn replaced by <strong>MELD 3.0</strong> <sup><a href="#ref5">[5]</a></sup> on 13 July 2023, which adds a female-sex term, serum albumin, and sodium, and lowers the creatinine ceiling from 4.0 to 3.0 mg/dL. For the full formula, variable bounds, version history, and Eurotransplant details, see <a href="./meld-3.html">the MELD 3.0 page</a> — that page also covers Eurotransplant's own labReMELD-Na, which has never used MELD-Na or MELD 3.0.</p>
     </div>
 
     <div class="section">
-      <h2>Notes on MELD-Na</h2>
-      <p>MELD-Na (MELD-Sodium) incorporates serum sodium to account for the additional mortality risk in hyponatraemic patients with cirrhosis. Formula: MELD-Na = MELD + 1.32 × (137 − Na) − 0.24 × (MELD × (137 − Na)). It has been the standard UNOS allocation algorithm since 2016 and generally provides modestly better discrimination than MELD alone.</p>
+      <h2>Scientific Validity &amp; Limitations</h2>
+
+      <h3>Sex disparity and creatinine/muscle mass</h3>
+      <p>Creatinine at a given true glomerular filtration rate is lower in women than in men because of lower average muscle mass, so the original MELD systematically under-scores female candidates and reduces their calculated priority on the waiting list. The same muscle-mass bias affects sarcopenic or cachectic patients of any sex, a finding common in advanced cirrhosis. This disparity was the direct motivation for MELD 3.0's +1.33 female-sex term <sup><a href="#ref5">[5]</a></sup>.</p>
+
+      <h3>INR reproducibility and anticoagulation</h3>
+      <p>The same blood sample can yield INR values differing by roughly 20–26&nbsp;% between laboratories, because thromboplastin ISI calibration is validated against warfarin-anticoagulated patients rather than against cirrhotic coagulopathy — this alone can shift the computed MELD score by several points depending on which laboratory ran the assay <sup><a href="#ref6">[6]</a></sup>. Vitamin K antagonists and direct oral anticoagulants (DOACs) also inflate INR independently of hepatic synthetic function. MELD-XI (MELD-XI&nbsp;=&nbsp;5.11&nbsp;×&nbsp;ln(bilirubin)&nbsp;+&nbsp;11.76&nbsp;×&nbsp;ln(creatinine)&nbsp;+&nbsp;9.44), which omits the INR term entirely, was developed specifically for anticoagulated cirrhotic patients <sup><a href="#ref7">[7]</a></sup>.</p>
+
+      <h3>What MELD misses, and exception points</h3>
+      <p>Refractory ascites, hepatic encephalopathy, and recurrent cholangitis are not inputs to MELD. Hyponatraemia itself was shown to be an independent predictor of waiting-list mortality by Kim and colleagues <sup><a href="#ref8">[8]</a></sup> — a finding absent from the original model, which is why every successor score has added sodium. Standardised MELD exception points, covering conditions such as hepatocellular carcinoma, hepatopulmonary syndrome, and familial amyloid polyneuropathy, exist precisely because laboratory MELD understates urgency for some candidates.</p>
+
+      <h3>Eurotransplant divergence</h3>
+      <p>Eurotransplant (covering Germany, Austria, the Benelux countries, Slovenia, Croatia, and Hungary) used this unmodified original labMELD formula for liver allocation until 2025, and <strong>never</strong> adopted MELD-Na or MELD 3.0. It has since moved to labReMELD-Na, a sodium-inclusive score refitted on Eurotransplant registry data because the US MELD-Na sodium coefficients did not transfer well to the Eurotransplant population <sup><a href="#ref9">[9]</a></sup>; the corresponding Bundesärztekammer Richtlinie was published on 25 March 2025 and took effect on 1 April 2025. labReMELD-Na uses its own set of variable bounds — creatinine 0.7–2.5 mg/dL (2.5 mg/dL if on dialysis), INR 1.0–2.6 (set to 1.0 for patients on vitamin K antagonists or DOACs), bilirubin 0.3–27 mg/dL, and sodium 120–138.6 mmol/L. Its coefficients are not published in the open literature — they are contained in Eurotransplant's non-public ELAS manual — so this calculator cannot and does not implement labReMELD-Na; it implements the original MELD for reference and education only, and is <strong>not</strong> the score currently used for organ allocation in the Eurotransplant region.</p>
+    </div>
+
+    <div class="section">
+      <h2>Related Scores</h2>
+      <p>MELD sits alongside several related prognostic and allocation scores that are not currently implemented in Scores2Go: Child-Pugh (the score MELD replaced for US allocation purposes), MELD-XI (the INR-free variant for anticoagulated patients, described above), PELD (the paediatric analogue used for candidates under 12), UKELD (the UK's own MELD-derived allocation score), ALBI (the Albumin-Bilirubin grade, developed primarily for hepatocellular carcinoma), and CLIF-C ACLF (a score specific to acute-on-chronic liver failure). Scores2Go's MELD 3.0 score is implemented separately — see <a href="./meld-3.html">the MELD 3.0 page</a>.</p>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Kamath PS, Wiesner RH, Malinchoc M, et al. <em>A model to predict survival in patients with end-stage liver disease.</em> Hepatology. 2001;33(2):464–470.</p>
+      <ol class="refs">
+        <li id="ref1">Malinchoc M, Kamath PS, Gordon FD, Peine CJ, Rank J, ter Borg PC. A model to predict poor survival in patients undergoing transjugular intrahepatic portosystemic shunts. <em>Hepatology.</em> 2000;31(4):864–871.</li>
+        <li id="ref2">Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients with end-stage liver disease. <em>Hepatology.</em> 2001;33(2):464–470.</li>
+        <li id="ref3">Wiesner R, Edwards E, Freeman R, et al.; United Network for Organ Sharing Liver Disease Severity Score Committee. Model for end-stage liver disease (MELD) and allocation of donor livers. <em>Gastroenterology.</em> 2003;124(1):91–96.</li>
+        <li id="ref4">Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium concentration into MELD. <em>Gastroenterology.</em> 2006;130(6):1652–1660. PMID: 16697729.</li>
+        <li id="ref5">Kim WR, Mannalithara A, Heimbach JK, et al. MELD 3.0: The Model for End-Stage Liver Disease Updated for the Modern Era. <em>Gastroenterology.</em> 2021;161(6):1887–1895.e4. PMID: 34481845.</li>
+        <li id="ref6">Porte RJ, Lisman T, Tripodi A, Caldwell SH, Trotter JF; Coagulation in Liver Disease Study Group. The International Normalized Ratio (INR) in the MELD Score: Problems and Solutions. <em>Am J Transplant.</em> 2010;10(6):1349–1353.</li>
+        <li id="ref7">Heuman DM, Mihas AA, Habib A, et al. MELD-XI: a rational approach to "sickest first" liver transplantation in cirrhotic patients requiring anticoagulant therapy. <em>Liver Transpl.</em> 2007;13(1):30–37. PMID: 17154400.</li>
+        <li id="ref8">Kim WR, Biggins SW, Kremers WK, et al. Hyponatremia and mortality among patients on the liver-transplant waiting list. <em>N Engl J Med.</em> 2008;359(10):1018–1026. doi:10.1056/NEJMoa0801209.</li>
+        <li id="ref9">Goudsmit BFJ, Putter H, Tushuizen ME, et al. Refitting the Model for End-Stage Liver Disease for the Eurotransplant Region. <em>Hepatology.</em> 2021;74(1):351–363. doi:10.1002/hep.31677.</li>
+      </ol>
     </div>
 
     <div class="cta">

@@ -102,6 +102,13 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://scores2go.com/scores/meld-3.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/meld-3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/meld-3.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://scores2go.com/scores/finnegan.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/finnegan.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/finnegan.html"/>
@@ -191,6 +198,13 @@
     <loc>https://scores2go.com/scores/de/meld.html</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/meld.html"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/meld.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/meld-3.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/meld-3.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/meld-3.html"/>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

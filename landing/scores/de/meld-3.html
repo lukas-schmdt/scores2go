@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MELD 3.0 – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="Model for End-Stage Liver Disease 3.0 — seit 2023 der OPTN/UNOS-Standard für die Leberallokation; ergänzt die klassischen MELD-Variablen um Natrium, Albumin und eine Geschlechtsanpassung." />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .tag {
+      display: inline-block;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol { padding-left: 20px; margin-bottom: 12px; }
+    ol li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Hepatologie · Transplantation · Schweregrad</div>
+    <h1>MELD 3.0</h1>
+    <p>MELD 3.0 ist der aktuelle OPTN/UNOS-Standard zur Priorisierung erwachsener Lebertransplantationskandidat*innen. Er erweitert das klassische Bilirubin/INR/Kreatinin-Modell um eine Geschlechtsanpassung, Serum-Natrium und Serum-Albumin. Die Punktzahl wird auf Werte zwischen 6 und 40 begrenzt.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Kim et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2021
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Beliebtheit 86
+      </span>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>MELD 3.0 ist eine 2021 veröffentlichte Weiterentwicklung des Model for End-Stage Liver Disease, die von Kim und Kollegen entwickelt wurde, um systematische geschlechts- und muskelmassebedingte Verzerrungen des ursprünglichen Scores zu korrigieren. Er ergänzt die klassische Bilirubin/INR/Kreatinin-Gleichung um einen Term für weibliches Geschlecht, Serum-Natrium und Serum-Albumin <sup><a href="#ref1">[1]</a></sup>. OPTN/UNOS führte MELD 3.0 am 13. Juli 2023 als Standard-Score für die Leberallokation in den USA ein <sup><a href="#ref2">[2]</a></sup> und löste damit MELD-Na ab, das seinerseits seit Januar 2016 der Allokationsstandard war.</p>
+      <p>Die ursprüngliche MELD-Gleichung wurde von Malinchoc und Kollegen entwickelt, um das Überleben nach Anlage eines transjugulären intrahepatischen portosystemischen Shunts (TIPS) vorherzusagen <sup><a href="#ref3">[3]</a></sup>, und wurde anschließend von Kamath und Kollegen als allgemeiner Prognosescore für terminale Lebererkrankungen validiert; deren Formel wurde 2002 zur Grundlage der UNOS-Leberallokation <sup><a href="#ref4">[4]</a></sup>.</p>
+      <p>Die zentrale Motivation für MELD 3.0 war die Erkenntnis, dass Frauen unter der ursprünglichen Formel systematisch benachteiligt wurden: Bei gleicher tatsächlicher glomerulärer Filtrationsrate ist das Serumkreatinin bei Frauen aufgrund geringerer durchschnittlicher Muskelmasse niedriger als bei Männern. Eine rein kreatininbasierte Schätzung unterschätzt daher den Schweregrad der Niereninsuffizienz bei weiblichen Kandidatinnen und verringert deren errechnete Priorität auf der Warteliste <sup><a href="#ref1">[1]</a></sup>. Der Geschlechtsterm und die Aufnahme von Albumin — einem Marker, der Ernährungs- und Muskelstatus breiter abbildet — wurden konzipiert, um diese Ungleichheit beim Zugang zur Transplantation zu korrigieren.</p>
+      <p>Wie in Scores2Go implementiert, gilt MELD 3.0 nur für erwachsene Kandidat*innen (Alter ≥ 18 Jahre). OPTN verwendet für Kandidat*innen im Alter von 12–17 Jahren eine gesonderte Formel ohne Geschlechtsterm, die hier nicht implementiert ist.</p>
+    </div>
+
+    <div class="section">
+      <h2>Formel</h2>
+      <pre>MELD 3.0 = (weiblich ? 1,33 : 0)
+         + 4,56 × ln(Bilirubin)
+         + 0,82 × (137 − Na)                          [Natrium-Term]
+         − 0,24 × (137 − Na) × ln(Bilirubin)           [Interaktion Natrium × Bilirubin]
+         + 9,09 × ln(INR)
+         + 11,14 × ln(Kreatinin)
+         + 1,85 × (3,5 − Albumin)                      [Albumin-Term]
+         − 1,83 × (3,5 − Albumin) × ln(Kreatinin)      [Interaktion Albumin × Kreatinin]
+         + 6
+
+Alle Werte in mg/dL (Bilirubin, Kreatinin), mmol/L (Natrium), g/dL (Albumin).
+Jeder Eingabewert wird VOR Berechnung der Formel gemäß der Tabelle unten begrenzt.
+Ergebnis auf die nächste ganze Zahl gerundet, begrenzt auf 6–40.</pre>
+    </div>
+
+    <div class="section">
+      <h2>Variablen &amp; Grenzwerte</h2>
+      <table>
+        <thead>
+          <tr><th>Variable</th><th>Untergrenze</th><th>Obergrenze</th><th>Sonderfälle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Geschlecht</td><td>—</td><td>—</td><td>„Weiblich" addiert fest +1,33 Punkte; kein Grenzwert</td></tr>
+          <tr><td>Bilirubin</td><td>1,0 mg/dL</td><td>—</td><td>—</td></tr>
+          <tr><td>INR</td><td>1,0</td><td>—</td><td>—</td></tr>
+          <tr><td>Kreatinin</td><td>1,0 mg/dL</td><td><strong>3,0 mg/dL</strong></td><td>Bei Dialyse (≥ 2 Sitzungen in der Vorwoche oder ≥ 24 h CVVHD) auf 3,0 mg/dL gesetzt</td></tr>
+          <tr><td>Natrium</td><td>125 mmol/L</td><td>137 mmol/L</td><td>—</td></tr>
+          <tr><td>Albumin</td><td>1,5 g/dL</td><td>3,5 g/dL</td><td>—</td></tr>
+          <tr><td>MELD 3.0 gesamt</td><td>6</td><td>40</td><td>—</td></tr>
+        </tbody>
+      </table>
+      <p>Die Kreatinin-Obergrenze beträgt bei MELD 3.0 <strong>3,0 mg/dL</strong> — niedriger als die 4,0 mg/dL des ursprünglichen MELD. Diese engere Begrenzung verlagert zusammen mit dem Geschlechts- und dem Albumin-Term die Priorität weg von einer rein kreatiningetriebenen Schätzung der Nierenfunktion.</p>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <table>
+        <thead>
+          <tr><th>MELD-3.0-Score</th><th>Schweregrad</th><th>90-Tage-Mortalität</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>&lt; 10</td><td>Niedrig</td><td>1,9 %</td></tr>
+          <tr><td>10–19</td><td>Moderat</td><td>6,0 %</td></tr>
+          <tr><td>20–29</td><td>Hoch</td><td>19,6 %</td></tr>
+          <tr><td>30–39</td><td>Sehr hoch</td><td>52,6 %</td></tr>
+          <tr><td>≥ 40</td><td>Sehr hoch</td><td>71,3 %</td></tr>
+        </tbody>
+      </table>
+      <p>Diese präzisen 90-Tage-Mortalitätswerte stammen aus der ursprünglichen UNOS-Validierungsanalyse des MELD-basierten Allokationssystems von Wiesner und Kollegen <sup><a href="#ref5">[5]</a></sup> und werden unverändert für die entsprechenden MELD-3.0-Score-Bänder verwendet.</p>
+    </div>
+
+    <div class="section">
+      <h2>Versionsgeschichte</h2>
+      <p>MELD durchlief vor MELD 3.0 drei wesentliche Entwicklungsstufen. Die ursprüngliche MELD-Gleichung, abgeleitet aus einer TIPS-Kohorte <sup><a href="#ref3">[3]</a></sup> und für die allgemeine Leberkrankheitsprognose validiert <sup><a href="#ref4">[4]</a></sup>, wurde 2002 zum primären Leberallokations-Score von UNOS.</p>
+      <p>2006 zeigten Biggins und Kollegen, dass die Einbeziehung des Serum-Natriums die Vorhersage der 90-Tage-Mortalität deutlich verbesserte, insbesondere bei Patient*innen mit leicht bis mäßig erhöhtem MELD <sup><a href="#ref6">[6]</a></sup>. Der daraus resultierende MELD-Na-Score — der den Natrium-Term nur anwendet, wenn der berechnete MELD 11 übersteigt, und Natrium auf 125–137 mmol/L begrenzt — wurde am 11. Januar 2016 von OPTN als primärer US-Allokationsalgorithmus eingeführt. MELD-Na wird hier nur zur historischen Einordnung dokumentiert; Scores2Go implementiert ihn nicht als eigenständigen Score.</p>
+      <p><strong>MELD 3.0 ist nicht der deutsche bzw. Eurotransplant-Allokationsscore</strong> — siehe Abschnitt „Eurotransplant-Abweichung" unten. MELD 3.0, veröffentlicht 2021 <sup><a href="#ref1">[1]</a></sup>, trat als OPTN-Richtlinie am 13. Juli 2023 in Kraft <sup><a href="#ref2">[2]</a></sup> und ersetzte MELD-Na, wobei der oben beschriebene Geschlechtsterm und Albumin hinzugefügt wurden.</p>
+    </div>
+
+    <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+
+      <h3>Geschlechterungleichheit und Kreatinin/Muskelmasse</h3>
+      <p>Bei gleicher tatsächlicher GFR ist das Kreatinin bei Frauen aufgrund geringerer durchschnittlicher Muskelmasse niedriger, sodass der ursprüngliche MELD weibliche Kandidatinnen systematisch unterbewertete und deren Transplantationspriorität verringerte — die direkte Motivation für den +1,33-Geschlechtsterm und die Aufnahme von Albumin <sup><a href="#ref1">[1]</a></sup>. Dieselbe muskelmassebedingte Verzerrung betrifft sarkopenische oder kachektische Patient*innen jeden Geschlechts, ein bei fortgeschrittener Leberzirrhose häufiger Befund, der durch die Aufnahme von Albumin nur teilweise adressiert wird.</p>
+
+      <h3>INR-Reproduzierbarkeit und Antikoagulation</h3>
+      <p>Dieselbe Blutprobe kann zwischen verschiedenen Laboren um etwa 20–26&nbsp;% abweichende INR-Werte ergeben, da die Kalibrierung des Thromboplastin-ISI an Warfarin-antikoagulierten Patient*innen und nicht an zirrhotischer Koagulopathie validiert wird — allein dies kann den berechneten MELD-Score je nach durchführendem Labor um mehrere Punkte verschieben <sup><a href="#ref7">[7]</a></sup>. Vitamin-K-Antagonisten und direkte orale Antikoagulanzien (DOAKs) erhöhen den INR zudem unabhängig von der hepatischen Syntheseleistung. MELD-XI (MELD-XI&nbsp;=&nbsp;5,11&nbsp;×&nbsp;ln(Bilirubin)&nbsp;+&nbsp;11,76&nbsp;×&nbsp;ln(Kreatinin)&nbsp;+&nbsp;9,44), das den INR-Term vollständig weglässt, wurde speziell für antikoagulierte zirrhotische Patient*innen entwickelt <sup><a href="#ref8">[8]</a></sup>.</p>
+
+      <h3>Was MELD 3.0 weiterhin nicht abbildet, und Ausnahmepunkte</h3>
+      <p>MELD 3.0 berücksichtigt weiterhin nicht refraktären Aszites, hepatische Enzephalopathie oder rezidivierende Cholangitis als direkte Eingabewerte. Dass Hyponatriämie selbst ein unabhängiger Prädiktor der Wartelisten-Mortalität ist, zeigten Kim und Kollegen <sup><a href="#ref9">[9]</a></sup> — dieser Befund war der Auslöser dafür, Natrium zunächst in MELD-Na und dann in MELD 3.0 aufzunehmen. Standardisierte MELD-Ausnahmepunkte, etwa für hepatozelluläres Karzinom, hepatopulmonales Syndrom und familiäre Amyloid-Polyneuropathie, existieren innerhalb der OPTN-Richtlinie <sup><a href="#ref2">[2]</a></sup> gerade deshalb, weil der laborbasierte MELD die Dringlichkeit bei manchen Kandidat*innen unterschätzt.</p>
+
+      <h3>Eurotransplant-Abweichung</h3>
+      <p>Eurotransplant (Deutschland, Österreich, die Benelux-Länder, Slowenien, Kroatien und Ungarn) hat <strong>nie</strong> MELD-Na verwendet und verwendet <strong>nicht</strong> MELD 3.0. Der Wechsel erfolgte direkt vom unveränderten ursprünglichen labMELD zum labReMELD-Na, einem natriumhaltigen Score, der auf Eurotransplant-Registerdaten neu angepasst wurde, weil sich die US-amerikanischen MELD-Na-Natriumkoeffizienten nicht gut auf die Eurotransplant-Population übertragen ließen <sup><a href="#ref10">[10]</a></sup>; die entsprechende Richtlinie der Bundesärztekammer wurde am 25. März 2025 veröffentlicht und trat am 1. April 2025 in Kraft. Das Eurotransplant-labReMELD-Na verwendet einen dritten, eigenständigen Satz von Variablengrenzen — Kreatinin 0,7–2,5&nbsp;mg/dL (2,5&nbsp;mg/dL bei Dialyse), INR 1,0–2,6 (bei Vitamin-K-Antagonisten oder DOAKs auf 1,0 gesetzt), Bilirubin 0,3–27&nbsp;mg/dL und Natrium 120–138,6&nbsp;mmol/L. Die Koeffizienten sind nicht in der offen zugänglichen Literatur veröffentlicht — sie befinden sich im nicht-öffentlichen ELAS-Handbuch von Eurotransplant — sodass hier nur die Eingabewerte und Grenzen beschrieben werden, nicht die Formel. Für die Eurotransplant-Region gilt: MELD 3.0 ist <strong>nicht</strong> der dortige Allokationsscore.</p>
+    </div>
+
+    <div class="section">
+      <h2>Verwandte Scores</h2>
+      <p>MELD 3.0 steht neben mehreren verwandten Prognose- und Allokationsscores, die derzeit nicht in Scores2Go implementiert sind: Child-Pugh (der ursprüngliche Leber-Schweregrad-Score, den MELD für Allokationszwecke abgelöst hat), MELD-XI (die INR-freie Variante für antikoagulierte Patient*innen, siehe oben), PELD (das pädiatrische Analogon für Kandidat*innen unter 12 Jahren), UKELD (der eigene, von MELD abgeleitete Allokationsscore des Vereinigten Königreichs), ALBI (der Albumin-Bilirubin-Grad, primär für hepatozelluläres Karzinom entwickelt) und CLIF-C ACLF (ein Score speziell für akut-auf-chronisches Leberversagen). Der ursprüngliche, unveränderte MELD-Score von Scores2Go ist separat implementiert — siehe <a href="./meld.html">die MELD-Seite</a>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <ol class="refs">
+        <li id="ref1">Kim WR, Mannalithara A, Heimbach JK, et al. MELD 3.0: The Model for End-Stage Liver Disease Updated for the Modern Era. <em>Gastroenterology.</em> 2021;161(6):1887–1895.e4. PMID: 34481845.</li>
+        <li id="ref2">OPTN Policy 9: Allocation of Livers and Liver-Intestines. Effective 13 July 2023.</li>
+        <li id="ref3">Malinchoc M, Kamath PS, Gordon FD, Peine CJ, Rank J, ter Borg PC. A model to predict poor survival in patients undergoing transjugular intrahepatic portosystemic shunts. <em>Hepatology.</em> 2000;31(4):864–871.</li>
+        <li id="ref4">Kamath PS, Wiesner RH, Malinchoc M, et al. A model to predict survival in patients with end-stage liver disease. <em>Hepatology.</em> 2001;33(2):464–470.</li>
+        <li id="ref5">Wiesner R, Edwards E, Freeman R, et al.; United Network for Organ Sharing Liver Disease Severity Score Committee. Model for end-stage liver disease (MELD) and allocation of donor livers. <em>Gastroenterology.</em> 2003;124(1):91–96.</li>
+        <li id="ref6">Biggins SW, Kim WR, Terrault NA, et al. Evidence-based incorporation of serum sodium concentration into MELD. <em>Gastroenterology.</em> 2006;130(6):1652–1660. PMID: 16697729.</li>
+        <li id="ref7">Porte RJ, Lisman T, Tripodi A, Caldwell SH, Trotter JF; Coagulation in Liver Disease Study Group. The International Normalized Ratio (INR) in the MELD Score: Problems and Solutions. <em>Am J Transplant.</em> 2010;10(6):1349–1353.</li>
+        <li id="ref8">Heuman DM, Mihas AA, Habib A, et al. MELD-XI: a rational approach to "sickest first" liver transplantation in cirrhotic patients requiring anticoagulant therapy. <em>Liver Transpl.</em> 2007;13(1):30–37. PMID: 17154400.</li>
+        <li id="ref9">Kim WR, Biggins SW, Kremers WK, et al. Hyponatremia and mortality among patients on the liver-transplant waiting list. <em>N Engl J Med.</em> 2008;359(10):1018–1026. doi:10.1056/NEJMoa0801209.</li>
+        <li id="ref10">Goudsmit BFJ, Putter H, Tushuizen ME, et al. Refitting the Model for End-Stage Liver Disease for the Eurotransplant Region. <em>Hepatology.</em> 2021;74(1):351–363. doi:10.1002/hep.31677.</li>
+      </ol>
+    </div>
+
+    <div class="cta">
+      <p>MELD 3.0 interaktiv in der App berechnen.</p>
+      <a class="button" href="../../app/?score=meld-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Nicht für die direkte klinische Entscheidungsfindung geeignet.</p>
+
+  </main>
+
+</body>
+</html>

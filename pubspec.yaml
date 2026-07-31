@@ -45,6 +45,7 @@ flutter:
     - lib/data/scores/definitions/euroscore/
     - lib/data/scores/definitions/gcs/
     - lib/data/scores/definitions/meld/
+    - lib/data/scores/definitions/meld-3/
     - lib/data/scores/definitions/finnegan/
     - lib/data/scores/definitions/mods/
     - lib/data/scores/definitions/horovitz/

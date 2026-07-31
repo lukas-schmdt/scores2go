@@ -7,6 +7,7 @@ import 'package:scores_2_go/data/scores/definitions/gcs/gcs.dart';
 import 'package:scores_2_go/data/scores/definitions/horovitz/horovitz.dart';
 import 'package:scores_2_go/data/scores/definitions/icdsc/icdsc.dart';
 import 'package:scores_2_go/data/scores/definitions/meld/meld.dart';
+import 'package:scores_2_go/data/scores/definitions/meld-3/meld_3.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods.dart';
 import 'package:scores_2_go/data/scores/definitions/nudesc/nudesc.dart';
 import 'package:scores_2_go/data/scores/definitions/qsofa/qsofa.dart';
@@ -25,6 +26,7 @@ List<Score> buildScoresList(String lang) {
     buildSofaScore(lang),
     buildGcsScore(lang),
     buildMeldScore(lang),
+    buildMeld3Score(lang),
     buildFinneganScore(lang),
     buildModsScore(lang),
     buildHorovitzScore(lang),

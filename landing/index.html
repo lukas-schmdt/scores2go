@@ -588,8 +588,18 @@
             <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
           </svg>
         </div>
-        <p class="score-desc">Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.</p>
+        <p class="score-desc">Model for End-Stage Liver Disease — the original 2001 laboratory-based prognosis score for liver transplant candidates; superseded for live allocation by MELD 3.0.</p>
         <div class="score-tags"><span class="tag hepato">Hepatology</span><span class="tag hepato">Transplant</span></div>
+      </a>
+      <a class="score-card" href="./scores/meld-3.html">
+        <div class="score-card-top">
+          <span class="score-name">MELD 3.0</span>
+          <svg class="score-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </div>
+        <p class="score-desc">Model for End-Stage Liver Disease 3.0 — the OPTN/UNOS liver allocation standard since 2023, adding sodium, albumin, and a sex adjustment to the classic MELD variables.</p>
+        <div class="score-tags"><span class="tag hepato">Hepatology</span><span class="tag hepato">Transplant</span><span class="tag severity">Severity</span></div>
       </a>
       <a class="score-card" href="./scores/finnegan.html">
         <div class="score-card-top">
@@ -802,11 +812,20 @@
       {
         name: "MELD",
         desc: {
-          en: "Model for End-Stage Liver Disease — laboratory-based prognosis score and primary organ allocation algorithm for liver transplantation.",
-          de: "Model for End-Stage Liver Disease — laborbasierter Prognosescore und primärer Organzuteilungsalgorithmus für die Lebertransplantation.",
+          en: "Model for End-Stage Liver Disease — the original 2001 laboratory-based prognosis score for liver transplant candidates; superseded for live allocation by MELD 3.0.",
+          de: "Model for End-Stage Liver Disease — der ursprüngliche, 2001 veröffentlichte laborbasierte Prognosescore für Lebertransplantationskandidat*innen; für die aktuelle Allokation durch MELD 3.0 abgelöst.",
         },
         tags: ["Hepatology","Transplant"],
         href: "./scores/meld.html",
+      },
+      {
+        name: "MELD 3.0",
+        desc: {
+          en: "Model for End-Stage Liver Disease 3.0 — the OPTN/UNOS liver allocation standard since 2023, adding sodium, albumin, and a sex adjustment to the classic MELD variables.",
+          de: "Model for End-Stage Liver Disease 3.0 — seit 2023 der OPTN/UNOS-Standard für die Leberallokation; ergänzt die klassischen MELD-Variablen um Natrium, Albumin und eine Geschlechtsanpassung.",
+        },
+        tags: ["Hepatology","Transplant","Severity"],
+        href: "./scores/meld-3.html",
       },
       {
         name: "Finnegan NAS",
