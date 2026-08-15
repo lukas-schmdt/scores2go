@@ -16,7 +16,10 @@ class AuthScreen extends StatelessWidget {
     final l = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
-    return BlocBuilder<AuthBloc, AuthState>(
+    return BlocConsumer<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state.isAuthenticated) Navigator.of(context).maybePop();
+      },
       builder: (context, state) {
         return Scaffold(
           backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,

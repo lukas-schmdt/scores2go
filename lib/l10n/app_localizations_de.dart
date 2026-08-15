@@ -138,6 +138,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get logout => 'Abmelden';
 
   @override
+  String get guestModeTitle => 'Du nutzt die App als Gast';
+
+  @override
+  String get guestModeSubtitle =>
+      'Melde dich an, um Favoriten und Sammlungen geräteübergreifend zu speichern.';
+
+  @override
   String get appSection => 'App';
 
   @override
@@ -190,6 +197,9 @@ class AppLocalizationsDe extends AppLocalizations {
       'Nicht gefunden was du suchst? Lass es uns wissen!';
 
   @override
+  String get signInToSendFeedback => 'Melde dich an, um Feedback zu senden.';
+
+  @override
   String get noScoresAvailable => 'Keine Scores vorhanden';
 
   @override
@@ -207,6 +217,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get errorLoadingFavorites => 'Fehler beim Laden der Favoriten';
+
+  @override
+  String get signInRequiredTitle => 'Anmeldung erforderlich';
+
+  @override
+  String get favoritesSignInSubtitle =>
+      'Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.';
+
+  @override
+  String get signInToFavorite => 'Melde dich an, um Favoriten zu speichern.';
 
   @override
   String get noItemsFound => 'Keine Elemente gefunden';
@@ -325,6 +345,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get collectionsTitle => 'Sammlungen';
+
+  @override
+  String get collectionsSignInSubtitle =>
+      'Melde dich an, um Sammlungen zu erstellen und zu verwalten.';
+
+  @override
+  String get signInToUseCollections =>
+      'Melde dich an, um Sammlungen zu nutzen.';
 
   @override
   String get addToCollection => 'Zu Sammlung hinzufügen';

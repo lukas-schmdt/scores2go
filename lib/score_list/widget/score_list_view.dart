@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/score_list/bloc/scores_bloc.dart';
 import 'package:scores_2_go/score_list/widget/score_list_item.dart';
@@ -50,12 +52,16 @@ class _MissingScoreFooter extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () => showDialog<void>(
-          context: context,
-          builder: (_) => FeedbackDialog(
-            repository: context.read<FeedbackRepository>(),
-          ),
-        ),
+        onTap: () {
+          final l = AppLocalizations.of(context)!;
+          if (!ensureSignedIn(context, message: l.signInToSendFeedback)) return;
+          showDialog<void>(
+            context: context,
+            builder: (_) => FeedbackDialog(
+              repository: context.read<FeedbackRepository>(),
+            ),
+          );
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(

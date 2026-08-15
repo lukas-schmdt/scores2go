@@ -136,6 +136,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Sign out';
 
   @override
+  String get guestModeTitle => 'You\'re browsing as a guest';
+
+  @override
+  String get guestModeSubtitle =>
+      'Sign in to save favorites and collections across devices.';
+
+  @override
   String get appSection => 'App';
 
   @override
@@ -188,6 +195,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Can\'t find what you\'re looking for? Let us know!';
 
   @override
+  String get signInToSendFeedback => 'Sign in to send feedback.';
+
+  @override
   String get noScoresAvailable => 'No scores available';
 
   @override
@@ -205,6 +215,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get errorLoadingFavorites => 'Error loading favorites';
+
+  @override
+  String get signInRequiredTitle => 'Sign in required';
+
+  @override
+  String get favoritesSignInSubtitle =>
+      'Sign in to save and sync your favorites.';
+
+  @override
+  String get signInToFavorite => 'Sign in to save favorites.';
 
   @override
   String get noItemsFound => 'No items found';
@@ -323,6 +343,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get collectionsTitle => 'Collections';
+
+  @override
+  String get collectionsSignInSubtitle =>
+      'Sign in to create and manage collections.';
+
+  @override
+  String get signInToUseCollections => 'Sign in to use collections.';
 
   @override
   String get addToCollection => 'Add to collection';

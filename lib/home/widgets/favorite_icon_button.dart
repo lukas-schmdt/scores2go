@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
+import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
 class FavoriteIconButton extends StatelessWidget {
@@ -28,6 +30,10 @@ class FavoriteIconButton extends StatelessWidget {
             onPressed: isPending
                 ? null
                 : () {
+                    final l = AppLocalizations.of(context)!;
+                    if (!ensureSignedIn(context, message: l.signInToFavorite)) {
+                      return;
+                    }
                     if (!isFavorite) {
                       context
                           .read<UserFavoritesBloc>()

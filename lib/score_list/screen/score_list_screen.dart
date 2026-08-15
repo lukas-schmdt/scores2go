@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
@@ -154,15 +155,20 @@ class _SearchEmptyState extends StatelessWidget {
             const SizedBox(height: 24),
             InkWell(
               borderRadius: BorderRadius.circular(12),
-              onTap: () => showDialog<void>(
-                context: context,
-                builder: (_) => FeedbackDialog(
-                  repository: context.read<FeedbackRepository>(),
-                  initialText: searchQuery.isNotEmpty
-                      ? l.missingScorePrefill(searchQuery)
-                      : null,
-                ),
-              ),
+              onTap: () {
+                if (!ensureSignedIn(context, message: l.signInToSendFeedback)) {
+                  return;
+                }
+                showDialog<void>(
+                  context: context,
+                  builder: (_) => FeedbackDialog(
+                    repository: context.read<FeedbackRepository>(),
+                    initialText: searchQuery.isNotEmpty
+                        ? l.missingScorePrefill(searchQuery)
+                        : null,
+                  ),
+                );
+              },
               child: Container(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16,

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
-import 'package:scores_2_go/auth/screen/auth_screen.dart';
 import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
 import 'package:scores_2_go/home/screen/home_screen.dart';
@@ -92,33 +91,55 @@ class Scores2GoApp extends StatelessWidget {
             : (settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light),
         home: BlocBuilder<AuthBloc, AuthState>(
           builder: (authContext, authState) {
-            if (authState.status == AuthStatus.authenticated) {
-              return MultiBlocProvider(
+            if (authState.status == AuthStatus.passwordRecovery) {
+              return const ResetPasswordScreen();
+            }
+
+            // Score browsing needs no account, so HomeScreen is the root for
+            // both anonymous and authenticated sessions. HomeBloc and
+            // RecentlyUsedBloc aren't user-scoped, so they're created once
+            // and survive sign-in/sign-out (no reason to reset nav state).
+            // UserFavoritesBloc/CollectionsBloc hold per-account data, so
+            // they're keyed on auth status: the key change forces a clean
+            // recreate on every anon<->authenticated transition, avoiding
+            // stale data from a previous session leaking into a new one.
+            final isAuthenticated = authState.isAuthenticated;
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
+                BlocProvider<RecentlyUsedBloc>(
+                  create: (context) =>
+                      RecentlyUsedBloc(scoresRepo)
+                        ..add(LoadRecentlyUsedEvent()),
+                ),
+              ],
+              child: MultiBlocProvider(
+                key: ValueKey(isAuthenticated),
                 providers: [
-                  BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
                   BlocProvider<UserFavoritesBloc>(
-                    create: (context) =>
-                        UserFavoritesBloc(scoresRepo)
-                          ..add(const LoadUserFavoritesEvent()),
-                  ),
-                  BlocProvider<RecentlyUsedBloc>(
-                    create: (context) =>
-                        RecentlyUsedBloc(scoresRepo)
-                          ..add(LoadRecentlyUsedEvent()),
+                    create: (context) {
+                      final bloc = UserFavoritesBloc(scoresRepo);
+                      if (isAuthenticated) {
+                        bloc.add(const LoadUserFavoritesEvent());
+                      }
+                      return bloc;
+                    },
                   ),
                   BlocProvider<CollectionsBloc>(
-                    create: (context) =>
-                        CollectionsBloc(context.read<CollectionsRepository>())
-                          ..add(const LoadCollectionsEvent()),
+                    create: (context) {
+                      final bloc = CollectionsBloc(
+                        context.read<CollectionsRepository>(),
+                      );
+                      if (isAuthenticated) {
+                        bloc.add(const LoadCollectionsEvent());
+                      }
+                      return bloc;
+                    },
                   ),
                 ],
                 child: HomeScreen(),
-              );
-            } else if (authState.status == AuthStatus.passwordRecovery) {
-              return const ResetPasswordScreen();
-            } else {
-              return const AuthScreen();
-            }
+              ),
+            );
           },
         ),
       ),

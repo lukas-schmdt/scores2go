@@ -49,6 +49,8 @@
   "password": "Passwort",
   "changePassword": "Passwort ändern",
   "logout": "Abmelden",
+  "guestModeTitle": "Du nutzt die App als Gast",
+  "guestModeSubtitle": "Melde dich an, um Favoriten und Sammlungen geräteübergreifend zu speichern.",
   "appSection": "App",
   "appearance": "Erscheinungsbild",
   "darkMode": "Dunkelmodus",
@@ -68,6 +70,7 @@
   "tryDifferentSearch": "Anderen Suchbegriff versuchen.",
   "reportMissingScore": "Fehlenden Score melden",
   "reportMissingScoreSubtitle": "Nicht gefunden was du suchst? Lass es uns wissen!",
+  "signInToSendFeedback": "Melde dich an, um Feedback zu senden.",
   "noScoresAvailable": "Keine Scores vorhanden",
   "addScoresOrCheckConnection": "Scores hinzufügen oder Verbindung prüfen.",
 
@@ -76,6 +79,9 @@
 
   "favoritesTitle": "Favoriten",
   "errorLoadingFavorites": "Fehler beim Laden der Favoriten",
+  "signInRequiredTitle": "Anmeldung erforderlich",
+  "favoritesSignInSubtitle": "Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.",
+  "signInToFavorite": "Melde dich an, um Favoriten zu speichern.",
 
   "noItemsFound": "Keine Elemente gefunden",
   "pleaseSelectItem": "Bitte ein Element auswählen.",
@@ -122,6 +128,8 @@
   "unknownState": "Unbekannter Zustand",
 
   "collectionsTitle": "Sammlungen",
+  "collectionsSignInSubtitle": "Melde dich an, um Sammlungen zu erstellen und zu verwalten.",
+  "signInToUseCollections": "Melde dich an, um Sammlungen zu nutzen.",
   "addToCollection": "Zu Sammlung hinzufügen",
   "noCollectionsYet": "Noch keine Sammlungen. Erstelle unten eine neue.",
   "newCollection": "Neue Sammlung",

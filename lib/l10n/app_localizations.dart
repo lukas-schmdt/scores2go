@@ -344,6 +344,18 @@ abstract class AppLocalizations {
   /// **'Abmelden'**
   String get logout;
 
+  /// No description provided for @guestModeTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Du nutzt die App als Gast'**
+  String get guestModeTitle;
+
+  /// No description provided for @guestModeSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Favoriten und Sammlungen geräteübergreifend zu speichern.'**
+  String get guestModeSubtitle;
+
   /// No description provided for @appSection.
   ///
   /// In de, this message translates to:
@@ -446,6 +458,12 @@ abstract class AppLocalizations {
   /// **'Nicht gefunden was du suchst? Lass es uns wissen!'**
   String get reportMissingScoreSubtitle;
 
+  /// No description provided for @signInToSendFeedback.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Feedback zu senden.'**
+  String get signInToSendFeedback;
+
   /// No description provided for @noScoresAvailable.
   ///
   /// In de, this message translates to:
@@ -481,6 +499,24 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Fehler beim Laden der Favoriten'**
   String get errorLoadingFavorites;
+
+  /// No description provided for @signInRequiredTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Anmeldung erforderlich'**
+  String get signInRequiredTitle;
+
+  /// No description provided for @favoritesSignInSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.'**
+  String get favoritesSignInSubtitle;
+
+  /// No description provided for @signInToFavorite.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Favoriten zu speichern.'**
+  String get signInToFavorite;
 
   /// No description provided for @noItemsFound.
   ///
@@ -703,6 +739,18 @@ abstract class AppLocalizations {
   /// In de, this message translates to:
   /// **'Sammlungen'**
   String get collectionsTitle;
+
+  /// No description provided for @collectionsSignInSubtitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Sammlungen zu erstellen und zu verwalten.'**
+  String get collectionsSignInSubtitle;
+
+  /// No description provided for @signInToUseCollections.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Sammlungen zu nutzen.'**
+  String get signInToUseCollections;
 
   /// No description provided for @addToCollection.
   ///

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 import 'package:scores_2_go/settings/screen/disclaimer_screen.dart';
@@ -30,6 +31,7 @@ class SettingsScreen extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         final effectiveDark = Theme.of(context).brightness == Brightness.dark;
+        final isAuthenticated = context.watch<AuthBloc>().state.isAuthenticated;
         return Scaffold(
           appBar: AppBar(title: Text(l.settings)),
           body: SingleChildScrollView(
@@ -39,31 +41,34 @@ class SettingsScreen extends StatelessWidget {
               children: [
                 // Account section
                 _SectionHeader(l.account),
-                _SettingsCard(
-                  children: [
-                    _InfoTile(
-                      icon: Icons.email_outlined,
-                      label: l.email,
-                      value: context.read<AuthBloc>().state.username,
-                    ),
-                    _Divider(),
-                    _ActionTile(
-                      icon: Icons.lock_outline,
-                      label: l.password,
-                      value: '••••••••',
-                      onTap: () => _showChangePasswordDialog(context),
-                    ),
-                    _Divider(),
-                    _ActionTile(
-                      icon: Icons.logout,
-                      label: l.logout,
-                      iconColor: cs.error,
-                      labelColor: cs.error,
-                      onTap: () =>
-                          context.read<AuthBloc>().add(const LogoutEvent()),
-                    ),
-                  ],
-                ),
+                if (isAuthenticated)
+                  _SettingsCard(
+                    children: [
+                      _InfoTile(
+                        icon: Icons.email_outlined,
+                        label: l.email,
+                        value: context.read<AuthBloc>().state.username,
+                      ),
+                      _Divider(),
+                      _ActionTile(
+                        icon: Icons.lock_outline,
+                        label: l.password,
+                        value: '••••••••',
+                        onTap: () => _showChangePasswordDialog(context),
+                      ),
+                      _Divider(),
+                      _ActionTile(
+                        icon: Icons.logout,
+                        label: l.logout,
+                        iconColor: cs.error,
+                        labelColor: cs.error,
+                        onTap: () =>
+                            context.read<AuthBloc>().add(const LogoutEvent()),
+                      ),
+                    ],
+                  )
+                else
+                  _GuestAccountCard(cs: cs, l: l),
 
                 const SizedBox(height: 24),
 
@@ -207,6 +212,53 @@ class _SectionHeader extends StatelessWidget {
               fontWeight: FontWeight.w700,
               letterSpacing: 0.8,
             ),
+      ),
+    );
+  }
+}
+
+class _GuestAccountCard extends StatelessWidget {
+  const _GuestAccountCard({required this.cs, required this.l});
+
+  final ColorScheme cs;
+  final AppLocalizations l;
+
+  @override
+  Widget build(BuildContext context) {
+    final tt = Theme.of(context).textTheme;
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.person_outline, size: 20, color: cs.onSurfaceVariant),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    l.guestModeTitle,
+                    style: tt.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            Text(
+              l.guestModeSubtitle,
+              style: tt.bodyMedium?.copyWith(color: cs.onSurfaceVariant),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: () => openAuthScreen(context),
+                child: Text(l.login),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

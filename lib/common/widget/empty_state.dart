@@ -5,12 +5,14 @@ class EmptyState extends StatelessWidget {
   final IconData iconData;
   final String? title;
   final String? subtitle;
+  final Widget? action;
 
   const EmptyState({
     super.key,
     this.iconData = Icons.question_mark,
     this.title,
     this.subtitle,
+    this.action,
   });
 
   const EmptyState.empty({
@@ -18,6 +20,7 @@ class EmptyState extends StatelessWidget {
     this.iconData = Icons.question_mark,
     this.title,
     this.subtitle,
+    this.action,
   });
 
   const EmptyState.error({
@@ -25,6 +28,7 @@ class EmptyState extends StatelessWidget {
     this.iconData = Icons.error_outline,
     this.title,
     this.subtitle,
+    this.action,
   });
 
   @override
@@ -44,6 +48,10 @@ class EmptyState extends StatelessWidget {
             subtitle ?? l.pleaseSelectItem,
             style: const TextStyle(fontWeight: FontWeight.normal),
           ),
+          if (action != null) ...[
+            const SizedBox(height: 16),
+            action!,
+          ],
         ],
       ),
     );

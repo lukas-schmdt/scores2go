@@ -52,6 +52,16 @@ class AuthState extends Equatable {
     );
   }
 
+  /// Whether this state represents a signed-in session. `status ==
+  /// AuthStatus.authenticated` alone isn't enough: changing the password
+  /// (see `_onChangePassword` in AuthBloc) leaves the user signed in but
+  /// moves `status` to `changePasswordSuccess`/`changePasswordFailed`
+  /// without ever re-emitting `authenticated`.
+  bool get isAuthenticated =>
+      status == AuthStatus.authenticated ||
+      status == AuthStatus.changePasswordSuccess ||
+      status == AuthStatus.changePasswordFailed;
+
   @override
   List<Object?> get props =>
       [status, username, password, token, refreshToken, errorMessage];

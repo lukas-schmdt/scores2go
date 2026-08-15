@@ -49,6 +49,8 @@
   "password": "Password",
   "changePassword": "Change password",
   "logout": "Sign out",
+  "guestModeTitle": "You're browsing as a guest",
+  "guestModeSubtitle": "Sign in to save favorites and collections across devices.",
   "appSection": "App",
   "appearance": "Appearance",
   "darkMode": "Dark mode",
@@ -68,6 +70,7 @@
   "tryDifferentSearch": "Try a different search term.",
   "reportMissingScore": "Report missing score",
   "reportMissingScoreSubtitle": "Can't find what you're looking for? Let us know!",
+  "signInToSendFeedback": "Sign in to send feedback.",
   "noScoresAvailable": "No scores available",
   "addScoresOrCheckConnection": "Add scores or check your connection.",
 
@@ -75,6 +78,9 @@
   "errorLoadingRecentScores": "Error loading recent scores",
 
   "favoritesTitle": "Favorites",
+  "signInRequiredTitle": "Sign in required",
+  "favoritesSignInSubtitle": "Sign in to save and sync your favorites.",
+  "signInToFavorite": "Sign in to save favorites.",
   "errorLoadingFavorites": "Error loading favorites",
 
   "noItemsFound": "No items found",
@@ -122,6 +128,8 @@
   "unknownState": "Unknown state",
 
   "collectionsTitle": "Collections",
+  "collectionsSignInSubtitle": "Sign in to create and manage collections.",
+  "signInToUseCollections": "Sign in to use collections.",
   "addToCollection": "Add to collection",
   "noCollectionsYet": "No collections yet. Create one below.",
   "newCollection": "New collection",

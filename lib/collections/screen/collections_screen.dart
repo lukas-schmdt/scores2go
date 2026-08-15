@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
 import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
 import 'package:scores_2_go/collections/screen/collection_detail_screen.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
@@ -12,15 +14,30 @@ class CollectionsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l = AppLocalizations.of(context)!;
+
+    if (!context.watch<AuthBloc>().state.isAuthenticated) {
+      return Scaffold(
+        appBar: AppBar(title: Text(l.collectionsTitle)),
+        body: EmptyState(
+          iconData: Icons.lock_outline,
+          title: l.signInRequiredTitle,
+          subtitle: l.collectionsSignInSubtitle,
+          action: FilledButton(
+            onPressed: () => openAuthScreen(context),
+            child: Text(l.login),
+          ),
+        ),
+      );
+    }
+
     return BlocBuilder<CollectionsBloc, CollectionsState>(
       builder: (context, state) {
         final collections = state.collections;
         final isMobile = MediaQuery.of(context).size.width < kMobileBreakpoint;
 
         return Scaffold(
-          appBar: AppBar(
-            title: Text(AppLocalizations.of(context)!.collectionsTitle),
-          ),
+          appBar: AppBar(title: Text(l.collectionsTitle)),
           floatingActionButton: FloatingActionButton(
             onPressed: () => _showCreateDialog(context),
             child: const Icon(Icons.add),
