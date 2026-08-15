@@ -119,6 +119,27 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) td { background: #fafafa; }
 
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
     .tag {
       display: inline-block;
       background: #eff6ff;
@@ -206,7 +227,7 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>SAPS 3 is organised into three boxes collecting information available at the time of ICU admission. The total score ranges from 0 to 217 points, which is converted to a predicted in-hospital mortality probability via a logistic regression equation. Unlike APACHE II, SAPS 3 offers seven region-specific equations to correct for international differences in case mix and hospital structure.</p>
+      <p>SAPS 3 is organised into three boxes collecting information available at the time of ICU admission, derived and validated in a cohort of 19,577 patients across 35 countries <sup><a href="#ref1">[1]</a></sup>. The total score ranges from 0 to 217 points, which is converted to a predicted in-hospital mortality probability via a logistic regression equation <sup><a href="#ref2">[2]</a></sup>. Unlike APACHE II, SAPS 3 offers seven region-specific equations in addition to a global/pooled equation, to correct for international differences in case mix and hospital structure — see <em>Scientific Validity &amp; Limitations</em> below for which one Scores2Go implements.</p>
     </div>
 
     <div class="section">
@@ -245,7 +266,7 @@
           <tr><td></td><td>Other hospital</td><td>0</td></tr>
           <tr><td></td><td>Hospital ward</td><td>6</td></tr>
           <tr><td></td><td>Direct admission</td><td>0</td></tr>
-          <tr><td>Surgical admission</td><td>Yes</td><td>+1 (modifier)</td></tr>
+          <tr><td>Planned (elective) surgical admission</td><td>Yes</td><td>−6</td></tr>
           <tr><td>Reason for ICU</td><td>Sepsis</td><td>5</td></tr>
           <tr><td></td><td>Respiratory failure</td><td>4</td></tr>
           <tr><td></td><td>Cardiac arrest</td><td>10</td></tr>
@@ -312,10 +333,12 @@
 
     <div class="section">
       <h2>Mortality Formula</h2>
-      <pre>logit = −32.6659 + ln(SAPS 3 score + 1) × 7.3068
+      <pre>logit = −32.6659 + ln(SAPS 3 score + 20.5958) × 7.3068
 
 Predicted mortality = e^logit / (1 + e^logit)</pre>
-      <p>Seven region-specific equations (Europe, Americas, etc.) are available for improved local calibration.</p>
+      <div class="note">
+        This is the <strong>global (pooled) equation</strong> from the original derivation. Seven additional region-specific equations (Australasia, Central/South America, Central/Western Europe, Eastern Europe, North America, Northern Europe, Southern Europe/Mediterranean) exist for improved local calibration <sup><a href="#ref2">[2]</a></sup> — Scores2Go currently implements only the global equation, not the regional variants.
+      </div>
     </div>
 
     <div class="section">
@@ -331,12 +354,33 @@ Predicted mortality = e^logit / (1 + e^logit)</pre>
           <tr><td>&gt; 50 %</td><td>Very high</td></tr>
         </tbody>
       </table>
+      <div class="note">
+        These risk-class labels are an informal, illustrative grouping of the computed percentage for quick reading — they are not a banding scheme defined in the original publication. The precise computed percentage (shown alongside) is the actual output of the validated equation; treat the label as a rough guide, not a separately validated cutoff.
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>SAPS 3's defining methodological feature is its explicit regionalization: because case mix, admission thresholds, and ICU practice vary systematically by world region, the original derivation produced both a global/pooled equation and seven region-specific equations with different coefficients <sup><a href="#ref2">[2]</a></sup>. A calculator that only offers the global equation (as Scores2Go currently does) will tend to be less well-calibrated in any single region than the matching regional equation would be — this is a known, designed-for trade-off rather than a defect in the global equation itself, but it's worth knowing which version you're looking at.</p>
+      <p>A systematic review of 28 external validation studies of SAPS 3 found considerable heterogeneity in reported calibration across settings and eras, with performance often degrading outside the original derivation cohort's regions and time period <sup><a href="#ref3">[3]</a></sup>. A separate European multicenter analysis of SAPS II and SAPS 3 found both scores' calibration drifts over time and differs by country, driven partly by changes in case mix and treatment practice since the original derivation <sup><a href="#ref4">[4]</a></sup>. A large external validation in 48,816 patients across 72 Brazilian ICUs found reasonable discrimination but calibration that diverged from the original cohort, illustrating the same regional-drift pattern in a specific, well-documented setting <sup><a href="#ref5">[5]</a></sup>.</p>
+      <p>Well-documented structural limitations, independent of any single validation study:</p>
+      <ul class="limits">
+        <li><strong>Case-mix and era sensitivity:</strong> like all ICU mortality-prediction scores, SAPS 3's calibration reflects the population and time period it was fit to, and predicted probabilities should be interpreted as reflecting that reference population rather than any individual patient's exact risk.</li>
+        <li><strong>Regional calibration is not implemented here:</strong> see above — the app currently reports the global-equation probability only.</li>
+        <li><strong>Not validated for individual treatment decisions:</strong> like other ICU severity scores, SAPS 3 is intended for population-level risk-adjustment and ICU benchmarking, not for prognosticating or guiding treatment for a single patient <sup><a href="#ref6">[6]</a></sup>.</li>
+      </ul>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Moreno RP, Metnitz PG, Almeida E, et al. <em>SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 1: Objectives, methods and cohort description.</em> Intensive Care Med. 2005;31(10):1336–1344.</p>
-      <p>Metnitz PG, Moreno RP, Almeida E, et al. <em>SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission.</em> Intensive Care Med. 2005;31(10):1345–1355.</p>
+      <ol class="refs">
+        <li id="ref1">Metnitz PG, Moreno RP, Almeida E, et al. SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 1: Objectives, methods and cohort description. <em>Intensive Care Med.</em> 2005;31(10):1336–1344.</li>
+        <li id="ref2">Moreno RP, Metnitz PG, Almeida E, et al. SAPS 3 — From evaluation of the patient to evaluation of the intensive care unit. Part 2: Development of a prognostic model for hospital mortality at ICU admission. <em>Intensive Care Med.</em> 2005;31(10):1345–1355.</li>
+        <li id="ref3">Nassar AP Jr, Malbouisson LMS, Moreno R. Evaluation of simplified acute physiology score 3 performance: a systematic review of external validation studies. <em>Crit Care.</em> 2014;18:R117.</li>
+        <li id="ref4">Poncet A, Perneger TV, Merlani P, Capuzzo M, Combescure C. Determinants of the calibration of SAPS II and SAPS 3 mortality scores in intensive care: a European multicenter study. <em>Crit Care.</em> 2017;21:85.</li>
+        <li id="ref5">Moralez GM, Rabello LSCF, Lisboa TC, et al. External validation of SAPS 3 and MPM0-III scores in 48,816 patients from 72 Brazilian ICUs. <em>Ann Intensive Care.</em> 2017;7:53.</li>
+        <li id="ref6">Vincent JL, Moreno R. Clinical review: scoring systems in the critically ill. <em>Crit Care.</em> 2010;14(2):207.</li>
+      </ol>
     </div>
 
     <div class="cta">

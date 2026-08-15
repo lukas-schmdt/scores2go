@@ -93,7 +93,10 @@ Score buildSaps3Score(String lang) {
             display: t('surgical.display'),
             description: t('surgical.description'),
             value: null,
-            trueValue: 1,
+            // Was displayed as "+1" (a placeholder never updated) while the
+            // calculation actually applied -6 — see saps3Function's
+            // surgicalPts. This now matches what's actually scored.
+            trueValue: -6,
             falseValue: 0,
           ),
           VariableSelection(

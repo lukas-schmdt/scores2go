@@ -6,7 +6,8 @@ import 'package:scores_2_go/model/model.dart';
 /// Value types per variable kind:
 /// * [VariableBool]      → `bool` (or `null` to leave unanswered)
 /// * [VariableNumber]    → `num`  (or `null`)
-/// * [VariableSelection] → the `num` `value` of the option to select
+/// * [VariableSelection] → the `num` `value` of the option to select, or a
+///   `List<num>` of values to select for a `VariableType.multiselect`
 ///
 /// Variables not present in [values] are left untouched (unanswered).
 Score withValues(Score score, Map<String, Object?> values) {
@@ -22,9 +23,10 @@ Score withValues(Score score, Map<String, Object?> values) {
         return v.copyWith(value: () => value as num?);
       }
       if (v is VariableSelection) {
-        final options = v.options
-            .map((o) => o.copyWith(isSelected: o.value == value))
-            .toList();
+        final options = v.options.map((o) {
+          final isSelected = value is List ? value.contains(o.value) : o.value == value;
+          return o.copyWith(isSelected: isSelected);
+        }).toList();
         return v.copyWith(options: options);
       }
       return v;

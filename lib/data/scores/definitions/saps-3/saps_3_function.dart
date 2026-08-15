@@ -61,7 +61,9 @@ ScoreResult saps3Function(Score score, String lang) {
     );
   }
 
-  // Comorbidity points — cancer hierarchy (take highest cancer score)
+  // Comorbidity points — each selected item is an independent binary
+  // criterion in the original instrument (confirmed against MDCalc's
+  // "independent checkboxes" framing), so they are summed, not hierarchical.
   final comorbValues = (comorbs ?? []).map((e) => (e['value'] as num).toInt());
   final comorbTotal = comorbValues.fold(0, (a, b) => a + b);
 
@@ -100,9 +102,12 @@ ScoreResult saps3Function(Score score, String lang) {
   );
 }
 
-/// Global equation: logit = -36.0757 + ln(SAPS3 + 20.5958) × 7.3068
+/// Global (pooled, non-region-customized) equation from Moreno et al. 2005
+/// Part 2: logit = -32.6659 + ln(SAPS3 + 20.5958) × 7.3068. The prior
+/// intercept (-36.0757) was a transcription error that systematically
+/// under-predicted mortality for every score.
 double _predictedMortality(int saps3) {
-  final logit = -36.0757 + log(saps3 + 20.5958) * 7.3068;
+  final logit = -32.6659 + log(saps3 + 20.5958) * 7.3068;
   return exp(logit) / (1 + exp(logit));
 }
 
