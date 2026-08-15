@@ -29,8 +29,9 @@ class SofaI10n extends ScoreI10n {
       // Variables
       'respiratory_support.display': 'Respiratory Support',
       'respiratory_support.description':
-          'Required for SOFA respiratory scores 3 and 4 '
-          '(e.g. ventilation/CPAP).',
+          'Required for SOFA respiratory scores 3 and 4 (e.g. ventilation/'
+          'CPAP). If set to "No", the respiratory sub-score is capped at 2 '
+          'even if PaO₂/FiO₂ is lower.',
       'pao2_fio2.display': 'PaO₂/FiO₂',
       'pao2_fio2.description':
           'PaO₂/FiO₂ ratio. For scores 3–4 only with respiratory support.',
@@ -71,11 +72,11 @@ class SofaI10n extends ScoreI10n {
       'calc.abbrev.cardio': 'Cardio',
       'calc.abbrev.cns': 'CNS',
       'calc.abbrev.renal': 'Renal',
-      'calc.risk.veryLow': 'Very low risk (< 10 % mortality)',
-      'calc.risk.low': 'Low risk (~10 % mortality)',
-      'calc.risk.moderate': 'Moderate risk (~20 % mortality)',
-      'calc.risk.elevated': 'Elevated risk (~40 % mortality)',
-      'calc.risk.high': 'High risk (> 50 % mortality)',
+      'calc.risk.veryLow': 'Very low risk (SOFA 0–6, < 10 % mortality)',
+      'calc.risk.low': 'Low–moderate risk (SOFA 7–9, ~15–20 % mortality)',
+      'calc.risk.moderate': 'Moderate–high risk (SOFA 10–12, ~40–50 % mortality)',
+      'calc.risk.elevated': 'High risk (SOFA 13–14, ~50–60 % mortality)',
+      'calc.risk.high': 'Very high risk (SOFA ≥ 15, > 80 % mortality)',
     },
     'de': {
       'description': 'Sequential Organ Failure Assessment (SOFA)',
@@ -101,8 +102,9 @@ class SofaI10n extends ScoreI10n {
       // Variables
       'respiratory_support.display': 'Respiratorische Unterstützung',
       'respiratory_support.description':
-          'Erforderlich für die SOFA-Respirationsscores 3 und 4 '
-          '(z. B. Beatmung/CPAP).',
+          'Erforderlich für die SOFA-Respirationsscores 3 und 4 (z. B. '
+          'Beatmung/CPAP). Bei "Nein" wird der Respirationsscore auf maximal '
+          '2 begrenzt, auch wenn PaO₂/FiO₂ niedriger ist.',
       'pao2_fio2.display': 'PaO₂/FiO₂',
       'pao2_fio2.description':
           'PaO₂/FiO₂-Verhältnis. Für Scores 3–4 nur bei respiratorischer Unterstützung.',
@@ -143,11 +145,11 @@ class SofaI10n extends ScoreI10n {
       'calc.abbrev.cardio': 'Kardio',
       'calc.abbrev.cns': 'ZNS',
       'calc.abbrev.renal': 'Niere',
-      'calc.risk.veryLow': 'Sehr geringes Risiko (< 10 % Mortalität)',
-      'calc.risk.low': 'Geringes Risiko (~10 % Mortalität)',
-      'calc.risk.moderate': 'Moderates Risiko (~20 % Mortalität)',
-      'calc.risk.elevated': 'Erhöhtes Risiko (~40 % Mortalität)',
-      'calc.risk.high': 'Hohes Risiko (> 50 % Mortalität)',
+      'calc.risk.veryLow': 'Sehr geringes Risiko (SOFA 0–6, < 10 % Mortalität)',
+      'calc.risk.low': 'Gering-moderates Risiko (SOFA 7–9, ~15–20 % Mortalität)',
+      'calc.risk.moderate': 'Moderat-hohes Risiko (SOFA 10–12, ~40–50 % Mortalität)',
+      'calc.risk.elevated': 'Hohes Risiko (SOFA 13–14, ~50–60 % Mortalität)',
+      'calc.risk.high': 'Sehr hohes Risiko (SOFA ≥ 15, > 80 % Mortalität)',
     },
   };
 }

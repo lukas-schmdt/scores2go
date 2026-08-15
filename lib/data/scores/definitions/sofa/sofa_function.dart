@@ -9,7 +9,17 @@ ScoreResult sofaFunction(Score score, String lang) {
   String t(String key) => _i10n.t(lang, key);
   final ctx = FlatScoreContext(score: score);
 
-  final respirPts = ctx.singleSelect('sofa-pao2_fio2')?['value']              as num?;
+  final respirRaw = ctx.singleSelect('sofa-pao2_fio2')?['value']              as num?;
+  final onSupport = ctx.boolValue('sofa-respiratory_support')?['value']       as bool?;
+  // Respiratory scores of 3–4 require confirmed respiratory support (mechanical
+  // ventilation/CPAP) per the original criteria and MDCalc's implementation.
+  // The PaO2/FiO2 options' own labels already say "+ respiratory support" for
+  // those bands, so an unanswered toggle still trusts that label (unchanged
+  // behavior) — but an explicit "No" caps the sub-score at 2 regardless of the
+  // selected ratio, since it isn't actually confirmed as support-dependent.
+  final respirPts = (onSupport == false && respirRaw != null && respirRaw > 2)
+      ? 2
+      : respirRaw;
   final coagPts   = ctx.singleSelect('sofa-platelets')?['value']              as num?;
   final liverPts  = ctx.singleSelect('sofa-bilirubin')?['value']              as num?;
   final cardPts   = ctx.singleSelect('sofa-cardiovascular_status')?['value']  as num?;
@@ -63,9 +73,9 @@ ScoreResult sofaFunction(Score score, String lang) {
 }
 
 String _mortalityRisk(int total, String Function(String) t) {
-  if (total < 2) return t('calc.risk.veryLow');
-  if (total < 4) return t('calc.risk.low');
-  if (total < 8) return t('calc.risk.moderate');
-  if (total < 12) return t('calc.risk.elevated');
+  if (total <= 6) return t('calc.risk.veryLow');
+  if (total <= 9) return t('calc.risk.low');
+  if (total <= 12) return t('calc.risk.moderate');
+  if (total <= 14) return t('calc.risk.elevated');
   return t('calc.risk.high');
 }

@@ -142,6 +142,16 @@
       line-height: 1.6;
     }
 
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
     .cta {
       text-align: center;
       background: white;
@@ -216,9 +226,9 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>Der SOFA-Score (Sequential Organ Failure Assessment), ursprünglich als Sepsis-related Organ Failure Assessment bezeichnet, wurde 1996 von Vincent et al. entwickelt, um den Grad der Organdysfunktion bei kritisch kranken Patienten zu beschreiben und zu quantifizieren. Er bewertet sechs Organsysteme — Atmung, Gerinnung, Leber, Herz-Kreislauf, Zentralnervensystem und Niere — jeweils mit 0 (normal) bis 4 (schwere Dysfunktion), was einen Gesamtwert von 0–24 Punkten ergibt.</p>
-      <p>Internationale Bedeutung erlangte der SOFA-Score mit dem Sepsis-3-Konsensus 2016, der Sepsis als lebensbedrohliche Organdysfunktion infolge einer fehlregulierten Wirtsantwort auf eine Infektion definierte. Operationell wird Sepsis durch einen akuten Anstieg des SOFA-Scores um ≥ 2 Punkte identifiziert, was einer geschätzten Krankenhausmortalität von über 10 % entspricht. Diese Definition ersetzte die frühere SIRS-basierte Definition.</p>
-      <p>SOFA kann sowohl als statischer Momentanwert (absoluter Score) als auch als dynamisches Maß (Veränderung im Zeitverlauf) eingesetzt werden. Steigende SOFA-Werte während des ICU-Aufenthalts sind stark mit einer sich verschlechternden Prognose verbunden, während sinkende Werte auf ein Therapieansprechen hinweisen können.</p>
+      <p>Der SOFA-Score (Sequential Organ Failure Assessment), ursprünglich als Sepsis-related Organ Failure Assessment bezeichnet, wurde 1996 von Vincent et al. entwickelt, um den Grad der Organdysfunktion bei kritisch kranken Patienten zu beschreiben und zu quantifizieren <sup><a href="#ref1">[1]</a></sup>. Er bewertet sechs Organsysteme — Atmung, Gerinnung, Leber, Herz-Kreislauf, Zentralnervensystem und Niere — jeweils mit 0 (normal) bis 4 (schwere Dysfunktion), was einen Gesamtwert von 0–24 Punkten ergibt. Eine Multizenter-Validierung an 40 ICUs in 16 Ländern (n = 1.449) bestätigte die Fähigkeit des Scores, den Verlauf der Organdysfunktion abzubilden <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Internationale Bedeutung erlangte der SOFA-Score mit dem Sepsis-3-Konsensus 2016, der Sepsis als lebensbedrohliche Organdysfunktion infolge einer fehlregulierten Wirtsantwort auf eine Infektion definierte <sup><a href="#ref4">[4]</a></sup>. Operationell wird Sepsis durch einen akuten Anstieg des SOFA-Scores um ≥ 2 Punkte identifiziert, was einer geschätzten Krankenhausmortalität von über 10 % entspricht — dieser Wert stammt aus einer eigens zur Validierung der klinischen Kriterien durchgeführten retrospektiven Kohortenanalyse <sup><a href="#ref5">[5]</a></sup>. Diese Definition ersetzte die frühere SIRS-basierte Definition.</p>
+      <p>SOFA kann sowohl als statischer Momentanwert (absoluter Score) als auch als dynamisches Maß (Veränderung im Zeitverlauf) eingesetzt werden. Steigende SOFA-Werte während des ICU-Aufenthalts sind stark mit einer sich verschlechternden Prognose verbunden, während sinkende Werte auf ein Therapieansprechen hinweisen können <sup><a href="#ref3">[3]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -265,7 +275,7 @@
               <td class="pts pts-0">MAP ≥ 70</td>
               <td class="pts pts-1">MAP &lt; 70</td>
               <td class="pts pts-2">Dopa ≤ 5 oder Dobu jede Dosis</td>
-              <td class="pts pts-3">Dopa 5–15 oder Epi/NA ≤ 0,1</td>
+              <td class="pts pts-3">Dopa &gt; 5–15 oder Epi/NA ≤ 0,1</td>
               <td class="pts pts-4">Dopa &gt; 15 oder Epi/NA &gt; 0,1</td>
             </tr>
             <tr>
@@ -296,7 +306,7 @@
         </table>
       </div>
       <div class="note">
-        Vasopressordosen in µg/kg/min. Bei der Niere wird der <em>schlechtere</em> Wert aus Kreatinin und Urinausscheidung verwendet. Respirationsscores 3 und 4 erfordern respiratorische Unterstützung (Beatmung oder CPAP).
+        Vasopressordosen in µg/kg/min. Bei der Niere wird der <em>schlechtere</em> Wert aus Kreatinin und Urinausscheidung verwendet. Respirationsscores 3 und 4 erfordern bestätigte respiratorische Unterstützung (Beatmung oder CPAP) — ohne sie wird der Respirationsscore unabhängig vom PaO₂/FiO₂-Verhältnis auf maximal 2 begrenzt.
       </div>
     </div>
 
@@ -320,15 +330,39 @@
         </table>
       </div>
       <div class="note">
-        <strong>Sepsis-3-Kriterium:</strong> Ein akuter Anstieg des SOFA-Scores um ≥ 2 Punkte gegenüber dem Ausgangswert bei einem Patienten mit Infektionsverdacht identifiziert eine Organdysfunktion und erfüllt die Sepsis-Definition — bei einer erwarteten Mortalität von über 10 %. Der qSOFA-Score (≥ 2 von: AF ≥ 22, veränderte Bewusstseinslage, RRsys ≤ 100) kann außerhalb der ICU zur Früherkennung eingesetzt werden.
+        Diese Tabelle ist eine gebräuchliche zusammenfassende Übersicht (wie sie auch bei anderen klinischen Rechner-Referenzen verwendet wird) und keine wörtliche Wiedergabe einer einzelnen Publikationstabelle — die ursprüngliche Multizenter-Validierung und die spätere Verlaufsauswertung berichten verwandte, aber nicht identisch gebänderte Werte <sup><a href="#ref2">[2]</a></sup><sup><a href="#ref3">[3]</a></sup>, und für sehr hohe Scores (SOFA &gt; 15) wurden in einigen Auswertungen der Ursprungskohorte Mortalitätswerte näher an 90 % berichtet. Die Prozentwerte sind daher als grobe, populationsbezogene Orientierung zu verstehen, nicht als präzise patientenindividuelle Vorhersage (siehe <em>Wissenschaftliche Validität &amp; Limitationen</em> unten).
+      </div>
+      <div class="note">
+        <strong>Sepsis-3-Kriterium:</strong> Ein akuter Anstieg des SOFA-Scores um ≥ 2 Punkte gegenüber dem Ausgangswert bei einem Patienten mit Infektionsverdacht identifiziert eine Organdysfunktion und erfüllt die Sepsis-Definition — bei einer erwarteten Mortalität von über 10 % <sup><a href="#ref4">[4]</a></sup><sup><a href="#ref5">[5]</a></sup>. Der qSOFA-Score (≥ 2 von: AF ≥ 22, veränderte Bewusstseinslage, RRsys ≤ 100) kann außerhalb der ICU zur Früherkennung eingesetzt werden.
       </div>
     </div>
 
     <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>Die kardiovaskuläre Komponente des SOFA-Scores spiegelt weiterhin die Vasopressor-Praxis von 1996 wider und orientiert sich primär an der Dopamin-Dosierung. Aktuelle Leitlinien der Surviving Sepsis Campaign favorisieren Noradrenalin als Mittel der ersten Wahl; eine 2022 publizierte Studie der Korean Shock Society entwickelte und validierte einen "modifizierten kardiovaskulären SOFA-Score" auf Basis Noradrenalin-äquivalenter Dosierung über alle Vasopressoren hinweg und argumentiert, dass die klassische Dopamin-zentrierte Tabelle die kardiovaskuläre Dysfunktion in Einheiten, die selten Dopamin einsetzen, unterrepräsentiert <sup><a href="#ref7">[7]</a></sup>. Scores2Go implementiert die klassische Tabelle von 1996, die weiterhin die von MDCalc verwendete und in aktuellen Sepsis-Leitlinien referenzierte Version ist — dies bleibt aber eine anerkannte Limitation.</p>
+      <p>Eine 2008 publizierte systematische Übersichtsarbeit zu SOFA-basierten Mortalitätsmodellen fand erhebliche Heterogenität darin, wie Studien den SOFA-Score in eine Mortalitätsschätzung überführen, sowie eine begrenzte externe Validierung einzelner Umrechnungsmodelle über unabhängige Kohorten hinweg <sup><a href="#ref6">[6]</a></sup> — konsistent mit der Empfehlung, die obige Interpretationstabelle als grobe Orientierung statt als präzise validierte Wahrscheinlichkeit zu lesen. Allgemeiner gilt: ICU-Schweregradscores wie SOFA sind für die populationsbezogene Beschreibung und den Forschungsvergleich konzipiert und validiert, nicht für die Prognose oder Behandlungssteuerung bei einem einzelnen Patienten <sup><a href="#ref8">[8]</a></sup>.</p>
+      <p>Gut dokumentierte strukturelle Limitationen, unabhängig von einzelnen Validierungsstudien:</p>
+      <ul class="limits">
+        <li><strong>Keine Berücksichtigung von Therapiebegrenzungen:</strong> wie die meisten Organdysfunktionsscores berücksichtigt SOFA weder DNR-Status noch Entscheidungen zur Therapiebegrenzung, die die beobachtete Mortalität unabhängig beeinflussen.</li>
+        <li><strong>Dopamin-zentrierte kardiovaskuläre Komponente:</strong> wie oben beschrieben, lassen sich die klassischen Vasopressor-Schwellenwerte nicht immer sauber auf Einheiten übertragen, die ausschließlich Noradrenalin als Mittel der ersten Wahl einsetzen.</li>
+        <li><strong>"Schlechtester-Wert"-Konvention:</strong> wie bei anderen Scores, die den schlechtesten Wert innerhalb von 24 Stunden verwenden, ist SOFA empfindlich gegenüber der Messhäufigkeit und der Beobachterübereinstimmung darüber, was als schlechtester Wert im jeweiligen Zeitraum zählt.</li>
+        <li><strong>GCS durch Sedierung verfälscht:</strong> tiefe Sedierung, in der modernen ICU-Praxis verbreitet, kann die ZNS-Teilbewertung unabhängig von der tatsächlichen neurologischen Dysfunktion erhöhen — MDCalc empfiehlt, bei sedierten Patienten den GCS-Wert zu schätzen, den sie ohne Sedierung hätten.</li>
+        <li><strong>Der statische Score allein ist ein schwächerer Prädiktor als sein Verlauf:</strong> ein steigender SOFA-Score innerhalb der ersten 48 Stunden ist ein deutlich stärkeres Mortalitätssignal als jeder einzelne absolute Wert <sup><a href="#ref3">[3]</a></sup>.</li>
+      </ul>
+    </div>
+
+    <div class="section">
       <h2>Literatur</h2>
-      <p>Vincent JL, Moreno R, Takala J, et al. The SOFA (Sepsis-related Organ Failure Assessment) score to describe organ dysfunction/failure. <em>Intensive Care Med.</em> 1996;22(7):707–710.</p>
-      <p>Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):801–810.</p>
-      <p>Ferreira FL, Bota DP, Bross A, Mélot C, Vincent JL. Serial evaluation of the SOFA score to predict outcome in critically ill patients. <em>JAMA.</em> 2001;286(14):1754–1758.</p>
+      <ol class="refs">
+        <li id="ref1">Vincent JL, Moreno R, Takala J, et al. The SOFA (Sepsis-related Organ Failure Assessment) score to describe organ dysfunction/failure. <em>Intensive Care Med.</em> 1996;22(7):707–710.</li>
+        <li id="ref2">Vincent JL, de Mendonça A, Cantraine F, et al. Use of the SOFA score to assess the incidence of organ dysfunction/failure in intensive care units: results of a multicenter, prospective study. <em>Crit Care Med.</em> 1998;26(11):1793–1800.</li>
+        <li id="ref3">Ferreira FL, Bota DP, Bross A, Mélot C, Vincent JL. Serial evaluation of the SOFA score to predict outcome in critically ill patients. <em>JAMA.</em> 2001;286(14):1754–1758.</li>
+        <li id="ref4">Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):801–810.</li>
+        <li id="ref5">Seymour CW, Liu VX, Iwashyna TJ, et al. Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):762–774.</li>
+        <li id="ref6">Minne L, Abu-Hanna A, de Jonge E. Evaluation of SOFA-based models for predicting mortality in the ICU: a systematic review. <em>Crit Care.</em> 2008;12(6):R161.</li>
+        <li id="ref7">Lee HJ, Ko BS, Ryoo SM, et al.; Korean Shock Society. Modified cardiovascular SOFA score in sepsis: development and internal and external validation. <em>BMC Med.</em> 2022;20:263.</li>
+        <li id="ref8">Vincent JL, Moreno R. Clinical review: scoring systems in the critically ill. <em>Crit Care.</em> 2010;14(2):207.</li>
+      </ol>
     </div>
 
     <div class="section cta">
