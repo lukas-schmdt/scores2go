@@ -119,6 +119,27 @@
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) td { background: #fafafa; }
 
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
     .tag {
       display: inline-block;
       background: #eff6ff;
@@ -197,7 +218,8 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>Der Multiple Organ Dysfunction Score wurde entwickelt, um ein standardisiertes, reproduzierbares Maß für Organdysfunktionen in der klinischen Outcome-Forschung und im täglichen ICU-Monitoring bereitzustellen. Jedes der sechs Systeme wird unabhängig mit 0–4 bewertet, was einen Maximalwert von 24 ergibt. Höhere Werte korrelieren mit einer höheren vorhergesagten Sterblichkeit. Der Score ist für eine tägliche Berechnung konzipiert, um den Verlauf der Organdysfunktion während des Intensivaufenthalts zu verfolgen.</p>
+      <p>Der Multiple Organ Dysfunction Score wurde entwickelt, um ein standardisiertes, reproduzierbares Maß für Organdysfunktionen in der klinischen Outcome-Forschung und im täglichen ICU-Monitoring bereitzustellen. Jedes der sechs Systeme wird unabhängig mit 0–4 bewertet, was einen Maximalwert von 24 ergibt. Höhere Werte korrelieren mit einer höheren vorhergesagten Sterblichkeit — die ursprüngliche Entwicklungskohorte berichtete eine Diskriminationsfähigkeit von AUROC ≈ 0,94 für die ICU-Mortalität <sup><a href="#ref1">[1]</a></sup>. Der Score ist für eine tägliche Berechnung konzipiert, um den Verlauf der Organdysfunktion während des Intensivaufenthalts zu verfolgen.</p>
+      <p>MODS wird aktuell nicht als Rechner bei MDCalc geführt; in der modernen Praxis hat sich der Sequential Organ Failure Assessment (SOFA) Score als das gebräuchlichere Instrument zur Beurteilung von Organdysfunktion etabliert, wobei direkte Vergleichsstudien beide Scores meist als vergleichbar leistungsfähig einstufen <sup><a href="#ref3">[3]</a></sup> (siehe <em>Wissenschaftliche Validität &amp; Limitationen</em> unten).</p>
     </div>
 
     <div class="section">
@@ -269,17 +291,18 @@
       <h2>Interpretation des Gesamtscores</h2>
       <table>
         <thead>
-          <tr><th>MODS Gesamt</th><th>Schweregrad</th><th>Vorhergesagte Sterblichkeit</th></tr>
+          <tr><th>MODS Gesamt</th><th>Schweregrad</th><th>ICU-Sterblichkeit (Entwicklungskohorte)</th></tr>
         </thead>
         <tbody>
           <tr><td>0</td><td>Keine Dysfunktion</td><td>~0 %</td></tr>
-          <tr><td>1–4</td><td>Leicht</td><td>~1–2 %</td></tr>
-          <tr><td>5–8</td><td>Moderat</td><td>~5–10 %</td></tr>
+          <tr><td>1–8</td><td>Leicht–moderat</td><td>nicht separat berichtet</td></tr>
           <tr><td>9–12</td><td>Schwer</td><td>~25 %</td></tr>
           <tr><td>13–16</td><td>Sehr schwer</td><td>~50 %</td></tr>
-          <tr><td>&gt; 16</td><td>Extrem</td><td>&gt; 75 %</td></tr>
+          <tr><td>17–20</td><td>Extrem</td><td>~75 %</td></tr>
+          <tr><td>&gt; 20</td><td>Maximal</td><td>~100 %</td></tr>
         </tbody>
       </table>
+      <div class="note">Die Sterblichkeitswerte beziehen sich auf die ursprüngliche Entwicklungskohorte von 1995 <sup><a href="#ref1">[1]</a></sup>. Die Kohortenstudie schlüsselt die Sterblichkeit für den Bereich 1–8 Punkte nicht separat auf, daher wird für diesen Bereich kein Prozentwert angegeben — er ist als Schweregradindikator zu verstehen, nicht als Sterblichkeitsschätzung. Diese Werte beschreiben eine spezifische historische Kohorte und sollten nicht als präzise, aktuelle Mortalitätsprognose für einen einzelnen Patienten gelesen werden (siehe <em>Wissenschaftliche Validität &amp; Limitationen</em>).</div>
     </div>
 
     <div class="section">
@@ -293,8 +316,29 @@
     </div>
 
     <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>MODS wurde in einer kanadischen Einzelzentrum-ICU-Kohorte von knapp 700 Patienten entwickelt und validiert <sup><a href="#ref1">[1]</a></sup>; die oben genannten Sterblichkeitsbänder spiegeln diese spezifische Population und Ära der Intensivmedizin wider — sie wurden nicht, wie etwa bei SAPS II oder APACHE, an großen, zeitgemäßen Multizenter-Kohorten neu validiert und sollten daher eher als Schweregradindikator denn als präzise aktuelle Mortalitätsschätzung gelesen werden. Vergleichsstudien gegen SOFA — den Score, der sich in der ICU-Praxis inzwischen stärker durchgesetzt hat — zeigen insgesamt eine ähnliche Leistungsfähigkeit beider Scores: Ein Vergleich an 949 Patienten fand keinen signifikanten Unterschied in der Vorhersage der Gesamtmortalität zwischen MODS und SOFA, wobei die kardiovaskuläre Komponente von SOFA den Verlauf etwas besser abbildete <sup><a href="#ref3">[3]</a></sup>. Eine separate prospektive Auswertung an 1.436 Patienten fand für MODS und SOFA jeweils nur eine mäßige Fähigkeit, Überlebende von Verstorbenen zu unterscheiden <sup><a href="#ref4">[4]</a></sup>, und ein weiterer Vergleich mit SOFA und dem Logistic Organ Dysfunction (LOD) Score kam zu einer ähnlichen Einschätzung vergleichbarer, unvollständiger Diskriminationsfähigkeit aller drei Scores <sup><a href="#ref5">[5]</a></sup>.</p>
+      <p>Gut dokumentierte strukturelle Limitationen, unabhängig von einzelnen Validierungsstudien:</p>
+      <ul class="limits">
+        <li><strong>Einzelzentrum-Entwicklung:</strong> anders als SAPS II oder APACHE II/III wurde MODS nicht an einer großen multinationalen Kohorte entwickelt, wodurch die Punktgrenzen und Sterblichkeitsbänder außerhalb des ursprünglichen Settings und der ursprünglichen Ära mit größerer Unsicherheit behaftet sind.</li>
+        <li><strong>Keine Berücksichtigung von Aufnahmediagnose oder Komorbidität:</strong> wie SOFA berücksichtigt MODS weder den Aufnahmegrund noch die Vorerkrankungslast, die beide die Mortalität unabhängig beeinflussen.</li>
+        <li><strong>Indirekte kardiovaskuläre Komponente:</strong> die druckadjustierte Herzfrequenz (PAR) ist ein abgeleiteter Surrogatparameter für kardiovaskuläre Dysfunktion statt eines direkten Maßes wie der Vasopressordosis (wie bei SOFA verwendet); zudem ist eine invasive ZVD-Messung erforderlich, die in manchen modernen ICUs seltener routinemäßig erhoben wird.</li>
+        <li><strong>Verzerrung des GCS durch Sedierung:</strong> tiefe Sedierung, in der modernen ICU-Praxis verbreitet, kann die neurologische Teilbewertung unabhängig von der tatsächlichen neurologischen Dysfunktion erhöhen.</li>
+        <li><strong>In der Praxis abgelöst:</strong> SOFA hat sich sowohl in der klinischen Praxis als auch in der Forschung (u. a. in der Sepsis-3-Definition) als das gebräuchlichere Instrument zur Organdysfunktionsbewertung durchgesetzt, sodass MODS am Patientenbett seltener eingesetzt wird <sup><a href="#ref2">[2]</a></sup>.</li>
+        <li><strong>Nicht für individuelle Entscheidungen validiert:</strong> wie alle ICU-Schweregrad-/Organdysfunktionsscores ist MODS für Forschung und die Beschreibung von Kohorten auf Populationsebene vorgesehen, nicht als alleinige Grundlage für Behandlungsentscheidungen bei einem einzelnen Patienten.</li>
+      </ul>
+    </div>
+
+    <div class="section">
       <h2>Literatur</h2>
-      <p>Marshall JC, Cook DJ, Christou NV, Bernard GR, Sprung CL, Sibbald WJ. <em>Multiple organ dysfunction score: a reliable descriptor of a complex clinical outcome.</em> Crit Care Med. 1995;23(10):1638–1652.</p>
+      <ol class="refs">
+        <li id="ref1">Marshall JC, Cook DJ, Christou NV, Bernard GR, Sprung CL, Sibbald WJ. Multiple organ dysfunction score: a reliable descriptor of a complex clinical outcome. <em>Crit Care Med.</em> 1995;23(10):1638–1652.</li>
+        <li id="ref2">Vincent JL, de Mendonça A, Cantraine F, et al. Use of the SOFA score to assess the incidence of organ dysfunction/failure in intensive care units: results of a multicenter, prospective study. <em>Crit Care Med.</em> 1998;26(11):1793–1800.</li>
+        <li id="ref3">Peres Bota D, Melot C, Lopes Ferreira F, Nguyen Ba V, Vincent JL. The Multiple Organ Dysfunction Score (MODS) versus the Sequential Organ Failure Assessment (SOFA) score in outcome prediction. <em>Intensive Care Med.</em> 2002;28(11):1619–1624.</li>
+        <li id="ref4">Zygun DA, Laupland KB, Fick GH, Sandham JD, Doig CJ. Limited ability of SOFA and MOD scores to discriminate outcome: a prospective evaluation in 1,436 patients. <em>Can J Anaesth.</em> 2005;52(3):302–308.</li>
+        <li id="ref5">Pettilä V, Pettilä M, Sarna S, Voutilainen P, Takkunen O. Comparison of multiple organ dysfunction scores in the prediction of hospital mortality in the critically ill. <em>Crit Care Med.</em> 2002;30(8):1705–1711.</li>
+        <li id="ref6">Cook R, Cook D, Tilley J, Lee K, Marshall J; Canadian Critical Care Trials Group. Multiple organ dysfunction: baseline and serial component scores. <em>Crit Care Med.</em> 2001;29(11):2046–2050.</li>
+      </ol>
     </div>
 
     <div class="cta">

@@ -105,5 +105,6 @@ String _interpret(int mods, String Function(String) t) {
   if (mods <= 8) return t('calc.interp.moderate');
   if (mods <= 12) return t('calc.interp.severe');
   if (mods <= 16) return t('calc.interp.verySevere');
+  if (mods <= 20) return t('calc.interp.extreme');
   return t('calc.interp.maximum');
 }
