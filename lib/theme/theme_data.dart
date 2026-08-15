@@ -107,6 +107,15 @@ class AppTheme {
                 : null),
       ),
 
+      // Explicit (not left to ColorScheme.inverseSurface/inversePrimary
+      // fallbacks, which default actionTextColor to onPrimary — white on
+      // white in the dark theme, making the action invisible).
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.lightTextPrimary,
+        contentTextStyle: const TextStyle(color: AppColors.lightSurface),
+        actionTextColor: AppColors.teal,
+      ),
+
       textTheme: const TextTheme(
         headlineLarge: TextStyle(color: AppColors.lightTextPrimary, fontWeight: FontWeight.w700),
         headlineMedium: TextStyle(color: AppColors.lightTextPrimary, fontWeight: FontWeight.w700),
@@ -229,6 +238,15 @@ class AppTheme {
             states.contains(WidgetState.selected)
                 ? AppColors.teal.withValues(alpha: 0.3)
                 : null),
+      ),
+
+      // Explicit (not left to ColorScheme.inverseSurface/inversePrimary
+      // fallbacks, which default actionTextColor to onPrimary — white on
+      // white in this dark theme, making the action invisible).
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: AppColors.darkTextPrimary,
+        contentTextStyle: const TextStyle(color: AppColors.darkSurface),
+        actionTextColor: AppColors.blue,
       ),
 
       textTheme: const TextTheme(

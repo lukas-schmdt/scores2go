@@ -28,6 +28,12 @@ bool ensureSignedIn(BuildContext context, {required String message}) {
     SnackBar(
       content: Text(message),
       action: SnackBarAction(label: l.login, onPressed: () => openAuthScreen(context)),
+      // A SnackBar with an action defaults `persist` to true (it otherwise
+      // never times out — see SnackBar.persist), so this would sit on screen
+      // indefinitely without an explicit override. A slightly longer-than-
+      // default duration gives time to notice and tap "Sign in".
+      duration: const Duration(seconds: 6),
+      persist: false,
     ),
   );
   return false;
