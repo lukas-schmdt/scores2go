@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wells-Score (tiefe Beinvenenthrombose) – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="Wells-Score (tiefe Beinvenenthrombose) — schätzt die klinische Vortestwahrscheinlichkeit einer TVT anhand von 10 klinischen Kriterien, mit zwei- und dreistufiger Interpretation, Diagnosepfad, Literatur und Limitationen." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-dvt.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-dvt.html" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    td.pts { text-align: center; font-weight: 700; }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
+    h3 { font-size: 15px; font-weight: 700; color: #111827; margin: 20px 0 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Notfall · Gefäßmedizin</div>
+    <h1>Wells-Score (tiefe Beinvenenthrombose)</h1>
+    <p>Schätzt die klinische Vortestwahrscheinlichkeit einer tiefen Beinvenenthrombose bei Verdacht und unterstützt die Wahl zwischen D-Dimer-Test und Kompressionssonographie.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Wells et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2003
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularität 85
+      </span>
+    </div>
+    <a class="lang-link" href="../wells-dvt.html">🇬🇧 English</a>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Übersicht</h2>
+      <p>Der Wells-Score für die tiefe Beinvenenthrombose (TVT) ist eine klinische Vorhersageregel, die Befunde am Krankenbett in eine Vortestwahrscheinlichkeit für eine TVT des Beins übersetzt. Das ursprüngliche Modell wurde 1995 entwickelt <sup><a href="#ref1">[1]</a></sup> und 1997 weiterentwickelt und prospektiv geprüft; dabei wurde gezeigt, dass ein an der Vortestwahrscheinlichkeit orientiertes Vorgehen praktikabel ist <sup><a href="#ref2">[2]</a></sup>. In Scores2Go ist der <strong>modifizierte Wells-Score</strong> von 2003 umgesetzt: Er ergänzt ein Kriterium für eine früher dokumentierte TVT, verlängert das Operationsfenster auf 12 Wochen und wird zweistufig („TVT unwahrscheinlich“ / „TVT wahrscheinlich“) in Kombination mit einem D-Dimer-Test interpretiert <sup><a href="#ref3">[3]</a></sup>. Ein systematischer Review in JAMA fasste die Evidenz zur Regel zusammen <sup><a href="#ref4">[4]</a></sup>.</p>
+      <p>Der Score ist ausschließlich für Patienten gedacht, bei denen <strong>klinisch der Verdacht auf eine TVT des Beins</strong> besteht. Er ist kein Screeningwerkzeug für asymptomatische Patienten. Wenn auch eine Lungenembolie in Betracht kommt, siehe den <a href="./wells-pe.html">Wells-Score (Lungenembolie)</a>.</p>
+      <p>Scores2Go zeigt als Zweitergebnis auch die dreistufige Einteilung (niedrig / mittel / hoch), da sie weit verbreitet ist und die Prävalenzangaben von 1997 an sie geknüpft sind <sup><a href="#ref2">[2]</a></sup>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Variablen &amp; Punkte</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Kriterium</th><th class="pts">Punkte</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Aktive Tumorerkrankung (Behandlung laufend, innerhalb der letzten 6 Monate oder palliativ)</td><td class="pts">+1</td></tr>
+            <tr><td>Lähmung, Parese oder kürzliche Gipsimmobilisation der unteren Extremität</td><td class="pts">+1</td></tr>
+            <tr><td>Bettlägerigkeit ≥ 3 Tage oder größere Operation innerhalb der letzten 12 Wochen (Allgemein- oder Regionalanästhesie)</td><td class="pts">+1</td></tr>
+            <tr><td>Lokalisierter Druckschmerz entlang des tiefen Venensystems</td><td class="pts">+1</td></tr>
+            <tr><td>Schwellung des gesamten Beins</td><td class="pts">+1</td></tr>
+            <tr><td>Unterschenkelschwellung ≥ 3 cm im Vergleich zur Gegenseite (gemessen 10 cm unterhalb der Tuberositas tibiae)</td><td class="pts">+1</td></tr>
+            <tr><td>Eindrückbares Ödem, auf das symptomatische Bein beschränkt</td><td class="pts">+1</td></tr>
+            <tr><td>Kollaterale oberflächliche Venen (keine Varizen)</td><td class="pts">+1</td></tr>
+            <tr><td>Früher dokumentierte tiefe Beinvenenthrombose</td><td class="pts">+1</td></tr>
+            <tr><td>Alternative Diagnose mindestens ebenso wahrscheinlich wie TVT (z. B. Baker-Zyste, Erysipel/Phlegmone, Muskelzerrung, postthrombotisches Syndrom)</td><td class="pts">&minus;2</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Gesamtpunktzahl = Summe aller zutreffenden Kriterien (Bereich &minus;2 bis +9). In Scores2Go müssen alle Kriterien beantwortet werden, bevor ein Ergebnis angezeigt wird.</p>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <p>Der Score kann auf zwei Arten interpretiert werden. Die zweistufige Version wurde in der Management-Studie von 2003 verwendet und wird in Scores2Go als Hauptergebnis angezeigt <sup><a href="#ref3">[3]</a></sup>.</p>
+
+      <h3>Zweistufige Interpretation (Wells 2003)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Kategorie</th><th>Nächster Schritt</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>≤ 1</td><td>TVT unwahrscheinlich</td><td>D-Dimer</td></tr>
+            <tr><td>≥ 2</td><td>TVT wahrscheinlich</td><td>Kompressionssonographie</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Dreistufige Interpretation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Kategorie</th><th>Ca. TVT-Prävalenz (Wells-Kohorte 1997)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>≤ 0</td><td>Niedrig</td><td>~3 %</td></tr>
+            <tr><td>1 &ndash; 2</td><td>Mittel</td><td>~17 %</td></tr>
+            <tr><td>≥ 3</td><td>Hoch</td><td>~75 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Die Prävalenzangaben stammen aus der prospektiven Managementstudie von 1997 <sup><a href="#ref2">[2]</a></sup>. Manche Sekundärquellen bezeichnen ≥ 3 Punkte als „wahrscheinlich“, während das primäre zweistufige Modell von 2003 den Schwellenwert ≥ 2 verwendet <sup><a href="#ref3">[3]</a></sup>; Scores2Go folgt der Primärliteratur. Die Prävalenz hängt von Setting und Population ab.</p>
+
+      <h3>Diagnosepfad (zweistufig)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Kategorie</th><th>Schritt 1</th><th>Schritt 2</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>TVT unwahrscheinlich (≤ 1)</td><td>D-Dimer.</td><td>Negativ: TVT ausgeschlossen. Positiv: Kompressionssonographie.</td></tr>
+            <tr><td>TVT wahrscheinlich (≥ 2)</td><td>Direkt Kompressionssonographie.</td><td>Der D-Dimer-Test allein sollte in dieser Gruppe nicht zum Ausschluss einer TVT verwendet werden.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Unterschiede zwischen der Version von 1997 und 2003</h2>
+      <ul class="limits">
+        <li>Das Modell von 1997 enthält kein Kriterium für eine früher dokumentierte TVT; das modifizierte Modell von 2003 ergänzt es <sup><a href="#ref2">[2]</a></sup><sup><a href="#ref3">[3]</a></sup>.</li>
+        <li>Das Modell von 1997 verwendet für Operationen ein Zeitfenster von 4 Wochen; das modifizierte Modell 12 Wochen.</li>
+        <li>Das Modell von 1997 wird nur dreistufig interpretiert; 2003 wurde die zweistufige Regel (unwahrscheinlich / wahrscheinlich) in Kombination mit dem D-Dimer-Test eingeführt.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>Der Wells-Score gehört zu den am besten untersuchten Regeln bei Verdacht auf TVT und wurde in einem systematischen Review zusammengefasst <sup><a href="#ref4">[4]</a></sup>. Er ist dennoch eine Wahrscheinlichkeitsschätzung und keine Diagnose und hat bekannte Einschränkungen:</p>
+      <ul class="limits">
+        <li><strong>Nur bei Verdacht auf TVT:</strong> Der Score setzt voraus, dass eine TVT bereits klinisch in Betracht gezogen wird. Die Anwendung bei unselektierten Patienten ist nicht sinnvoll.</li>
+        <li><strong>Subjektives Kriterium:</strong> „Alternative Diagnose mindestens ebenso wahrscheinlich wie TVT“ zieht 2 Punkte ab und hängt vom klinischen Eindruck ab; verschiedene Untersucher können bei demselben Patienten zu unterschiedlichen Kategorien kommen.</li>
+        <li><strong>Große gepoolte Analyse:</strong> In einer Metaanalyse individueller Patientendaten aus 13 Studien mit 10.002 ambulanten Patienten hatten Patienten mit „unwahrscheinlich“ und negativem D-Dimer eine TVT-Prävalenz von etwa 1,2 %. Diese Strategie war jedoch bei Tumorpatienten nicht sicher, und bei Patienten mit rezidivierender TVT war ein modifiziertes Vorgehen nötig <sup><a href="#ref5">[5]</a></sup>.</li>
+        <li><strong>Stationäre Patienten:</strong> Die diagnostische Leistung des ursprünglichen und des modifizierten Wells-Scores war bei stationären Patienten schlechter als bei ambulanten <sup><a href="#ref6">[6]</a></sup>.</li>
+        <li><strong>Notaufnahme:</strong> Eine Validierung im Notaufnahme-Setting zeigte eine geringere Trennschärfe als die Originalstudien <sup><a href="#ref7">[7]</a></sup>.</li>
+        <li><strong>Traumapatienten:</strong> Die Kriterien wurden auch bei Traumapatienten untersucht <sup><a href="#ref8">[8]</a></sup>.</li>
+        <li><strong>Prävalenz variiert:</strong> Die jeder Kategorie zugeordnete Prävalenz unterscheidet sich je nach Setting, Zeitraum und Bildgebung; die angezeigten Prozentwerte sind daher nur Richtwerte.</li>
+        <li><strong>Lungenembolie bedenken:</strong> Bei Symptomen, die auch auf eine LE hindeuten, diese separat mit dem <a href="./wells-pe.html">Wells-Score (Lungenembolie)</a> beurteilen.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Literatur</h2>
+      <ol class="refs">
+        <li id="ref1">Wells PS, Hirsh J, Anderson DR, et al. Accuracy of clinical assessment of deep-vein thrombosis. <em>Lancet.</em> 1995;345(8961):1326–1330.</li>
+        <li id="ref2">Wells PS, Anderson DR, Bormanis J, et al. Value of assessment of pretest probability of deep-vein thrombosis in clinical management. <em>Lancet.</em> 1997;350(9094):1795–1798.</li>
+        <li id="ref3">Wells PS, Anderson DR, Rodger M, et al. Evaluation of D-dimer in the diagnosis of suspected deep-vein thrombosis. <em>N Engl J Med.</em> 2003;349(13):1227–1235.</li>
+        <li id="ref4">Wells PS, Owen C, Doucette S, Fergusson D, Tran H. Does this patient have deep vein thrombosis? <em>JAMA.</em> 2006;295(2):199–207.</li>
+        <li id="ref5">Geersing GJ, Zuithoff NP, Kearon C, et al. Exclusion of deep vein thrombosis using the Wells rule in clinically important subgroups: individual patient data meta-analysis. <em>BMJ.</em> 2014;348:g1340.</li>
+        <li id="ref6">Engelberger RP, Aujesky D, Calanca L, et al. Comparison of the diagnostic performance of the original and modified Wells score in inpatients and outpatients with suspected deep vein thrombosis. <em>Thromb Res.</em> 2011;127(6):535–539.</li>
+        <li id="ref7">Kilroy D, Ireland S, Reid P, Goodacre S, Morris F. Emergency department investigation of deep vein thrombosis. <em>Emerg Med J.</em> 2003;20(1):29–32.</li>
+        <li id="ref8">Modi S, et al. Wells criteria for DVT is a reliable clinical tool to assess the risk of deep venous thrombosis in trauma patients. <em>World J Emerg Surg.</em> 2016;11:24.</li>
+      </ol>
+    </div>
+
+    <div class="section cta">
+      <p>Berechnen Sie den Wells-Score (tiefe Beinvenenthrombose) direkt in Scores2Go — kostenlos, für die Web-App ist kein Konto erforderlich.</p>
+      <a class="button" href="../../app/?score=wells-dvt">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        In Scores2Go öffnen
+      </a>
+    </div>
+
+    <p class="disclaimer">Nur für Forschungs- und Bildungszwecke. Kein Ersatz für klinisches Urteilsvermögen. Immer aktuelle klinische Leitlinien und lokale Protokolle konsultieren.</p>
+
+  </main>
+
+</body>
+</html>

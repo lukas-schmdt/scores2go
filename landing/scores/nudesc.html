@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nu-DESC – Scores2Go</title>
+  <title>Nu-DESC (Nursing Delirium Screening Scale) – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Nursing Delirium Screening Scale — five-item bedside delirium tool for nurses. Score ≥ 2 indicates delirium. Detects both hyperactive and hypoactive delirium." />
+  <meta name="description" content="Nu-DESC — Nursing Delirium Screening Scale: a five-item, nurse-rated delirium screening tool scored once per shift (0–10; ≥ 2 is a positive screen), with full citations and known sensitivity limitations." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/nudesc.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/nudesc.html" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -58,7 +60,7 @@
     header p {
       font-size: 16px;
       opacity: 0.85;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -94,6 +96,8 @@
 
     p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
 
+    .table-wrap { overflow-x: auto; }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -116,19 +120,31 @@
       color: #374151;
     }
 
+    td.pts { text-align: center; font-weight: 700; white-space: nowrap; }
+
     tr:last-child td { border-bottom: none; }
     tr:nth-child(even) td { background: #fafafa; }
 
-    .tag {
-      display: inline-block;
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
-      border-radius: 20px;
-      padding: 2px 10px;
-      font-size: 12px;
-      font-weight: 600;
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
     }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
 
     .cta {
       text-align: center;
@@ -161,8 +177,14 @@
       line-height: 1.6;
     }
 
-    ol { padding-left: 20px; margin-bottom: 12px; }
-    ol li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
   </style>
 </head>
 <body>
@@ -176,7 +198,7 @@
     </div>
     <div class="badge">Delirium · ICU · Nursing</div>
     <h1>Nu-DESC</h1>
-    <p>The Nursing Delirium Screening Scale is a brief, nurse-administered bedside tool for continuous delirium screening. Five items rated 0–2 give a total of 0–10. A score of ≥ 2 indicates delirium.</p>
+    <p>The Nursing Delirium Screening Scale is a brief, nurse-rated tool for delirium screening. Five items rated 0–2 give a total of 0–10; a total of 2 or more is a positive screen. It is a screening tool, not a diagnosis.</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -191,99 +213,101 @@
         Popularity 70
       </span>
     </div>
+    <a class="lang-link" href="./de/nudesc.html">🇩🇪 Deutsch</a>
   </header>
 
   <main>
 
     <div class="section">
       <h2>Overview</h2>
-      <p>The Nu-DESC was developed to enable nursing staff to screen for delirium once per shift based on direct observations during routine care. Unlike the CAM-ICU, it does not require formal cognitive testing; instead it captures observable behavioural signs. It detects both hyperactive and hypoactive delirium subtypes. Original validation (n = 74 medical oncology patients) reported sensitivity 85.7 % and specificity 86.7 % against DSM-IV criteria.</p>
+      <p>The Nu-DESC was developed by Gaudreau and colleagues as a fast, systematic tool that lets nurses screen for delirium continuously, based on observations made during routine care. In the original study of 146 hospitalised patients, a cutoff of ≥&nbsp;2 gave a sensitivity of 85.7&nbsp;% and a specificity of 86.8&nbsp;% against the CAM <sup><a href="#ref1">[1]</a></sup>. The scale was derived from the Confusion Rating Scale, with an additional item for psychomotor retardation, so that it also captures the hypoactive presentation.</p>
+      <p>Five behavioural items are rated 0, 1 or 2 by the nurse on the basis of observations over the current shift, not only at the moment of assessment. Completion takes roughly 1–2 minutes and requires no formal cognitive testing of the patient. A guideline-conform German translation was published by Lütz and colleagues in 2008 <sup><a href="#ref2">[2]</a></sup>.</p>
     </div>
 
     <div class="section">
-      <h2>Scale Items</h2>
-      <table>
-        <thead>
-          <tr><th>Item</th><th>Description</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1. Disorientation</td>
-            <td>Verbal or behavioural manifestation of not being oriented to time, place, or person</td>
-          </tr>
-          <tr>
-            <td>2. Inappropriate behaviour</td>
-            <td>Behaviour inappropriate to place and/or person (e.g. pulling lines, attempting to get out of bed when unsafe, aggressive)</td>
-          </tr>
-          <tr>
-            <td>3. Inappropriate communication</td>
-            <td>Communication inappropriate to place and/or person (e.g. incoherence, non-communicativeness, nonsensical speech)</td>
-          </tr>
-          <tr>
-            <td>4. Illusions / Hallucinations</td>
-            <td>Seeing or hearing things that are not there; distortion of visual objects</td>
-          </tr>
-          <tr>
-            <td>5. Psychomotor retardation</td>
-            <td>Delayed responsiveness, few or no spontaneous actions/words; e.g. when patient is prodded, reaction is slow and/or patient is unresponsive</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="section">
-      <h2>Rating</h2>
-      <table>
-        <thead>
-          <tr><th>Score</th><th>Meaning</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>0</td><td>Absent — not present during shift</td></tr>
-          <tr><td>1</td><td>Mild — present but not prominent; no specific intervention required</td></tr>
-          <tr><td>2</td><td>Present — prominently evident during shift</td></tr>
-        </tbody>
-      </table>
+      <h2>Scale Items &amp; Rating</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Item</th><th>Definition</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>1. Disorientation</strong></td><td>Verbal or behavioural manifestation of not being oriented to time or place, or misperceiving persons in the surroundings.</td></tr>
+            <tr><td><strong>2. Inappropriate behavior</strong></td><td>Behaviour inappropriate to the place and/or person, e.g. pulling at tubes or dressings, trying to get out of bed when contraindicated.</td></tr>
+            <tr><td><strong>3. Inappropriate communication</strong></td><td>Communication inappropriate to the place and/or person, e.g. incoherence, lack of communication, nonsensical or unintelligible speech.</td></tr>
+            <tr><td><strong>4. Illusions / hallucinations</strong></td><td>Seeing or hearing things that are not there; distortion of visual objects.</td></tr>
+            <tr><td><strong>5. Psychomotor retardation</strong></td><td>Delayed responsiveness, few or no spontaneous actions or words, e.g. delayed reaction when prodded, or patient cannot be aroused.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th class="pts">Rating</th><th>Meaning (per item)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pts">0</td><td>Absent</td></tr>
+            <tr><td class="pts">1</td><td>Mild or occasional</td></tr>
+            <tr><td class="pts">2</td><td>Marked, frequent or intense</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">Rate each item on the basis of observations over the current shift (e.g. 8–12&nbsp;h). The five item ratings are summed (maximum 10).</div>
     </div>
 
     <div class="section">
       <h2>Score Interpretation</h2>
-      <table>
-        <thead>
-          <tr><th>Total Score</th><th>Interpretation</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>0</td><td>No delirium</td></tr>
-          <tr><td>1</td><td>Borderline — increased vigilance warranted</td></tr>
-          <tr><td>≥ 2</td><td>Delirium present — notify physician; initiate delirium management protocol</td></tr>
-          <tr><td>≥ 5</td><td>Severe delirium — high risk of harm; escalate care</td></tr>
-        </tbody>
-      </table>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Total score</th><th>Interpretation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="pts">0</td><td>Negative screen. A negative screen does not exclude delirium; sensitivity is limited, especially for hypoactive delirium. Reassess each shift.</td></tr>
+            <tr><td class="pts">1</td><td>Negative at the standard cutoff (≥&nbsp;2). A total of 1 is positive at the more sensitive cutoff of ≥&nbsp;1 validated in the recovery room (sensitivity 95&nbsp;%, specificity 87&nbsp;%) <sup><a href="#ref3">[3]</a></sup>. Consider closer observation and confirm clinically if suspicion exists.</td></tr>
+            <tr><td class="pts">≥&nbsp;2</td><td>Positive screen — delirium suspected. Confirm with a diagnostic assessment (e.g. CAM / CAM-ICU or DSM-5 criteria) and look for causes.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">No severity grading of the Nu-DESC total has been validated; a higher total should not be read as a validated measure of delirium severity.</div>
     </div>
 
     <div class="section">
-      <h2>Assessment Procedure</h2>
-      <ol>
-        <li>Assess the patient at the beginning and/or end of each nursing shift (at least once per 8–12 hours).</li>
-        <li>Rate each of the five items based on observations made throughout the entire shift — not just at the moment of assessment.</li>
-        <li>Sum the five item scores (maximum 10).</li>
-        <li>A total score ≥ 2 constitutes a positive delirium screen; document and notify the medical team to confirm diagnosis and initiate management.</li>
-      </ol>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>The Nu-DESC is consistently reported to have high specificity, but its sensitivity varies considerably and is often limited outside the original cohort. In a comparison of three screening tools on a surgical ward, the Nu-DESC was the most sensitive of the three <sup><a href="#ref4">[4]</a></sup>. In contrast, a study of postoperative elderly patients reported a sensitivity of only 32&nbsp;% at the ≥&nbsp;2 cutoff <sup><a href="#ref5">[5]</a></sup>. In 405 hospitalised inpatients, sensitivity and specificity were 42&nbsp;% and 98&nbsp;% at ≥&nbsp;2, and 67&nbsp;% and 93&nbsp;% at ≥&nbsp;1 <sup><a href="#ref6">[6]</a></sup>. A 2020 meta-analysis of 11 studies (2,245 patients) found a pooled sensitivity of 68.6&nbsp;% and a pooled specificity of 89.4&nbsp;% <sup><a href="#ref7">[7]</a></sup>.</p>
+      <p>Limitations to keep in mind:</p>
+      <ul class="limits">
+        <li><strong>Screening, not diagnosis:</strong> a positive result indicates suspected delirium and should be confirmed with a diagnostic assessment; a negative result does not exclude delirium.</li>
+        <li><strong>Hypoactive delirium:</strong> the scale is weaker for hypoactive presentations, which are easily overlooked.</li>
+        <li><strong>Dependence on observation:</strong> ratings rely on the nurse's observations across the shift, so they depend on observation time, patient contact and rater experience.</li>
+        <li><strong>No validated severity grading:</strong> the total score is not a validated measure of delirium severity.</li>
+        <li><strong>Choice of cutoff:</strong> the standard cutoff of ≥&nbsp;2 favours specificity; the lower cutoff of ≥&nbsp;1 increases sensitivity at the cost of specificity <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref6">[6]</a></sup>.</li>
+        <li><strong>Other instruments:</strong> where an ICU team already uses a confirmatory or alternative tool such as the CAM-ICU or the ICDSC, the Nu-DESC does not replace it; the tools differ in design and in the settings in which they were validated.</li>
+      </ul>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Gaudreau JD, Gagnon P, Harel F, Tremblay A, Roy MA. <em>Fast, systematic, and continuous delirium assessment in hospitalized patients: the nursing delirium screening scale.</em> J Pain Symptom Manage. 2005;29(4):368–375.</p>
+      <ol class="refs">
+        <li id="ref1">Gaudreau JD, Gagnon P, Harel F, Tremblay A, Roy MA. Fast, systematic, and continuous delirium assessment in hospitalized patients: the Nursing Delirium Screening Scale. <em>J Pain Symptom Manage.</em> 2005;29(4):368–375.</li>
+        <li id="ref2">Lütz A, Radtke FM, et al. Die Nursing Delirium Screening Scale (Nu-DESC) – Richtlinienkonforme Übersetzung für den deutschsprachigen Raum. <em>Anästhesiol Intensivmed Notfallmed Schmerzther.</em> 2008;43(2):98–102.</li>
+        <li id="ref3">Radtke FM, Franck M, Schneider M, et al. Comparison of three scores to screen for delirium in the recovery room. <em>Br J Anaesth.</em> 2008;101(3):338–343.</li>
+        <li id="ref4">Radtke FM, Franck M, Schust S, et al. A comparison of three scores to screen for delirium on the surgical ward. <em>World J Surg.</em> 2010;34(3):487–494.</li>
+        <li id="ref5">Neufeld KJ, Leoutsakos JS, Sieber FE, et al. Evaluation of two delirium screening tools for detecting post-operative delirium in the elderly. <em>Br J Anaesth.</em> 2013;111(4):612–618.</li>
+        <li id="ref6">Hargrave A, Bastiaens J, Bourgeois JA, et al. Validation of a nurse-based delirium-screening tool for hospitalized patients. <em>Psychosomatics.</em> 2017;58(6):594–603.</li>
+        <li id="ref7">Jeong E, Park J, Lee J. Diagnostic test accuracy of the Nursing Delirium Screening Scale: a systematic review and meta-analysis. <em>J Adv Nurs.</em> 2020;76(10):2510–2521.</li>
+      </ol>
     </div>
 
-    <div class="cta">
-      <p>Assess delirium with Nu-DESC interactively in the app.</p>
+    <div class="section cta">
+      <p>Calculate Nu-DESC directly in Scores2Go — free, no account required for the web app.</p>
       <a class="button" href="../app/?score=nudesc">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 19H5V5h7V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
         Open in Scores2Go
       </a>
     </div>
 
-    <p class="disclaimer">For research and educational purposes only. Not intended for direct clinical decision-making.</p>
+    <p class="disclaimer">For research and educational use only. Not a substitute for clinical judgement. Always consult current clinical guidelines and local protocols.</p>
 
   </main>
 

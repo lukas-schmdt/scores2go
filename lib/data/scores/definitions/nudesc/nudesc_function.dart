@@ -44,6 +44,5 @@ ScoreResult nudescFunction(Score score, String lang) {
 String _interpret(int total, String Function(String) t) => switch (total) {
       0 => t('calc.interp.0'),
       1 => t('calc.interp.1'),
-      _ when total >= 2 && total <= 4 => t('calc.interp.2to4'),
-      _ => t('calc.interp.severe'),
+      _ => t('calc.interp.positive'),
     };

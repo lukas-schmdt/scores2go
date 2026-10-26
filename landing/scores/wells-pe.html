@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wells Score (PE) – Scores2Go</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <meta name="description" content="Wells Score (PE) — estimates the pre-test probability of pulmonary embolism from 7 clinical criteria, with two-tier and three-tier interpretation, diagnostic pathway, full references and known limitations." />
+  <link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-pe.html" />
+  <link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-pe.html" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f8fa;
+      color: #111827;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      padding: 48px 24px;
+      text-align: center;
+      color: white;
+    }
+
+    header .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    header .back:hover { color: white; }
+
+    header .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 16px;
+      opacity: 0.85;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      font-size: 13px;
+      opacity: 0.75;
+    }
+
+    .meta span { display: flex; align-items: center; gap: 5px; }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .section { margin-bottom: 40px; }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e5e7eb;
+    }
+
+    p { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 12px; }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid #f0f0f0;
+      color: #374151;
+    }
+
+    td.pts { text-align: center; font-weight: 700; }
+
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #fafafa; }
+
+    .note {
+      font-size: 13px;
+      color: #6b7280;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    pre {
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin-bottom: 12px;
+      color: #1f2937;
+    }
+
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
+    .cta {
+      text-align: center;
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 36px 24px;
+    }
+
+    .cta p { color: #6b7280; margin-bottom: 20px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      background: linear-gradient(135deg, #0DBBBA, #0176E4);
+      color: white;
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 32px;
+      line-height: 1.6;
+    }
+
+    .lang-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+    }
+    .lang-link:hover { color: white; }
+    h3 { font-size: 15px; font-weight: 700; color: #111827; margin: 20px 0 10px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <a class="back" href="../">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Scores2Go
+      </a>
+    </div>
+    <div class="badge">Emergency · Pulmonology</div>
+    <h1>Wells Score (PE)</h1>
+    <p>Estimates the pre-test probability of pulmonary embolism in patients with suspected PE from 7 clinical criteria, guiding the choice between D-dimer testing and CT pulmonary angiography.</p>
+    <div class="meta">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Wells et al.
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.9 3 3 3.9 3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11z"/></svg>
+        2000
+      </span>
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
+        Popularity 85
+      </span>
+    </div>
+    <a class="lang-link" href="./de/wells-pe.html">🇩🇪 Deutsch</a>
+  </header>
+
+  <main>
+
+    <div class="section">
+      <h2>Overview</h2>
+      <p>The Wells score for pulmonary embolism (PE) is a clinical prediction rule that converts seven bedside findings into a pre-test probability of PE. It was derived by Wells and colleagues and published in 2000, together with a strategy that combined the clinical estimate with a SimpliRED D-dimer assay <sup><a href="#ref1">[1]</a></sup>. A prospective emergency-department study in 2001 then showed that patients with a low clinical probability and a negative D-dimer could safely be managed without diagnostic imaging <sup><a href="#ref2">[2]</a></sup>. A large prospective management study later confirmed that an algorithm combining the dichotomized Wells score, D-dimer testing, and CT was a safe and effective way to manage suspected PE <sup><a href="#ref3">[3]</a></sup>.</p>
+      <p>The score is only meant for patients in whom PE is <strong>clinically suspected</strong>. It is not a screening tool for asymptomatic patients, and it must never delay resuscitation: haemodynamically unstable patients with suspected PE follow a separate, immediate-imaging pathway.</p>
+      <p>Besides the original three-tier and the two-tier (&ldquo;PE unlikely&rdquo; / &ldquo;PE likely&rdquo;) interpretations, a simplified version with one point per item (Gibson 2008; &le; 1 point = PE unlikely) has been proposed <sup><a href="#ref4">[4]</a></sup>. Scores2Go implements the original weighted version only. The Wells criteria have been prospectively validated in emergency-department populations <sup><a href="#ref5">[5]</a></sup>, and they are commonly used alongside the PERC rule for patients with very low pre-test probability <sup><a href="#ref6">[6]</a></sup>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Variables &amp; Points</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Criterion</th><th class="pts">Points</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Clinical signs and symptoms of DVT (minimum: leg swelling and pain on palpation of the deep veins)</td><td class="pts">3</td></tr>
+            <tr><td>PE is the #1 diagnosis or equally likely (alternative diagnosis less likely than PE)</td><td class="pts">3</td></tr>
+            <tr><td>Heart rate &gt; 100/min</td><td class="pts">1.5</td></tr>
+            <tr><td>Immobilization &ge; 3 days or surgery in the previous 4 weeks</td><td class="pts">1.5</td></tr>
+            <tr><td>Previous objectively diagnosed PE or DVT</td><td class="pts">1.5</td></tr>
+            <tr><td>Hemoptysis</td><td class="pts">1</td></tr>
+            <tr><td>Malignancy (treatment within 6 months, or palliative)</td><td class="pts">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Total = sum of all applicable criteria (range 0 to 12.5). In Scores2Go, every criterion must be answered before a result is shown.</p>
+    </div>
+
+    <div class="section">
+      <h2>Interpretation</h2>
+      <p>The score can be interpreted in two ways. Current guidelines accept either version; the two-tier version maps most directly onto the D-dimer/CTPA pathway (see below).</p>
+
+      <h3>Two-tier interpretation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Category</th><th>Approx. PE prevalence</th><th>Next step</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&le; 4</td><td>PE unlikely</td><td>~12.1%</td><td>D-dimer</td></tr>
+            <tr><td>&gt; 4</td><td>PE likely</td><td>~37.1%</td><td>CT pulmonary angiography (CTPA)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Three-tier interpretation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Score</th><th>Category</th><th>Approx. PE prevalence</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>&lt; 2</td><td>Low</td><td>~1.3%</td></tr>
+            <tr><td>2 &ndash; 6</td><td>Moderate</td><td>~16.2%</td></tr>
+            <tr><td>&gt; 6</td><td>High</td><td>~37.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Prevalence figures are approximate values from validation cohorts and should not be attributed to a single study. For comparison, the original 2001 emergency-department study reported roughly 40.6% for the high-probability group <sup><a href="#ref2">[2]</a></sup>. Prevalence varies with setting and population.</p>
+
+      <h3>Diagnostic pathway (two-tier)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Category</th><th>Step 1</th><th>Step 2</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>PE unlikely (&le; 4)</td><td>D-dimer. In patients &gt; 50 years, use the age-adjusted cutoff (age &times; 10 &micro;g/L) <sup><a href="#ref7">[7]</a></sup>.</td><td>Negative: PE excluded. Positive: CTPA.</td></tr>
+            <tr><td>PE likely (&gt; 4)</td><td>CTPA directly (V/Q scan if CTPA is contraindicated).</td><td>D-dimer should not be used to rule out PE in this group.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Wells-based strategies can be combined with or compared to other approaches. The YEARS algorithm uses three clinical items together with a variable D-dimer threshold and was shown to reduce the number of CT scans needed while remaining safe <sup><a href="#ref8">[8]</a></sup>. The 2019 ESC guidelines recommend assessing clinical probability with a validated rule such as the Wells score or the revised Geneva score, and combining it with D-dimer testing in patients with low or intermediate probability (or &ldquo;PE unlikely&rdquo;) <sup><a href="#ref9">[9]</a></sup>.</p>
+    </div>
+
+    <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>The Wells score has been validated repeatedly in emergency-department and mixed populations and is embedded in international guidelines <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref5">[5]</a></sup><sup><a href="#ref9">[9]</a></sup>. It is nevertheless a probability estimate, not a diagnosis, and has well-recognised limitations:</p>
+      <ul class="limits">
+        <li><strong>Subjective item:</strong> &ldquo;PE is the #1 diagnosis or equally likely&rdquo; carries 3 points and depends on the clinician&rsquo;s gestalt. Inter-rater reliability for this item is variable, so different clinicians can reach different categories for the same patient.</li>
+        <li><strong>Only for suspected PE:</strong> the score assumes that PE is already a clinical consideration. Applying it to unselected patients is not appropriate.</li>
+        <li><strong>Unstable patients:</strong> haemodynamically unstable patients follow a different pathway; resuscitation and immediate imaging or bedside echocardiography should never wait for a score.</li>
+        <li><strong>Prevalence varies:</strong> the prevalence attached to each category differs by setting, era and imaging technology, so the percentages shown are indicative only.</li>
+        <li><strong>D-dimer limitation:</strong> in the &ldquo;PE likely&rdquo; group, a negative D-dimer is not considered sufficient to exclude PE.</li>
+        <li><strong>Simplified variant:</strong> the Gibson simplified rule (1 point per item, &le; 1 = unlikely) was proposed to reduce subjectivity and complexity <sup><a href="#ref4">[4]</a></sup>; it is not implemented here.</li>
+      </ul>
+      <p>Related tools include the PERC rule, which can identify patients at very low risk in whom no testing is needed <sup><a href="#ref6">[6]</a></sup>; the age-adjusted D-dimer cutoff validated in the ADJUST-PE study <sup><a href="#ref7">[7]</a></sup>; the YEARS algorithm <sup><a href="#ref8">[8]</a></sup>; and the revised Geneva score, an alternative validated clinical probability rule <sup><a href="#ref9">[9]</a></sup>. When the leg is the main concern, the companion <a href="wells-dvt.html">Wells Score (DVT)</a> estimates the probability of deep vein thrombosis.</p>
+    </div>
+
+    <div class="section">
+      <h2>Literature</h2>
+      <ol class="refs">
+        <li id="ref1">Wells PS, Anderson DR, Rodger M, et al. Derivation of a simple clinical model to categorize patients probability of pulmonary embolism: increasing the models utility with the SimpliRED D-dimer. <em>Thromb Haemost.</em> 2000;83(3):416–420.</li>
+        <li id="ref2">Wells PS, Anderson DR, Rodger M, et al. Excluding pulmonary embolism at the bedside without diagnostic imaging: management of patients with suspected pulmonary embolism presenting to the emergency department by using a simple clinical model and d-dimer. <em>Ann Intern Med.</em> 2001;135(2):98–107.</li>
+        <li id="ref3">van Belle A, Büller HR, Huisman MV, et al. Effectiveness of managing suspected pulmonary embolism using an algorithm combining clinical probability, D-dimer testing, and computed tomography. <em>JAMA.</em> 2006;295(2):172–179.</li>
+        <li id="ref4">Gibson NS, Sohne M, Kruip MJ, et al. Further validation and simplification of the Wells clinical decision rule in pulmonary embolism. <em>Thromb Haemost.</em> 2008;99(1):229–234.</li>
+        <li id="ref5">Wolf SJ, McCubbin TR, Feldhaus KM, Faragher JP, Adcock DM. Prospective validation of Wells Criteria in the evaluation of patients with suspected pulmonary embolism. <em>Ann Emerg Med.</em> 2004;44(5):503–510.</li>
+        <li id="ref6">Kline JA, Mitchell AM, Kabrhel C, Richman PB, Courtney DM. Clinical criteria to prevent unnecessary diagnostic testing in emergency department patients with suspected pulmonary embolism. <em>J Thromb Haemost.</em> 2004;2(8):1247–1255.</li>
+        <li id="ref7">Righini M, Van Es J, Den Exter PL, et al. Age-adjusted D-dimer cutoff levels to rule out pulmonary embolism: the ADJUST-PE study. <em>JAMA.</em> 2014;311(11):1117–1124.</li>
+        <li id="ref8">van der Hulle T, Cheung WY, Kooij S, et al. Simplified diagnostic management of suspected pulmonary embolism (the YEARS study): a prospective, multicentre, cohort study. <em>Lancet.</em> 2017;390(10091):289–297.</li>
+        <li id="ref9">Konstantinides SV, Meyer G, Becattini C, et al. 2019 ESC Guidelines for the diagnosis and management of acute pulmonary embolism. <em>Eur Heart J.</em> 2020;41(4):543–603.</li>
+      </ol>
+    </div>
+
+    <div class="section cta">
+      <p>Calculate the Wells Score (PE) directly in Scores2Go — free, no account required for the web app.</p>
+      <a class="button" href="../app/?score=wells-pe">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+        Open in Scores2Go
+      </a>
+    </div>
+
+    <p class="disclaimer">For research and educational use only. Not a substitute for clinical judgement. Always consult current clinical guidelines and local protocols.</p>
+
+  </main>
+
+</body>
+</html>

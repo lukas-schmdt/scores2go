@@ -163,6 +163,13 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -197,8 +204,9 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>qSOFA wurde 2016 im Rahmen der Sepsis-3-Konsensdefinitionen eingeführt, um Kliniker*innen eine schnelle Bedside-Alternative zum vollständigen SOFA-Score zu geben, um Patienten mit Sepsisverdacht zu identifizieren, die wahrscheinlich einen ungünstigen Verlauf haben. Im Gegensatz zu SOFA benötigt qSOFA keine Laborwerte — nur Atemfrequenz, Bewusstseinszustand und Blutdruck — und kann in Sekunden erhoben werden.</p>
-      <p>Ein qSOFA-Score von 2 oder mehr ist mit einem höheren Risiko für Tod oder verlängerten Intensivaufenthalt assoziiert und sollte eine weitere Abklärung auf Organdysfunktion, eine Eskalation der Behandlung und die Erwägung des vollständigen SOFA-Scores nach sich ziehen. qSOFA ist ein Screening-Instrument, kein diagnostisches Kriterium für Sepsis — es ersetzt nicht die klinische Beurteilung.</p>
+      <p>qSOFA wurde 2016 im Rahmen der Sepsis-3-Konsensdefinitionen eingeführt, um Kliniker*innen eine schnelle Bedside-Alternative zum vollständigen SOFA-Score zu geben, um Patienten mit Infektionsverdacht zu identifizieren, die wahrscheinlich einen ungünstigen Verlauf haben <sup><a href="#ref1">[1]</a></sup>. Im Gegensatz zu SOFA benötigt qSOFA keine Laborwerte — nur Atemfrequenz, mentaler Status und Blutdruck — und kann in Sekunden erhoben werden.</p>
+      <p>Die Kriterien wurden anhand von 148.907 Behandlungsfällen mit Infektionsverdacht aus elektronischen Patientenakten abgeleitet. Außerhalb der Intensivstation diskriminierte qSOFA die Krankenhausmortalität (AUROC 0,81) mindestens so gut wie der vollständige SOFA-Score (0,79) und besser als SIRS (0,76). Ein Score von 2 oder mehr war über das gesamte Spektrum des Ausgangsrisikos mit einer 3- bis 14-fach erhöhten Krankenhausmortalität assoziiert <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Ein positiver qSOFA sollte eine weitere Abklärung auf Organdysfunktion (z. B. mittels vollständigem SOFA-Score), die Einleitung oder Eskalation der Therapie und eine engmaschigere Überwachung nach sich ziehen. qSOFA ist ein prognostischer Hinweis, kein diagnostisches Kriterium für Sepsis — die Sepsis selbst ist durch einen akuten SOFA-Anstieg um ≥ 2 Punkte definiert <sup><a href="#ref1">[1]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -209,11 +217,12 @@
         </thead>
         <tbody>
           <tr><td>Atemfrequenz</td><td>≥ 22 Atemzüge/min</td><td>1</td></tr>
-          <tr><td>Bewusstseinszustand</td><td>Verändert (GCS &lt; 15)</td><td>1</td></tr>
+          <tr><td>Mentaler Status</td><td>Verändert (GCS &lt; 15)</td><td>1</td></tr>
           <tr><td>Systolischer Blutdruck</td><td>≤ 100 mmHg</td><td>1</td></tr>
         </tbody>
       </table>
       <p style="margin-top:12px">Der Gesamtscore reicht von 0 bis 3 Punkten — 1 Punkt für jedes vorliegende Kriterium.</p>
+      <p><strong>Veränderter mentaler Status:</strong> Sepsis-3 und die meisten Rechner werten jeden Glasgow-Coma-Scale-Wert unter 15. Das ursprüngliche Ableitungsmodell verwendete tatsächlich GCS ≤ 13; die einfachere Definition „jede Veränderung“ schnitt in der Sensitivitätsanalyse nicht anders ab <sup><a href="#ref2">[2]</a></sup>. Scores2Go verwendet die Sepsis-3-Konvention (GCS &lt; 15).</p>
     </div>
 
     <div class="section">
@@ -223,25 +232,38 @@
           <tr><th>Score</th><th>Bedeutung</th></tr>
         </thead>
         <tbody>
-          <tr><td>0–1</td><td>Niedriges Risiko — routinemäßige Überwachung fortsetzen, bei klinischer Verschlechterung erneut beurteilen</td></tr>
-          <tr><td>≥ 2</td><td>Hohes Risiko — erhöhtes Risiko für Mortalität und verlängerten Intensivaufenthalt; Abklärung auf Organdysfunktion und Eskalation der Behandlung erwägen</td></tr>
+          <tr><td>0–1 (negativ)</td><td>Schließt Sepsis oder Verschlechterung nicht aus — etwa die Hälfte der versterbenden Patienten hat einen Score unter 2. Diagnostik und Therapie einer vermuteten Infektion nicht aufschieben; bei Zustandsänderung erneut beurteilen.</td></tr>
+          <tr><td>≥ 2 (positiv)</td><td>Deutlich erhöhtes Risiko für Krankenhaussterblichkeit bei Infektionsverdacht; auf Organdysfunktion abklären (z. B. SOFA) und Eskalation der Behandlung erwägen.</td></tr>
         </tbody>
       </table>
+      <p style="margin-top:12px">In der ersten prospektiven Validierung in Notaufnahmen (30 Notaufnahmen, 879 Patienten) lag die Krankenhausmortalität bei 3 % mit qSOFA &lt; 2 gegenüber 24 % mit qSOFA ≥ 2 <sup><a href="#ref3">[3]</a></sup>. Die Sepsis-3-Arbeitsgruppe hält ausdrücklich fest, dass das Nichterfüllen von 2 oder mehr qSOFA-Kriterien nicht zum Aufschub von Diagnostik oder Therapie einer Infektion führen darf <sup><a href="#ref1">[1]</a></sup>.</p>
     </div>
 
     <div class="section">
-      <h2>Limitationen</h2>
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p><strong>Hohe Spezifität, geringe Sensitivität.</strong> Eine Metaanalyse von 38 Studien (385.333 Patienten) ergab für qSOFA eine gepoolte Sensitivität für Mortalität von 60,8 % und eine Spezifität von 72,0 %, verglichen mit 88,1 % und 25,8 % für SIRS; außerhalb der Intensivstation sank die Sensitivität auf 51,2 % <sup><a href="#ref4">[4]</a></sup>. Eine zweite, auf Patienten außerhalb der Intensivstation beschränkte Metaanalyse berichtete eine gepoolte Sensitivität von 0,51 und eine Spezifität von 0,83 für Krankenhausmortalität <sup><a href="#ref5">[5]</a></sup>. qSOFA eignet sich daher besser zum Erkennen von Hochrisikopatienten als zur Entwarnung.</p>
+      <p><strong>Nicht als alleiniges Screening-Instrument empfohlen.</strong> Auf Normalstationen wurde qSOFA (AUROC 0,69) bei 30.677 Patienten mit Infektion vom National Early Warning Score (NEWS, 0,77) für die Krankenhausmortalität übertroffen <sup><a href="#ref6">[6]</a></sup>. Die Leitlinien der Surviving Sepsis Campaign 2021 empfehlen dementsprechend, qSOFA im Vergleich zu SIRS, NEWS oder MEWS <em>nicht</em> als alleiniges Screening-Instrument für Sepsis oder septischen Schock einzusetzen (starke Empfehlung, Evidenz mittlerer Qualität) <sup><a href="#ref7">[7]</a></sup>. Die deutsche S3-Leitlinie Sepsis, die 2018 noch die regelmäßige Bestimmung des qSOFA außerhalb der Intensivstation empfahl, ersetzte dies im Update 2025 durch die Empfehlung, ein geeignetes Screeninginstrument anzuwenden, und hält fest, dass ein negativer qSOFA-Score eine Sepsis nicht ausschließt <sup><a href="#ref8">[8]</a></sup>.</p>
+      <p><strong>Schwache Leistung auf der Intensivstation.</strong> In der Ableitungsstudie fiel die AUROC von qSOFA bei Intensivpatienten auf 0,66 und lag damit unter SOFA (0,74) <sup><a href="#ref2">[2]</a></sup>. Bei 184.875 Intensivaufnahmen aus Australien und Neuseeland war SOFA (rohe AUROC 0,753) dem qSOFA (0,607) klar überlegen, der nur geringfügig besser abschnitt als SIRS (0,589) <sup><a href="#ref9">[9]</a></sup>. qSOFA sollte nicht zur Risikostratifizierung bereits intensivmedizinisch behandelter Patienten verwendet werden.</p>
       <ul>
-        <li>Geringere Sensitivität als SIRS-Kriterien oder vollständiges SOFA zur Erkennung von Sepsis, insbesondere in der Frühphase</li>
-        <li>Sollte als Anstoß für eine weitere Abklärung dienen, nicht als alleiniges diagnostisches oder Ausschlusskriterium</li>
-        <li>Nicht validiert für den isolierten Einsatz zum Zurückhalten einer Behandlung bei klinisch vermuteter Infektion</li>
+        <li><strong>Prognostisch, nicht diagnostisch:</strong> qSOFA sagt die Mortalität bei Infektionsverdacht voraus; er diagnostiziert eine Sepsis weder noch schließt er sie aus.</li>
+        <li><strong>Momentaufnahme:</strong> Vitalparameter schwanken — ein negativer Score sollte im Verlauf wiederholt werden.</li>
+        <li><strong>Störfaktoren:</strong> vorbestehende kognitive Einschränkung, Sedierung, Intoxikation, chronische Hypotonie oder antihypertensive Therapie können Kriterien unabhängig von einer Infektion auslösen.</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Literatur</h2>
-      <p>Seymour CW, Liu VX, Iwashyna TJ, et al. <em>Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em> JAMA. 2016;315(8):762–774.</p>
-      <p>Singer M, Deutschman CS, Seymour CW, et al. <em>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em> JAMA. 2016;315(8):801–810.</p>
+      <ol class="refs">
+        <li id="ref1">Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):801–810.</li>
+        <li id="ref2">Seymour CW, Liu VX, Iwashyna TJ, et al. Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):762–774.</li>
+        <li id="ref3">Freund Y, Lemachatti N, Krastinova E, et al. Prognostic Accuracy of Sepsis-3 Criteria for In-Hospital Mortality Among Patients With Suspected Infection Presenting to the Emergency Department. <em>JAMA.</em> 2017;317(3):301–308.</li>
+        <li id="ref4">Fernando SM, Tran A, Taljaard M, et al. Prognostic Accuracy of the Quick Sequential Organ Failure Assessment for Mortality in Patients With Suspected Infection: A Systematic Review and Meta-analysis. <em>Ann Intern Med.</em> 2018;168(4):266–275.</li>
+        <li id="ref5">Song JU, Sin CK, Park HK, Shim SR, Lee J. Performance of the quick Sequential (sepsis-related) Organ Failure Assessment score as a prognostic tool in infected patients outside the intensive care unit: a systematic review and meta-analysis. <em>Crit Care.</em> 2018;22:28.</li>
+        <li id="ref6">Churpek MM, Snyder A, Han X, et al. Quick Sepsis-related Organ Failure Assessment, Systemic Inflammatory Response Syndrome, and Early Warning Scores for Detecting Clinical Deterioration in Infected Patients outside the Intensive Care Unit. <em>Am J Respir Crit Care Med.</em> 2017;195(7):906–911.</li>
+        <li id="ref7">Evans L, Rhodes A, Alhazzani W, et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021. <em>Intensive Care Med.</em> 2021;47(11):1181–1247.</li>
+        <li id="ref8">Brunkhorst FM, Adamzik M, Axer H, et al. S3-Leitlinie Sepsis – Prävention, Diagnose, Therapie und Nachsorge – Update 2025 [S3 guideline on sepsis – prevention, diagnosis, therapy, and follow-up care – update 2025]. <em>Med Klin Intensivmed Notfmed.</em> 2025;120(Suppl 2):163–231.</li>
+        <li id="ref9">Raith EP, Udy AA, Bailey M, et al. Prognostic Accuracy of the SOFA Score, SIRS Criteria, and qSOFA Score for In-Hospital Mortality Among Adults With Suspected Infection Admitted to the Intensive Care Unit. <em>JAMA.</em> 2017;317(3):290–300.</li>
+      </ol>
     </div>
 
     <div class="cta">

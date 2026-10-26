@@ -20,15 +20,21 @@ class QsofaI10n extends ScoreI10n {
           'Respiratory rate of 22 breaths per minute or higher.',
       'mentation.display': 'Altered Mentation',
       'mentation.description':
-          'Glasgow Coma Scale score below 15 (any deviation from normal alertness).',
+          'Any alteration of mentation — Glasgow Coma Scale score below 15 '
+          '(Sepsis-3 convention). The derivation model used GCS ≤ 13; the two '
+          'cut-offs performed equivalently.',
       'sbp.display': 'Systolic Blood Pressure ≤ 100 mmHg',
       'sbp.description': 'Systolic blood pressure of 100 mmHg or lower.',
       // Calculation output
       'calc.incomplete': 'Please assess all three criteria.',
       'calc.interp.high':
-          'High risk — increased risk of mortality and prolonged ICU stay. Consider further sepsis workup.',
+          'Positive qSOFA (≥ 2) — in suspected infection, associated with a '
+          '3- to 14-fold higher in-hospital mortality. Assess for organ '
+          'dysfunction (e.g. SOFA). qSOFA does not diagnose sepsis.',
       'calc.interp.low':
-          'Low risk — continue routine monitoring; reassess if clinical status changes.',
+          'Negative qSOFA (< 2) — does not rule out sepsis: sensitivity for '
+          'mortality is only about 50 %. Do not defer investigation or '
+          'treatment of suspected infection; reassess if status changes.',
     },
     'de': {
       'display': 'qSOFA',
@@ -44,17 +50,25 @@ class QsofaI10n extends ScoreI10n {
       'resp-rate.display': 'Atemfrequenz ≥ 22/min',
       'resp-rate.description':
           'Atemfrequenz von 22 Atemzügen pro Minute oder höher.',
-      'mentation.display': 'Veränderter Bewusstseinszustand',
+      'mentation.display': 'Veränderter mentaler Status',
       'mentation.description':
-          'Glasgow Coma Scale unter 15 (jede Abweichung von normaler Wachheit).',
+          'Jede Veränderung des mentalen Status — Glasgow Coma Scale unter '
+          '15 (Sepsis-3-Konvention). Das Ableitungsmodell verwendete GCS ≤ 13; '
+          'beide Grenzwerte schnitten gleichwertig ab.',
       'sbp.display': 'Systolischer Blutdruck ≤ 100 mmHg',
       'sbp.description': 'Systolischer Blutdruck von 100 mmHg oder niedriger.',
       // Calculation output
       'calc.incomplete': 'Bitte alle drei Kriterien beurteilen.',
       'calc.interp.high':
-          'Hohes Risiko — erhöhtes Mortalitätsrisiko und verlängerter Intensivaufenthalt. Weitere Sepsisdiagnostik erwägen.',
+          'qSOFA positiv (≥ 2) — bei Infektionsverdacht mit einer 3- bis '
+          '14-fach höheren Krankenhausmortalität assoziiert. Auf '
+          'Organdysfunktion abklären (z. B. SOFA). qSOFA diagnostiziert keine '
+          'Sepsis.',
       'calc.interp.low':
-          'Niedriges Risiko — Routinemonitoring fortsetzen; bei klinischer Verschlechterung neu beurteilen.',
+          'qSOFA negativ (< 2) — schließt eine Sepsis nicht aus: Die '
+          'Sensitivität für Mortalität liegt nur bei etwa 50 %. Diagnostik und '
+          'Therapie einer vermuteten Infektion nicht aufschieben; bei '
+          'Zustandsänderung neu beurteilen.',
     },
   };
 }

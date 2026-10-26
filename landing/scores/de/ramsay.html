@@ -153,6 +153,12 @@
       color: white;
     }
 
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+    .note { font-size: 13px; color: #6b7280; }
     .disclaimer {
       font-size: 12px;
       color: #9ca3af;
@@ -194,7 +200,9 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>Die Ramsay Sedation Scale wurde 1974 als eines der ersten standardisierten Instrumente zur Beschreibung der Sedierungstiefe bei Intensivpatienten eingeführt. Ursprünglich für die Anwendung mit Alphaxalon-Alphadolon-Narkose entwickelt, fand sie weltweit breite Anwendung in der Intensivmedizin und bei der Verfahrenssedierung. Obwohl neuere Skalen wie die RASS sie in aktuellen Leitlinien weitgehend abgelöst haben, wird die Ramsay-Skala in vielen Einrichtungen und klinischen Studien noch verwendet.</p>
+      <p>Die Ramsay Sedation Scale wurde 1974 von Ramsay und Kollegen als eine der ersten standardisierten Beschreibungen der Sedierungstiefe eingeführt. Sie erschien in einer Studie zur kontrollierten Sedierung mit Alphaxalon-Alphadolon bei 30 Intensivpatienten, in der die Sedierung während 86 % der Beobachtungszeit als zufriedenstellend beurteilt wurde <sup><a href="#ref1">[1]</a></sup>. Die Skala wurde dort als beschreibendes Instrument vorgestellt und bei ihrer Veröffentlichung nicht formal validiert.</p>
+      <p>Die Skala hat sechs ordinale Stufen. Die Stufen 1–3 beschreiben einen wachen Patienten, von agitiert bis nur auf Aufforderung reagierend. Die Stufen 4–6 beschreiben einen schlafenden Patienten, abgestuft nach der Reaktion auf leichtes Klopfen auf die Glabella oder einen lauten akustischen Reiz. Sie fand breite Anwendung in der Intensivmedizin, bei der Verfahrenssedierung und in klinischen Studien und wird in vielen Einrichtungen weiterhin verwendet.</p>
+      <p>Aktuelle internationale Intensivleitlinien (SCCM PADIS 2018) empfehlen eine leichte statt einer tiefen Sedierung und nennen die Richmond Agitation-Sedation Scale (RASS) und die Sedation-Agitation Scale (SAS) als bevorzugte Instrumente <sup><a href="#ref2">[2]</a></sup>. Beide wurden später mit formaler Validierung und mit mehreren definierten Agitationsstufen entwickelt <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref4">[4]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -207,40 +215,74 @@
           <tr><td>1</td><td>Wach – ängstlich/agitiert</td><td>Patient ängstlich, agitiert oder unruhig</td></tr>
           <tr><td>2</td><td>Wach – kooperativ</td><td>Patient kooperativ, orientiert und ruhig</td></tr>
           <tr><td>3</td><td>Wach – reagiert nur auf Kommandos</td><td>Patient reagiert nur auf Anweisungen</td></tr>
-          <tr><td>4</td><td>Schlafend – prompte Reaktion</td><td>Prompte Reaktion auf lauten akustischen Reiz oder leichten Glabellaschlag</td></tr>
-          <tr><td>5</td><td>Schlafend – träge Reaktion</td><td>Träge Reaktion auf lauten akustischen Reiz oder Glabellaschlag</td></tr>
-          <tr><td>6</td><td>Schlafend – keine Reaktion</td><td>Keine Reaktion auf lauten akustischen Reiz oder Glabellaschlag</td></tr>
+          <tr><td>4</td><td>Schlafend – prompte Reaktion</td><td>Prompte Reaktion auf leichtes Klopfen auf die Glabella oder lauten akustischen Reiz</td></tr>
+          <tr><td>5</td><td>Schlafend – träge Reaktion</td><td>Träge Reaktion auf leichtes Klopfen auf die Glabella oder lauten akustischen Reiz</td></tr>
+          <tr><td>6</td><td>Schlafend – keine Reaktion</td><td>Keine Reaktion auf Klopfen auf die Glabella oder lauten akustischen Reiz</td></tr>
         </tbody>
       </table>
+      <p class="note">Es wird die eine Stufe gewählt, die den Patienten am besten beschreibt. Die Ramsay-Skala ist eine kategoriale Beschreibung, keine Punktsumme.</p>
     </div>
 
     <div class="section">
-      <h2>Beurteilung &amp; Zielwerte</h2>
-      <p>Für die meisten beatmeten Intensivpatienten ist ein Zielwert von Stufe 2–3 angemessen, der ausreichenden Komfort bei gleichzeitiger Interaktionsfähigkeit und Beatmungssynchronität gewährleistet. Stufe 4–5 kann bei Prozeduren, Hochdruck-PEEP-Beatmung oder Patiententransport indiziert sein. Stufe 6 weist auf eine übermäßig tiefe Sedierung hin und ist im Allgemeinen kein therapeutisches Ziel.</p>
-      <p>Stufe 1 zeigt eine unzureichende Sedierung an, die eine Optimierung der Analgesie oder Anxiolyse vor einer Vertiefung der Sedierung erfordert.</p>
+      <h2>Interpretation</h2>
+      <p>Die Originalpublikation legte keine Zielstufe fest <sup><a href="#ref1">[1]</a></sup>. In der Praxis werden die Stufen 2–3 häufig als Ziel leichter Sedierung verwendet, und einige Studien werten auch Stufe 4 als adäquat <sup><a href="#ref5">[5]</a></sup>. Scores2Go stellt das Ergebnis in vier Bereichen dar:</p>
+      <table>
+        <thead>
+          <tr><th>Stufe</th><th>Bewertung in der App</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Agitiert – unzureichende Sedierung, falls Sedierung beabsichtigt</td></tr>
+          <tr><td>2–3</td><td>Häufig verwendetes Ziel leichter Sedierung – individuell festlegen</td></tr>
+          <tr><td>4–5</td><td>Tiefere Sedierung – prüfen, ob beabsichtigt</td></tr>
+          <tr><td>6</td><td>Nicht reagibel – prüfen, ob beabsichtigt; neurologische Ursachen erwägen</td></tr>
+        </tbody>
+      </table>
+      <p>Diese Bereiche fassen die übliche Praxis zusammen und sind keine validierten Grenzwerte. Die angemessene Tiefe hängt von der klinischen Situation ab. Aktuelle Leitlinien bevorzugen für die meisten beatmeten Erwachsenen eine leichte Sedierung <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Stufe 6 bedeutet nur, dass der Patient nicht auf Klopfen auf die Glabella oder einen lauten akustischen Reiz reagiert. Das kann beabsichtigt sein, etwa unter neuromuskulärer Blockade, Burst-Suppression-Therapie oder Allgemeinanästhesie. Es kann aber auch eine strukturelle oder metabolische Hirnschädigung statt einer Sedativawirkung widerspiegeln. Bei Stufe 1 sollten Schmerz, Delir und andere Ursachen der Agitation abgeklärt werden, bevor die Sedierung vertieft wird.</p>
     </div>
 
     <div class="section">
       <h2>Vergleich mit RASS</h2>
+      <p>Eine offizielle Umrechnung zwischen Ramsay-Skala und RASS existiert nicht. Eine kleine monozentrische Studie (n = 45) fand eine starke Korrelation beider Skalen und verglich sie auf Ebene von Sedierungskategorien <sup><a href="#ref5">[5]</a></sup>:</p>
       <table>
         <thead>
-          <tr><th>Ramsay-Stufe</th><th>Ungefähres RASS-Äquivalent</th></tr>
+          <tr><th>Sedierungskategorie</th><th>Ramsay</th><th>RASS</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>+1 bis +2 (unruhig / agitiert)</td></tr>
-          <tr><td>2</td><td>0 (wach und ruhig)</td></tr>
-          <tr><td>3</td><td>−1 (schläfrig)</td></tr>
-          <tr><td>4</td><td>−2 (leichte Sedierung)</td></tr>
-          <tr><td>5</td><td>−3 (moderate Sedierung)</td></tr>
-          <tr><td>6</td><td>−4 bis −5 (tiefe Sedierung / nicht erweckbar)</td></tr>
+          <tr><td>Unzureichend (zu flach)</td><td>1</td><td>+1 bis +4</td></tr>
+          <tr><td>Adäquat</td><td>2–4</td><td>0 bis −3</td></tr>
+          <tr><td>Übermäßig (zu tief)</td><td>5–6</td><td>−4 bis −5</td></tr>
         </tbody>
       </table>
+      <p class="note">Dieser Vergleich ist nur näherungsweise. Die beiden Skalen sind nicht austauschbar. Die RASS unterscheidet vier Agitationsstufen (+1 bis +4), während Ramsay jede Agitation unter Stufe 1 zusammenfasst.</p>
+    </div>
+
+    <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>Eine systematische Übersichtsarbeit zu Sedierungsskalen ergab, dass nur wenige der zahlreichen veröffentlichten Instrumente bei erwachsenen Intensivpatienten auf Reliabilität und Validität geprüft worden waren <sup><a href="#ref6">[6]</a></sup>. Die Ramsay-Skala wurde vor allem deshalb zum De-facto-Standard, weil sie die erste war, nicht aufgrund eines formalen Validierungsprogramms.</p>
+      <p>Die berichtete Reliabilität schwankt stark mit dem Setting und der Schulung der Beurteiler. In der RASS-Validierungsstudie erreichten geschulte Studienpflegekräfte mit der Ramsay-Skala eine sehr hohe Interrater-Übereinstimmung (gewichtetes κ 0,94). Ramsays Validität wurde in dieser Studie nicht untersucht <sup><a href="#ref7">[7]</a></sup>. In einer videobasierten Studie bewerteten 237 Pflegekräfte Videoaufnahmen von Patienten, und die Übereinstimmung bei der Ramsay-Stufe war schlecht (κ 0,28) <sup><a href="#ref8">[8]</a></sup>. Auf einer Intensivstation eines kommunalen Krankenhauses stimmten Nicht-Pflegekräfte nur in 29 % der Beurteilungen mit den Ramsay-Werten der Pflegekräfte überein <sup><a href="#ref9">[9]</a></sup>.</p>
+      <ul>
+        <li><strong>Nur eine Agitationsstufe:</strong> Angst, Unruhe und gefährliche Agitation fallen alle unter Stufe 1. Der Schweregrad der Agitation lässt sich nicht abstufen, anders als mit RASS oder SAS <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref4">[4]</a></sup>.</li>
+        <li><strong>Vermischt verschiedene Dimensionen:</strong> Die Stufen 1–3 beschreiben Verhalten und Kooperation wacher Patienten, die Stufen 4–6 die Erweckbarkeit durch einen physischen oder akustischen Reiz.</li>
+        <li><strong>Reiz nicht standardisiert:</strong> „Leichtes Klopfen auf die Glabella“ und „lauter akustischer Reiz“ werden von verschiedenen Beurteilern unterschiedlich angewendet. Das trägt zur oben beschriebenen schwankenden Reliabilität bei.</li>
+        <li><strong>Unter neuromuskulärer Blockade nicht anwendbar:</strong> Wie andere verhaltensbasierte Skalen kann sie relaxierte Patienten nicht beurteilen.</li>
+        <li><strong>Leitlinienposition:</strong> PADIS 2018 empfiehlt RASS oder SAS für das routinemäßige Sedierungsmonitoring auf der Intensivstation <sup><a href="#ref2">[2]</a></sup>. Ramsay bleibt nützlich zum Lesen älterer Studien und in Einheiten, in denen sie lokaler Standard ist.</li>
+      </ul>
     </div>
 
     <div class="section">
       <h2>Literatur</h2>
-      <p>Ramsay MA, Savege TM, Simpson BR, Goodwin R. <em>Controlled sedation with alphaxalone-alphadolone.</em> BMJ. 1974;2(5920):656–659.</p>
-      <p>De Jonghe B, Cook D, Griffith L, et al. <em>Adaptation to the Intensive Care Environment (ATICE): development and validation of a new sedation assessment instrument.</em> Crit Care Med. 2003;31(9):2344–2354.</p>
+      <ol class="refs">
+        <li id="ref1">Ramsay MA, Savege TM, Simpson BR, Goodwin R. Controlled sedation with alphaxalone-alphadolone. <em>BMJ.</em> 1974;2(5920):656–659.</li>
+        <li id="ref2">Devlin JW, Skrobik Y, Gélinas C, et al. Clinical practice guidelines for the prevention and management of pain, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU. <em>Crit Care Med.</em> 2018;46(9):e825–e873.</li>
+        <li id="ref3">Sessler CN, Gosnell MS, Grap MJ, et al. The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. <em>Am J Respir Crit Care Med.</em> 2002;166(10):1338–1344.</li>
+        <li id="ref4">Riker RR, Picard JT, Fraser GL. Prospective evaluation of the Sedation-Agitation Scale for adult critically ill patients. <em>Crit Care Med.</em> 1999;27(7):1325–1329.</li>
+        <li id="ref5">Mendes CL, Vasconcelos LCS, Tavares JS, et al. Ramsay and Richmond scores are equivalent for the assessment of sedation level in critical patients. <em>Rev Bras Ter Intensiva.</em> 2008;20(4). doi:10.1590/S0103-507X2008000400005.</li>
+        <li id="ref6">De Jonghe B, Cook D, Appere-De-Vecchi C, et al. Using and understanding sedation scoring systems: a systematic review. <em>Intensive Care Med.</em> 2000;26(3):275–285.</li>
+        <li id="ref7">Ely EW, Truman B, Shintani A, et al. Monitoring sedation status over time in ICU patients: reliability and validity of the Richmond Agitation-Sedation Scale (RASS). <em>JAMA.</em> 2003;289(22):2983–2991.</li>
+        <li id="ref8">Olson D, Lynn M, Thoyre SM, Graffagnino C. The limited reliability of the Ramsay scale. <em>Neurocrit Care.</em> 2007;7(3):227–231.</li>
+        <li id="ref9">Deol HS, Surani SR, Udeani G. Inter-rater reliability of the Ramsay Sedation Scale for critically-ill intubated patients. <em>Cureus.</em> 2019;11(10):e6021.</li>
+      </ol>
     </div>
 
     <div class="cta">

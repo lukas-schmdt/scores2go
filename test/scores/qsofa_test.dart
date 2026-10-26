@@ -17,7 +17,7 @@ void main() {
     expect(r.state, ScoreState.incomplete);
   });
 
-  test('all negative → total 0, low risk', () {
+  test('all negative → total 0, negative qSOFA', () {
     final r = compute(score, {
       'qsofa-resp-rate': false,
       'qsofa-mentation': false,
@@ -25,10 +25,20 @@ void main() {
     });
     expect(r.state, ScoreState.success);
     expect(r.primaryResult, '0 / 3');
-    expect(r.primaryInterpretation, contains('Low risk'));
+    expect(r.primaryInterpretation, contains('Negative qSOFA'));
   });
 
-  test('two positive → total 2, high risk', () {
+  test('one positive → total 1, still negative (threshold is ≥ 2)', () {
+    final r = compute(score, {
+      'qsofa-resp-rate': false,
+      'qsofa-mentation': false,
+      'qsofa-sbp': true,
+    });
+    expect(r.primaryResult, '1 / 3');
+    expect(r.primaryInterpretation, contains('Negative qSOFA'));
+  });
+
+  test('two positive → total 2, positive qSOFA', () {
     final r = compute(score, {
       'qsofa-resp-rate': true,
       'qsofa-mentation': true,
@@ -36,7 +46,16 @@ void main() {
     });
     expect(r.state, ScoreState.success);
     expect(r.primaryResult, '2 / 3');
-    expect(r.primaryInterpretation, contains('High risk'));
+    expect(r.primaryInterpretation, contains('Positive qSOFA'));
+  });
+
+  test('German locale uses German interpretation', () {
+    final r = compute(buildQsofaScore('de'), {
+      'qsofa-resp-rate': true,
+      'qsofa-mentation': false,
+      'qsofa-sbp': true,
+    });
+    expect(r.primaryInterpretation, contains('qSOFA positiv'));
   });
 
   test('all positive → total 3', () {

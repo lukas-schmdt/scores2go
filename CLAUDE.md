@@ -55,6 +55,11 @@ Score definitions are pure Dart — no network calls. Each score folder contains
 
 **Supabase tables used:**
 - `user_favorites` — columns: `user_id`, `score_id`, `position`
+- `user_score_collections` — columns: `id`, `user_id`, `display`
+- `score_collection_scores` — columns: `user_score_collection_id`, `score_id`
+- `user_feedback` — columns: `user_id`, `feedback`
+
+**Security:** the key in `main.dart` is the *publishable* key — public by design. Never put the secret/`service_role` key in the client. Client-side `.eq('user_id', …)` filters are not a security boundary; data access is enforced by RLS, whose source of truth is `supabase/rls.sql` (run manually in the Supabase SQL editor). Any new table needs owner-only RLS policies added there.
 
 ### Adding a new score
 

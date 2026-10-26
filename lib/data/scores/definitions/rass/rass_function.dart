@@ -23,6 +23,9 @@ ScoreResult rassFunction(Score score, String lang) {
     primaryLabel: t('display'),
     primaryResult: value > 0 ? '+$value' : '$value',
     primaryInterpretation: _interpretation(value, t),
+    secondaryLabel: t('calc.secondaryLabel'),
+    secondaryResult: _rating(value, t),
+    secondaryInterpretation: value <= -4 ? t('calc.deliriumScreeningLimited') : null,
   );
 }
 
@@ -38,4 +41,11 @@ String _interpretation(int v, String Function(String) t) => switch (v) {
       -4 => t('calc.interp.minus4'),
       -5 => t('calc.interp.minus5'),
       _ => '',
+    };
+
+String _rating(int v, String Function(String) t) => switch (v) {
+      >= 1 => t('calc.rating.agitated'),
+      >= -2 => t('calc.rating.light'),
+      -3 => t('calc.rating.moderate'),
+      _ => t('calc.rating.coma'),
     };

@@ -153,6 +153,12 @@
       color: white;
     }
 
+    ul { padding-left: 20px; margin-bottom: 12px; }
+    ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+    .note { font-size: 13px; color: #6b7280; }
     .disclaimer {
       font-size: 12px;
       color: #9ca3af;
@@ -194,7 +200,9 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>The Ramsay Sedation Scale was introduced in 1974 as one of the earliest standardised tools to describe sedation depth in ICU patients. Originally developed for use with alphaxalone-alphadolone anaesthesia, it gained widespread adoption in intensive care and procedural sedation settings worldwide. Although newer scales such as RASS have largely superseded it in contemporary guidelines, the Ramsay Scale remains in common use in many institutions and clinical trials.</p>
+      <p>The Ramsay Sedation Scale was introduced in 1974 by Ramsay and colleagues as one of the earliest standardised descriptions of sedation depth. It appeared in a study of controlled sedation with alphaxalone-alphadolone in 30 ICU patients, where sedation was judged satisfactory for 86% of the observation time <sup><a href="#ref1">[1]</a></sup>. The scale was presented as a descriptive tool in that paper and was not formally validated at publication.</p>
+      <p>The scale has six ordinal levels. Levels 1–3 describe an awake patient, from agitated to responding only to commands. Levels 4–6 describe an asleep patient, graded by the response to a light glabellar tap or a loud auditory stimulus. It gained widespread adoption in intensive care, procedural sedation and clinical trials, and remains in use in many institutions.</p>
+      <p>Current international ICU guidelines (SCCM PADIS 2018) recommend light rather than deep sedation and name the Richmond Agitation-Sedation Scale (RASS) and the Sedation-Agitation Scale (SAS) as the preferred instruments <sup><a href="#ref2">[2]</a></sup>. Both were developed later with formal validation and with several defined levels of agitation <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref4">[4]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -204,43 +212,77 @@
           <tr><th>Level</th><th>State</th><th>Clinical Signs</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>Awake – anxious/agitated</td><td>Patient anxious, agitated, or restless</td></tr>
+          <tr><td>1</td><td>Awake – anxious/agitated</td><td>Patient anxious and agitated or restless, or both</td></tr>
           <tr><td>2</td><td>Awake – cooperative</td><td>Patient cooperative, oriented, and tranquil</td></tr>
           <tr><td>3</td><td>Awake – responds to commands only</td><td>Patient responds to commands only</td></tr>
-          <tr><td>4</td><td>Asleep – brisk response</td><td>Brisk response to loud auditory stimulus or light glabellar tap</td></tr>
-          <tr><td>5</td><td>Asleep – sluggish response</td><td>Sluggish response to loud auditory stimulus or glabellar tap</td></tr>
-          <tr><td>6</td><td>Asleep – no response</td><td>No response to loud auditory stimulus or glabellar tap</td></tr>
+          <tr><td>4</td><td>Asleep – brisk response</td><td>Brisk response to a light glabellar tap or loud auditory stimulus</td></tr>
+          <tr><td>5</td><td>Asleep – sluggish response</td><td>Sluggish response to a light glabellar tap or loud auditory stimulus</td></tr>
+          <tr><td>6</td><td>Asleep – no response</td><td>No response to a glabellar tap or loud auditory stimulus</td></tr>
         </tbody>
       </table>
+      <p class="note">Choose the single level that best describes the patient. The Ramsay Scale is a categorical description, not a sum of points.</p>
     </div>
 
     <div class="section">
-      <h2>Assessment &amp; Targets</h2>
-      <p>For most mechanically ventilated ICU patients a target of Level 2–3 is appropriate, providing adequate comfort while allowing interaction and ventilator synchrony. Level 4–5 may be indicated for procedures, high-PEEP ventilation, or patient transport. Level 6 indicates excessively deep sedation and is generally not a therapeutic target.</p>
-      <p>Level 1 indicates inadequate sedation requiring analgesic or anxiolytic optimisation before increasing sedation depth.</p>
+      <h2>Interpretation</h2>
+      <p>The original publication did not define a target level <sup><a href="#ref1">[1]</a></sup>. In practice, levels 2–3 are commonly used as a light-sedation target, and some studies count level 4 as adequate as well <sup><a href="#ref5">[5]</a></sup>. Scores2Go presents the result in four bands:</p>
+      <table>
+        <thead>
+          <tr><th>Level</th><th>Assessment shown in the app</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Agitated – inadequate sedation if sedation is intended</td></tr>
+          <tr><td>2–3</td><td>Commonly used light-sedation target – individualise</td></tr>
+          <tr><td>4–5</td><td>Deeper sedation – reassess whether intended</td></tr>
+          <tr><td>6</td><td>Unresponsive – confirm this is intended; consider neurological causes</td></tr>
+        </tbody>
+      </table>
+      <p>These bands summarise common practice and are not validated cut-offs. The appropriate depth depends on the clinical situation. Current guidelines favour light sedation for most mechanically ventilated adults <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>Level 6 means only that the patient does not respond to a glabellar tap or a loud auditory stimulus. This can be intended, for example during neuromuscular blockade, burst-suppression therapy or general anaesthesia. It can also reflect a structural or metabolic brain injury rather than sedative effect. At level 1, assess for pain, delirium and other causes of agitation before deepening sedation.</p>
     </div>
 
     <div class="section">
       <h2>Comparison to RASS</h2>
+      <p>No official conversion between the Ramsay Scale and RASS exists. A small single-centre study (n = 45) found a strong correlation between the two scales and compared them at the level of sedation categories <sup><a href="#ref5">[5]</a></sup>:</p>
       <table>
         <thead>
-          <tr><th>Ramsay Level</th><th>Approximate RASS Equivalent</th></tr>
+          <tr><th>Sedation category</th><th>Ramsay</th><th>RASS</th></tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td>+1 to +2 (restless / agitated)</td></tr>
-          <tr><td>2</td><td>0 (alert and calm)</td></tr>
-          <tr><td>3</td><td>−1 (drowsy)</td></tr>
-          <tr><td>4</td><td>−2 (light sedation)</td></tr>
-          <tr><td>5</td><td>−3 (moderate sedation)</td></tr>
-          <tr><td>6</td><td>−4 to −5 (deep sedation / unarousable)</td></tr>
+          <tr><td>Inadequate (too light)</td><td>1</td><td>+1 to +4</td></tr>
+          <tr><td>Adequate</td><td>2–4</td><td>0 to −3</td></tr>
+          <tr><td>Excessive (too deep)</td><td>5–6</td><td>−4 to −5</td></tr>
         </tbody>
       </table>
+      <p class="note">This comparison is approximate. The two scales are not interchangeable. RASS separates four levels of agitation (+1 to +4), while Ramsay groups all agitation under level 1.</p>
+    </div>
+
+    <div class="section">
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p>A systematic review of sedation scoring systems found that only a few of the many published instruments had been tested for reliability and validity in adult ICU patients <sup><a href="#ref6">[6]</a></sup>. The Ramsay Scale became the de facto reference largely because it was first, not because of a formal validation programme.</p>
+      <p>Reported reliability varies widely with the setting and the training of the raters. In the RASS validation study, trained research nurses scored the Ramsay Scale with very high interrater agreement (weighted κ 0.94). That study did not assess Ramsay's validity <sup><a href="#ref7">[7]</a></sup>. In a video-based study, 237 nurses rated video recordings of patients, and agreement on the Ramsay level was poor (κ 0.28) <sup><a href="#ref8">[8]</a></sup>. In a community-hospital ICU, non-nursing staff matched nurses' Ramsay ratings in only 29% of assessments <sup><a href="#ref9">[9]</a></sup>.</p>
+      <ul>
+        <li><strong>One agitation level:</strong> anxiety, restlessness and dangerous agitation all fall under level 1. Agitation severity cannot be graded, unlike with RASS or SAS <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref4">[4]</a></sup>.</li>
+        <li><strong>Mixes different dimensions:</strong> levels 1–3 describe behaviour and cooperation in awake patients, while levels 4–6 grade arousal to a physical or auditory stimulus.</li>
+        <li><strong>Stimulus not standardised:</strong> "light glabellar tap" and "loud auditory stimulus" are applied differently between observers, which contributes to the variable reliability above.</li>
+        <li><strong>Not usable under neuromuscular blockade:</strong> like other behaviour-based scales, it cannot assess paralysed patients.</li>
+        <li><strong>Guideline position:</strong> PADIS 2018 recommends RASS or SAS for routine ICU sedation monitoring <sup><a href="#ref2">[2]</a></sup>. Ramsay remains useful for reading older trials and in units where it is the local standard.</li>
+      </ul>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Ramsay MA, Savege TM, Simpson BR, Goodwin R. <em>Controlled sedation with alphaxalone-alphadolone.</em> BMJ. 1974;2(5920):656–659.</p>
-      <p>De Jonghe B, Cook D, Griffith L, et al. <em>Adaptation to the Intensive Care Environment (ATICE): development and validation of a new sedation assessment instrument.</em> Crit Care Med. 2003;31(9):2344–2354.</p>
+      <ol class="refs">
+        <li id="ref1">Ramsay MA, Savege TM, Simpson BR, Goodwin R. Controlled sedation with alphaxalone-alphadolone. <em>BMJ.</em> 1974;2(5920):656–659.</li>
+        <li id="ref2">Devlin JW, Skrobik Y, Gélinas C, et al. Clinical practice guidelines for the prevention and management of pain, agitation/sedation, delirium, immobility, and sleep disruption in adult patients in the ICU. <em>Crit Care Med.</em> 2018;46(9):e825–e873.</li>
+        <li id="ref3">Sessler CN, Gosnell MS, Grap MJ, et al. The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. <em>Am J Respir Crit Care Med.</em> 2002;166(10):1338–1344.</li>
+        <li id="ref4">Riker RR, Picard JT, Fraser GL. Prospective evaluation of the Sedation-Agitation Scale for adult critically ill patients. <em>Crit Care Med.</em> 1999;27(7):1325–1329.</li>
+        <li id="ref5">Mendes CL, Vasconcelos LCS, Tavares JS, et al. Ramsay and Richmond scores are equivalent for the assessment of sedation level in critical patients. <em>Rev Bras Ter Intensiva.</em> 2008;20(4). doi:10.1590/S0103-507X2008000400005.</li>
+        <li id="ref6">De Jonghe B, Cook D, Appere-De-Vecchi C, et al. Using and understanding sedation scoring systems: a systematic review. <em>Intensive Care Med.</em> 2000;26(3):275–285.</li>
+        <li id="ref7">Ely EW, Truman B, Shintani A, et al. Monitoring sedation status over time in ICU patients: reliability and validity of the Richmond Agitation-Sedation Scale (RASS). <em>JAMA.</em> 2003;289(22):2983–2991.</li>
+        <li id="ref8">Olson D, Lynn M, Thoyre SM, Graffagnino C. The limited reliability of the Ramsay scale. <em>Neurocrit Care.</em> 2007;7(3):227–231.</li>
+        <li id="ref9">Deol HS, Surani SR, Udeani G. Inter-rater reliability of the Ramsay Sedation Scale for critically-ill intubated patients. <em>Cureus.</em> 2019;11(10):e6021.</li>
+      </ol>
     </div>
 
     <div class="cta">

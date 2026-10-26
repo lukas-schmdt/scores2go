@@ -17,6 +17,8 @@ import 'package:scores_2_go/data/scores/definitions/saps-3/saps_3.dart';
 import 'package:scores_2_go/data/scores/definitions/saps-ii/saps_ii.dart';
 import 'package:scores_2_go/data/scores/definitions/news2/news2.dart';
 import 'package:scores_2_go/data/scores/definitions/sofa/sofa.dart';
+import 'package:scores_2_go/data/scores/definitions/wells-dvt/wells_dvt.dart';
+import 'package:scores_2_go/data/scores/definitions/wells-pe/wells_pe.dart';
 import 'package:scores_2_go/model/score.dart';
 
 List<Score> buildScoresList(String lang) {
@@ -40,6 +42,8 @@ List<Score> buildScoresList(String lang) {
     buildQsofaScore(lang),
     buildCha2ds2VascScore(lang),
     buildIcdscScore(lang),
+    buildWellsPeScore(lang),
+    buildWellsDvtScore(lang),
   ];
 
   assert(() {

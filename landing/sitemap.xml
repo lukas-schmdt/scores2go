@@ -285,5 +285,33 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://scores2go.com/scores/wells-pe.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-pe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-pe.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/wells-pe.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-pe.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-pe.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/wells-dvt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-dvt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-dvt.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://scores2go.com/scores/de/wells-dvt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://scores2go.com/scores/de/wells-dvt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://scores2go.com/scores/wells-dvt.html"/>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>

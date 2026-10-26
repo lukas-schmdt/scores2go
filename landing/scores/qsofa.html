@@ -163,6 +163,13 @@
 
     ul { padding-left: 20px; margin-bottom: 12px; }
     ul li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 6px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -197,8 +204,9 @@
 
     <div class="section">
       <h2>Overview</h2>
-      <p>qSOFA was introduced as part of the Sepsis-3 consensus definitions in 2016 to give clinicians a fast, bedside-only alternative to the full SOFA score for identifying patients with suspected infection who are likely to have a poor outcome. Unlike SOFA, qSOFA requires no laboratory values — only respiratory rate, mental status, and blood pressure — and can be assessed in seconds.</p>
-      <p>A qSOFA score of 2 or more is associated with a greater risk of death or prolonged ICU stay, and should prompt further investigation for organ dysfunction, escalation of care, and consideration of the full SOFA score. qSOFA is a screening tool, not a diagnostic criterion for sepsis — it does not replace clinical judgment.</p>
+      <p>qSOFA was introduced as part of the Sepsis-3 consensus definitions in 2016 to give clinicians a fast, bedside-only alternative to the full SOFA score for identifying patients with suspected infection who are likely to have a poor outcome <sup><a href="#ref1">[1]</a></sup>. Unlike SOFA, qSOFA requires no laboratory values — only respiratory rate, mental status, and blood pressure — and can be assessed in seconds.</p>
+      <p>The criteria were derived from 148,907 electronic health record encounters with suspected infection. Outside the ICU, qSOFA discriminated in-hospital mortality (AUROC 0.81) at least as well as the full SOFA score (0.79) and better than SIRS (0.76). A score of 2 or more was associated with a 3- to 14-fold increase in hospital mortality across the full range of baseline risk <sup><a href="#ref2">[2]</a></sup>.</p>
+      <p>A positive qSOFA should prompt further investigation for organ dysfunction (for example the full SOFA score), initiation or escalation of therapy, and closer monitoring. qSOFA is a prognostic prompt, not a diagnostic criterion for sepsis — sepsis itself is defined by an acute SOFA increase of ≥ 2 points <sup><a href="#ref1">[1]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -214,6 +222,7 @@
         </tbody>
       </table>
       <p style="margin-top:12px">Total score ranges from 0 to 3 points — 1 point for each criterion present.</p>
+      <p><strong>Altered mentation:</strong> Sepsis-3 and most calculators count any Glasgow Coma Scale score below 15. The original derivation model actually used GCS ≤ 13; the simpler "any alteration" definition performed no differently in sensitivity analysis <sup><a href="#ref2">[2]</a></sup>. Scores2Go uses the Sepsis-3 convention (GCS &lt; 15).</p>
     </div>
 
     <div class="section">
@@ -223,25 +232,38 @@
           <tr><th>Score</th><th>Meaning</th></tr>
         </thead>
         <tbody>
-          <tr><td>0–1</td><td>Low risk — continue routine monitoring, reassess if clinical status changes</td></tr>
-          <tr><td>≥ 2</td><td>High risk — increased risk of mortality and prolonged ICU stay; investigate for organ dysfunction and consider escalation of care</td></tr>
+          <tr><td>0–1 (negative)</td><td>Does not rule out sepsis or deterioration — roughly half of patients who die score below 2. Do not defer investigation or treatment of suspected infection; reassess if clinical status changes.</td></tr>
+          <tr><td>≥ 2 (positive)</td><td>Markedly higher risk of in-hospital death in patients with suspected infection; assess for organ dysfunction (e.g. SOFA) and consider escalation of care.</td></tr>
         </tbody>
       </table>
+      <p style="margin-top:12px">In the first prospective emergency department validation (30 EDs, 879 patients), in-hospital mortality was 3% with qSOFA &lt; 2 versus 24% with qSOFA ≥ 2 <sup><a href="#ref3">[3]</a></sup>. The Sepsis-3 task force states explicitly that failing to meet 2 or more qSOFA criteria should not lead to deferral of investigation or treatment of infection <sup><a href="#ref1">[1]</a></sup>.</p>
     </div>
 
     <div class="section">
-      <h2>Limitations</h2>
+      <h2>Scientific Validity &amp; Limitations</h2>
+      <p><strong>High specificity, low sensitivity.</strong> A meta-analysis of 38 studies (385,333 patients) found pooled qSOFA sensitivity for mortality of 60.8% and specificity of 72.0%, compared with 88.1% and 25.8% for SIRS; in non-ICU settings sensitivity fell to 51.2% <sup><a href="#ref4">[4]</a></sup>. A second meta-analysis restricted to patients outside the ICU reported a pooled sensitivity of 0.51 and specificity of 0.83 for in-hospital mortality <sup><a href="#ref5">[5]</a></sup>. qSOFA is therefore better at flagging high-risk patients than at reassuring about low-risk ones.</p>
+      <p><strong>Not recommended as a single screening tool.</strong> On general wards, qSOFA (AUROC 0.69) was outperformed by the National Early Warning Score (NEWS, 0.77) for in-hospital mortality among 30,677 infected patients <sup><a href="#ref6">[6]</a></sup>. The 2021 Surviving Sepsis Campaign guidelines accordingly recommend <em>against</em> using qSOFA compared with SIRS, NEWS, or MEWS as a single screening tool for sepsis or septic shock (strong recommendation, moderate-quality evidence) <sup><a href="#ref7">[7]</a></sup>. The German S3 sepsis guideline, whose 2018 version recommended regular qSOFA assessment outside the ICU, replaced this in its 2025 update with a recommendation to use a suitable screening instrument, and states that a negative qSOFA does not exclude sepsis <sup><a href="#ref8">[8]</a></sup>.</p>
+      <p><strong>Poor performance inside the ICU.</strong> In the derivation study qSOFA's AUROC dropped to 0.66 among ICU patients, below SOFA (0.74) <sup><a href="#ref2">[2]</a></sup>. In 184,875 ICU admissions from Australia and New Zealand, SOFA (crude AUROC 0.753) clearly outperformed qSOFA (0.607), which was only marginally better than SIRS (0.589) <sup><a href="#ref9">[9]</a></sup>. qSOFA should not be used to risk-stratify patients already in intensive care.</p>
       <ul>
-        <li>Lower sensitivity than SIRS criteria or full SOFA for detecting sepsis, particularly early in its course</li>
-        <li>Should be used as a prompt for further evaluation, not as a standalone diagnostic or exclusion criterion</li>
-        <li>Not validated for use in isolation to withhold treatment in patients with clinically suspected infection</li>
+        <li><strong>Prognostic, not diagnostic:</strong> qSOFA predicts mortality in patients with suspected infection; it neither diagnoses nor excludes sepsis.</li>
+        <li><strong>Point-in-time measurement:</strong> vital signs fluctuate — a negative score should be repeated as the patient's condition evolves.</li>
+        <li><strong>Confounders:</strong> pre-existing cognitive impairment, sedation, intoxication, chronic hypotension, or antihypertensive therapy can trigger criteria unrelated to infection.</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Literature</h2>
-      <p>Seymour CW, Liu VX, Iwashyna TJ, et al. <em>Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em> JAMA. 2016;315(8):762–774.</p>
-      <p>Singer M, Deutschman CS, Seymour CW, et al. <em>The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3).</em> JAMA. 2016;315(8):801–810.</p>
+      <ol class="refs">
+        <li id="ref1">Singer M, Deutschman CS, Seymour CW, et al. The Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):801–810.</li>
+        <li id="ref2">Seymour CW, Liu VX, Iwashyna TJ, et al. Assessment of Clinical Criteria for Sepsis: For the Third International Consensus Definitions for Sepsis and Septic Shock (Sepsis-3). <em>JAMA.</em> 2016;315(8):762–774.</li>
+        <li id="ref3">Freund Y, Lemachatti N, Krastinova E, et al. Prognostic Accuracy of Sepsis-3 Criteria for In-Hospital Mortality Among Patients With Suspected Infection Presenting to the Emergency Department. <em>JAMA.</em> 2017;317(3):301–308.</li>
+        <li id="ref4">Fernando SM, Tran A, Taljaard M, et al. Prognostic Accuracy of the Quick Sequential Organ Failure Assessment for Mortality in Patients With Suspected Infection: A Systematic Review and Meta-analysis. <em>Ann Intern Med.</em> 2018;168(4):266–275.</li>
+        <li id="ref5">Song JU, Sin CK, Park HK, Shim SR, Lee J. Performance of the quick Sequential (sepsis-related) Organ Failure Assessment score as a prognostic tool in infected patients outside the intensive care unit: a systematic review and meta-analysis. <em>Crit Care.</em> 2018;22:28.</li>
+        <li id="ref6">Churpek MM, Snyder A, Han X, et al. Quick Sepsis-related Organ Failure Assessment, Systemic Inflammatory Response Syndrome, and Early Warning Scores for Detecting Clinical Deterioration in Infected Patients outside the Intensive Care Unit. <em>Am J Respir Crit Care Med.</em> 2017;195(7):906–911.</li>
+        <li id="ref7">Evans L, Rhodes A, Alhazzani W, et al. Surviving Sepsis Campaign: International Guidelines for Management of Sepsis and Septic Shock 2021. <em>Intensive Care Med.</em> 2021;47(11):1181–1247.</li>
+        <li id="ref8">Brunkhorst FM, Adamzik M, Axer H, et al. S3-Leitlinie Sepsis – Prävention, Diagnose, Therapie und Nachsorge – Update 2025 [S3 guideline on sepsis – prevention, diagnosis, therapy, and follow-up care – update 2025]. <em>Med Klin Intensivmed Notfmed.</em> 2025;120(Suppl 2):163–231.</li>
+        <li id="ref9">Raith EP, Udy AA, Bailey M, et al. Prognostic Accuracy of the SOFA Score, SIRS Criteria, and qSOFA Score for In-Hospital Mortality Among Adults With Suspected Infection Admitted to the Intensive Care Unit. <em>JAMA.</em> 2017;317(3):290–300.</li>
+      </ol>
     </div>
 
     <div class="cta">

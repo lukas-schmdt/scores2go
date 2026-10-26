@@ -6,7 +6,7 @@
   <title>RASS – Scores2Go</title>
   <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
   <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="description" content="Richmond Agitation-Sedation Scale — 10-stufige Skala von +4 (kämpferisch) bis −5 (nicht erweckbar) zur Sedierungsüberwachung auf der Intensivstation." />
+  <meta name="description" content="Richmond Agitation-Sedation Scale — 10-stufige Skala von +4 (aggressiv) bis −5 (nicht erweckbar) zur Sedierungsüberwachung auf der Intensivstation." />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -130,6 +130,16 @@
       font-weight: 600;
     }
 
+    ul.limits { padding-left: 20px; margin-bottom: 12px; }
+    ul.limits li { font-size: 15px; line-height: 1.7; color: #374151; margin-bottom: 8px; }
+
+    ol.refs { padding-left: 20px; }
+    ol.refs li { font-size: 14px; line-height: 1.7; color: #374151; margin-bottom: 10px; }
+    ol.refs li:target { background: #eff6ff; border-radius: 4px; }
+
+    sup a { text-decoration: none; color: #1d4ed8; font-weight: 700; }
+    sup a:hover { text-decoration: underline; }
+
     .cta {
       text-align: center;
       background: white;
@@ -178,7 +188,7 @@
     </div>
     <div class="badge">ICU · Sedierung</div>
     <h1>RASS</h1>
-    <p>Die Richmond Agitation-Sedation Scale ist das am weitesten verbreitete Instrument zur Beurteilung der Sedierungstiefe und Agitation bei beatmeten Intensivpatienten. Sie bietet eine standardisierte 10-stufige Skala von +4 (kämpferisch) bis −5 (nicht erweckbar).</p>
+    <p>Die Richmond Agitation-Sedation Scale beurteilt Sedierungstiefe und Agitation bei Intensivpatienten. Sie bietet eine standardisierte 10-stufige Skala von +4 (aggressiv) bis −5 (nicht erweckbar).</p>
     <div class="meta">
       <span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -199,7 +209,9 @@
 
     <div class="section">
       <h2>Übersicht</h2>
-      <p>Die Richmond Agitation-Sedation Scale (RASS) bewertet den Sedierungs- oder Agitationszustand eines Patienten auf der Intensivstation. Sie ist die empfohlene Sedierungsskala in den PADIS-Leitlinien 2018 und wird als Voraussetzung für die Delirbeurteilung mittels CAM-ICU eingesetzt. Die RASS ermöglicht Pflegepersonal und Ärzten eine schnelle Kommunikation des Sedierungsstatus und die Titration von Sedativa auf ein definiertes Zielniveau.</p>
+      <p>Die Richmond Agitation-Sedation Scale (RASS) erfasst den Agitations- bzw. Sedierungsgrad von Intensivpatienten auf einer einzigen 10-stufigen Skala von +4 (aggressiv) bis −5 (nicht erweckbar); 0 bedeutet wach und ruhig. Positive Werte beschreiben Agitation, negative Werte Sedierung. In der Originalstudie war die Interrater-Reliabilität zwischen zwei Ärzten, zwei Pflegenden und einem Pharmazeuten exzellent (r = 0,956; κ = 0,73) und blieb über internistische, chirurgische, herzchirurgische, kardiologische und neurologische Intensivstationen hinweg erhalten; die RASS korrelierte hoch mit einer visuellen Analogskala der Sedierung (r = 0,93) <sup><a href="#ref1">[1]</a></sup>.</p>
+      <p>Eine nachfolgende prospektive Kohortenstudie auf internistischen und kardiologischen Intensivstationen (275 beatmete Patienten für die Validitätsprüfung) bestätigte die exzellente Interrater-Reliabilität (gewichtetes κ = 0,91). Die RASS war die erste Sedierungsskala, die für die Erfassung von Änderungen des Sedierungsstatus über aufeinanderfolgende Behandlungstage validiert wurde, und sie korrelierte mit den verabreichten Dosen von Sedativa und Analgetika <sup><a href="#ref2">[2]</a></sup>. Die SCCM-PAD-Leitlinien 2013 empfehlen unter den verfügbaren Sedierungsskalen die RASS und die Sedation-Agitation Scale (SAS) <sup><a href="#ref3">[3]</a></sup>; beide gelten als die am besten validierten und reliabelsten Sedierungsskalen der Intensivmedizin <sup><a href="#ref4">[4]</a></sup>.</p>
+      <p>Die RASS wird routinemäßig mit Delir-Screening-Instrumenten wie der CAM-ICU kombiniert, die für beatmete Patienten validiert wurde <sup><a href="#ref5">[5]</a></sup> und eine veränderte Bewusstseinslage als eines ihrer vier Merkmale enthält <sup><a href="#ref3">[3]</a></sup>.</p>
     </div>
 
     <div class="section">
@@ -209,16 +221,16 @@
           <tr><th>Wert</th><th>Bezeichnung</th><th>Beschreibung</th></tr>
         </thead>
         <tbody>
-          <tr><td>+4</td><td>Kämpferisch</td><td>Offensichtlich kämpferisch, gewalttätig, unmittelbare Gefahr für das Personal</td></tr>
-          <tr><td>+3</td><td>Sehr agitiert</td><td>Zieht oder entfernt Tubus/Katheter; aggressiv</td></tr>
-          <tr><td>+2</td><td>Agitiert</td><td>Häufige nicht zielgerichtete Bewegungen, kämpft gegen das Beatmungsgerät</td></tr>
-          <tr><td>+1</td><td>Unruhig</td><td>Ängstlich, besorgt, aber Bewegungen nicht aggressiv</td></tr>
-          <tr><td>0</td><td>Wach und ruhig</td><td>Spontan wach und ruhig</td></tr>
-          <tr><td>−1</td><td>Schläfrig</td><td>Nicht vollständig wach, anhaltende Erweckbarkeit auf Ansprache (&gt; 10 s)</td></tr>
-          <tr><td>−2</td><td>Leichte Sedierung</td><td>Kurzzeitig auf Ansprache erweckbar, Augenkontakt &lt; 10 s</td></tr>
-          <tr><td>−3</td><td>Moderate Sedierung</td><td>Bewegung oder Augenöffnung auf Ansprache, kein Augenkontakt</td></tr>
-          <tr><td>−4</td><td>Tiefe Sedierung</td><td>Keine Reaktion auf Ansprache; Bewegung oder Augenöffnung auf Schmerzreiz</td></tr>
-          <tr><td>−5</td><td>Nicht erweckbar</td><td>Keine Reaktion auf Ansprache oder Schmerzreiz</td></tr>
+          <tr><td>+4</td><td>Aggressiv</td><td>Offen kämpferisch oder gewalttätig; unmittelbare Gefahr für das Personal</td></tr>
+          <tr><td>+3</td><td>Stark agitiert</td><td>Zieht an oder entfernt Tubus/Katheter oder aggressiv gegenüber dem Personal</td></tr>
+          <tr><td>+2</td><td>Agitiert</td><td>Häufige ungezielte Bewegungen oder Patient-Beatmungsgerät-Asynchronie</td></tr>
+          <tr><td>+1</td><td>Unruhig</td><td>Ängstlich oder besorgt, aber Bewegungen nicht aggressiv oder heftig</td></tr>
+          <tr><td>0</td><td>Wach und ruhig</td><td>—</td></tr>
+          <tr><td>−1</td><td>Schläfrig</td><td>Nicht ganz wach, aber anhaltend wach auf Ansprache (Augenöffnen / Blickkontakt &gt; 10 s)</td></tr>
+          <tr><td>−2</td><td>Leichte Sedierung</td><td>Erwacht kurz mit Blickkontakt auf Ansprache (&lt; 10 s)</td></tr>
+          <tr><td>−3</td><td>Mäßige Sedierung</td><td>Bewegung oder Augenöffnen auf Ansprache, aber kein Blickkontakt</td></tr>
+          <tr><td>−4</td><td>Tiefe Sedierung</td><td>Keine Reaktion auf Ansprache, aber Bewegung oder Augenöffnen auf körperliche Stimulation</td></tr>
+          <tr><td>−5</td><td>Nicht erweckbar</td><td>Keine Reaktion auf Ansprache oder körperliche Stimulation</td></tr>
         </tbody>
       </table>
     </div>
@@ -226,44 +238,68 @@
     <div class="section">
       <h2>Beurteilungsablauf</h2>
       <ol>
-        <li><strong>Beobachtung</strong> des Patienten für 30 Sekunden. Falls der Patient kämpferisch, agitiert oder unruhig ist, Wert +1 bis +4 vergeben.</li>
-        <li><strong>Namen nennen / Augen öffnen und Assessor ansehen.</strong> Falls der Patient mit anhaltendem Augenkontakt erwacht (&gt; 10 s), Wert −1. Falls Augenkontakt kurz (&lt; 10 s), Wert −2. Falls nur Bewegung (kein Augenkontakt), Wert −3.</li>
-        <li><strong>Physikalische Stimulation</strong> (Schulterrütteln oder Sternalreib). Falls der Patient mit Bewegung oder Augenöffnung reagiert, Wert −4. Falls keine Reaktion, Wert −5.</li>
+        <li><strong>Patient beobachten.</strong> Wach und ruhig: 0. Unruhig, agitiert oder aggressiv: +1 bis +4.</li>
+        <li><strong>Falls nicht wach: mit Namen ansprechen</strong> und auffordern, die Augen zu öffnen und den Untersucher anzusehen (ggf. einmal wiederholen). Anhaltendes Erwachen mit Blickkontakt (&gt; 10 s): −1. Kurzes Erwachen mit Blickkontakt (&lt; 10 s): −2. Bewegung auf Ansprache, aber kein Blickkontakt: −3.</li>
+        <li><strong>Falls keine Reaktion auf Ansprache: körperliche Stimulation</strong> durch Schulterrütteln und/oder Reiben des Sternums. Bewegung auf körperliche Stimulation: −4. Keine Reaktion: −5.</li>
       </ol>
+      <p>Die Beurteilung stützt sich auf die Dauer des Blickkontakts nach verbaler Stimulation und dauert weniger als 20 Sekunden <sup><a href="#ref3">[3]</a></sup>.</p>
     </div>
 
     <div class="section">
-      <h2>Sedierungsziel</h2>
-      <p>Die PADIS-Leitlinien 2018 empfehlen für die meisten beatmeten Intensivpatienten ein Sedierungsziel von RASS −1 bis 0 (leichte Sedierung), sofern keine klinische Indikation für eine tiefere Sedierung besteht. Leichte Sedierung ist mit kürzerer Beatmungsdauer und kürzerem Intensivaufenthalt assoziiert.</p>
+      <h2>Interpretation &amp; Sedierungsziele</h2>
+      <p>Die SCCM-PADIS-Leitlinie 2018 spricht eine bedingte Empfehlung für eine leichte statt einer tiefen Sedierung bei kritisch kranken, beatmeten Erwachsenen aus <sup><a href="#ref6">[6]</a></sup><sup><a href="#ref4">[4]</a></sup>. Es gibt jedoch keinen definierten RASS-Grenzwert für leichte Sedierung, was den Vergleich zwischen Studien erschwert <sup><a href="#ref4">[4]</a></sup>: Studien definierten leichte Sedierung z. B. als RASS −2 bis 0 <sup><a href="#ref3">[3]</a></sup>, und eine große Studie zum Vergleich von Dexmedetomidin mit üblicher Sedierung (3.912 Patienten) zielte auf RASS −2 bis +1 <sup><a href="#ref7">[7]</a></sup>. Das Ziel sollte daher individuell für jeden Patienten festgelegt werden.</p>
       <table>
         <thead>
-          <tr><th>RASS-Bereich</th><th>Klinische Indikation</th></tr>
+          <tr><th>RASS</th><th>Bedeutung</th><th>Bedenken</th></tr>
         </thead>
         <tbody>
-          <tr><td>−1 bis 0</td><td>Empfohlenes Ziel für die meisten Intensivpatienten (PADIS 2018)</td></tr>
-          <tr><td>−2 bis −3</td><td>Prozedurale Sedierung, Transport, refraktäre Agitation</td></tr>
-          <tr><td>−4 bis −5</td><td>ARDS (Bauchlagerung), refraktärer Hirndruck, Status epilepticus</td></tr>
+          <tr><td>+1 bis +4</td><td>Agitation</td><td>Schmerz (Erfassung mit BPS oder CPOT) und hyperaktives Delir, das sich im positiven RASS-Bereich zeigt <sup><a href="#ref3">[3]</a></sup></td></tr>
+          <tr><td>0 bis −2</td><td>Wach bis leicht sediert</td><td>In Studien als leichte Sedierung verwendeter Bereich <sup><a href="#ref3">[3]</a></sup></td></tr>
+          <tr><td>−3</td><td>Mäßige Sedierung</td><td>In Outcome-Studien als tiefe Sedierung gewertet <sup><a href="#ref8">[8]</a></sup> — prüfen, ob beabsichtigt</td></tr>
+          <tr><td>−4 bis −5</td><td>Komabereich <sup><a href="#ref3">[3]</a></sup></td><td>Prüfen, ob beabsichtigt; Delir-Screening eingeschränkt (z. B. ICDSC-Items 1–4 nicht beurteilbar) <sup><a href="#ref3">[3]</a></sup></td></tr>
         </tbody>
       </table>
+      <p>Tiefe Sedierung ist nicht harmlos: In einer multizentrischen Kohorte aus 25 australischen und neuseeländischen Krankenhäusern sagte eine frühe tiefe Sedierung (RASS −3 bis −5 in den ersten 48 Stunden) unabhängig eine verzögerte Extubation sowie eine höhere Krankenhaus- und 180-Tage-Mortalität voraus <sup><a href="#ref8">[8]</a></sup>.</p>
     </div>
 
     <div class="section">
       <h2>ABCDEF-Bundle</h2>
-      <p>RASS ist die C-Komponente („Sedierung wählen und reduzieren") des ICU Liberation ABCDEF-Bundles, einem evidenzbasierten Rahmen zur Reduktion ICU-erworbener Komplikationen:</p>
+      <p>Das Sedierungsmonitoring mit der RASS ist Teil der C-Komponente („Choice of analgesia and sedation" – Wahl von Analgesie und Sedierung) des ICU Liberation ABCDEF-Bundles, eines evidenzbasierten Leitfadens zur Koordination der Intensivversorgung <sup><a href="#ref3">[3]</a></sup>:</p>
       <ul>
         <li><strong>A</strong> — Schmerz einschätzen, vorbeugen und behandeln</li>
-        <li><strong>B</strong> — Spontane Aufwach- und Beatmungsversuche</li>
-        <li><strong>C</strong> — Sedierung wählen und reduzieren (RASS-Ziel)</li>
-        <li><strong>D</strong> — Delirbeurteilung und -management (CAM-ICU / Nu-DESC)</li>
-        <li><strong>E</strong> — Frühmobilisation und Bewegungstherapie</li>
-        <li><strong>F</strong> — Familieneinbindung und -stärkung</li>
+        <li><strong>B</strong> — Spontane Aufwach- und Spontanatmungsversuche</li>
+        <li><strong>C</strong> — Wahl von Analgesie und Sedierung</li>
+        <li><strong>D</strong> — Delir (z. B. CAM-ICU / ICDSC)</li>
+        <li><strong>E</strong> — Frühmobilisation</li>
+        <li><strong>F</strong> — Einbindung der Familie</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Wissenschaftliche Validität &amp; Limitationen</h2>
+      <p>RASS und SAS <sup><a href="#ref9">[9]</a></sup> gelten als die beiden am besten validierten und reliabelsten Sedierungsskalen der Intensivmedizin <sup><a href="#ref4">[4]</a></sup>. In der Originalstudie korrelierte die RASS sowohl mit der Ramsay-Skala (r = −0,78) als auch mit der SAS (r = 0,78) <sup><a href="#ref1">[1]</a></sup>; RASS und Ramsay zeigten beide eine exzellente Interrater-Reliabilität (gewichtetes κ 0,91 bzw. 0,94), besser als die Glasgow Coma Scale (0,64) <sup><a href="#ref2">[2]</a></sup>. Anders als die Ramsay-Skala mit nur einer Agitationskategorie unterscheidet die RASS vier Agitationsgrade <sup><a href="#ref3">[3]</a></sup><sup><a href="#ref9">[9]</a></sup>.</p>
+      <p>Bekannte Limitationen:</p>
+      <ul class="limits">
+        <li><strong>Erfordert eine motorische oder Augenreaktion:</strong> Jede Stufe ist über Bewegung, Augenöffnen oder Blickkontakt definiert; bei neuromuskulärer Blockade kann die RASS die Sedierungstiefe daher nicht abbilden.</li>
+        <li><strong>Kein Schmerz- oder Delirmaß:</strong> Die RASS beschreibt nur die Vigilanz. Schmerz sollte separat erfasst werden (BPS und CPOT sind die validesten Verhaltens-Schmerzskalen für nicht kommunikationsfähige Patienten), ein Delir mit CAM-ICU oder ICDSC <sup><a href="#ref3">[3]</a></sup>.</li>
+        <li><strong>Keine einheitliche Definition leichter Sedierung:</strong> Studien verwenden unterschiedliche RASS-Grenzwerte, was den Vergleich von Sedierungszielen und Outcomes erschwert <sup><a href="#ref4">[4]</a></sup>.</li>
+        <li><strong>Hohe, aber keine perfekte Übereinstimmung:</strong> κ lag in der Originalstudie je nach Patientengruppe zwischen 0,64 und 0,82 <sup><a href="#ref1">[1]</a></sup>, und jeder Wert ist eine einzelne Beobachtung eines Zustands, der sich im Verlauf ändern kann.</li>
       </ul>
     </div>
 
     <div class="section">
       <h2>Literatur</h2>
-      <p>Sessler CN, Gosnell MS, Grap MJ, et al. <em>The Richmond Agitation–Sedation Scale: validity and reliability in adult intensive care unit patients.</em> Am J Respir Crit Care Med. 2002;166(10):1338–1344.</p>
-      <p>Devlin JW, Skrobik Y, Gélinas C, et al. <em>Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU.</em> Crit Care Med. 2018;46(9):e825–e873.</p>
+      <ol class="refs">
+        <li id="ref1">Sessler CN, Gosnell MS, Grap MJ, Brophy GM, O'Neal PV, Keane KA, Tesoro EP, Elswick RK. The Richmond Agitation-Sedation Scale: validity and reliability in adult intensive care unit patients. <em>Am J Respir Crit Care Med.</em> 2002;166(10):1338–1344. doi:10.1164/rccm.2107138</li>
+        <li id="ref2">Ely EW, Truman B, Shintani A, et al. Monitoring sedation status over time in ICU patients: reliability and validity of the Richmond Agitation-Sedation Scale (RASS). <em>JAMA.</em> 2003;289(22):2983–2991. doi:10.1001/jama.289.22.2983</li>
+        <li id="ref3">Marra A, Ely EW, Pandharipande PP, Patel MB. The ABCDEF Bundle in Critical Care. <em>Crit Care Clin.</em> 2017;33(2):225–243. doi:10.1016/j.ccc.2016.12.005</li>
+        <li id="ref4">Boncyk C, Nahrwold DA, Hughes CG. Targeting light versus deep sedation for patients receiving mechanical ventilation. <em>J Emerg Crit Care Med.</em> 2018;2:79. doi:10.21037/jeccm.2018.10.03</li>
+        <li id="ref5">Ely EW, Inouye SK, Bernard GR, et al. Delirium in mechanically ventilated patients: validity and reliability of the Confusion Assessment Method for the Intensive Care Unit (CAM-ICU). <em>JAMA.</em> 2001;286(21):2703–2710. doi:10.1001/jama.286.21.2703</li>
+        <li id="ref6">Devlin JW, Skrobik Y, Gélinas C, et al. Clinical Practice Guidelines for the Prevention and Management of Pain, Agitation/Sedation, Delirium, Immobility, and Sleep Disruption in Adult Patients in the ICU. <em>Crit Care Med.</em> 2018;46(9):e825–e873. doi:10.1097/CCM.0000000000003299</li>
+        <li id="ref7">Stollings JL, Kotfis K, Chanques G, Pun BT, Pandharipande PP, Ely EW. Delirium in critical illness: clinical manifestations, outcomes, and management. <em>Intensive Care Med.</em> 2021;47(10):1089–1103. doi:10.1007/s00134-021-06503-1</li>
+        <li id="ref8">Shehabi Y, Bellomo R, Reade MC, et al. Early intensive care sedation predicts long-term mortality in ventilated critically ill patients. <em>Am J Respir Crit Care Med.</em> 2012;186(8):724–731. doi:10.1164/rccm.201203-0522OC</li>
+        <li id="ref9">Riker RR, Picard JT, Fraser GL. Prospective evaluation of the Sedation-Agitation Scale for adult critically ill patients. <em>Crit Care Med.</em> 1999;27(7):1325–1329. doi:10.1097/00003246-199907000-00022</li>
+      </ol>
     </div>
 
     <div class="cta">
