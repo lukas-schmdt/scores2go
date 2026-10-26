@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
 import 'package:scores_2_go/auth/screen/reset_password_screen.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
 import 'package:scores_2_go/home/screen/home_screen.dart';
@@ -89,58 +90,89 @@ class Scores2GoApp extends StatelessWidget {
         themeMode: settingsState.useSystemTheme
             ? ThemeMode.system
             : (settingsState.isDarkMode ? ThemeMode.dark : ThemeMode.light),
-        home: BlocBuilder<AuthBloc, AuthState>(
-          builder: (authContext, authState) {
-            if (authState.status == AuthStatus.passwordRecovery) {
-              return const ResetPasswordScreen();
-            }
-
-            // Score browsing needs no account, so HomeScreen is the root for
-            // both anonymous and authenticated sessions. HomeBloc and
-            // RecentlyUsedBloc aren't user-scoped, so they're created once
-            // and survive sign-in/sign-out (no reason to reset nav state).
-            // UserFavoritesBloc/CollectionsBloc hold per-account data, so
-            // they're keyed on auth status: the key change forces a clean
-            // recreate on every anon<->authenticated transition, avoiding
-            // stale data from a previous session leaking into a new one.
-            final isAuthenticated = authState.isAuthenticated;
-            return MultiBlocProvider(
-              providers: [
-                BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
-                BlocProvider<RecentlyUsedBloc>(
-                  create: (context) =>
-                      RecentlyUsedBloc(scoresRepo)
-                        ..add(LoadRecentlyUsedEvent()),
-                ),
-              ],
-              child: MultiBlocProvider(
-                key: ValueKey(isAuthenticated),
-                providers: [
-                  BlocProvider<UserFavoritesBloc>(
-                    create: (context) {
-                      final bloc = UserFavoritesBloc(scoresRepo);
-                      if (isAuthenticated) {
-                        bloc.add(const LoadUserFavoritesEvent());
-                      }
-                      return bloc;
-                    },
+        home: BlocListener<AuthBloc, AuthState>(
+          listenWhen: (prev, curr) => prev.status != curr.status,
+          listener: (context, authState) {
+            final l = AppLocalizations.of(context)!;
+            switch (authState.status) {
+              case AuthStatus.authLinkInvalid:
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(l.authLinkInvalid),
+                    duration: const Duration(seconds: 8),
                   ),
-                  BlocProvider<CollectionsBloc>(
-                    create: (context) {
-                      final bloc = CollectionsBloc(
-                        context.read<CollectionsRepository>(),
-                      );
-                      if (isAuthenticated) {
-                        bloc.add(const LoadCollectionsEvent());
-                      }
-                      return bloc;
-                    },
+                );
+              case AuthStatus.resetPasswordSuccess:
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(l.passwordResetSuccess),
+                    action: SnackBarAction(
+                      label: l.login,
+                      onPressed: () => openAuthScreen(context),
+                    ),
+                    // See ensureSignedIn: an action SnackBar persists unless
+                    // told otherwise.
+                    duration: const Duration(seconds: 6),
+                    persist: false,
+                  ),
+                );
+              default:
+                break;
+            }
+          },
+          child: BlocBuilder<AuthBloc, AuthState>(
+            builder: (authContext, authState) {
+              if (authState.inPasswordRecovery) {
+                return const ResetPasswordScreen();
+              }
+
+              // Score browsing needs no account, so HomeScreen is the root for
+              // both anonymous and authenticated sessions. HomeBloc and
+              // RecentlyUsedBloc aren't user-scoped, so they're created once
+              // and survive sign-in/sign-out (no reason to reset nav state).
+              // UserFavoritesBloc/CollectionsBloc hold per-account data, so
+              // they're keyed on auth status: the key change forces a clean
+              // recreate on every anon<->authenticated transition, avoiding
+              // stale data from a previous session leaking into a new one.
+              final isAuthenticated = authState.isAuthenticated;
+              return MultiBlocProvider(
+                providers: [
+                  BlocProvider<HomeBloc>(create: (context) => HomeBloc()),
+                  BlocProvider<RecentlyUsedBloc>(
+                    create: (context) =>
+                        RecentlyUsedBloc(scoresRepo)
+                          ..add(LoadRecentlyUsedEvent()),
                   ),
                 ],
-                child: HomeScreen(),
-              ),
-            );
-          },
+                child: MultiBlocProvider(
+                  key: ValueKey(isAuthenticated),
+                  providers: [
+                    BlocProvider<UserFavoritesBloc>(
+                      create: (context) {
+                        final bloc = UserFavoritesBloc(scoresRepo);
+                        if (isAuthenticated) {
+                          bloc.add(const LoadUserFavoritesEvent());
+                        }
+                        return bloc;
+                      },
+                    ),
+                    BlocProvider<CollectionsBloc>(
+                      create: (context) {
+                        final bloc = CollectionsBloc(
+                          context.read<CollectionsRepository>(),
+                        );
+                        if (isAuthenticated) {
+                          bloc.add(const LoadCollectionsEvent());
+                        }
+                        return bloc;
+                      },
+                    ),
+                  ],
+                  child: HomeScreen(),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

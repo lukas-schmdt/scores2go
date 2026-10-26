@@ -272,6 +272,12 @@ abstract class AppLocalizations {
   /// **'Passwort wurde zurückgesetzt. Bitte anmelden.'**
   String get passwordResetSuccess;
 
+  /// No description provided for @authLinkInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Link ist ungültig oder abgelaufen. Bitte einen neuen anfordern.'**
+  String get authLinkInvalid;
+
   /// No description provided for @fillAllFields.
   ///
   /// In de, this message translates to:

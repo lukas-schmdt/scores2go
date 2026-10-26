@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:scores_2_go/deep_link/deep_link_service.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 part 'auth_event.dart';
@@ -21,13 +22,32 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<EmailChangedEvent>(_onEmailChanged);
     on<PasswordChangedEvent>(_onPasswordChanged);
     on<_SupabaseAuthChangedEvent>(_onSupabaseAuthChanged);
+    on<_RecoveryLinkOpenedEvent>(_onRecoveryLinkOpened);
+    on<_AuthCallbackFailedEvent>(_onAuthCallbackFailed);
 
     _supabaseSubscription = Supabase.instance.client.auth.onAuthStateChange
-        .listen((data) {
-          if (!isClosed) {
-            add(_SupabaseAuthChangedEvent(data.event, data.session));
-          }
-        });
+        .listen(
+          (data) {
+            if (!isClosed) {
+              add(_SupabaseAuthChangedEvent(data.event, data.session));
+            }
+          },
+          // supabase_flutter swallows a failed `?code=` exchange from the
+          // launch URL (missing code verifier, expired or reused link) and
+          // only reports it here. Other errors on this stream (e.g. a failed
+          // token refresh) aren't the user's concern, so only the first
+          // error after an auth-callback launch is surfaced.
+          onError: (Object _) {
+            if (!isClosed && DeepLinkService.consumeAuthCallback()) {
+              add(const _AuthCallbackFailedEvent());
+            }
+          },
+        );
+
+    final recoveryTokenHash = DeepLinkService.consumeRecoveryTokenHash();
+    if (recoveryTokenHash != null) {
+      add(_RecoveryLinkOpenedEvent(recoveryTokenHash));
+    }
   }
 
   @override
@@ -56,7 +76,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       case AuthChangeEvent.passwordRecovery:
         emit(
-          state.copyWith(status: AuthStatus.passwordRecovery, clearError: true),
+          state.copyWith(
+            status: AuthStatus.passwordRecovery,
+            inPasswordRecovery: true,
+            clearError: true,
+          ),
         );
       case AuthChangeEvent.tokenRefreshed:
         if (event.session != null) {
@@ -69,6 +93,48 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       default:
         break;
+    }
+  }
+
+  /// Verifies a `?token_hash=…&type=recovery` reset link. Unlike the PKCE
+  /// `?code=` flow this needs no code verifier, so the link works in any
+  /// browser. On success gotrue emits [AuthChangeEvent.passwordRecovery],
+  /// handled in [_onSupabaseAuthChanged].
+  Future<void> _onRecoveryLinkOpened(
+    _RecoveryLinkOpenedEvent event,
+    Emitter<AuthState> emit,
+  ) async {
+    try {
+      await Supabase.instance.client.auth.verifyOTP(
+        tokenHash: event.tokenHash,
+        type: OtpType.recovery,
+      );
+    } catch (_) {
+      _emitAuthLinkInvalid(emit);
+    }
+  }
+
+  void _onAuthCallbackFailed(
+    _AuthCallbackFailedEvent event,
+    Emitter<AuthState> emit,
+  ) {
+    _emitAuthLinkInvalid(emit);
+  }
+
+  void _emitAuthLinkInvalid(Emitter<AuthState> emit) {
+    emit(state.copyWith(status: AuthStatus.authLinkInvalid, clearError: true));
+    // A bad link doesn't end an existing session; restore the signed-in
+    // status so the rest of the app doesn't treat the user as signed out.
+    final session = Supabase.instance.client.auth.currentSession;
+    if (session != null) {
+      emit(
+        state.copyWith(
+          status: AuthStatus.authenticated,
+          username: session.user.email ?? '',
+          token: session.accessToken,
+          refreshToken: session.refreshToken ?? '',
+        ),
+      );
     }
   }
 
@@ -144,9 +210,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       await Supabase.instance.client.auth.resetPasswordForEmail(
         event.email,
-        redirectTo: kIsWeb
-            ? 'https://scores2go.com/app'
-            : 'io.supabase.scores2go://login-callback',
+        // The reset is always completed in the web app, also when requested
+        // from a native app: the "Reset Password" email template links to
+        // `{{ .RedirectTo }}?token_hash=…&type=recovery`, which the web app
+        // verifies on startup (see DeepLinkService). Custom-scheme links are
+        // unreliable in mail clients.
+        redirectTo: 'https://scores2go.com/app/',
       );
       emit(
         state.copyWith(status: AuthStatus.forgotPasswordSent, clearError: true),
@@ -186,6 +255,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           token: '',
           refreshToken: '',
           clearError: true,
+          inPasswordRecovery: false,
         ),
       );
     } on AuthException catch (e) {

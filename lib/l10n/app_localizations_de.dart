@@ -102,6 +102,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Passwort wurde zurückgesetzt. Bitte anmelden.';
 
   @override
+  String get authLinkInvalid =>
+      'Dieser Link ist ungültig oder abgelaufen. Bitte einen neuen anfordern.';
+
+  @override
   String get fillAllFields => 'Bitte alle Felder ausfüllen.';
 
   @override

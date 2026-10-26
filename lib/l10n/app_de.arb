@@ -35,6 +35,7 @@
   "passwordResetFailed": "Passwort konnte nicht zurückgesetzt werden. Bitte erneut versuchen.",
   "savePassword": "Passwort speichern",
   "passwordResetSuccess": "Passwort wurde zurückgesetzt. Bitte anmelden.",
+  "authLinkInvalid": "Dieser Link ist ungültig oder abgelaufen. Bitte einen neuen anfordern.",
 
   "fillAllFields": "Bitte alle Felder ausfüllen.",
   "passwordsDoNotMatch": "Passwörter stimmen nicht überein.",

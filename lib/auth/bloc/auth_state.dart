@@ -14,6 +14,7 @@ enum AuthStatus {
   resetPasswordSuccess,
   changePasswordSuccess,
   changePasswordFailed,
+  authLinkInvalid,
 }
 
 class AuthState extends Equatable {
@@ -24,6 +25,7 @@ class AuthState extends Equatable {
     this.token = '',
     this.refreshToken = '',
     this.errorMessage,
+    this.inPasswordRecovery = false,
   });
 
   final AuthStatus status;
@@ -33,6 +35,13 @@ class AuthState extends Equatable {
   final String refreshToken;
   final String? errorMessage;
 
+  /// Whether a password-reset link was opened and the new password hasn't
+  /// been saved yet. `status == AuthStatus.passwordRecovery` alone isn't
+  /// enough: submitting the new password moves `status` to `loading` and
+  /// then possibly `resetPasswordFailed`, and the reset screen must stay up
+  /// through both.
+  final bool inPasswordRecovery;
+
   AuthState copyWith({
     AuthStatus? status,
     String? username,
@@ -41,6 +50,7 @@ class AuthState extends Equatable {
     String? refreshToken,
     String? errorMessage,
     bool clearError = false,
+    bool? inPasswordRecovery,
   }) {
     return AuthState(
       status: status ?? this.status,
@@ -49,6 +59,7 @@ class AuthState extends Equatable {
       token: token ?? this.token,
       refreshToken: refreshToken ?? this.refreshToken,
       errorMessage: clearError ? null : (errorMessage ?? this.errorMessage),
+      inPasswordRecovery: inPasswordRecovery ?? this.inPasswordRecovery,
     );
   }
 
@@ -63,6 +74,13 @@ class AuthState extends Equatable {
       status == AuthStatus.changePasswordFailed;
 
   @override
-  List<Object?> get props =>
-      [status, username, password, token, refreshToken, errorMessage];
+  List<Object?> get props => [
+    status,
+    username,
+    password,
+    token,
+    refreshToken,
+    errorMessage,
+    inPasswordRecovery,
+  ];
 }

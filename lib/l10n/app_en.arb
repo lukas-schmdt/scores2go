@@ -35,6 +35,7 @@
   "passwordResetFailed": "Password could not be reset. Please try again.",
   "savePassword": "Save password",
   "passwordResetSuccess": "Password reset. Please sign in.",
+  "authLinkInvalid": "This link is invalid or has expired. Please request a new one.",
 
   "fillAllFields": "Please fill in all fields.",
   "passwordsDoNotMatch": "Passwords do not match.",

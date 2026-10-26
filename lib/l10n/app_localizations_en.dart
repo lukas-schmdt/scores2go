@@ -100,6 +100,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get passwordResetSuccess => 'Password reset. Please sign in.';
 
   @override
+  String get authLinkInvalid =>
+      'This link is invalid or has expired. Please request a new one.';
+
+  @override
   String get fillAllFields => 'Please fill in all fields.';
 
   @override

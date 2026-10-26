@@ -77,6 +77,19 @@ class PasswordChangedEvent extends AuthEvent {
   List<Object> get props => [password];
 }
 
+class _RecoveryLinkOpenedEvent extends AuthEvent {
+  const _RecoveryLinkOpenedEvent(this.tokenHash);
+
+  final String tokenHash;
+
+  @override
+  List<Object> get props => [tokenHash];
+}
+
+class _AuthCallbackFailedEvent extends AuthEvent {
+  const _AuthCallbackFailedEvent();
+}
+
 class _SupabaseAuthChangedEvent extends AuthEvent {
   const _SupabaseAuthChangedEvent(this.changeEvent, this.session);
 

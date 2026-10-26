@@ -188,6 +188,17 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                           ),
                         ),
                       ),
+                      const SizedBox(height: 16),
+                      // Signing out ends the recovery session and returns to
+                      // the app without changing the password.
+                      TextButton(
+                        onPressed: loading
+                            ? null
+                            : () => context
+                                .read<AuthBloc>()
+                                .add(const LogoutEvent()),
+                        child: Text(l.cancel),
+                      ),
                     ],
                   ),
                 ),
