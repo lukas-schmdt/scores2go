@@ -136,7 +136,7 @@ class AppTheme {
       brightness: Brightness.dark,
       primary: AppColors.blue,
       onPrimary: Colors.white,
-      primaryContainer: Color(0xFF0D2444),
+      primaryContainer: Color(0xFF19212C),
       onPrimaryContainer: AppColors.blue,
       secondary: AppColors.teal,
       onSecondary: Colors.white,

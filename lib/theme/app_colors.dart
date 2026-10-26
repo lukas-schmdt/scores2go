@@ -9,9 +9,9 @@ class AppColors {
   static const accentBlue = blue;
 
   // Dark theme — navy
-  static const darkBg = Color(0xFF02122B);
-  static const darkSurface = Color(0xFF071E3D);
-  static const darkSurfaceElevated = Color(0xFF0D2444);
+  static const darkBg = Color(0xFF0A0F16);
+  static const darkSurface = Color(0xFF111820);
+  static const darkSurfaceElevated = Color(0xFF19212C);
   static const darkOutline = Color(0x1AFFFFFF); // white 10%
   static const darkTextPrimary = Color(0xFFFFFFFF);
   static const darkTextSecondary = Color(0x99FFFFFF); // white 60%

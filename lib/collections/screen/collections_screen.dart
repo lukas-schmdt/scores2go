@@ -23,9 +23,12 @@ class CollectionsScreen extends StatelessWidget {
           iconData: Icons.lock_outline,
           title: l.signInRequiredTitle,
           subtitle: l.collectionsSignInSubtitle,
-          action: FilledButton(
-            onPressed: () => openAuthScreen(context),
-            child: Text(l.login),
+          action: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: FilledButton(
+              onPressed: () => openAuthScreen(context),
+              child: Text(l.login),
+            ),
           ),
         ),
       );

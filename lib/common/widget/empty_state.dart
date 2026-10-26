@@ -42,10 +42,12 @@ class EmptyState extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             title ?? l.noItemsFound,
+            textAlign: TextAlign.center,
             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           Text(
             subtitle ?? l.pleaseSelectItem,
+            textAlign: TextAlign.center,
             style: const TextStyle(fontWeight: FontWeight.normal),
           ),
           if (action != null) ...[
