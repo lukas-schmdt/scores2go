@@ -12,9 +12,11 @@ import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
 import 'package:scores_2_go/data_provider/collections_data_provider.dart';
 import 'package:scores_2_go/data_provider/feedback_data_provider.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
+import 'package:scores_2_go/data_provider/score_opens_data_provider.dart';
 import 'package:scores_2_go/repo/collections_repository.dart';
 import 'package:scores_2_go/repo/feedback_repository.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
+import 'package:scores_2_go/repo/score_opens_repository.dart';
 import 'package:scores_2_go/settings/bloc/settings_bloc.dart';
 import 'package:scores_2_go/theme/theme_data.dart';
 import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
@@ -33,6 +35,7 @@ void main() async {
 
   final scoresDataProvider = ScoresDataProvider();
   final feedbackDataProvider = FeedbackDataProvider();
+  final scoreOpensDataProvider = ScoreOpensDataProvider();
   final collectionsDataProvider = CollectionsDataProvider();
 
   runApp(
@@ -43,6 +46,9 @@ void main() async {
         ),
         RepositoryProvider(
           create: (context) => FeedbackRepository(feedbackDataProvider),
+        ),
+        RepositoryProvider(
+          create: (context) => ScoreOpensRepository(scoreOpensDataProvider),
         ),
         RepositoryProvider(
           create: (context) =>

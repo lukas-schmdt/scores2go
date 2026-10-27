@@ -199,7 +199,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Can\'t find what you\'re looking for? Let us know!';
 
   @override
-  @override
   String get noScoresAvailable => 'No scores available';
 
   @override

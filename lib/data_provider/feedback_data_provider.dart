@@ -8,8 +8,8 @@ class FeedbackDataProvider {
   SupabaseClient get _db => Supabase.instance.client;
 
   Future<void> insertFeedback(
-    String feedback,
-    int stars,
+    String? feedback,
+    int? stars,
   ) async {
     dev.log(
       'insertFeedback(stars=$stars)',

@@ -25,11 +25,18 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
     super.dispose();
   }
 
+  // At least a rating or some text is required; either alone is fine.
+  bool get _canSubmit => _stars > 0 || _controller.text.trim().isNotEmpty;
+
   Future<void> _submit() async {
-    if (_stars == 0) return;
+    if (!_canSubmit) return;
     setState(() => _submitting = true);
     try {
-      await widget.repository.submitFeedback(_controller.text.trim(), _stars);
+      final text = _controller.text.trim();
+      await widget.repository.submitFeedback(
+        text.isEmpty ? null : text,
+        _stars == 0 ? null : _stars,
+      );
       if (mounted) setState(() => _submitted = true);
     } catch (_) {
       if (mounted) {
@@ -62,7 +69,7 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
                 child: Text(l.cancel),
               ),
               TextButton(
-                onPressed: (_stars == 0 || _submitting) ? null : _submit,
+                onPressed: (!_canSubmit || _submitting) ? null : _submit,
                 child: _submitting
                     ? const SizedBox(
                         width: 16,
@@ -105,6 +112,7 @@ class _FeedbackDialogState extends State<FeedbackDialog> {
         const SizedBox(height: 16),
         TextField(
           controller: _controller,
+          onChanged: (_) => setState(() {}),
           maxLines: 4,
           decoration: InputDecoration(
             hintText: l.feedbackHint,
