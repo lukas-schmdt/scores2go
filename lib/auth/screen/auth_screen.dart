@@ -24,59 +24,74 @@ class AuthScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: isDark ? AppColors.darkBg : AppColors.lightBg,
           body: SafeArea(
-            // The branding glow overflows the scroll view; clip at the safe
-            // area instead so it isn't cut off with a hard edge.
-            child: ClipRect(
-              child: Center(
-                child: SingleChildScrollView(
-                  clipBehavior: Clip.none,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 48,
-                  ),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 420),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        AuthBrandingHeader(isDark: isDark),
-                        const SizedBox(height: 40),
-                        if (state.status == AuthStatus.registerSuccess) ...[
-                          AuthSuccessBanner(
-                            message: l.emailCheckTitle,
-                            subtitle: l.emailCheckSubtitle,
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                        if (state.status ==
-                            AuthStatus.resetPasswordSuccess) ...[
-                          AuthSuccessBanner(message: l.passwordResetSuccess),
-                          const SizedBox(height: 16),
-                        ],
-                        AuthLoginCard(isDark: isDark, authState: state),
-                        const SizedBox(height: 20),
-                        TextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => BlocProvider.value(
-                                value: context.read<AuthBloc>(),
-                                child: const RegisterScreen(),
+            child: Stack(
+              children: [
+                // The branding glow overflows the scroll view; clip at the
+                // safe area instead so it isn't cut off with a hard edge.
+                ClipRect(
+                  child: Center(
+                    child: SingleChildScrollView(
+                      clipBehavior: Clip.none,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 48,
+                      ),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 420),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            AuthBrandingHeader(isDark: isDark),
+                            const SizedBox(height: 40),
+                            if (state.status == AuthStatus.registerSuccess) ...[
+                              AuthSuccessBanner(
+                                message: l.emailCheckTitle,
+                                subtitle: l.emailCheckSubtitle,
                               ),
+                              const SizedBox(height: 16),
+                            ],
+                            if (state.status ==
+                                AuthStatus.resetPasswordSuccess) ...[
+                              AuthSuccessBanner(
+                                message: l.passwordResetSuccess,
+                              ),
+                              const SizedBox(height: 16),
+                            ],
+                            AuthLoginCard(isDark: isDark, authState: state),
+                            const SizedBox(height: 20),
+                            TextButton(
+                              onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => BlocProvider.value(
+                                    value: context.read<AuthBloc>(),
+                                    child: const RegisterScreen(),
+                                  ),
+                                ),
+                              ),
+                              style: TextButton.styleFrom(
+                                foregroundColor: isDark
+                                    ? AppColors.teal
+                                    : AppColors.blue,
+                              ),
+                              child: Text(l.noAccountRegister),
                             ),
-                          ),
-                          style: TextButton.styleFrom(
-                            foregroundColor: isDark
-                                ? AppColors.teal
-                                : AppColors.blue,
-                          ),
-                          child: Text(l.noAccountRegister),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
-              ),
+                // Signing in is optional, so let the user dismiss the screen.
+                if (Navigator.of(context).canPop())
+                  Positioned(
+                    top: 8,
+                    left: 8,
+                    child: CloseButton(
+                      color: isDark ? Colors.white70 : Colors.black54,
+                    ),
+                  ),
+              ],
             ),
           ),
         );

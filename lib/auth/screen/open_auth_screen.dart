@@ -9,6 +9,7 @@ import 'package:scores_2_go/l10n/app_localizations.dart';
 void openAuthScreen(BuildContext context) {
   Navigator.of(context).push(
     MaterialPageRoute(
+      fullscreenDialog: true,
       builder: (_) => BlocProvider.value(
         value: context.read<AuthBloc>(),
         child: const AuthScreen(),
@@ -27,7 +28,10 @@ bool ensureSignedIn(BuildContext context, {required String message}) {
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
       content: Text(message),
-      action: SnackBarAction(label: l.login, onPressed: () => openAuthScreen(context)),
+      action: SnackBarAction(
+        label: l.login,
+        onPressed: () => openAuthScreen(context),
+      ),
       // A SnackBar with an action defaults `persist` to true (it otherwise
       // never times out — see SnackBar.persist), so this would sit on screen
       // indefinitely without an explicit override. A slightly longer-than-

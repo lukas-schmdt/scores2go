@@ -107,6 +107,11 @@ class AppTheme {
                 : null),
       ),
 
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.blue,
+        foregroundColor: Colors.white,
+      ),
+
       // Explicit (not left to ColorScheme.inverseSurface/inversePrimary
       // fallbacks, which default actionTextColor to onPrimary — white on
       // white in the dark theme, making the action invisible).
@@ -238,6 +243,11 @@ class AppTheme {
             states.contains(WidgetState.selected)
                 ? AppColors.teal.withValues(alpha: 0.3)
                 : null),
+      ),
+
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.blue,
+        foregroundColor: Colors.white,
       ),
 
       // Explicit (not left to ColorScheme.inverseSurface/inversePrimary
