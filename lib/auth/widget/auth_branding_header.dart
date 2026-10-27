@@ -11,6 +11,33 @@ class AuthBrandingHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
+    return Stack(
+      clipBehavior: Clip.none,
+      alignment: Alignment.topCenter,
+      children: [
+        if (isDark)
+          // Centred on the logo (88 / 2 - 360 / 2) so it moves with it.
+          Positioned(
+            top: -136,
+            child: IgnorePointer(
+              child: Container(
+                width: 360,
+                height: 360,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [Color(0x330176E4), Color(0x000176E4)],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        _buildContent(context, l),
+      ],
+    );
+  }
+
+  Widget _buildContent(BuildContext context, AppLocalizations l) {
     return Column(
       children: [
         Container(
@@ -70,7 +97,9 @@ class AuthBrandingHeader extends StatelessWidget {
           l.appSubtitle,
           style: TextStyle(
             fontSize: 13,
-            color: isDark ? Colors.white.withValues(alpha: 0.45) : Colors.black45,
+            color: isDark
+                ? Colors.white.withValues(alpha: 0.45)
+                : Colors.black45,
           ),
         ),
       ],
