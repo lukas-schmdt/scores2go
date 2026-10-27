@@ -59,12 +59,13 @@ Score definitions are pure Dart — no network calls. Each score folder contains
 - `score_collection_scores` — columns: `user_score_collection_id`, `score_id`
 - `user_feedback` — columns: `user_id` (null for anonymous), `feedback`, `stars`
 - `score_opens` — columns: `score_id`, `platform`, `locale`; anonymous usage counts (no `user_id`), insert-only from the client
+- `scores` — columns: `id`, `popularity_last_7d` (0–100 percentile rank of 7-day opens, refreshed hourly by pg_cron — `supabase/popularity.sql`). `ScoresRepository` merges it into `Score.popularity`; it is never hardcoded in score definitions.
 
 **Security:** the key in `main.dart` is the *publishable* key — public by design. Never put the secret/`service_role` key in the client. Client-side `.eq('user_id', …)` filters are not a security boundary; data access is enforced by RLS, whose source of truth is `supabase/rls.sql` (run manually in the Supabase SQL editor). Any new table needs owner-only RLS policies added there.
 
 ### Adding a new score
 
-1. Create `lib/data/scores/definitions/<name>/` with the four Dart files (no `.md` doc — documentation lives in `landing/scores/`).
+1. Create `lib/data/scores/definitions/<name>/` with the four Dart files (no `.md` doc — documentation lives in `landing/scores/`). Don't set `popularity` — it comes from the DB. The new score's `id` needs a row in the Supabase `scores` table to get one.
 2. Register the asset folder in `pubspec.yaml` under `flutter.assets`.
 3. Add `build<Name>Score(lang)` to `lib/data/scores/scores.dart` (`buildScoresList`). The assert there enforces unique `Score.id` values.
 4. Create landing pages: `landing/scores/<name>.html` and `landing/scores/de/<name>.html`.

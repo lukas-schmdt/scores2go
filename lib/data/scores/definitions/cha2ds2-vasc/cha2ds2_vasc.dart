@@ -19,7 +19,6 @@ Score buildCha2ds2VascScore(String lang) {
         : 'https://scores2go.com/scores/cha2ds2-vasc.html',
     author: 'Lip et al.',
     year: 2010,
-    popularity: 90,
     categories: ['Cardiology', 'Stroke Risk'],
     groups: [
       Group(

@@ -15,7 +15,6 @@ Score buildMeldScore(String lang) {
     description: t('description'),
     author: 'Kamath et al.',
     year: 2001,
-    popularity: 88,
     categories: ['Hepatology', 'Transplant', 'Severity'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/meld.html'

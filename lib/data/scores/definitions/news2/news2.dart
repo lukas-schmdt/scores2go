@@ -19,7 +19,6 @@ Score buildNews2Score(String lang) {
         : 'https://scores2go.com/scores/news2.html',
     author: 'Royal College of Physicians',
     year: 2017,
-    popularity: 85,
     categories: ['Emergency', 'Severity'],
     groups: [
       Group(

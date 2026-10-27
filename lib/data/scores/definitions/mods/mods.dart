@@ -15,7 +15,6 @@ Score buildModsScore(String lang) {
     description: t('description'),
     author: 'Marshall et al.',
     year: 1995,
-    popularity: 75,
     categories: ['ICU', 'Severity', 'Critical Care'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/mods.html'

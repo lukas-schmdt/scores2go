@@ -27,7 +27,6 @@ Score buildMeld3Score(String lang) {
     description: t('description'),
     author: 'Kim et al.',
     year: 2021,
-    popularity: 86,
     categories: ['Hepatology', 'Transplant', 'Severity'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/meld-3.html'

@@ -19,7 +19,6 @@ Score buildWellsDvtScore(String lang) {
         : 'https://scores2go.com/scores/wells-dvt.html',
     author: 'Wells et al.',
     year: 2003,
-    popularity: 85,
     categories: ['Emergency', 'Vascular'],
     groups: [
       Group(

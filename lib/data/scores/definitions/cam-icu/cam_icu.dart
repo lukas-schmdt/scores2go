@@ -14,7 +14,6 @@ Score buildCamIcuScore(String lang) {
     description: t('description'),
     author: 'Ely et al.',
     year: 2001,
-    popularity: 85,
     categories: ['Delirium', 'ICU'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/cam-icu.html'

@@ -25,7 +25,6 @@ Score buildHorovitzScore(String lang) {
     description: t('description'),
     author: 'Horovitz et al.',
     year: 1974,
-    popularity: 85,
     categories: ['Pulmonology', 'ICU', 'ARDS'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/horovitz.html'

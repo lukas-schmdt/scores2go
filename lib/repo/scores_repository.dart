@@ -1,3 +1,5 @@
+import 'dart:developer' as dev;
+
 import 'package:scores_2_go/data/scores.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/data_provider/scores_data_provider.dart';
@@ -6,6 +8,8 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class ScoresRepository {
   final ScoresDataProvider dataProvider;
   String _locale = 'de';
+  Map<int, int> _popularity = {};
+  bool _popularityLoaded = false;
 
   ScoresRepository(this.dataProvider);
 
@@ -23,10 +27,24 @@ class ScoresRepository {
 
   // ─── Scores ───────────────────────────────────────────────────────────────
 
-  List<Score> get scores => buildScoresList(_locale);
+  List<Score> get scores => buildScoresList(_locale)
+      .map((s) => s.copyWith(popularity: _popularity[s.id]))
+      .toList();
 
   Future<List<Score>> getScores([bool force = false]) async {
+    if (!_popularityLoaded || force) await _loadPopularity();
     return scores;
+  }
+
+  // Loaded once per session; on failure (e.g. offline) popularity stays
+  // hidden and the next getScores() retries.
+  Future<void> _loadPopularity() async {
+    try {
+      _popularity = await dataProvider.fetchPopularity();
+      _popularityLoaded = true;
+    } catch (e) {
+      dev.log('_loadPopularity() failed: $e', name: 'ScoresRepository');
+    }
   }
 
   Future<List<Score>> getScoresBySearchString(String searchString) async {

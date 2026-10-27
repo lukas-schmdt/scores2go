@@ -17,7 +17,6 @@ Score buildRassScore(String lang) {
     visibilityFunction: rassVisibility,
     author: 'Sessler et al.',
     year: 2002,
-    popularity: 90,
     categories: ['Sedation', 'ICU'],
     display: t('display'),
     description: t('description'),

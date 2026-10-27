@@ -14,7 +14,6 @@ Score buildNudescScore(String lang) {
     description: t('description'),
     author: 'Gaudreau et al.',
     year: 2005,
-    popularity: 70,
     categories: ['Delirium', 'ICU', 'Nursing'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/nudesc.html'

@@ -39,6 +39,7 @@ class Score {
     String? display,
     String? description,
     List<Group>? groups,
+    int? popularity,
   }) {
     return Score(
       id: id ?? this.id,
@@ -51,7 +52,7 @@ class Score {
       docUrl: docUrl,
       author: author,
       year: year,
-      popularity: popularity,
+      popularity: popularity ?? this.popularity,
       categories: categories,
     );
   }

@@ -17,7 +17,6 @@ Score buildSaps3Score(String lang) {
     visibilityFunction: saps3Visibility,
     author: 'Moreno et al.',
     year: 2005,
-    popularity: 78,
     categories: ['ICU', 'Mortality'],
     display: t('display'),
     description: t('description'),

@@ -14,7 +14,6 @@ Score buildIcdscScore(String lang) {
     description: t('description'),
     author: 'Bergeron et al.',
     year: 2001,
-    popularity: 75,
     categories: ['Delirium', 'ICU', 'Nursing'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/icdsc.html'

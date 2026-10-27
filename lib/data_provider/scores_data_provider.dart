@@ -7,6 +7,21 @@ class ScoresDataProvider {
 
   SupabaseClient get _db => Supabase.instance.client;
 
+  // ─── Popularity ───────────────────────────────────────────────────────────
+
+  /// score id → popularity_last_7d (0–100), refreshed hourly by pg_cron
+  /// (see supabase/popularity.sql).
+  Future<Map<int, int>> fetchPopularity() async {
+    dev.log('fetchPopularity()', name: _tag);
+    final rows = await _db.from('scores').select('id, popularity_last_7d');
+    final popularity = {
+      for (final r in rows as List)
+        (r['id'] as num).toInt(): (r['popularity_last_7d'] as num).toInt(),
+    };
+    dev.log('fetchPopularity() → ${popularity.length} scores', name: _tag);
+    return popularity;
+  }
+
   // ─── User Favorites ───────────────────────────────────────────────────────
 
   Future<List<int>> fetchFavoriteScoreIds(String userId) async {

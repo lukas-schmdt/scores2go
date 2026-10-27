@@ -18,7 +18,6 @@ Score buildSapsIiScore(String lang) {
         : 'https://scores2go.com/scores/saps-ii.html',
     author: 'Le Gall et al.',
     year: 1993,
-    popularity: 88,
     categories: ['ICU', 'Severity'],
     display: 'SAPS II',
     description: t('description'),

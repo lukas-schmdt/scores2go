@@ -14,7 +14,6 @@ Score buildQsofaScore(String lang) {
     description: t('description'),
     author: 'Seymour et al.',
     year: 2016,
-    popularity: 80,
     categories: ['Sepsis', 'Emergency'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/qsofa.html'

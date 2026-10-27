@@ -14,7 +14,6 @@ Score buildFinneganScore(String lang) {
     description: t('description'),
     author: 'Finnegan et al.',
     year: 1975,
-    popularity: 82,
     categories: ['Neonatology', 'NAS'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/finnegan.html'

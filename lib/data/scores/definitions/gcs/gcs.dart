@@ -14,7 +14,6 @@ Score buildGcsScore(String lang) {
     description: t('description'),
     author: 'Teasdale & Jennett',
     year: 1974,
-    popularity: 98,
     categories: ['Neurology', 'ICU', 'Emergency'],
     docUrl: (locale) => locale == 'de'
         ? 'https://scores2go.com/scores/de/gcs.html'

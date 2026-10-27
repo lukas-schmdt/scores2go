@@ -18,7 +18,6 @@ Score buildApacheIiScore(String lang) {
         : 'https://scores2go.com/scores/apache2.html',
     author: 'Knaus et al.',
     year: 1985,
-    popularity: 95,
     categories: ['ICU', 'Severity'],
     display: 'APACHE II',
     description: t('description'),

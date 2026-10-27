@@ -23,10 +23,11 @@ class ScoreListItem extends StatelessWidget {
 
     final metaStyle = tt.labelSmall?.copyWith(color: cs.onSurfaceVariant);
     final hasDescription = score.description.isNotEmpty;
+    final hasPopularity = (score.popularity ?? 0) > 0;
     final hasMetadata =
         score.author != null ||
         score.year != null ||
-        score.popularity != null ||
+        hasPopularity ||
         score.categories.isNotEmpty;
 
     return Card(
@@ -93,7 +94,7 @@ class ScoreListItem extends StatelessWidget {
                                 ),
                               ],
                             ),
-                          if (score.popularity != null)
+                          if (hasPopularity)
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

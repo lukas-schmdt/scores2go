@@ -17,7 +17,6 @@ Score buildEuroscoreScore(String lang) {
     visibilityFunction: euroscoreVisibility,
     author: 'Nashef et al.',
     year: 2012,
-    popularity: 85,
     categories: ['Cardiac Surgery', 'Mortality'],
     display: t('display'),
     description: t('description'),

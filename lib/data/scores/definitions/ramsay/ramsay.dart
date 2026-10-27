@@ -17,7 +17,6 @@ Score buildRamsayScore(String lang) {
     visibilityFunction: ramsayVisibility,
     author: 'Ramsay et al.',
     year: 1974,
-    popularity: 72,
     categories: ['Sedation', 'ICU'],
     display: t('display'),
     description: t('description'),

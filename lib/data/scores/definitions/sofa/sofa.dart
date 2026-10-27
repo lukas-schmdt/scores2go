@@ -18,7 +18,6 @@ Score buildSofaScore(String lang) {
         : 'https://scores2go.com/scores/sofa.html',
     author: 'Vincent et al.',
     year: 1996,
-    popularity: 92,
     categories: ['Sepsis', 'ICU'],
     display: 'SOFA',
     description: t('description'),

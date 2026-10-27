@@ -19,7 +19,6 @@ Score buildWellsPeScore(String lang) {
         : 'https://scores2go.com/scores/wells-pe.html',
     author: 'Wells et al.',
     year: 2000,
-    popularity: 85,
     categories: ['Emergency', 'Pulmonology'],
     groups: [
       Group(
