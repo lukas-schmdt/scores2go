@@ -1,5 +1,7 @@
 # Scores2Go
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 **Open-source clinical score calculator for web, Android and iOS.**
 
 Scores2Go puts common clinical scores (ICU severity, sedation, delirium, sepsis, hepatology and more) into one fast, clean app. Every score comes with a structured input form, an instant result with interpretation, and a documentation page with references.
@@ -113,3 +115,7 @@ When proposing a new score or a correction, please cite the original publication
 ## Support
 
 If Scores2Go is useful to you, you can [buy me a coffee](https://buymeacoffee.com/lukas.schmdt) ☕
+
+## License
+
+Released under the [MIT License](LICENSE).

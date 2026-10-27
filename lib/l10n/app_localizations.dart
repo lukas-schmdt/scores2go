@@ -464,12 +464,6 @@ abstract class AppLocalizations {
   /// **'Nicht gefunden was du suchst? Lass es uns wissen!'**
   String get reportMissingScoreSubtitle;
 
-  /// No description provided for @signInToSendFeedback.
-  ///
-  /// In de, this message translates to:
-  /// **'Melde dich an, um Feedback zu senden.'**
-  String get signInToSendFeedback;
-
   /// No description provided for @noScoresAvailable.
   ///
   /// In de, this message translates to:

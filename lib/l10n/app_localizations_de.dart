@@ -201,8 +201,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Nicht gefunden was du suchst? Lass es uns wissen!';
 
   @override
-  String get signInToSendFeedback => 'Melde dich an, um Feedback zu senden.';
-
   @override
   String get noScoresAvailable => 'Keine Scores vorhanden';
 

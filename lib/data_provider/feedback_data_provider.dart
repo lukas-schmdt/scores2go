@@ -8,16 +8,14 @@ class FeedbackDataProvider {
   SupabaseClient get _db => Supabase.instance.client;
 
   Future<void> insertFeedback(
-    String userId,
     String feedback,
     int stars,
   ) async {
     dev.log(
-      'insertFeedback(userId=$userId, stars=$stars)',
+      'insertFeedback(stars=$stars)',
       name: _tag,
     );
     await _db.from('user_feedback').insert({
-      'user_id': userId,
       'feedback': feedback,
       'stars': stars,
     });

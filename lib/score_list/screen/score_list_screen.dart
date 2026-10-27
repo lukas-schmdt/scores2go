@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/common/widget/empty_state.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
@@ -156,9 +155,6 @@ class _SearchEmptyState extends StatelessWidget {
             InkWell(
               borderRadius: BorderRadius.circular(12),
               onTap: () {
-                if (!ensureSignedIn(context, message: l.signInToSendFeedback)) {
-                  return;
-                }
                 showDialog<void>(
                   context: context,
                   builder: (_) => FeedbackDialog(

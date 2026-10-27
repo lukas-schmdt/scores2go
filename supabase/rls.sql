@@ -34,8 +34,22 @@ create policy "Owner delete" on public.score_collection_scores for delete to aut
   using (exists (select 1 from public.user_score_collections c
                  where c.id = user_score_collection_id and c.user_id = (select auth.uid())));
 
--- user_feedback: can only submit as yourself (no read access from the client)
+-- user_feedback: insert-only from the client (no read access). Signed-in users
+-- submit as themselves; anonymous users submit with user_id null (the column
+-- default auth.uid() yields null for anon). Constraints cap what a script
+-- holding the public key can write. NOT VALID skips checking existing rows.
+alter table public.user_feedback alter column user_id drop not null;
+alter table public.user_feedback drop constraint if exists user_feedback_feedback_length;
+alter table public.user_feedback add constraint user_feedback_feedback_length
+  check (char_length(feedback) <= 2000) not valid;
+alter table public.user_feedback drop constraint if exists user_feedback_stars_range;
+alter table public.user_feedback add constraint user_feedback_stars_range
+  check (stars between 1 and 5) not valid;
+
 drop policy if exists "Enable insert for authenticated users only" on public.user_feedback;
 drop policy if exists "Own insert" on public.user_feedback;
+drop policy if exists "Anon insert" on public.user_feedback;
 create policy "Own insert" on public.user_feedback for insert to authenticated
   with check ((select auth.uid()) = user_id);
+create policy "Anon insert" on public.user_feedback for insert to anon
+  with check (user_id is null);

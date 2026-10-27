@@ -199,8 +199,6 @@ class AppLocalizationsEn extends AppLocalizations {
       'Can\'t find what you\'re looking for? Let us know!';
 
   @override
-  String get signInToSendFeedback => 'Sign in to send feedback.';
-
   @override
   String get noScoresAvailable => 'No scores available';
 
