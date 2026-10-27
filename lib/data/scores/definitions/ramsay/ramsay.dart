@@ -31,7 +31,6 @@ Score buildRamsayScore(String lang) {
           VariableSelection(
             name: 'ramsay-level',
             display: t('level.display'),
-            description: t('level.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('level.1'), value: 1),

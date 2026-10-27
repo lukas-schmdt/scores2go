@@ -1,6 +1,7 @@
 import 'package:scores_2_go/data/scores/definitions/mods/mods_function.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods_i10n.dart';
 import 'package:scores_2_go/data/scores/definitions/mods/mods_visibility.dart';
+import 'package:scores_2_go/function/value_unit_converter.dart';
 import 'package:scores_2_go/model/model.dart';
 
 final _i10n = ModsI10n();
@@ -32,7 +33,6 @@ Score buildModsScore(String lang) {
           VariableSelection(
             name: 'mods-pf',
             display: t('pf.display'),
-            description: t('pf.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('pf.0'), value: 0),
@@ -55,7 +55,6 @@ Score buildModsScore(String lang) {
           VariableSelection(
             name: 'mods-creatinine',
             display: t('creatinine.display'),
-            description: t('creatinine.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('creatinine.0'), value: 0),
@@ -78,7 +77,6 @@ Score buildModsScore(String lang) {
           VariableSelection(
             name: 'mods-bilirubin',
             display: t('bilirubin.display'),
-            description: t('bilirubin.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('bilirubin.0'), value: 0),
@@ -101,26 +99,26 @@ Score buildModsScore(String lang) {
           VariableNumber(
             name: 'mods-hr',
             display: t('hr.display'),
-            description: t('hr.description'),
             value: null,
             normMin: 60,
             normMax: 100,
+            units: Units.heartRate,
           ),
           VariableNumber(
             name: 'mods-map',
             display: t('map.display'),
-            description: t('map.description'),
             value: null,
             normMin: 70,
             normMax: 100,
+            units: Units.bloodPressure,
           ),
           VariableNumber(
             name: 'mods-cvp',
             display: t('cvp.display'),
-            description: t('cvp.description'),
             value: null,
             normMin: 2,
             normMax: 8,
+            units: Units.bloodPressure,
           ),
         ],
       ),
@@ -135,7 +133,6 @@ Score buildModsScore(String lang) {
           VariableSelection(
             name: 'mods-platelets',
             display: t('platelets.display'),
-            description: t('platelets.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('platelets.0'), value: 0),
@@ -158,7 +155,6 @@ Score buildModsScore(String lang) {
           VariableSelection(
             name: 'mods-gcs',
             display: t('gcs.display'),
-            description: t('gcs.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('gcs.0'), value: 0),

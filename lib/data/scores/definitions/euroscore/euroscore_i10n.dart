@@ -23,7 +23,6 @@ class EuroscoreI10n extends ScoreI10n {
           'Patient age in years. EuroSCORE II treats every age of 60 or '
           'below identically; each year above 60 adds further risk.',
       'female.display': 'Female sex',
-      'female.description': 'Female patients carry an additional risk.',
       'renal_function.display': 'Renal function',
       'renal_function.description':
           'Creatinine clearance (Cockcroft-Gault): '
@@ -54,7 +53,6 @@ class EuroscoreI10n extends ScoreI10n {
           'Ventricular tachycardia/fibrillation, preoperative cardiac massage, '
           'ventilation before anaesthesia, inotropic support, IABP, or acute renal failure.',
       'diabetes_insulin.display': 'Diabetes on insulin',
-      'diabetes_insulin.description': 'Diabetes mellitus requiring insulin therapy.',
       'nyha.display': 'NYHA class',
       'nyha.description': 'New York Heart Association functional classification.',
       'nyha.1': 'NYHA I – No symptoms',
@@ -79,20 +77,16 @@ class EuroscoreI10n extends ScoreI10n {
       'pulm_htn.severe': 'Severe – PA systolic > 55 mmHg',
       // Operation factors
       'urgency.display': 'Urgency',
-      'urgency.description': 'Timing of surgery.',
       'urgency.elective': 'Elective – Routine, no urgency',
       'urgency.urgent': 'Urgent – Not elective, done within days',
       'urgency.emergency': 'Emergency – Done before next working day',
       'urgency.salvage': 'Salvage – CPR en route to OR',
       'procedure.display': 'Weight of procedure',
-      'procedure.description': 'Complexity of cardiac procedure.',
       'procedure.cabg': 'Isolated CABG',
       'procedure.single_non_cabg': 'Single non-CABG procedure',
       'procedure.two': '2 cardiac procedures',
       'procedure.three_plus': '3 or more cardiac procedures',
       'thoracic_aorta.display': 'Surgery on thoracic aorta',
-      'thoracic_aorta.description':
-          'Ascending, arch, or descending thoracic aorta surgery.',
       // Calculation output
       'calc.incomplete': 'Please fill in all required fields.',
       'calc.predicted30DayMortality': 'Predicted 30-day operative mortality',
@@ -118,7 +112,6 @@ class EuroscoreI10n extends ScoreI10n {
           'Patientenalter in Jahren. EuroSCORE II behandelt jedes Alter von '
           '60 Jahren oder darunter gleich; jedes Jahr über 60 erhöht das Risiko weiter.',
       'female.display': 'Weibliches Geschlecht',
-      'female.description': 'Weibliche Patienten tragen ein erhöhtes Risiko.',
       'renal_function.display': 'Nierenfunktion',
       'renal_function.description':
           'Kreatinin-Clearance (Cockcroft-Gault): '
@@ -149,7 +142,6 @@ class EuroscoreI10n extends ScoreI10n {
           'Ventrikuläre Tachykardie/Kammerflimmern, präoperative Herzdruckmassage, '
           'Beatmung vor Narkose, Katecholamine, IABP oder akutes Nierenversagen.',
       'diabetes_insulin.display': 'Insulin-pflichtiger Diabetes',
-      'diabetes_insulin.description': 'Diabetes mellitus mit Insulintherapie.',
       'nyha.display': 'NYHA-Klasse',
       'nyha.description': 'Funktionsklasse der New York Heart Association.',
       'nyha.1': 'NYHA I – Keine Symptome',
@@ -172,20 +164,16 @@ class EuroscoreI10n extends ScoreI10n {
       'pulm_htn.moderate': 'Mäßig – PA-Druck systolisch 31–55 mmHg',
       'pulm_htn.severe': 'Schwer – PA-Druck systolisch > 55 mmHg',
       'urgency.display': 'Dringlichkeit',
-      'urgency.description': 'Zeitpunkt des Eingriffs.',
       'urgency.elective': 'Elektiv – Routineeingriff',
       'urgency.urgent': 'Dringlich – Innerhalb weniger Tage',
       'urgency.emergency': 'Notfall – Vor dem nächsten Werktag',
       'urgency.salvage': 'Salvage – Reanimation auf dem Weg in den OP',
       'procedure.display': 'Gewicht des Eingriffs',
-      'procedure.description': 'Komplexität des herzchirurgischen Eingriffs.',
       'procedure.cabg': 'Isolierter Bypass (CABG)',
       'procedure.single_non_cabg': 'Einzel-Nicht-CABG-Eingriff',
       'procedure.two': '2 kardiale Eingriffe',
       'procedure.three_plus': '3 oder mehr kardiale Eingriffe',
       'thoracic_aorta.display': 'Eingriff an der thorakalen Aorta',
-      'thoracic_aorta.description':
-          'Eingriff an Aorta ascendens, Aortenbogen oder Aorta descendens.',
       // Calculation output
       'calc.incomplete': 'Bitte alle Pflichtfelder ausfüllen.',
       'calc.predicted30DayMortality': 'Vorhergesagte 30-Tage-Operationsmortalität',

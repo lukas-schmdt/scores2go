@@ -55,7 +55,6 @@ Score buildFinneganScore(String lang) {
           VariableSelection(
             name: 'finnegan-moro',
             display: t('moro.display'),
-            description: t('moro.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('moro.0'), value: 0),
@@ -95,7 +94,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-myoclonic-jerks',
             display: t('myoclonic-jerks.display'),
-            description: t('myoclonic-jerks.description'),
             value: null,
             trueValue: 3,
             falseValue: 0,
@@ -103,7 +101,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-convulsions',
             display: t('convulsions.display'),
-            description: t('convulsions.description'),
             value: null,
             trueValue: 5,
             falseValue: 0,
@@ -148,7 +145,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-mottling',
             display: t('mottling.display'),
-            description: t('mottling.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -156,7 +152,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-nasal-stuffiness',
             display: t('nasal-stuffiness.display'),
-            description: t('nasal-stuffiness.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -172,7 +167,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-nasal-flaring',
             display: t('nasal-flaring.display'),
-            description: t('nasal-flaring.description'),
             value: null,
             trueValue: 2,
             falseValue: 0,
@@ -217,7 +211,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-regurgitation',
             display: t('regurgitation.display'),
-            description: t('regurgitation.description'),
             value: null,
             trueValue: 2,
             falseValue: 0,
@@ -225,7 +218,6 @@ Score buildFinneganScore(String lang) {
           VariableBool(
             name: 'finnegan-vomiting',
             display: t('vomiting.display'),
-            description: t('vomiting.description'),
             value: null,
             trueValue: 3,
             falseValue: 0,

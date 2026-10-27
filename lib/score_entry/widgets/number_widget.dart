@@ -95,7 +95,7 @@ class _NumberVariableState extends State<NumberVariable> {
                 _StaticUnitChip(label: activeUnit.label),
             ],
           ),
-          if (item.description!.isNotEmpty) ...[
+          if (item.description != null && item.description!.isNotEmpty) ...[
             const SizedBox(height: 3),
             Text(
               item.description!,

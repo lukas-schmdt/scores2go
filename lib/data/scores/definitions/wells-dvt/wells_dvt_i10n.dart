@@ -19,9 +19,6 @@ class WellsDvtI10n extends ScoreI10n {
 
       'cancer.display':
           'Active cancer (treatment ongoing, within 6 months, or palliative)',
-      'cancer.description':
-          'Cancer under treatment, treated within the last 6 months, or '
-          'receiving palliative care.',
 
       'paralysis.display':
           'Paralysis, paresis or recent plaster immobilization of the lower '
@@ -32,15 +29,10 @@ class WellsDvtI10n extends ScoreI10n {
       'bedridden-surgery.display':
           'Recently bedridden ≥ 3 days or major surgery within 12 weeks '
           '(general or regional anaesthesia)',
-      'bedridden-surgery.description':
-          'Bedridden for at least 3 days, or major surgery requiring general '
-          'or regional anaesthesia within the previous 12 weeks.',
 
       'tenderness.display':
           'Localized tenderness along the distribution of the deep venous '
           'system',
-      'tenderness.description':
-          'Pain on palpation along the course of the deep veins.',
 
       'entire-leg-swollen.display': 'Entire leg swollen',
       'entire-leg-swollen.description':
@@ -52,13 +44,8 @@ class WellsDvtI10n extends ScoreI10n {
           'Measured 10 cm below the tibial tuberosity.',
 
       'pitting-edema.display': 'Pitting edema confined to the symptomatic leg',
-      'pitting-edema.description':
-          'Edema that leaves an indentation on pressure, limited to the '
-          'symptomatic leg.',
 
       'collateral-veins.display': 'Collateral superficial veins (non-varicose)',
-      'collateral-veins.description':
-          'Dilated superficial collateral veins that are not varicose veins.',
 
       'previous-dvt.display': 'Previously documented DVT',
       'previous-dvt.description':
@@ -109,9 +96,6 @@ class WellsDvtI10n extends ScoreI10n {
       'cancer.display':
           'Aktive Tumorerkrankung (Behandlung laufend, innerhalb der letzten '
           '6 Monate oder palliativ)',
-      'cancer.description':
-          'Tumorerkrankung unter Behandlung, behandelt innerhalb der letzten '
-          '6 Monate oder palliative Situation.',
 
       'paralysis.display':
           'Lähmung, Parese oder kürzliche Gipsimmobilisation der unteren '
@@ -121,14 +105,9 @@ class WellsDvtI10n extends ScoreI10n {
       'bedridden-surgery.display':
           'Bettlägerigkeit ≥ 3 Tage oder größere Operation innerhalb der '
           'letzten 12 Wochen',
-      'bedridden-surgery.description':
-          'Mindestens 3 Tage bettlägerig oder größere Operation in Allgemein- '
-          'oder Regionalanästhesie innerhalb der letzten 12 Wochen.',
 
       'tenderness.display':
           'Lokalisierter Druckschmerz entlang des tiefen Venensystems',
-      'tenderness.description':
-          'Druckschmerz entlang des Verlaufs der tiefen Venen.',
 
       'entire-leg-swollen.display': 'Schwellung des gesamten Beins',
       'entire-leg-swollen.description':
@@ -141,14 +120,9 @@ class WellsDvtI10n extends ScoreI10n {
 
       'pitting-edema.display':
           'Eindrückbares Ödem, auf das symptomatische Bein beschränkt',
-      'pitting-edema.description':
-          'Ödem, das auf Druck eine Delle hinterlässt, beschränkt auf das '
-          'symptomatische Bein.',
 
       'collateral-veins.display':
           'Kollaterale oberflächliche Venen (keine Varizen)',
-      'collateral-veins.description':
-          'Erweiterte oberflächliche Kollateralvenen, die keine Varizen sind.',
 
       'previous-dvt.display': 'Früher dokumentierte tiefe Beinvenenthrombose',
       'previous-dvt.description':

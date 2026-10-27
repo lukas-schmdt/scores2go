@@ -47,7 +47,6 @@ Score buildCha2ds2VascScore(String lang) {
           VariableSelection(
             name: 'cha2ds2-vasc-age',
             display: t('age.display'),
-            description: t('age.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('age.opt.lt65'), value: 0),
@@ -58,7 +57,6 @@ Score buildCha2ds2VascScore(String lang) {
           VariableBool(
             name: 'cha2ds2-vasc-diabetes',
             display: t('diabetes.display'),
-            description: t('diabetes.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -66,7 +64,6 @@ Score buildCha2ds2VascScore(String lang) {
           VariableBool(
             name: 'cha2ds2-vasc-stroke-tia',
             display: t('stroke-tia.display'),
-            description: t('stroke-tia.description'),
             value: null,
             trueValue: 2,
             falseValue: 0,

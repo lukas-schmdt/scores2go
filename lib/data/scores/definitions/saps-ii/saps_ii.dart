@@ -32,7 +32,6 @@ Score buildSapsIiScore(String lang) {
           VariableSelection(
             name: 'saps-ii-alter',
             display: t('alter.display'),
-            description: t('alter.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('alter.opt.lt40'), value: 0),
@@ -46,7 +45,6 @@ Score buildSapsIiScore(String lang) {
           VariableSelection(
             name: 'saps-ii-aufnahmeart',
             display: t('aufnahmeart.display'),
-            description: t('aufnahmeart.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('aufnahmeart.opt.elective'), value: 0),
@@ -184,7 +182,6 @@ Score buildSapsIiScore(String lang) {
           VariableSelection(
             name: 'saps-ii-bun',
             display: t('bun.display'),
-            description: t('bun.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '< 28 mg/dL', value: 0),

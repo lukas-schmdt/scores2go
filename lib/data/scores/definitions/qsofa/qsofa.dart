@@ -31,7 +31,6 @@ Score buildQsofaScore(String lang) {
           VariableBool(
             name: 'qsofa-resp-rate',
             display: t('resp-rate.display'),
-            description: t('resp-rate.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -47,7 +46,6 @@ Score buildQsofaScore(String lang) {
           VariableBool(
             name: 'qsofa-sbp',
             display: t('sbp.display'),
-            description: t('sbp.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,

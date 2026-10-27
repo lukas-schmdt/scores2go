@@ -22,25 +22,15 @@ class WellsPeI10n extends ScoreI10n {
           'Minimum: leg swelling and pain on palpation of the deep veins.',
 
       'pe-likely.display': 'PE is the #1 diagnosis or equally likely',
-      'pe-likely.description':
-          'An alternative diagnosis is less likely than pulmonary embolism.',
 
       'heart-rate.display': 'Heart rate > 100/min',
-      'heart-rate.description': 'Heart rate above 100 beats per minute.',
 
       'immobilization-surgery.display':
           'Immobilization ≥ 3 days or surgery in the previous 4 weeks',
-      'immobilization-surgery.description':
-          'Bed rest/immobilization for at least 3 days, or surgery within '
-          'the previous 4 weeks.',
 
       'previous-vte.display': 'Previous objectively diagnosed PE or DVT',
-      'previous-vte.description':
-          'Prior pulmonary embolism or deep vein thrombosis confirmed by '
-          'objective testing.',
 
       'hemoptysis.display': 'Hemoptysis',
-      'hemoptysis.description': 'Coughing up blood.',
 
       'malignancy.display': 'Malignancy',
       'malignancy.description':
@@ -91,27 +81,16 @@ class WellsPeI10n extends ScoreI10n {
       'pe-likely.display':
           'Lungenembolie ist die wahrscheinlichste Diagnose oder gleich '
           'wahrscheinlich',
-      'pe-likely.description':
-          'Eine alternative Diagnose ist weniger wahrscheinlich als eine '
-          'Lungenembolie.',
 
       'heart-rate.display': 'Herzfrequenz > 100/min',
-      'heart-rate.description': 'Herzfrequenz über 100 Schlägen pro Minute.',
 
       'immobilization-surgery.display':
           'Immobilisation ≥ 3 Tage oder Operation in den letzten 4 Wochen',
-      'immobilization-surgery.description':
-          'Bettruhe/Immobilisation für mindestens 3 Tage oder Operation '
-          'innerhalb der letzten 4 Wochen.',
 
       'previous-vte.display':
           'Frühere, objektiv gesicherte Lungenembolie oder TVT',
-      'previous-vte.description':
-          'Frühere Lungenembolie oder tiefe Beinvenenthrombose, objektiv '
-          'gesichert.',
 
       'hemoptysis.display': 'Hämoptyse',
-      'hemoptysis.description': 'Bluthusten.',
 
       'malignancy.display': 'Malignom',
       'malignancy.description':

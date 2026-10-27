@@ -19,7 +19,6 @@ class SapsIiI10n extends ScoreI10n {
           'Worst or most extreme laboratory values from the first 24 hours.',
       // Variables
       'alter.display': 'Age',
-      'alter.description': 'Age in years.',
       'alter.opt.lt40': '< 40 years',
       'alter.opt.40_59': '40–59 years',
       'alter.opt.60_69': '60–69 years',
@@ -27,8 +26,6 @@ class SapsIiI10n extends ScoreI10n {
       'alter.opt.75_79': '75–79 years',
       'alter.opt.ge80': '≥ 80 years',
       'aufnahmeart.display': 'Type of Admission',
-      'aufnahmeart.description':
-          'Elective surgery, emergency surgery, or medical admission.',
       'aufnahmeart.opt.elective': 'Elective surgical admission',
       'aufnahmeart.opt.medical': 'Medical admission',
       'aufnahmeart.opt.emergency': 'Emergency surgical admission',
@@ -59,7 +56,6 @@ class SapsIiI10n extends ScoreI10n {
       'urinausscheidung.display': 'Urine Output',
       'urinausscheidung.description': 'Urine output extrapolated to 24 hours.',
       'bun.display': 'BUN / Blood Urea Nitrogen',
-      'bun.description': 'Blood urea nitrogen in mg/dL.',
       'leukozyten.display': 'White Blood Cells',
       'leukozyten.description':
           'Value giving the highest points (worst of leukopenia or leukocytosis) in the first 24 hours.',
@@ -97,7 +93,6 @@ class SapsIiI10n extends ScoreI10n {
           'Schlechteste bzw. höchste/niedrigste relevante Laborwerte aus den ersten 24 Stunden.',
       // Variables
       'alter.display': 'Alter',
-      'alter.description': 'Alter in Jahren.',
       'alter.opt.lt40': '< 40 Jahre',
       'alter.opt.40_59': '40–59 Jahre',
       'alter.opt.60_69': '60–69 Jahre',
@@ -105,8 +100,6 @@ class SapsIiI10n extends ScoreI10n {
       'alter.opt.75_79': '75–79 Jahre',
       'alter.opt.ge80': '≥ 80 Jahre',
       'aufnahmeart.display': 'Art der Aufnahme',
-      'aufnahmeart.description':
-          'Geplante OP, ungeplante OP oder medizinische Aufnahme.',
       'aufnahmeart.opt.elective': 'Geplante chirurgische Aufnahme',
       'aufnahmeart.opt.medical': 'Medizinische Aufnahme',
       'aufnahmeart.opt.emergency': 'Ungeplante chirurgische Aufnahme',
@@ -138,7 +131,6 @@ class SapsIiI10n extends ScoreI10n {
       'urinausscheidung.description':
           'Urinausscheidung hochgerechnet auf 24 Stunden.',
       'bun.display': 'BUN / Harnstoffstickstoff',
-      'bun.description': 'Harnstoffstickstoff in mg/dL.',
       'leukozyten.display': 'Leukozyten',
       'leukozyten.description':
           'Wert mit der höchsten Punktzahl (schlechtester Wert bei Leukopenie oder Leukozytose) in den ersten 24 Stunden.',

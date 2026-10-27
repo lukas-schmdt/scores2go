@@ -27,18 +27,13 @@ class Cha2ds2VascI10n extends ScoreI10n {
           'History of hypertension, treated or untreated.',
 
       'age.display': 'Age',
-      'age.description': 'Patient age category.',
       'age.opt.lt65': '< 65 years',
       'age.opt.65_74': '65–74 years',
       'age.opt.ge75': '≥ 75 years',
 
       'diabetes.display': 'Diabetes Mellitus',
-      'diabetes.description': 'History of diabetes mellitus.',
 
       'stroke-tia.display': 'Prior Stroke / TIA / Thromboembolism',
-      'stroke-tia.description':
-          'History of stroke, transient ischemic attack, or systemic '
-          'thromboembolism.',
 
       'vascular-disease.display': 'Vascular Disease',
       'vascular-disease.description':
@@ -86,17 +81,13 @@ class Cha2ds2VascI10n extends ScoreI10n {
           'unbehandelt.',
 
       'age.display': 'Alter',
-      'age.description': 'Alterskategorie des Patienten.',
       'age.opt.lt65': '< 65 Jahre',
       'age.opt.65_74': '65–74 Jahre',
       'age.opt.ge75': '≥ 75 Jahre',
 
       'diabetes.display': 'Diabetes mellitus',
-      'diabetes.description': 'Diabetes mellitus in der Vorgeschichte.',
 
       'stroke-tia.display': 'Schlaganfall, TIA oder Thromboembolie',
-      'stroke-tia.description':
-          'Schlaganfall, TIA oder Thromboembolie in der Vorgeschichte.',
 
       'vascular-disease.display': 'Gefäßerkrankung',
       'vascular-disease.description':

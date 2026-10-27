@@ -23,7 +23,6 @@ class ApacheIiI10n extends ScoreI10n {
       'map.display': 'Mean Arterial Pressure',
       'map.description': 'MAP = (Systolic + 2 × Diastolic) / 3, in mmHg.',
       'herzfrequenz.display': 'Heart Rate',
-      'herzfrequenz.description': 'Heart rate in beats/min.',
       'atemfrequenz.display': 'Respiratory Rate',
       'atemfrequenz.description':
           'Respiratory rate in breaths/min (spontaneous or ventilated).',
@@ -36,11 +35,8 @@ class ApacheIiI10n extends ScoreI10n {
       'pao2.description':
           'Arterial oxygen partial pressure (only when FiO₂ < 50 %).',
       'ph_arteriell.display': 'Arterial pH',
-      'ph_arteriell.description': 'Arterial pH from blood gas analysis.',
       'natrium.display': 'Serum Sodium',
-      'natrium.description': 'Serum sodium in mmol/L.',
       'kalium.display': 'Serum Potassium',
-      'kalium.description': 'Serum potassium in mmol/L.',
       'kreatinin.display': 'Serum Creatinine',
       'kreatinin.description':
           'Serum creatinine. Doubled if acute renal failure is present.',
@@ -49,13 +45,10 @@ class ApacheIiI10n extends ScoreI10n {
           'Is acute renal failure present? '
           'Yes → creatinine subscore is doubled.',
       'haematokrit.display': 'Haematocrit',
-      'haematokrit.description': 'Haematocrit in %.',
       'leukozyten.display': 'White Blood Cells',
-      'leukozyten.description': 'White blood cell count.',
       'gcs.display': 'Glasgow Coma Scale',
       'gcs.description': 'Current GCS (3–15). APS subscore = 15 − GCS.',
       'alter.display': 'Age',
-      'alter.description': "Patient's age in years.",
       // Age options
       'alter.opt.le44': '≤ 44 years',
       'alter.opt.45_54': '45–54 years',
@@ -107,7 +100,6 @@ class ApacheIiI10n extends ScoreI10n {
       'map.display': 'Mittlerer Arteriendruck',
       'map.description': 'MAP = (Systole + 2 × Diastole) / 3, in mmHg.',
       'herzfrequenz.display': 'Herzfrequenz',
-      'herzfrequenz.description': 'Herzfrequenz in Schlägen/min.',
       'atemfrequenz.display': 'Atemfrequenz',
       'atemfrequenz.description':
           'Atemfrequenz in Zügen/min (spontan oder beatmet).',
@@ -120,11 +112,8 @@ class ApacheIiI10n extends ScoreI10n {
       'pao2.description':
           'Arterieller Sauerstoffpartialdruck (nur bei FiO₂ < 50 %).',
       'ph_arteriell.display': 'Arterieller pH',
-      'ph_arteriell.description': 'Arterieller pH aus der Blutgasanalyse.',
       'natrium.display': 'Serum-Natrium',
-      'natrium.description': 'Serumnatrium in mmol/L.',
       'kalium.display': 'Serum-Kalium',
-      'kalium.description': 'Serumkalium in mmol/L.',
       'kreatinin.display': 'Serum-Kreatinin',
       'kreatinin.description':
           'Serumkreatinin. Bei akutem Nierenversagen wird der Subscore verdoppelt.',
@@ -133,13 +122,10 @@ class ApacheIiI10n extends ScoreI10n {
           'Liegt ein akutes Nierenversagen vor? '
           'Ja → Kreatinin-Subscore wird verdoppelt.',
       'haematokrit.display': 'Hämatokrit',
-      'haematokrit.description': 'Hämatokrit in %.',
       'leukozyten.display': 'Leukozyten',
-      'leukozyten.description': 'Leukozytenzahl.',
       'gcs.display': 'Glasgow Coma Scale',
       'gcs.description': 'Aktueller GCS-Wert (3–15). APS-Subscore = 15 − GCS.',
       'alter.display': 'Alter',
-      'alter.description': 'Patientenalter in Jahren.',
       // Age options
       'alter.opt.le44': '≤ 44 Jahre',
       'alter.opt.45_54': '45–54 Jahre',

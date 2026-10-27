@@ -61,7 +61,6 @@ Score buildSofaScore(String lang) {
           VariableSelection(
             name: 'sofa-platelets',
             display: t('platelets.display'),
-            description: t('platelets.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 150 ×10³/µL', value: 0),
@@ -157,7 +156,6 @@ Score buildSofaScore(String lang) {
           VariableSelection(
             name: 'sofa-creatinine',
             display: t('creatinine.display'),
-            description: t('creatinine.description'),
             type: VariableType.select,
             units: Units.creatinine,
             options: [

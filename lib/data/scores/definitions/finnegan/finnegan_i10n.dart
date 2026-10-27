@@ -32,7 +32,6 @@ class FinneganI10n extends ScoreI10n {
       'sleep.3': 'Sleeps < 1 h',
 
       'moro.display': 'Moro reflex',
-      'moro.description': 'Assess the intensity of the Moro reflex.',
       'moro.0': 'Normal Moro reflex',
       'moro.2': 'Hyperactive Moro reflex',
       'moro.3': 'Markedly hyperactive Moro reflex',
@@ -55,10 +54,8 @@ class FinneganI10n extends ScoreI10n {
       'excoriation.description': 'Skin excoriation (chin, knees, toes, nose).',
 
       'myoclonic-jerks.display': 'Myoclonic jerks',
-      'myoclonic-jerks.description': 'Twitching / myoclonic jerks observed.',
 
       'convulsions.display': 'Generalized convulsions',
-      'convulsions.description': 'Generalised convulsions observed.',
 
       // MVR group
       'mvr.group.display': 'Metabolic / Vasomotor / Respiratory',
@@ -78,16 +75,13 @@ class FinneganI10n extends ScoreI10n {
       'yawning.description': '> 3–4 yawns per assessment interval.',
 
       'mottling.display': 'Mottling',
-      'mottling.description': 'Mottled skin appearance.',
 
       'nasal-stuffiness.display': 'Nasal stuffiness',
-      'nasal-stuffiness.description': 'Nasal congestion or stuffiness.',
 
       'sneezing.display': 'Sneezing',
       'sneezing.description': '> 3–4 sneezes per assessment interval.',
 
       'nasal-flaring.display': 'Nasal flaring',
-      'nasal-flaring.description': 'Nasal flaring during respiration.',
 
       'respiratory-rate.display': 'Respiratory rate',
       'respiratory-rate.description':
@@ -108,10 +102,8 @@ class FinneganI10n extends ScoreI10n {
       'feeding.description': 'Incoordinated or poor sucking during feeds.',
 
       'regurgitation.display': 'Regurgitation',
-      'regurgitation.description': 'Regurgitation after feeding.',
 
       'vomiting.display': 'Projectile vomiting',
-      'vomiting.description': 'Projectile vomiting after feeding.',
 
       'stools.display': 'Stool consistency',
       'stools.description': 'Select the worst stool consistency observed.',
@@ -160,7 +152,6 @@ class FinneganI10n extends ScoreI10n {
       'sleep.3': 'Schläft < 1 h',
 
       'moro.display': 'Moro-Reflex',
-      'moro.description': 'Intensität des Moro-Reflexes beurteilen.',
       'moro.0': 'Normaler Moro-Reflex',
       'moro.2': 'Hyperaktiver Moro-Reflex',
       'moro.3': 'Deutlich hyperaktiver Moro-Reflex',
@@ -183,10 +174,8 @@ class FinneganI10n extends ScoreI10n {
       'excoriation.description': 'Hautabschürfungen (Kinn, Knie, Zehen, Nase).',
 
       'myoclonic-jerks.display': 'Myoklonische Zuckungen',
-      'myoclonic-jerks.description': 'Myoklonische Zuckungen beobachtet.',
 
       'convulsions.display': 'Generalisierte Krampfanfälle',
-      'convulsions.description': 'Generalisierter Krampfanfall beobachtet.',
 
       // MVR group
       'mvr.group.display': 'Metabolisch / Vasomotorisch / Respiratorisch',
@@ -206,16 +195,13 @@ class FinneganI10n extends ScoreI10n {
       'yawning.description': '> 3–4 Gähnvorgänge pro Beurteilungsintervall.',
 
       'mottling.display': 'Marmorierung',
-      'mottling.description': 'Marmoriertes Hautbild.',
 
       'nasal-stuffiness.display': 'Nasale Kongestion',
-      'nasal-stuffiness.description': 'Verstopfte oder gereizte Nase.',
 
       'sneezing.display': 'Niesen',
       'sneezing.description': '> 3–4 Niesvorgänge pro Beurteilungsintervall.',
 
       'nasal-flaring.display': 'Nasenflügeln',
-      'nasal-flaring.description': 'Nasenflügeln beim Atmen.',
 
       'respiratory-rate.display': 'Atemfrequenz',
       'respiratory-rate.description':
@@ -237,10 +223,8 @@ class FinneganI10n extends ScoreI10n {
       'feeding.description': 'Unkoordiniertes oder schwaches Saugen bei der Mahlzeit.',
 
       'regurgitation.display': 'Regurgitation',
-      'regurgitation.description': 'Regurgitation nach der Mahlzeit.',
 
       'vomiting.display': 'Erbrechen im Schwall',
-      'vomiting.description': 'Schwallartig-projizierendes Erbrechen nach der Mahlzeit.',
 
       'stools.display': 'Stuhlkonsistenz',
       'stools.description': 'Schlechteste beobachtete Stuhlkonsistenz auswählen.',

@@ -39,7 +39,6 @@ Score buildEuroscoreScore(String lang) {
           VariableBool(
             name: 'euroscore-female',
             display: t('female.display'),
-            description: t('female.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -116,7 +115,6 @@ Score buildEuroscoreScore(String lang) {
           VariableBool(
             name: 'euroscore-diabetes_insulin',
             display: t('diabetes_insulin.display'),
-            description: t('diabetes_insulin.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,
@@ -191,7 +189,6 @@ Score buildEuroscoreScore(String lang) {
           VariableSelection(
             name: 'euroscore-urgency',
             display: t('urgency.display'),
-            description: t('urgency.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('urgency.elective'), value: 0.0),
@@ -203,7 +200,6 @@ Score buildEuroscoreScore(String lang) {
           VariableSelection(
             name: 'euroscore-procedure',
             display: t('procedure.display'),
-            description: t('procedure.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('procedure.cabg'), value: 0.0),
@@ -215,7 +211,6 @@ Score buildEuroscoreScore(String lang) {
           VariableBool(
             name: 'euroscore-thoracic_aorta',
             display: t('thoracic_aorta.display'),
-            description: t('thoracic_aorta.description'),
             value: null,
             trueValue: 1,
             falseValue: 0,

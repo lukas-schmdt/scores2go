@@ -38,7 +38,6 @@ class SofaI10n extends ScoreI10n {
       'pao2_fio2.opt.200_support': '< 200 mmHg + respiratory support',
       'pao2_fio2.opt.100_support': '< 100 mmHg + respiratory support',
       'platelets.display': 'Platelets',
-      'platelets.description': 'Platelet count.',
       'bilirubin.display': 'Bilirubin',
       'bilirubin.description': 'Total bilirubin.',
       'cardiovascular_status.display': 'Cardiovascular Status',
@@ -54,7 +53,6 @@ class SofaI10n extends ScoreI10n {
       'gcs.display': 'Glasgow Coma Scale',
       'gcs.description': 'Lowest relevant GCS value.',
       'creatinine.display': 'Creatinine',
-      'creatinine.description': 'Serum creatinine.',
       'urine_output.display': 'Urine Output',
       'urine_output.description':
           'Alternative renal assessment based on diuresis. '
@@ -111,7 +109,6 @@ class SofaI10n extends ScoreI10n {
       'pao2_fio2.opt.200_support': '< 200 mmHg + respiratorische Unterstützung',
       'pao2_fio2.opt.100_support': '< 100 mmHg + respiratorische Unterstützung',
       'platelets.display': 'Thrombozyten',
-      'platelets.description': 'Thrombozytenzahl.',
       'bilirubin.display': 'Bilirubin',
       'bilirubin.description': 'Gesamtbilirubin.',
       'cardiovascular_status.display': 'Kardiovaskulärer Status',
@@ -127,7 +124,6 @@ class SofaI10n extends ScoreI10n {
       'gcs.display': 'Glasgow Coma Scale',
       'gcs.description': 'Niedrigster relevanter GCS-Wert.',
       'creatinine.display': 'Kreatinin',
-      'creatinine.description': 'Serumkreatinin.',
       'urine_output.display': 'Urinausscheidung',
       'urine_output.description':
           'Alternative renale Bewertung anhand der Diurese. '

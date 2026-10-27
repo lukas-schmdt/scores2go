@@ -32,7 +32,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-age',
             display: t('age.display'),
-            description: t('age.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('age.lt40'), value: 0),
@@ -46,7 +45,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-comorbidities',
             display: t('comorbidities.display'),
-            description: t('comorbidities.description'),
             type: VariableType.multiselect,
             options: [
               VariableOption(display: t('comorbidities.chf4'), value: 6),
@@ -78,7 +76,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-location',
             display: t('location.display'),
-            description: t('location.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('location.recovery'), value: -6),
@@ -91,7 +88,6 @@ Score buildSaps3Score(String lang) {
           VariableBool(
             name: 'saps3-surgical',
             display: t('surgical.display'),
-            description: t('surgical.description'),
             value: null,
             // Was displayed as "+1" (a placeholder never updated) while the
             // calculation actually applied -6 — see saps3Function's
@@ -130,7 +126,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-gcs',
             display: t('gcs.display'),
-            description: t('gcs.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('gcs.15'), value: 0),
@@ -144,7 +139,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-bilirubin',
             display: t('bilirubin.display'),
-            description: t('bilirubin.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('bilirubin.lt2'), value: 0),
@@ -167,7 +161,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-heart_rate',
             display: t('heart_rate.display'),
-            description: t('heart_rate.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('heart_rate.lt40'), value: 11),
@@ -180,7 +173,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-map',
             display: t('map.display'),
-            description: t('map.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('map.lt40'), value: 18),
@@ -192,7 +184,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-creatinine',
             display: t('creatinine.display'),
-            description: t('creatinine.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('creatinine.lt1_2'), value: 0),
@@ -204,7 +195,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-platelets',
             display: t('platelets.display'),
-            description: t('platelets.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('platelets.lt20'), value: 13),
@@ -217,7 +207,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-wbc',
             display: t('wbc.display'),
-            description: t('wbc.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('wbc.lt1'), value: 12),
@@ -228,7 +217,6 @@ Score buildSaps3Score(String lang) {
           VariableSelection(
             name: 'saps3-ph',
             display: t('ph.display'),
-            description: t('ph.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('ph.lt7'), value: 14),

@@ -7,16 +7,6 @@ final _i10n = WellsPeI10n();
 
 Score buildWellsPeScore(String lang) {
   String t(String key) => _i10n.t(lang, key);
-
-  VariableBool criterion(String key, num points) => VariableBool(
-    name: 'wells-pe-$key',
-    display: t('$key.display'),
-    description: t('$key.description'),
-    value: null,
-    trueValue: points,
-    falseValue: 0,
-  );
-
   return Score(
     id: 21,
     name: 'wells-pe',
@@ -38,13 +28,57 @@ Score buildWellsPeScore(String lang) {
         description: t('group.criteria.description'),
         isVisible: true,
         items: [
-          criterion('dvt-signs', 3),
-          criterion('pe-likely', 3),
-          criterion('heart-rate', 1.5),
-          criterion('immobilization-surgery', 1.5),
-          criterion('previous-vte', 1.5),
-          criterion('hemoptysis', 1),
-          criterion('malignancy', 1),
+          VariableBool(
+            name: 'wells-pe-dvt-signs',
+            display: t('dvt-signs.display'),
+            description: t('dvt-signs.description'),
+            value: null,
+            trueValue: 3,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-pe-likely',
+            display: t('pe-likely.display'),
+            value: null,
+            trueValue: 3,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-heart-rate',
+            display: t('heart-rate.display'),
+            value: null,
+            trueValue: 1.5,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-immobilization-surgery',
+            display: t('immobilization-surgery.display'),
+            value: null,
+            trueValue: 1.5,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-previous-vte',
+            display: t('previous-vte.display'),
+            value: null,
+            trueValue: 1.5,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-hemoptysis',
+            display: t('hemoptysis.display'),
+            value: null,
+            trueValue: 1,
+            falseValue: 0,
+          ),
+          VariableBool(
+            name: 'wells-pe-malignancy',
+            display: t('malignancy.display'),
+            description: t('malignancy.description'),
+            value: null,
+            trueValue: 1,
+            falseValue: 0,
+          ),
         ],
       ),
     ],

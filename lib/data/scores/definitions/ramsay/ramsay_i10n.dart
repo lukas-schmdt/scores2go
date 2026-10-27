@@ -14,7 +14,6 @@ class RamsayI10n extends ScoreI10n {
       'group.display': 'Sedation Level',
       'group.description': 'Select the level that best describes the patient.',
       'level.display': 'Ramsay Level',
-      'level.description': 'Assess the patient\'s responsiveness.',
       'level.1': 'Level 1 – Awake; anxious, agitated or restless',
       'level.2': 'Level 2 – Awake; cooperative, oriented and tranquil',
       'level.3': 'Level 3 – Awake; responds to commands only',
@@ -59,7 +58,6 @@ class RamsayI10n extends ScoreI10n {
       'group.description':
           'Wählen Sie den Grad aus, der den Patienten am besten beschreibt.',
       'level.display': 'Ramsay-Grad',
-      'level.description': 'Reagibilität des Patienten beurteilen.',
       'level.1': 'Stufe 1 – Wach; ängstlich, agitiert oder unruhig',
       'level.2': 'Stufe 2 – Wach; kooperativ, orientiert und ruhig',
       'level.3': 'Stufe 3 – Wach; reagiert nur auf Aufforderung',

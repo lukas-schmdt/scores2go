@@ -43,6 +43,18 @@ class Units {
     UnitDefinition(label: 'kPa', factor: 0.133322),
   ];
 
+  // ─── Blood pressure ────────────────────────────────────────────────────────
+  // Haemodynamic pressures (MAP, CVP, …) are reported in mmHg only; kPa is
+  // reserved for blood gases (see [pressure]).
+  static const List<UnitDefinition> bloodPressure = [
+    UnitDefinition(label: 'mmHg'),
+  ];
+
+  // ─── Heart rate ────────────────────────────────────────────────────────────
+  static const List<UnitDefinition> heartRate = [
+    UnitDefinition(label: '/min'),
+  ];
+
   // ─── Weight ────────────────────────────────────────────────────────────────
   static const List<UnitDefinition> weight = [
     UnitDefinition(label: 'kg'),

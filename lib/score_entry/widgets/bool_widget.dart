@@ -23,7 +23,7 @@ class BooleanVariable extends StatelessWidget {
             item.display,
             style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
           ),
-          if (item.description!.isNotEmpty) ...[
+          if (item.description != null && item.description!.isNotEmpty) ...[
             const SizedBox(height: 3),
             Text(
               item.description!,

@@ -94,7 +94,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-herzfrequenz',
             display: t('herzfrequenz.display'),
-            description: t('herzfrequenz.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 180 /min', value: 4),
@@ -190,7 +189,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-ph_arteriell',
             display: t('ph_arteriell.display'),
-            description: t('ph_arteriell.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 7,70', value: 4),
@@ -205,7 +203,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-natrium',
             display: t('natrium.display'),
-            description: t('natrium.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 180 mmol/L', value: 4),
@@ -221,7 +218,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-kalium',
             display: t('kalium.display'),
-            description: t('kalium.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 7,0 mmol/L', value: 4),
@@ -278,7 +274,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-haematokrit',
             display: t('haematokrit.display'),
-            description: t('haematokrit.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: '≥ 60 %', value: 4),
@@ -292,7 +287,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-leukozyten',
             display: t('leukozyten.display'),
-            description: t('leukozyten.description'),
             type: VariableType.select,
             units: Units.leukocytes,
             options: [
@@ -347,7 +341,6 @@ Score buildApacheIiScore(String lang) {
           VariableSelection(
             name: 'apache-ii-alter',
             display: t('alter.display'),
-            description: t('alter.description'),
             type: VariableType.select,
             options: [
               VariableOption(display: t('alter.opt.le44'), value: 0),
