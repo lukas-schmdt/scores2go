@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:scores_2_go/theme/app_colors.dart';
 
 class AppTheme {
+  static const fontFamily = 'AtkinsonHyperlegibleNext';
+
   static ThemeData light() {
     const scheme = ColorScheme(
       brightness: Brightness.light,
@@ -25,6 +27,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      fontFamily: fontFamily,
       brightness: Brightness.light,
       colorScheme: scheme,
       scaffoldBackgroundColor: AppColors.lightBg,
@@ -161,6 +164,7 @@ class AppTheme {
 
     return ThemeData(
       useMaterial3: true,
+      fontFamily: fontFamily,
       brightness: Brightness.dark,
       colorScheme: scheme,
       scaffoldBackgroundColor: AppColors.darkBg,

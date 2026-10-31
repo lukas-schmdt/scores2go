@@ -32,10 +32,21 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  fonts:
+    - family: AtkinsonHyperlegibleNext
+      fonts:
+        - asset: assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf
+        - asset: assets/fonts/AtkinsonHyperlegibleNext-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/AtkinsonHyperlegibleNext-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/AtkinsonHyperlegibleNext-Bold.ttf
+          weight: 700
   assets:
     - assets/bmc-button.svg
     - assets/bmc-logo.svg
     - assets/app_icon.svg
+    - assets/fonts/OFL.txt
     - lib/data/scores/definitions/apache-ii/
     - lib/data/scores/definitions/saps-ii/
     - lib/data/scores/definitions/sofa/
