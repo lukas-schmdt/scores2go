@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/common/layout/breakpoints.dart';
 import 'package:scores_2_go/home/bloc/home_bloc.dart';
+import 'package:scores_2_go/home/provide_home_blocs.dart';
 import 'package:scores_2_go/model/score.dart';
 import 'package:scores_2_go/recently_used/bloc/recently_used_bloc.dart';
 import 'package:scores_2_go/repo/scores_repository.dart';
@@ -25,10 +26,13 @@ void openScoreEntry(BuildContext context, Score score) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => BlocProvider(
-        create: (_) =>
-            ScoreEntryBloc(repo)..add(ScoreEntryLoadEvent(score.name)),
-        child: ScoreEntryScreen(score: score),
+      builder: (_) => provideHomeBlocs(
+        context,
+        BlocProvider(
+          create: (_) =>
+              ScoreEntryBloc(repo)..add(ScoreEntryLoadEvent(score.name)),
+          child: ScoreEntryScreen(score: score),
+        ),
       ),
     ),
   );

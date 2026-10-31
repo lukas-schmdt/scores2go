@@ -18,7 +18,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navBrowse => 'Browse';
 
   @override
-  String get navFavorites => 'Favorites';
+  String get navSaved => 'Saved';
 
   @override
   String get navRecentlyUsed => 'Recently used';
@@ -221,11 +221,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get signInRequiredTitle => 'Sign in required';
 
   @override
-  String get favoritesSignInSubtitle =>
-      'Sign in to save and sync your favorites.';
+  String get savedSignInSubtitle =>
+      'Sign in to save favorites and collections and sync them across devices.';
 
   @override
   String get signInToFavorite => 'Sign in to save favorites.';
+
+  @override
+  String get signInToSave => 'Sign in to save scores.';
+
+  @override
+  String get saveTo => 'Save to…';
+
+  @override
+  String get favoritesEmptyHint => 'Tap the star on a score to add it here.';
+
+  @override
+  String get collectionsEmptyHint =>
+      'Group scores into your own lists, e.g. by ward or specialty.';
 
   @override
   String get noItemsFound => 'No items found';
@@ -346,14 +359,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get collectionsTitle => 'Collections';
 
   @override
-  String get collectionsSignInSubtitle =>
-      'Sign in to create and manage collections.';
-
-  @override
-  String get signInToUseCollections => 'Sign in to use collections.';
-
-  @override
-  String get addToCollection => 'Add to collection';
+  String collectionScoreCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count scores',
+      one: '1 score',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get noCollectionsYet => 'No collections yet. Create one below.';
@@ -383,7 +397,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get noScoresYetTitle => 'No scores yet';
 
   @override
-  String get noScoresYetSubtitle => 'Add scores from the Browse tab.';
+  String get noScoresYetSubtitle =>
+      'Long-press a score in Browse, or use the bookmark icon on a score, to add it here.';
 
   @override
   String get deleteCollectionQuestion => 'Delete collection?';

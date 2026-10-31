@@ -5,7 +5,7 @@
   "appSubtitle": "Klinische Bewertungstools",
 
   "navBrowse": "Browse",
-  "navFavorites": "Favoriten",
+  "navSaved": "Gespeichert",
   "navRecentlyUsed": "Zuletzt verwendet",
   "navProfile": "Profil",
 
@@ -80,8 +80,12 @@
   "favoritesTitle": "Favoriten",
   "errorLoadingFavorites": "Fehler beim Laden der Favoriten",
   "signInRequiredTitle": "Anmeldung erforderlich",
-  "favoritesSignInSubtitle": "Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.",
+  "savedSignInSubtitle": "Melde dich an, um Favoriten und Sammlungen zu speichern und geräteübergreifend zu synchronisieren.",
   "signInToFavorite": "Melde dich an, um Favoriten zu speichern.",
+  "signInToSave": "Melde dich an, um Scores zu speichern.",
+  "saveTo": "Speichern in …",
+  "favoritesEmptyHint": "Tippe bei einem Score auf den Stern, um ihn hier hinzuzufügen.",
+  "collectionsEmptyHint": "Ordne Scores in eigene Listen, z. B. nach Station oder Fachgebiet.",
 
   "noItemsFound": "Keine Elemente gefunden",
   "pleaseSelectItem": "Bitte ein Element auswählen.",
@@ -128,9 +132,10 @@
   "unknownState": "Unbekannter Zustand",
 
   "collectionsTitle": "Sammlungen",
-  "collectionsSignInSubtitle": "Melde dich an, um Sammlungen zu erstellen und zu verwalten.",
-  "signInToUseCollections": "Melde dich an, um Sammlungen zu nutzen.",
-  "addToCollection": "Zu Sammlung hinzufügen",
+  "collectionScoreCount": "{count, plural, =1{1 Score} other{{count} Scores}}",
+  "@collectionScoreCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
   "noCollectionsYet": "Noch keine Sammlungen. Erstelle unten eine neue.",
   "newCollection": "Neue Sammlung",
   "done": "Fertig",
@@ -140,7 +145,7 @@
   "deleteCollectionTooltip": "Sammlung löschen",
   "renameCollectionTitle": "Sammlung umbenennen",
   "noScoresYetTitle": "Noch keine Scores",
-  "noScoresYetSubtitle": "Füge Scores über den Tab „Durchsuchen“ hinzu.",
+  "noScoresYetSubtitle": "Halte einen Score unter „Browse“ gedrückt oder nutze das Lesezeichen-Symbol in einem Score, um ihn hier hinzuzufügen.",
   "deleteCollectionQuestion": "Sammlung löschen?",
   "deleteCollectionConfirmBody": "„{name}“ wird gelöscht. Scores sind davon nicht betroffen.",
   "@deleteCollectionConfirmBody": {

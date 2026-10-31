@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:scores_2_go/auth/bloc/auth_bloc.dart';
+import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/saved/widget/save_to_dialog.dart';
+import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:scores_2_go/model/score_visibility.dart';
 import 'package:scores_2_go/score_entry/bloc/score_entry_bloc.dart';
@@ -91,6 +95,10 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
                       );
                     },
                   ),
+                // Hidden for guests: signing in from inside a pushed route
+                // would leave it holding the pre-login (closed) blocs.
+                if (context.watch<AuthBloc>().state.isAuthenticated)
+                  _SaveButton(scoreId: score.id),
                 const SizedBox(width: 4),
               ],
             ),
@@ -154,6 +162,31 @@ class _ScoreEntryScreenState extends State<ScoreEntryScreen> {
           return Center(child: Text(l.unknownState));
         }
       },
+    );
+  }
+}
+
+/// Opens the "Save to" dialog; filled when the score is in Favorites or any
+/// collection.
+class _SaveButton extends StatelessWidget {
+  const _SaveButton({required this.scoreId});
+
+  final int scoreId;
+
+  @override
+  Widget build(BuildContext context) {
+    final isFavorite = context.select<UserFavoritesBloc, bool>(
+      (bloc) => bloc.state.favorites.contains(scoreId),
+    );
+    final isInCollection = context.select<CollectionsBloc, bool>(
+      (bloc) => bloc.state.collections.any((c) => c.scoreIds.contains(scoreId)),
+    );
+    final isSaved = isFavorite || isInCollection;
+
+    return IconButton(
+      icon: Icon(isSaved ? Icons.bookmark : Icons.bookmark_add_outlined),
+      tooltip: AppLocalizations.of(context)!.saveTo,
+      onPressed: () => showSaveToDialog(context, scoreId),
     );
   }
 }

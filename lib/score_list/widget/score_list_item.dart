@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:scores_2_go/auth/screen/open_auth_screen.dart';
-import 'package:scores_2_go/collections/widget/add_to_collection_sheet.dart';
 import 'package:scores_2_go/home/widgets/favorite_icon_button.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score.dart';
+import 'package:scores_2_go/saved/widget/save_to_dialog.dart';
 import 'package:scores_2_go/score_entry/screen/open_score_entry.dart';
 
 class ScoreListItem extends StatelessWidget {
@@ -35,6 +35,13 @@ class ScoreListItem extends StatelessWidget {
       elevation: 2,
       child: InkWell(
         onTap: () => openScoreEntry(context, score),
+        // Saving to Favorites is the one-tap star; long-press opens the full
+        // "Save to" dialog (Favorites + collections).
+        onLongPress: () {
+          final l = AppLocalizations.of(context)!;
+          if (!ensureSignedIn(context, message: l.signInToSave)) return;
+          showSaveToDialog(context, score.id);
+        },
         borderRadius: BorderRadius.circular(12),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
@@ -123,21 +130,6 @@ class ScoreListItem extends StatelessWidget {
                       ),
                     ],
                   ],
-                ),
-              ),
-              SizedBox(
-                width: 40,
-                height: 40,
-                child: IconButton(
-                  padding: EdgeInsets.zero,
-                  icon: Icon(Icons.folder_outlined, color: cs.onSurfaceVariant),
-                  onPressed: () {
-                    final l = AppLocalizations.of(context)!;
-                    if (!ensureSignedIn(context, message: l.signInToUseCollections)) {
-                      return;
-                    }
-                    showAddToCollectionDialog(context, score.id);
-                  },
                 ),
               ),
               FavoriteIconButton(isFavorite: isFavorite, scoreId: score.id),

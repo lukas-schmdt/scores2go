@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scores_2_go/collections/bloc/collections_bloc.dart';
+import 'package:scores_2_go/collections/widget/create_collection_dialog.dart';
+import 'package:scores_2_go/home/provide_home_blocs.dart';
 import 'package:scores_2_go/l10n/app_localizations.dart';
 import 'package:scores_2_go/model/score_collection.dart';
+import 'package:scores_2_go/user_favorites/bloc/user_favorites_bloc.dart';
 
-/// Shows a centered dialog for adding a score to a collection.
-Future<void> showAddToCollectionDialog(BuildContext context, int scoreId) {
+/// Shows a dialog for saving a score to Favorites and/or any collection.
+/// The caller must make sure the user is signed in.
+Future<void> showSaveToDialog(BuildContext context, int scoreId) {
   return showDialog<void>(
     context: context,
-    builder: (_) => BlocProvider.value(
-      value: context.read<CollectionsBloc>(),
-      child: _AddToCollectionDialog(scoreId: scoreId),
-    ),
+    builder: (_) =>
+        provideHomeBlocs(context, _SaveToDialog(scoreId: scoreId)),
   );
 }
 
-class _AddToCollectionDialog extends StatelessWidget {
-  const _AddToCollectionDialog({required this.scoreId});
+class _SaveToDialog extends StatelessWidget {
+  const _SaveToDialog({required this.scoreId});
 
   final int scoreId;
 
@@ -26,31 +28,34 @@ class _AddToCollectionDialog extends StatelessWidget {
     return BlocBuilder<CollectionsBloc, CollectionsState>(
       builder: (context, state) {
         return AlertDialog(
-          title: Text(l.addToCollection),
+          title: Text(l.saveTo),
           insetPadding: const EdgeInsets.symmetric(horizontal: 40, vertical: 24),
           content: SizedBox(
             width: 320,
-            child: state.status == CollectionsStatus.loading
-                ? const SizedBox(
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                _FavoriteTile(scoreId: scoreId),
+                const Divider(),
+                if (state.status == CollectionsStatus.loading)
+                  const SizedBox(
                     height: 80,
                     child: Center(child: CircularProgressIndicator()),
                   )
-                : state.collections.isEmpty
-                    ? Text(l.noCollectionsYet)
-                    : ListView(
-                        shrinkWrap: true,
-                        children: [
-                          for (final collection in state.collections)
-                            _CollectionTile(
-                              collection: collection,
-                              scoreId: scoreId,
-                            ),
-                        ],
-                      ),
+                else if (state.collections.isEmpty)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Text(l.noCollectionsYet),
+                  )
+                else
+                  for (final collection in state.collections)
+                    _CollectionTile(collection: collection, scoreId: scoreId),
+              ],
+            ),
           ),
           actions: [
             TextButton(
-              onPressed: () => _showCreateDialog(context),
+              onPressed: () => showCreateCollectionDialog(context),
               child: Text(l.newCollection),
             ),
             TextButton(
@@ -62,45 +67,36 @@ class _AddToCollectionDialog extends StatelessWidget {
       },
     );
   }
+}
 
-  Future<void> _showCreateDialog(BuildContext context) async {
-    final bloc = context.read<CollectionsBloc>();
+class _FavoriteTile extends StatelessWidget {
+  const _FavoriteTile({required this.scoreId});
+
+  final int scoreId;
+
+  @override
+  Widget build(BuildContext context) {
     final l = AppLocalizations.of(context)!;
-    final controller = TextEditingController();
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l.newCollection),
-        content: SizedBox(
-          width: 320,
-          child: TextField(
-            controller: controller,
-            autofocus: true,
-            decoration: InputDecoration(
-              hintText: l.collectionNameHint,
-              border: const OutlineInputBorder(),
-              isDense: true,
-            ),
-            textCapitalization: TextCapitalization.sentences,
-            onSubmitted: (_) => Navigator.of(ctx).pop(true),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(false),
-            child: Text(l.cancel),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(ctx).pop(true),
-            child: Text(l.create),
-          ),
-        ],
-      ),
+    return BlocBuilder<UserFavoritesBloc, UserFavoritesState>(
+      builder: (context, state) {
+        final isFavorite = state.favorites.contains(scoreId);
+        return CheckboxListTile(
+          value: isFavorite,
+          secondary: const Icon(Icons.star, color: Colors.amber),
+          title: Text(l.favoritesTitle),
+          controlAffinity: ListTileControlAffinity.trailing,
+          onChanged: state.pendingId == scoreId
+              ? null
+              : (_) {
+                  context.read<UserFavoritesBloc>().add(
+                    isFavorite
+                        ? RemoveUserFavoriteEvent(scoreId)
+                        : AddUserFavoriteEvent(scoreId),
+                  );
+                },
+        );
+      },
     );
-    if (confirmed == true && controller.text.trim().isNotEmpty) {
-      bloc.add(CreateCollectionEvent(controller.text.trim()));
-    }
-    controller.dispose();
   }
 }
 
@@ -115,6 +111,10 @@ class _CollectionTile extends StatelessWidget {
     final isIn = collection.scoreIds.contains(scoreId);
     return CheckboxListTile(
       value: isIn,
+      secondary: Icon(
+        Icons.folder_outlined,
+        color: Theme.of(context).colorScheme.primary,
+      ),
       title: Text(collection.display),
       controlAffinity: ListTileControlAffinity.trailing,
       onChanged: (_) {

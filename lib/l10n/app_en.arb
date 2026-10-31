@@ -5,7 +5,7 @@
   "appSubtitle": "Clinical Assessment Tools",
 
   "navBrowse": "Browse",
-  "navFavorites": "Favorites",
+  "navSaved": "Saved",
   "navRecentlyUsed": "Recently used",
   "navProfile": "Profile",
 
@@ -79,8 +79,12 @@
 
   "favoritesTitle": "Favorites",
   "signInRequiredTitle": "Sign in required",
-  "favoritesSignInSubtitle": "Sign in to save and sync your favorites.",
+  "savedSignInSubtitle": "Sign in to save favorites and collections and sync them across devices.",
   "signInToFavorite": "Sign in to save favorites.",
+  "signInToSave": "Sign in to save scores.",
+  "saveTo": "Save to…",
+  "favoritesEmptyHint": "Tap the star on a score to add it here.",
+  "collectionsEmptyHint": "Group scores into your own lists, e.g. by ward or specialty.",
   "errorLoadingFavorites": "Error loading favorites",
 
   "noItemsFound": "No items found",
@@ -128,9 +132,10 @@
   "unknownState": "Unknown state",
 
   "collectionsTitle": "Collections",
-  "collectionsSignInSubtitle": "Sign in to create and manage collections.",
-  "signInToUseCollections": "Sign in to use collections.",
-  "addToCollection": "Add to collection",
+  "collectionScoreCount": "{count, plural, =1{1 score} other{{count} scores}}",
+  "@collectionScoreCount": {
+    "placeholders": { "count": { "type": "int" } }
+  },
   "noCollectionsYet": "No collections yet. Create one below.",
   "newCollection": "New collection",
   "done": "Done",
@@ -140,7 +145,7 @@
   "deleteCollectionTooltip": "Delete collection",
   "renameCollectionTitle": "Rename collection",
   "noScoresYetTitle": "No scores yet",
-  "noScoresYetSubtitle": "Add scores from the Browse tab.",
+  "noScoresYetSubtitle": "Long-press a score in Browse, or use the bookmark icon on a score, to add it here.",
   "deleteCollectionQuestion": "Delete collection?",
   "deleteCollectionConfirmBody": "\"{name}\" will be deleted. Scores are not affected.",
   "@deleteCollectionConfirmBody": {

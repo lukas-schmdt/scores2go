@@ -116,11 +116,11 @@ abstract class AppLocalizations {
   /// **'Browse'**
   String get navBrowse;
 
-  /// No description provided for @navFavorites.
+  /// No description provided for @navSaved.
   ///
   /// In de, this message translates to:
-  /// **'Favoriten'**
-  String get navFavorites;
+  /// **'Gespeichert'**
+  String get navSaved;
 
   /// No description provided for @navRecentlyUsed.
   ///
@@ -506,17 +506,41 @@ abstract class AppLocalizations {
   /// **'Anmeldung erforderlich'**
   String get signInRequiredTitle;
 
-  /// No description provided for @favoritesSignInSubtitle.
+  /// No description provided for @savedSignInSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.'**
-  String get favoritesSignInSubtitle;
+  /// **'Melde dich an, um Favoriten und Sammlungen zu speichern und geräteübergreifend zu synchronisieren.'**
+  String get savedSignInSubtitle;
 
   /// No description provided for @signInToFavorite.
   ///
   /// In de, this message translates to:
   /// **'Melde dich an, um Favoriten zu speichern.'**
   String get signInToFavorite;
+
+  /// No description provided for @signInToSave.
+  ///
+  /// In de, this message translates to:
+  /// **'Melde dich an, um Scores zu speichern.'**
+  String get signInToSave;
+
+  /// No description provided for @saveTo.
+  ///
+  /// In de, this message translates to:
+  /// **'Speichern in …'**
+  String get saveTo;
+
+  /// No description provided for @favoritesEmptyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Tippe bei einem Score auf den Stern, um ihn hier hinzuzufügen.'**
+  String get favoritesEmptyHint;
+
+  /// No description provided for @collectionsEmptyHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Ordne Scores in eigene Listen, z. B. nach Station oder Fachgebiet.'**
+  String get collectionsEmptyHint;
 
   /// No description provided for @noItemsFound.
   ///
@@ -740,23 +764,11 @@ abstract class AppLocalizations {
   /// **'Sammlungen'**
   String get collectionsTitle;
 
-  /// No description provided for @collectionsSignInSubtitle.
+  /// No description provided for @collectionScoreCount.
   ///
   /// In de, this message translates to:
-  /// **'Melde dich an, um Sammlungen zu erstellen und zu verwalten.'**
-  String get collectionsSignInSubtitle;
-
-  /// No description provided for @signInToUseCollections.
-  ///
-  /// In de, this message translates to:
-  /// **'Melde dich an, um Sammlungen zu nutzen.'**
-  String get signInToUseCollections;
-
-  /// No description provided for @addToCollection.
-  ///
-  /// In de, this message translates to:
-  /// **'Zu Sammlung hinzufügen'**
-  String get addToCollection;
+  /// **'{count, plural, =1{1 Score} other{{count} Scores}}'**
+  String collectionScoreCount(int count);
 
   /// No description provided for @noCollectionsYet.
   ///
@@ -815,7 +827,7 @@ abstract class AppLocalizations {
   /// No description provided for @noScoresYetSubtitle.
   ///
   /// In de, this message translates to:
-  /// **'Füge Scores über den Tab „Durchsuchen“ hinzu.'**
+  /// **'Halte einen Score unter „Browse“ gedrückt oder nutze das Lesezeichen-Symbol in einem Score, um ihn hier hinzuzufügen.'**
   String get noScoresYetSubtitle;
 
   /// No description provided for @deleteCollectionQuestion.

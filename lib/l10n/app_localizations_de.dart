@@ -18,7 +18,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get navBrowse => 'Browse';
 
   @override
-  String get navFavorites => 'Favoriten';
+  String get navSaved => 'Gespeichert';
 
   @override
   String get navRecentlyUsed => 'Zuletzt verwendet';
@@ -223,11 +223,25 @@ class AppLocalizationsDe extends AppLocalizations {
   String get signInRequiredTitle => 'Anmeldung erforderlich';
 
   @override
-  String get favoritesSignInSubtitle =>
-      'Melde dich an, um deine Favoriten zu speichern und zu synchronisieren.';
+  String get savedSignInSubtitle =>
+      'Melde dich an, um Favoriten und Sammlungen zu speichern und geräteübergreifend zu synchronisieren.';
 
   @override
   String get signInToFavorite => 'Melde dich an, um Favoriten zu speichern.';
+
+  @override
+  String get signInToSave => 'Melde dich an, um Scores zu speichern.';
+
+  @override
+  String get saveTo => 'Speichern in …';
+
+  @override
+  String get favoritesEmptyHint =>
+      'Tippe bei einem Score auf den Stern, um ihn hier hinzuzufügen.';
+
+  @override
+  String get collectionsEmptyHint =>
+      'Ordne Scores in eigene Listen, z. B. nach Station oder Fachgebiet.';
 
   @override
   String get noItemsFound => 'Keine Elemente gefunden';
@@ -348,15 +362,15 @@ class AppLocalizationsDe extends AppLocalizations {
   String get collectionsTitle => 'Sammlungen';
 
   @override
-  String get collectionsSignInSubtitle =>
-      'Melde dich an, um Sammlungen zu erstellen und zu verwalten.';
-
-  @override
-  String get signInToUseCollections =>
-      'Melde dich an, um Sammlungen zu nutzen.';
-
-  @override
-  String get addToCollection => 'Zu Sammlung hinzufügen';
+  String collectionScoreCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Scores',
+      one: '1 Score',
+    );
+    return '$_temp0';
+  }
 
   @override
   String get noCollectionsYet =>
@@ -388,7 +402,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noScoresYetSubtitle =>
-      'Füge Scores über den Tab „Durchsuchen“ hinzu.';
+      'Halte einen Score unter „Browse“ gedrückt oder nutze das Lesezeichen-Symbol in einem Score, um ihn hier hinzuzufügen.';
 
   @override
   String get deleteCollectionQuestion => 'Sammlung löschen?';
