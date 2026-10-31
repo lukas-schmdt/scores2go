@@ -88,7 +88,7 @@ lib/
 ├── l10n/                 # ARB files + generated AppLocalizations (UI strings)
 └── ...
 landing/                  # static landing page + per-score docs (EN in scores/, DE in scores/de/)
-supabase/rls.sql          # row-level security policies (source of truth)
+supabase/setup.sql        # full backend setup: schema, RLS policies, score catalogue
 test/scores/              # unit tests per score + smoke test over all scores
 ```
 

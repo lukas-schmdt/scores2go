@@ -56,20 +56,23 @@ Score definitions are pure Dart — no network calls. Each score folder contains
 **Supabase tables used:**
 - `user_favorites` — columns: `user_id`, `score_id`, `position`
 - `user_score_collections` — columns: `id`, `user_id`, `display`
-- `score_collection_scores` — columns: `user_score_collection_id`, `score_id`
+- `score_collection_scores` — columns: `user_score_collection_id`, `score_id`, `user_id`
 - `user_feedback` — columns: `user_id` (null for anonymous), `feedback`, `stars`
 - `score_opens` — columns: `score_id`, `platform`, `locale`; anonymous usage counts (no `user_id`), insert-only from the client
-- `scores` — columns: `id`, `popularity_last_7d` (0–100 percentile rank of 7-day opens, refreshed hourly by pg_cron — `supabase/popularity.sql`). `ScoresRepository` merges it into `Score.popularity`; it is never hardcoded in score definitions.
+- `scores` — columns: `id`, `name`, `display`, `description`, `popularity_last_7d` (0–100 percentile rank of 7-day opens, refreshed hourly by pg_cron via `refresh_score_popularity()`). `ScoresRepository` merges it into `Score.popularity`; it is never hardcoded in score definitions.
 
-**Security:** the key in `main.dart` is the *publishable* key — public by design. Never put the secret/`service_role` key in the client. Client-side `.eq('user_id', …)` filters are not a security boundary; data access is enforced by RLS, whose source of truth is `supabase/rls.sql` (run manually in the Supabase SQL editor). Any new table needs owner-only RLS policies added there.
+**Schema (`supabase/setup.sql`):** the whole backend in one file — tables, RLS, popularity cron and the `scores` catalogue — run once in the SQL editor of a fresh project (no CLI; not re-runnable, never run on production). It must mirror production: for any DB change, update the definitions in `setup.sql` and run only the change itself (e.g. an `alter table` or a single `insert`) on production.
+
+**Security:** the key in `main.dart` is the *publishable* key — public by design. Never put the secret/`service_role` key in the client. Client-side `.eq('user_id', …)` filters are not a security boundary; data access is enforced by RLS, defined in `supabase/setup.sql`. Any new table needs owner-only RLS policies there.
 
 ### Adding a new score
 
-1. Create `lib/data/scores/definitions/<name>/` with the four Dart files (no `.md` doc — documentation lives in `landing/scores/`). Don't set `popularity` — it comes from the DB. The new score's `id` needs a row in the Supabase `scores` table to get one.
+1. Create `lib/data/scores/definitions/<name>/` with the four Dart files (no `.md` doc — documentation lives in `landing/scores/`). Don't set `popularity` — it comes from the DB. The new score's `id` needs a row in the Supabase `scores` table to get one — add it to the catalogue insert in `supabase/setup.sql` and run that single row's insert on production.
 2. Register the asset folder in `pubspec.yaml` under `flutter.assets`.
 3. Add `build<Name>Score(lang)` to `lib/data/scores/scores.dart` (`buildScoresList`). The assert there enforces unique `Score.id` values.
 4. Create landing pages: `landing/scores/<name>.html` and `landing/scores/de/<name>.html`.
 5. Update `landing/index.html` (scores array) and `landing/sitemap.xml`.
+6. Register the score in the supabase/setup.sql seed statement.
 
 ### Landing page (`landing/`)
 

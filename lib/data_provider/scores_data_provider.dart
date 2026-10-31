@@ -10,7 +10,7 @@ class ScoresDataProvider {
   // ─── Popularity ───────────────────────────────────────────────────────────
 
   /// score id → popularity_last_7d (0–100), refreshed hourly by pg_cron
-  /// (see supabase/popularity.sql).
+  /// (see refresh_score_popularity() in supabase/setup.sql).
   Future<Map<int, int>> fetchPopularity() async {
     dev.log('fetchPopularity()', name: _tag);
     final rows = await _db.from('scores').select('id, popularity_last_7d');
